@@ -1,7 +1,9 @@
 package com.hy.crm.controller;
 
-import com.hy.crm.service.impl.LoginServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hy.crm.entity.Users;
 import com.hy.crm.service.ILoginService;
+import com.hy.crm.service.impl.LoginServiceImpl;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -59,6 +61,10 @@ public class LoginController {
             return  "3";
         }
 System.out.println("sssssssssssssssssssssssssssss");
+        QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("u_name",u_name);
+        Users users = iLoginService.getOne(queryWrapper);
+        subject.getSession().setAttribute("users",users);
         return "/index";
     }
 

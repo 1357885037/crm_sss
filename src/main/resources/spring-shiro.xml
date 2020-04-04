@@ -24,14 +24,14 @@
 
     <!--配置realm-->   <!--中间密码加密匹配器-->
     <bean id="realmDemo" class="com.hy.crm.shiro.RealmDemo">
-        <property name="credentialsMatcher">
-        <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-           <!--加密方式-->
-            <property name="hashAlgorithmName" value="MD5"></property>
-            <!--加密次数-->
-            <property name="hashIterations" value="1024"></property>
-        </bean>
-        </property>
+<!--        <property name="credentialsMatcher">-->
+<!--        <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
+<!--           &lt;!&ndash;加密方式&ndash;&gt;-->
+<!--            <property name="hashAlgorithmName" value="MD5"></property>-->
+<!--            &lt;!&ndash;加密次数&ndash;&gt;-->
+<!--            <property name="hashIterations" value="1024"></property>-->
+<!--        </bean>-->
+<!--        </property>-->
     </bean>
 
     <!--配置shiro web过滤器-->
