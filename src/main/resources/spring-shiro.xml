@@ -39,13 +39,14 @@
     <!--必须配置 安全管理器-->
     <property name="securityManager" ref="securityManager"></property>
     <!-- 如果没有认证访问其他需要认证的连接则跳转到的页面  一般就登录界面-->
-    <property name="loginUrl" value="/Login/login2.html"></property>
+    <property name="loginUrl" value="/index.html"></property>
 
     <property name="filterChainDefinitions">
         <value>
             /css/**=anon
             /img/**=anon
             /js/**=anon
+            /images/**=anon
             /json/**=anon
             /layui/**=anon
             /login.html=anon

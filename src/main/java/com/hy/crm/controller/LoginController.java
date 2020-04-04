@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
@@ -34,6 +35,7 @@ public class LoginController {
     private LoginServiceImpl loginServiceImol ;
 
     @RequestMapping("/login.do")
+    @ResponseBody
     public String login(@RequestParam(value = "username") String u_name,@RequestParam(value = "password") String u_pass, Model model){
         System.out.println("进入方法。。。。。。。。。。。。。。");
         System.out.println(u_name+u_pass);
@@ -43,23 +45,17 @@ public class LoginController {
         try {
             subject.login(token);
             logger.info("登录成功！");
-        }catch (IncorrectCredentialsException ice){
-            //捕获密码出现异常
-            model.addAttribute("message","密码出现异常");
-            System.out.println(subject.isAuthenticated());
-            return  "1";
         }catch (UnknownAccountException uae){
             //捕获未知用户名异常
-            model.addAttribute("message","用户名出现异常");
-             System.out.println("222");
             return  "2";
+        }catch (IncorrectCredentialsException ice){
+            //捕获密码出现异常
+            return  "3";
         }catch (ExcessiveAttemptsException eae){
             //捕获错误登录多次的异常
-            model.addAttribute("message","错误登录多次");
-            return  "3";
+            return  "4";
         }
-System.out.println("sssssssssssssssssssssssssssss");
-        return "/index";
+        return "1";
     }
 
     @RequestMapping("/Login/Users/aaa.do")
@@ -68,5 +64,9 @@ System.out.println("sssssssssssssssssssssssssssss");
         return "login.html";
     }
 
-
+    @RequestMapping("/transpond.do")
+    public String transpond(String username,Model model){
+        model.addAttribute("user",username);
+        return "/main_ Interface/index";
+    }
 }

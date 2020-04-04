@@ -61,7 +61,6 @@ public class RealmDemo extends AuthorizingRealm {
         QueryWrapper queryWrapper=new QueryWrapper();
         queryWrapper.eq("u_name",username);
         Users users=loginServiceImpl.getOne(queryWrapper);
-        System.out.println(users.toString());
         System.out.println(users+"666666666666666");
         if(users==null){
             throw new UnknownAccountException("此用户不存在");
