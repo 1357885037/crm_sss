@@ -94,7 +94,14 @@
 			"href": "page/doc/addressDoc.html",
 			"spread": false
 		}
-	]
+	],"xitong": [
+	{
+		"title": "角色管理",
+		"icon": "icon-mokuai",
+		"href": "page/doc/addressDoc.html",
+		"spread": false
+	}
+]
 }
 
 
