@@ -18,22 +18,19 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
-    <!--配置模板解析器-->
+
+    <!--    配置模板解析器-->
     <bean id="templateResolver" class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-        <property name="characterEncoding" value="utf-8"></property>
-        <!--prefix，用于指定template所在目录；-->
-        <property name="prefix" value="/"></property>
-        <!--suffix，过滤请求，这里是处理所有以.html结尾的请求；-->
-        <property name="suffix" value=".html"></property>
-        <!--是否缓存页面，开发时设置为false，这样就可以在不重启服务器的情况下刷新页面即可查看修改效果；-->
-        <property name="cacheable" value="false"></property>
-        <!--templateMode，设置为html；-->
-        <property name="templateMode" value="HTML"></property>
+        <property name="characterEncoding" value="utf-8"/>
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".html"/>
+        <property name="cacheable" value="false"/>
+        <property name="templateMode" value="HTML"/>
     </bean>
 
-    <!--配置模板引擎-->
-    <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver"></property>
+    <!--    配置模板引擎-->
+    <bean id="springTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
         <property name="additionalDialects">
             <set>
                 <bean class="at.pollux.thymeleaf.shiro.dialect.ShiroDialect"/>
@@ -41,11 +38,10 @@
         </property>
     </bean>
 
-    <!--视图解析器-->
+    <!--    配置htymeleaf视图解析器-->
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-        <!--解决中文乱码-->
-        <property name="characterEncoding" value="utf-8"></property>
-        <property name="templateEngine" ref="templateEngine"></property>
+        <property name="characterEncoding" value="utf-8"/>
+        <property name="templateEngine" ref="springTemplateEngine"/>
     </bean>
 
 

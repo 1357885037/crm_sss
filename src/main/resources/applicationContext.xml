@@ -49,6 +49,9 @@
         <!--插件分页-->
         <property name="plugins">
             <array>
+                <!-- 分页插件配置 -->
+                <bean id="paginationInterceptor"
+                      class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"/>
                 <bean class="com.github.pagehelper.PageInterceptor">
                     <property name="properties">
                         <props>

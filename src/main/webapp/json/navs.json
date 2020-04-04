@@ -64,7 +64,7 @@
 		{
 			"title": "全部售后",
 			"icon": "icon-text",
-			"href": "/exercise/book/query.do",
+			"href": "/page/serve/serves.html",
 			"spread": false
 		},
 		{
