@@ -29,6 +29,7 @@ public class ContractsController {
     @RequestMapping("/queryCon.do")
     public List<Contracts> queryCon(){
         QueryWrapper<Contracts> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("ct_status",1);
         List<Contracts> contractsList=contractsService.list(queryWrapper);
 
         return contractsList;

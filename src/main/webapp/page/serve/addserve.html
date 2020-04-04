@@ -5,9 +5,12 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/layui/dist/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script src="/layui/lay/layui.js" charset="utf-8"></script>
+
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
     $.ajax({
         type:"post",
@@ -24,13 +27,31 @@
             alert("出错啦");
         }
     });
+
+    // $.ajax({
+    //     type:"post",
+    //     url:"/sanqi/users/queryAllUser.do",
+    //     dataType:"json",
+    //     success:function(data){
+    //         var option1="<option value=''>请选择</option>";
+    //         for(var i=0;i<data.length;i++){
+    //             option1+="<option value="+data[i].u_id+" >"+data[i].u_name+"</option>";
+    //         }
+    //         $("#seee").html(option1);
+    //     },
+    //     error:function(){
+    //         alert("出错啦");
+    //     }
+    // });
+
+
 </script>
 <body>
 
 <form class="layui-form" action="">
     <div class="layui-form-item">
         <label class="layui-form-label">选着需售后的合同</label>
-        <div class="layui-input-block">
+        <div class="layui-input-inline">
             <select name="ct_id" lay-filter="aihao" id="se">
             </select>
         </div>
@@ -38,7 +59,7 @@
 
     <div class="layui-form-item">
         <label class="layui-form-label">服务类型</label>
-        <div class="layui-input-block">
+        <div class="layui-input-inline">
             <select name="s_type" lay-filter="aihao">
                 <option value="上门测试">上门测试</option>
                 <option value="出问题" selected="">出问题</option>
@@ -47,7 +68,7 @@
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">服务类型</label>
-        <div class="layui-input-block">
+        <div class="layui-input-inline">
             <select name="s_way" lay-filter="aihao">
                 <option value="上门服务">上门服务</option>
                 <option value="网上聊天" selected="">网上聊天</option>
@@ -76,14 +97,15 @@
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">服务内容</label>
+        <label class="layui-form-label">用户反馈</label>
         <div class="layui-input-block">
             <textarea name="s_feedback" placeholder="请输入内容" class="layui-textarea"></textarea>
         </div>
     </div>
 
-    <div class="layui-form-item layui-form-text">
+    <div class="layui-form-item ">
         <label class="layui-form-label">服务评分</label>
+<!--        <div id="test2"></div>-->
         <div class="layui-input-block">
            <input type="radio" naem="s_grade" value="1">1
            <input type="radio" naem="s_grade" value="2">2
@@ -96,7 +118,12 @@
 
     <input type="file" name="s_accessory" id="test20">
 
-
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务人</label>
+        <div class="layui-input-block">
+            <input type="text" naem="u_name" placeholder="请输入服务人">
+        </div>
+    </div>
 
 
     <div class="layui-form-item">
@@ -114,17 +141,25 @@
 
 
 
-<script>
-    layui.use('upload', function(){
+<script type="text/javascript">
+    layui.use(['upload','jquery','rate'], function(){
         var $ = layui.jquery
+        var rate = layui.rate
             ,upload = layui.upload;
+            //显示文字
+            rate.render({
+                elem: '#test2'
+                // ,value: 2 //初始值
+                ,text: true //开启文本
+            });
+
         upload.render({
             elem: '#test20'
-            ,url: '' //改成您自己的上传接口
+            ,url: '/crm/upload/fileUpload.do' //改成您自己的上传接口
             ,auto: true
-            //,multiple: true
-            ,bindAction: '#test9'
+            ,bindAction: '#test20'
             ,done: function(res){
+                $("#test20").value(res.filename);
                 layer.msg('上传成功');
                 console.log(res)
             }

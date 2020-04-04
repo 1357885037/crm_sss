@@ -5,10 +5,7 @@ import com.hy.crm.entity.Serves;
 import com.hy.crm.service.IServesService;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,12 +36,13 @@ public class ServesController {
         System.out.println(servesList.toString()+"333333333333333333333");
         return accountJson;
     }
-
-    @RequestMapping("deleteServe")
+    @ResponseBody
+    @RequestMapping("/deleteServe.do")
     public String deleteServe(@RequestParam(value = "sid",required = true)Integer sid){
+        System.out.println(sid+"15645615613516546543513513465");
         QueryWrapper<Serves> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("s_id",sid);
-        String num="0";
+        String num="200";
         try {
             servesService.remove(queryWrapper);
         } catch (Exception e) {
