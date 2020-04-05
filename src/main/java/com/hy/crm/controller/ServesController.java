@@ -31,7 +31,7 @@ public class ServesController {
         List<Serves> servesList = servesService.list(queryWrapper);
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
-        accountJson.setCount(10);
+        accountJson.setCount(servesList.size());
         accountJson.setData(servesList);
         System.out.println(servesList.toString()+"333333333333333333333");
         return accountJson;

@@ -16,8 +16,8 @@
     <!--添加修改和删除按钮-->
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-sm layui-icon" lay-event="add">&#xe654;添加</a>
-        <a class="layui-btn layui-btn-sm layui-icon" lay-event="edit">&#xe642;修改</a>
-        <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">&#xe640;删除</a>
+<!--        <a class="layui-btn layui-btn-sm layui-icon" lay-event="edit">&#xe642;修改</a>-->
+<!--        <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">&#xe640;删除</a>-->
     </script>
     <!--引入jquery文件-->
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
@@ -39,17 +39,6 @@
 <!--            }-->
 <!--        });-->
 <!--    </script>-->
-
-    <!--    开启头部工具栏-->
-    <script type="text/html" id="toolbarDemo">
-        <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-            <button class="layui-btn layui-btn-sm" lay-event="excel">导入Excel</button>
-            <button class="layui-btn layui-btn-sm" lay-event="exportExcel">导出Excel</button>
-        </div>
-    </script>
 
 </head>
 <body>
@@ -100,37 +89,29 @@
         var layer = layui.layer;
         var form = layui.form;
         //    监听submit
-        form.on('submit(search)', function(data){
-            console.log(data.field);
-            table.reload("test",{
-                where:data.field
-            });
-            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-        });
+        // form.on('submit(search)', function(data){
+        //     console.log(data.field);
+        //     table.reload("test",{
+        //         where:data.field
+        //     });
+        //     return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        // });
 
-        //表数据
+        //获取表数据
         table.render({
             elem: '#test'
-            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            // ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,url:'/crm/serves/queryAllServe.do'
             ,text:{
                 none: '暂无相关数据' ,//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                 icon:'layui-icon-face-surprised'
             }
             ,cols: [[
-                {type:'checkbox'},
-                {title:'序号',width:80,templet:"#zizeng"}
-                ,{field:'ct_id', width:80, title: '合同名'}
+                {field:'s_theme', width:80, title: '服务主题'}
                 ,{field:'s_type', width:80, title: '服务类型'}
-                ,{field:'s_way', width:80, title: '服务方式'}
                 ,{field:'s_sdate', title: '开始时间', width:80,sort:true}
-                ,{field:'s_odate', width:85, title: '结束时间'}
-                ,{field:'s_text', width:85, title: '说明'}
-                ,{field:'s_feedback', width:85, title: '客户反馈'}
                 ,{field:'s_grade', width:85, title: '服务评分'}
-                ,{field:'s_accessory', width:85, title: '附件'}
                 ,{field:'s_name' ,width:100,height:100,title:'服务人'}
-                ,{field:'s_statu' ,width:100,height:100,title:'状态'}
                 ,{width:160, title: '操作',templet:'#barDemo'}
             ]]
             ,page: true
@@ -141,34 +122,6 @@
         //监听事件
         table.on('tool(test)', function(obj){
             var data = obj.data;
-            if(obj.event === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    $.ajax({
-                        url: "/crm/serves/deleteServe.do" ,
-                        data: {'sid':data.s_id} ,
-                        type: "post" ,
-                        dataType:'json',
-                        success:function(data){
-                            if(data==200){
-                                table.reload("test",{})
-                            }else{
-                                layer.msg("删除失败");
-                            }
-                        }
-                    });
-                    obj.del();
-                    layer.close(index);
-                });
-            } else if(obj.event === 'edit'){
-                layer.open({
-                    type: 2,
-                    area: ['500px', '500px'],
-                    content: 'accounts/queryById.do?aid='+data.aid, //这里content是一个普通的String
-                    end: function(){
-                        table.reload("test",{})
-                    }
-                });
-            }else{
                 layer.open({
                     type: 2,
                     area: ['500px', '500px'],
@@ -177,68 +130,9 @@
                         table.reload("test",{})
                     }
                 });
-            }
         });
-
-        //监听事件
-        table.on('toolbar(test)', function(obj){
-            var checkStatus = table.checkStatus(obj.config.id);
-            var data = checkStatus.data;
-            if(obj.event=="getCheckData"){
-                if(data.length!=0) {
-                    var boxs = "";
-                    for (var i = 0; i < data.length; i++) {
-                        boxs += checkStatus.data[i].aid
-                        if (i < data.length - 1) {
-                            boxs += ",";
-                        }
-                    }
-
-                    $.ajax({
-                        type: "post",
-                        url: "accounts/deDuoge.do",
-                        data: {boxs:boxs},
-                        dataType: "json",
-                        success: function (data) {
-                            if (data == "0") {
-                                layer.alert("批量删除成功！");
-                                table.reload("test",{})
-                            } else {
-                                layer.alert("批量删除失败!");
-                            }
-                        },
-                        error: function () {
-                            alert("内部出错啦！");
-                        }
-                    });
-                }else{
-                    layer.alert("未选择要删除的行，请选择！");
-                }
-
-            }else if(obj.event=="getCheckLength"){
-                layer.alert(data.length);
-            }else if(obj.event=="excel"){exportExcel
-                layer.open({
-                    type: 2,
-                    area: ['500px', '500px'],
-                    content: "html/excel.html", //这里content是一个普通的String
-                    end: function(){
-                        table.reload("test",{})
-                    }
-                });
-            }else if(obj.event=="exportExcel"){
-                window.location.href="accounts/exportExcel.do";
-            }
-            else{
-                layer.msg(checkStatus.isAll ? '全选': '未全选');
-            }
-
-        });
-
-
     });
 </script>
 
 </body>
-
 </html>
