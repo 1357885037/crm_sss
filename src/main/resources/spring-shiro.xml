@@ -19,50 +19,42 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
     <!--配置安全管理器-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-    <property name="realm" ref="realmDemo"></property>
+        <property name="realm" ref="realmDemo"/>
     </bean>
 
     <!--配置realm-->   <!--中间密码加密匹配器-->
     <bean id="realmDemo" class="com.hy.crm.shiro.RealmDemo">
-<!--        <property name="credentialsMatcher">-->
-<!--        <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">-->
-<!--           &lt;!&ndash;加密方式&ndash;&gt;-->
-<!--            <property name="hashAlgorithmName" value="MD5"></property>-->
-<!--            &lt;!&ndash;加密次数&ndash;&gt;-->
-<!--            <property name="hashIterations" value="1024"></property>-->
-<!--        </bean>-->
-<!--        </property>-->
+        <property name="credentialsMatcher">
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+               <!--加密方式-->
+                <property name="hashAlgorithmName" value="MD5"></property>
+                <!--加密次数-->
+                <property name="hashIterations" value="1024"></property>
+            </bean>
+        </property>
     </bean>
 
     <!--配置shiro web过滤器-->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-    <!--必须配置 安全管理器-->
-    <property name="securityManager" ref="securityManager"></property>
-    <!-- 如果没有认证访问其他需要认证的连接则跳转到的页面  一般就登录界面-->
-    <property name="loginUrl" value="/index.html"></property>
-
-    <property name="filterChainDefinitions">
-        <value>
-            /css/**=anon
-            /img/**=anon
-            /js/**=anon
-            /images/**=anon
-            /json/**=anon
-            /layui/**=anon
-            /login.html=anon
-            /page/**=anon
-            /Login/Users/**=anon
-            /**=authc
-        </value>
-    </property>
-
+        <!--必须配置 安全管理器-->
+        <property name="securityManager" ref="securityManager"></property>
+        <!-- 如果没有认证访问其他需要认证的连接则跳转到的页面  一般就登录界面-->
+        <property name="loginUrl" value="/index.html"></property>
+        <!--   设置那些要认证那些不要-->
+        <property name="filterChainDefinitions">
+            <value>
+                /css/**=anon
+                /img/**=anon
+                /js/**=anon
+                /images/**=anon
+                /json/**=anon
+                /layui/**=anon
+                /login.html=anon
+                /page/**=anon
+                /Login/Users/**=anon
+                /**=authc
+            </value>
+        </property>
     </bean>
-
-
-
-
-
-
-
 
 </beans>

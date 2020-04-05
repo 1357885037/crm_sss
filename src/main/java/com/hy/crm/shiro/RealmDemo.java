@@ -55,18 +55,13 @@ public class RealmDemo extends AuthorizingRealm {
         UsernamePasswordToken usernamePasswordToken=(UsernamePasswordToken)authenticationToken;
         //从usernameToken获取username
         String username=usernamePasswordToken.getUsername();
-        System.out.println("=====>"+username);
-        System.out.println("=====>"+usernamePasswordToken.getPassword());
         //从数据库中查询
         QueryWrapper queryWrapper=new QueryWrapper();
         queryWrapper.eq("u_name",username);
         Users users=loginServiceImpl.getOne(queryWrapper);
-        System.out.println(users+"666666666666666");
         if(users==null){
             throw new UnknownAccountException("此用户不存在");
         }
-
-
         //7.根据用户的情况，来构建AuthenticationInfo对象,通常使用的实现类为SimpleAuthenticationInfo
         // 以下信息是从数据库中获取的
         // 1)principal：认证的实体信息，可以是username，也可以是数据库表对应的用户的实体对象
@@ -82,4 +77,6 @@ public class RealmDemo extends AuthorizingRealm {
 
          return authenticationInfo;
     }
+
 }
+

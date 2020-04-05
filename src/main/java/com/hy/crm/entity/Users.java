@@ -34,13 +34,36 @@ public class Users implements Serializable {
 
     private Date u_Date;
 
-    private String u_Home;
+    private String province ;
+
+    private String city ;
+
+    private String area ;
 
     private String u_Email;
 
     private String u_Signature;
 
     private String u_Img;
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "u_Id='" + u_Id + '\'' +
+                ", u_Name='" + u_Name + '\'' +
+                ", u_pass='" + u_pass + '\'' +
+                ", u_Realname='" + u_Realname + '\'' +
+                ", u_Sex=" + u_Sex +
+                ", u_Phone=" + u_Phone +
+                ", u_Date=" + u_Date +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", u_Email='" + u_Email + '\'' +
+                ", u_Signature='" + u_Signature + '\'' +
+                ", u_Img='" + u_Img + '\'' +
+                '}';
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -102,14 +125,6 @@ public class Users implements Serializable {
         this.u_Date = u_Date;
     }
 
-    public String getU_Home() {
-        return u_Home;
-    }
-
-    public void setU_Home(String u_Home) {
-        this.u_Home = u_Home;
-    }
-
     public String getU_Email() {
         return u_Email;
     }
@@ -133,4 +148,29 @@ public class Users implements Serializable {
     public void setU_Img(String u_Img) {
         this.u_Img = u_Img;
     }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
 }

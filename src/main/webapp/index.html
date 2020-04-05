@@ -14,34 +14,29 @@
 <script src="js/html5.js"></script>
 <![endif]-->
 	<script type="text/javascript">
+		$(function () {
+			$("#login").click(function () {
+				if($("#tel").val()=="" || $("#tel").val()==null ||$("#tel").val().trim().length==0){
+					$("#tel").focus();//用户名文本框的id
+				} else if($("#pass").val()=="" || $("#pass").val()==null ||$("#pass").val().trim().length==0) {
+					$("#pass").focus();//密码文本框的id
+				}else{
+					$.ajax({url:"/Login/Users/login.do?username="+$("#tel").val()+"&password="+$("#pass").val()+"",success:function(result){
+							if(result=='1'){
+								window.location.href="/Login/Users/transpond.do?username="+$("#tel").val()+"";  //在当前界面打开界面  刷新
+							}else if(result='2'){
+								alert("用户名输入错误")
+							}else if(result='3'){
+								alert("密码输入错误");
+							}else if(result='4'){
+								alert("错误登录多次")
+							}
+						}});
 
-	$(function () {
+				}
+			})
 
-		$("#login").click(function () {
-			if($("#tel").val()=="" || $("#tel").val()==null ||$("#tel").val().trim().length==0){
-				$("#tel").focus();//用户名文本框的id
-			} else if($("#pass").val()=="" || $("#pass").val()==null ||$("#pass").val().trim().length==0) {
-				$("#pass").focus();//密码文本框的id
-			}else{
-
-				$.ajax({url:"/Login/Users/login.do?username="+$("#tel").val()+"&password="+$("#pass").val()+"",success:function(result){
-
-
-						if(result=='1'){
-							window.location.href="/Login/Users/transpond.do?username="+$("#tel").val()+"";  //在当前界面打开界面  刷新
-						}else if(result='2'){
-							alert("用户名输入错误")
-						}else if(result='3'){
-							alert("密码输入错误");
-						}else if(result='4'){
-							alert("错误登录多次")
-						}
-					}});
-
-			}
 		})
-
-	})
 
 	</script>
 </head>
@@ -71,8 +66,6 @@
 		<script src="js/EasePack.min.js"></script>
 		<script src="js/rAF.js"></script>
 		<script src="js/demo-1.js"></script>
-		<div style="text-align:center;">
-<p>更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
-</div>
-	</body>
+		<div style="text-align:center;"></div>
+</body>
 </html>

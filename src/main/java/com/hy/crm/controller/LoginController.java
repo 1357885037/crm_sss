@@ -37,14 +37,10 @@ public class LoginController {
     @RequestMapping("/login.do")
     @ResponseBody
     public String login(@RequestParam(value = "username") String u_name,@RequestParam(value = "password") String u_pass, Model model){
-        System.out.println("进入方法。。。。。。。。。。。。。。");
-        System.out.println(u_name+u_pass);
-        //ModelAndView model=new ModelAndView();
         UsernamePasswordToken token=new UsernamePasswordToken(u_name,u_pass); /*令牌*/
         Subject subject =SecurityUtils.getSubject();
         try {
             subject.login(token);
-            logger.info("登录成功！");
         }catch (UnknownAccountException uae){
             //捕获未知用户名异常
             return  "2";
@@ -60,7 +56,6 @@ public class LoginController {
 
     @RequestMapping("/Login/Users/aaa.do")
     public String aaa(){
-        System.out.println("进行中---------------------------------");
         return "login.html";
     }
 

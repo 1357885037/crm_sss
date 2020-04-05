@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="utf-8">
-    <title>所有用户</title>
+    <title>全部服务</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -9,93 +9,96 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
     <script src="/layui/layui.js" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-    <!--序号-->
-    <script type="text/html" id="zizeng">
-        {{d.LAY_TABLE_INDEX+1}}
-    </script>
     <!--添加修改和删除按钮-->
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-sm layui-icon" lay-event="add">&#xe654;添加</a>
-<!--        <a class="layui-btn layui-btn-sm layui-icon" lay-event="edit">&#xe642;修改</a>-->
-<!--        <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">&#xe640;删除</a>-->
     </script>
     <!--引入jquery文件-->
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-<!--    <script type="text/javascript">-->
-<!--        $.ajax({-->
-<!--            type:"post",-->
-<!--            url:"courses/query_course_ajax.do",-->
-<!--            dataType:"json",-->
-<!--            success:function(data){-->
-<!--                console.log("访问");-->
-<!--                var option1="<option value=''>请选择</option>";-->
-<!--                for(var i=0;i<data.length;i++){-->
-<!--                    option1+="<option value="+data[i].cid+" >"+data[i].cname+"</option>";-->
-<!--                }-->
-<!--                $("#selt").html(option1);-->
-<!--            },-->
-<!--            error:function(){-->
-<!--                alert("出错啦");-->
-<!--            }-->
-<!--        });-->
-<!--    </script>-->
 
 </head>
 <body>
-<!--<form class="layui-form"> &lt;!&ndash; 提示：如果你不想用form，你可以换成div等任何一个普通元素 &ndash;&gt;-->
 
-<!--    &lt;!&ndash;    查询姓名&ndash;&gt;-->
-<!--    <div class="layui-form-item">-->
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-col-md3">
+                        <div class="layui-inline">
 
-<!--        <div class="layui-inline">-->
-<!--            <label class="layui-form-label" >姓名</label>-->
-<!--            <input type="text" name="aname" placeholder="请输入" width="180" autocomplete="off" class="layui-input">-->
-<!--        </div>-->
+                            <div id="u4921" class="ax_default _图片">
+                                <img id="u4921_img" class="img " src="http://www.axshare.cn/gsc/S3EWE1/0c/7f/0a/0c7f0a102aa0468792ba30e848859a83/images/我的桌面/u81.png?token=604bbdb5065e0ff8e91463f4df4943943979bfca12855345322c557b80d03752">
+                            </div>
+                        </div>
+                        售后服务
+                    </div>
 
-<!--        &lt;!&ndash;    查询年龄&ndash;&gt;-->
-<!--        <div class="layui-inline">-->
-<!--            <label class="layui-form-label">年龄</label>-->
-<!--            <input type="text" name="age"  placeholder="请输入" autocomplete="off" class="layui-input">-->
-<!--        </div>-->
+                    <div class="layui-col-md9">
+                        <div class="layui-inline">
+                      <select name="tiaojian" lay-filter="aihao">
+                            <option value="0">根据主题查询</option>
+                            <option value="1" selected="">根据开始时间</option>
+                            <option value="2">根据服务人</option>
+                            <option value="3">根据服务类型</option>
+                            <option value="4">根据评分</option>
+                        </select>
+                        </div>
+                       <div class="layui-inline">
+                            <input type="text" name="neirong"  placeholder="请输入内容" class="layui-input">
+                       </div>
+                        <div class="layui-inline">
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<!--        &lt;!&ndash;根据性别查询&ndash;&gt;-->
-<!--        <div class="layui-inline">-->
-<!--            <label class="layui-form-label">单选框</label>-->
-<!--            <input type="radio" name="asex" value=1 title="男" />-->
-<!--            <input type="radio" name="asex" value=2 title="女" />-->
-<!--        </div>-->
+        </form>
 
-<!--        &lt;!&ndash;    根据班级查询&ndash;&gt;-->
-<!--        <div class="layui-inline">-->
-<!--            <label class="layui-form-label">下拉选择框</label>-->
-<!--            <select id="selt" name="cid" lay-filter="aihao">-->
-<!--            </select>-->
-<!--        </div>-->
 
-<!--        &lt;!&ndash;        提交重置&ndash;&gt;-->
-<!--        <div class="layui-inline">-->
-<!--            <button type="submit" class="layui-btn" lay-submit lay-filter="search">立即提交</button>-->
-<!--            <button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash; 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 &ndash;&gt;-->
-<!--</form>-->
 
-<table class="layui-hide" id="test" lay-filter="test" border="1"></table>
+
+
+<div class="layui-row">
+    <div class="layui-col-xs2">
+        <blockquote class="layui-elem-quote title">分类</blockquote>
+        <table class="layui-table mag0" lay-skin="line">
+            <colgroup>
+            <col>
+            <col width="110">
+        </colgroup>
+            <tbody class="hot_news" id="hot_news">
+            <tr>  <td><a href="">所有分类</a></td></tr>
+            <tr>  <td>处理中的服务</td></tr>
+            <tr>   <td>已结束的服务</td></tr>
+            <tr>   <td>已撤离的服务</td></tr>
+            <tr>   <td>本周新增</td></tr>
+            <tr>   <td>上周新增</td></tr>
+            <tr>   <td>本月新增</td></tr>
+            <tr>    <td>上月新增</td></tr>
+            <tr>   <td>本季度新增</td></tr>
+            <tr>   <td>上季度新增</td></tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="layui-col-xs10">
+        <table class="layui-hide" id="test" lay-filter="test" border="1"></table>
+    </div>
+</div>
 
 <script>
     layui.use(['table','layer','form'], function(){
         var table = layui.table;
         var layer = layui.layer;
         var form = layui.form;
-        //    监听submit
-        // form.on('submit(search)', function(data){
-        //     console.log(data.field);
-        //     table.reload("test",{
-        //         where:data.field
-        //     });
-        //     return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-        // });
+        //   监听submit
+        form.on('submit(search)', function(data){
+            table.reload("test",{
+                where:data.field
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
 
         //获取表数据
         table.render({
@@ -107,12 +110,12 @@
                 icon:'layui-icon-face-surprised'
             }
             ,cols: [[
-                {field:'s_theme', width:80, title: '服务主题'}
-                ,{field:'s_type', width:80, title: '服务类型'}
-                ,{field:'s_sdate', title: '开始时间', width:80,sort:true}
-                ,{field:'s_grade', width:85, title: '服务评分'}
-                ,{field:'s_name' ,width:100,height:100,title:'服务人'}
-                ,{width:160, title: '操作',templet:'#barDemo'}
+                {field:'s_theme', width:200, title: '服务主题'}
+                ,{field:'s_type', width:150, title: '服务类型'}
+                ,{field:'s_sdate', title: '开始时间', width:150,sort:true}
+                ,{field:'s_grade', width:100, title: '服务评分'}
+                ,{field:'s_name' ,width:150,title:'服务人'}
+                ,{width:150, title: '操作',templet:'#barDemo'}
             ]]
             ,page: true
             ,limits:[3,5,8,10]
@@ -125,7 +128,7 @@
                 layer.open({
                     type: 2,
                     area: ['500px', '500px'],
-                    content:'/page/serve/addserve.html', //这里content是一个普通的String
+                    content:'/page/serve/addserves.html', //这里content是一个普通的String
                     end: function(){
                         table.reload("test",{})
                     }
@@ -133,6 +136,7 @@
         });
     });
 </script>
+
 
 </body>
 </html>

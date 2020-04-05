@@ -33,24 +33,14 @@ public class ServesController {
         accountJson.setCode(0);
         accountJson.setCount(servesList.size());
         accountJson.setData(servesList);
-        System.out.println(servesList.toString()+"333333333333333333333");
         return accountJson;
     }
-    @ResponseBody
-    @RequestMapping("/deleteServe.do")
-    public String deleteServe(@RequestParam(value = "sid",required = true)Integer sid){
-        System.out.println(sid+"15645615613516546543513513465");
-        QueryWrapper<Serves> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("s_id",sid);
-        String num="200";
-        try {
-            servesService.remove(queryWrapper);
-        } catch (Exception e) {
-            num="1";
-            e.printStackTrace();
-        }
 
-        return num;
+    @RequestMapping("/addsever.do")
+    public String addsever(Serves serves){
+
+
+    return "";
     }
 
 }
