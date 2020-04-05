@@ -56,7 +56,7 @@
 		},{
 			"title": "全部论坛",
 			"icon": "icon-mokuai",
-			"href": "page/doc/bodyTabDoc.html",
+			"href": "page/forum/forum.html",
 			"spread": false
 		}
 	],
@@ -74,19 +74,6 @@
 			"spread": false
 		}
 	],
-	"hetong": [
-		{
-			"title": "全部合同",
-			"icon": "icon-mokuai",
-			"href": "page/doc/addressDoc.html",
-			"spread": false
-		},{
-			"title": "我的合同",
-			"icon": "icon-mokuai",
-			"href": "page/doc/bodyTabDoc.html",
-			"spread": false
-		}
-	],
 		"tongji": [
 		{
 			"title": "统计",
@@ -94,11 +81,20 @@
 			"href": "page/doc/addressDoc.html",
 			"spread": false
 		}
-	],"xitong": [
+	],
+	"xitong": [
 	{
 		"title": "角色管理",
 		"icon": "icon-mokuai",
 		"href": "page/doc/addressDoc.html",
+		"spread": false
+	}
+],
+	"heto": [
+	{
+		"title": "全部合同",
+		"icon": "icon-mokuai",
+		"href": "page/doc/querycon.html",
 		"spread": false
 	}
 ]

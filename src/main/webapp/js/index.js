@@ -41,16 +41,16 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 				dataStr = data.shouhou;
 				//重新渲染左侧菜单
 				tab.render();
-			}else if(json == "hetong"){
-				dataStr = data.hetong;
-				//重新渲染左侧菜单
-				tab.render();
 			}else if(json == "tongji"){
 				dataStr = data.tongji;
 				//重新渲染左侧菜单
 				tab.render();
 			}else if(json == "xitong"){
 				dataStr = data.xitong;
+				//重新渲染左侧菜单
+				tab.render();
+			}else if(json == "heto"){
+				dataStr = data.heto;
 				//重新渲染左侧菜单
 				tab.render();
 			}
