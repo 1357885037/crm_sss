@@ -34,7 +34,7 @@ public class ContractsController {
         accountJson.setCode(0);
         accountJson.setCount(contractsList.size());
         accountJson.setData(contractsList);
-        accountJson.setMsg("122");
+        accountJson.setMsg("");
         return accountJson;
     }
 

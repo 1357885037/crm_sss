@@ -1,5 +1,7 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 
 /**
@@ -39,6 +41,17 @@ public class Serves implements Serializable {
     private Integer s_statu;
 
     private String s_theme;
+
+    @TableField(exist=false)
+    private Contracts contracts;
+
+    public Contracts getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Contracts contracts) {
+        this.contracts = contracts;
+    }
 
     public String getS_id() {
         return s_id;
@@ -152,6 +165,7 @@ public class Serves implements Serializable {
                 ", s_name='" + s_name + '\'' +
                 ", s_statu=" + s_statu +
                 ", s_theme='" + s_theme + '\'' +
+                ", contracts=" + contracts +
                 '}';
     }
 }
