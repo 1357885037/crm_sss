@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 /**
  * <p>
@@ -30,11 +29,15 @@ public class Users implements Serializable {
 
     private Integer u_Sex;
 
-    private Integer u_Phone;
+    private long u_Phone;
 
-    private Date u_Date;
+    private String u_Date;
 
-    private String u_Home;
+    private String province;
+
+    private String city;
+
+    private String area;
 
     private String u_Email;
 
@@ -86,28 +89,48 @@ public class Users implements Serializable {
         this.u_Sex = u_Sex;
     }
 
-    public Integer getU_Phone() {
+    public long getU_Phone() {
         return u_Phone;
+    }
+
+    public void setU_Phone(long u_Phone) {
+        this.u_Phone = u_Phone;
     }
 
     public void setU_Phone(Integer u_Phone) {
         this.u_Phone = u_Phone;
     }
 
-    public Date getU_Date() {
+    public String getU_Date() {
         return u_Date;
     }
 
-    public void setU_Date(Date u_Date) {
+    public void setU_Date(String u_Date) {
         this.u_Date = u_Date;
     }
 
-    public String getU_Home() {
-        return u_Home;
+    public String getProvince() {
+        return province;
     }
 
-    public void setU_Home(String u_Home) {
-        this.u_Home = u_Home;
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
     }
 
     public String getU_Email() {

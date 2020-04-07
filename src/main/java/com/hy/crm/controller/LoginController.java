@@ -1,7 +1,10 @@
 package com.hy.crm.controller;
 
-import com.hy.crm.service.impl.LoginServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hy.crm.entity.Users;
 import com.hy.crm.service.ILoginService;
+import com.hy.crm.service.impl.LoginServiceImpl;
+import com.hy.crm.util.Md5;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -15,6 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * <p>
@@ -26,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/Login/Users")
+@SessionAttributes("user")
 public class LoginController {
 
     static Logger logger=Logger.getLogger(LoginController.class);
@@ -34,6 +41,7 @@ public class LoginController {
     @Autowired
     private LoginServiceImpl loginServiceImol ;
 
+    //登录界面
     @RequestMapping("/login.do")
     @ResponseBody
     public String login(@RequestParam(value = "username") String u_name,@RequestParam(value = "password") String u_pass, Model model){
@@ -58,15 +66,54 @@ public class LoginController {
         return "1";
     }
 
-    @RequestMapping("/Login/Users/aaa.do")
-    public String aaa(){
-        System.out.println("进行中---------------------------------");
-        return "login.html";
-    }
 
+    //登录后跳转主界面
     @RequestMapping("/transpond.do")
-    public String transpond(String username,Model model){
+    public String transpond(String username, Model model){
         model.addAttribute("user",username);
         return "/main_ Interface/index";
     }
+
+    //主界面跳个人资料
+    @RequestMapping("/Personal_Data.do")
+    public String Personal_Data(HttpSession session, Model model){
+        String user= (String) session.getAttribute("user");
+        //从数据库中查询
+        QueryWrapper queryWrapper=new QueryWrapper();
+        queryWrapper.eq("u_name",user);
+        Users users=loginServiceImol.getOne(queryWrapper);
+        model.addAttribute("user",users);
+        return "page/user/userInfo";
+    }
+
+    //注册
+   @RequestMapping("/register.do")
+   @ResponseBody
+   public String register(Users user){
+        //判断是否有该用户名
+       QueryWrapper queryWrapper=new QueryWrapper();
+       queryWrapper.eq("u_name",user.getU_Name());
+       Users users=loginServiceImol.getOne(queryWrapper);
+       System.out.println(users+"666666666666666");
+       if(users==null){
+
+           System.out.println("注册中...");
+           //出生年月转换 2020年04月04日转换成 xxxx-xx-xx
+           String str=user.getU_Date();
+           str=str.replaceAll("年","-").replaceAll("月","-").substring(0,str.length()-1);
+           user.setU_Date(str);
+           //默认头像
+           user.setU_Img("123");
+           //用户名作为盐值 MD5加密 1024次
+           user.setU_pass(Md5.md4Test(user.getU_Name(),user.getU_pass()));
+           //添加到数据库
+           loginServiceImol.save(user);
+           return "1";
+       }else{
+           return "2";
+       }
+
+   }
+
+
 }

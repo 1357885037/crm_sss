@@ -27,7 +27,7 @@ public class Business implements Serializable {
 
     private String b_source;
 
-    private Integer b_linkman;
+    private String b_linkman;
 
     private String b_dept;
 
@@ -35,7 +35,7 @@ public class Business implements Serializable {
 
     private Integer b_special;
 
-    private Integer b_phone;
+    private Long b_phone;
 
     private Integer b_qq;
 
@@ -99,13 +99,6 @@ public class Business implements Serializable {
     public void setB_source(String b_source) {
         this.b_source = b_source;
     }
-    public Integer getB_linkman() {
-        return b_linkman;
-    }
-
-    public void setB_linkman(Integer b_linkman) {
-        this.b_linkman = b_linkman;
-    }
     public String getB_dept() {
         return b_dept;
     }
@@ -127,13 +120,23 @@ public class Business implements Serializable {
     public void setB_special(Integer b_special) {
         this.b_special = b_special;
     }
-    public Integer getB_phone() {
+
+    public String getB_linkman() {
+        return b_linkman;
+    }
+
+    public void setB_linkman(String b_linkman) {
+        this.b_linkman = b_linkman;
+    }
+
+    public Long getB_phone() {
         return b_phone;
     }
 
-    public void setB_phone(Integer b_phone) {
+    public void setB_phone(Long b_phone) {
         this.b_phone = b_phone;
     }
+
     public Integer getB_qq() {
         return b_qq;
     }

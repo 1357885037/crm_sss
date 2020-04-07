@@ -26,14 +26,13 @@
 
 				$.ajax({url:"/Login/Users/login.do?username="+$("#tel").val()+"&password="+$("#pass").val()+"",success:function(result){
 
-
 						if(result=='1'){
 							window.location.href="/Login/Users/transpond.do?username="+$("#tel").val()+"";  //在当前界面打开界面  刷新
-						}else if(result='2'){
+						}else if(result=='2'){
 							alert("用户名输入错误")
-						}else if(result='3'){
+						}else if(result=='3'){
 							alert("密码输入错误");
-						}else if(result='4'){
+						}else if(result=='4'){
 							alert("错误登录多次")
 						}
 					}});
@@ -45,6 +44,15 @@
 
 	</script>
 </head>
+<style>
+	#zz{
+		color: #cc9900;
+		text-decoration: NONE;
+	}
+	#zz:hover{
+		color: red;
+	}
+</style>
 <body>
 		<div class="container demo-1">
 			<div class="content">
@@ -52,7 +60,6 @@
 					<canvas id="demo-canvas"></canvas>
 					<div class="logo_box">
 						<h3>欢迎你</h3>
-						<span id="div1">:::</span>
 						<form action="/Login/Users/login.do" name="f" method="post">
 							<div class="input_outer">
 								<span class="u_user"></span>
@@ -64,6 +71,7 @@
 							</div>
 							<div class="mb2"><a class="act-but submit" id="login" style="color: #FFFFFF" style="cursor:pointer" >登录</a></div>
 						</form>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="page/user/userInfo2.html" id="zz">没有账号?立即注册</a>
 					</div>
 				</div>
 			</div>

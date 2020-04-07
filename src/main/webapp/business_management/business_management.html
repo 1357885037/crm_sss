@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<a href="/business_management/add_Business.html"><button class="layui-btn layui-btn-lg" type="button">➕新增商机></button></a>
+<table class="layui-hide" id="test"></table>
+
+
+<script src="/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'#'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                 {field:'c_name', title: '商机名称'}
+                ,{field:'business_count', title: '商机阶段', sort: true}
+                ,{field:'turnover', title: '预计成交金额', sort: true}
+                ,{field:'contract_count', title: '商机负责人', sort: true}
+                ,{field:'contract_amount', title: '最后跟单', sort: true}
+                ,{field:'total_Return_amount', title: '讨论版', sort: true}
+            ]]
+        });
+    });
+</script>
+
+</body>
+</html>

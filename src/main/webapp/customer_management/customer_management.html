@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<button class="layui-btn layui-btn-lg" type="button"><a href="/customer_management/add_Clients.html">➕新增客户</a></button>
+<table class="layui-hide" id="test"></table>
+
+
+<script src="/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
+
+        table.render({
+            elem: '#test'
+            ,url:'#'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [[
+                {field:'id', title: 'ID', sort: true}
+                ,{field:'c_name', title: '客户名称'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'business_count', title: '商机数', sort: true}
+                ,{field:'turnover', title: '预计成交金额', sort: true}
+                ,{field:'contract_count', title: '合同数', sort: true}
+                ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
+                ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
+                ,{field:'service_count', title: '售后服务数', sort: true}
+                ,{field:'servic_Score', title: '服务评分', sort: true}
+            ]]
+        });
+    });
+</script>
+
+</body>
+</html>

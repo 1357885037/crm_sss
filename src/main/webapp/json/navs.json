@@ -3,7 +3,7 @@
 		{
 			"title": "客户管理",
 			"icon": "icon-text",
-			"href": "/exercise/book/query.do",
+			"href": "customer_management/customer_management.html",
 			"spread": false
 		}
 	],
@@ -25,7 +25,7 @@
 		{
 			"title": "全部商机",
 			"icon": "&#xe631;",
-			"href": "page/systemSetting/basicParameter.html",
+			"href": "business_management/business_management.html",
 			"spread": false
 		},{
 			"title": "我的商机",

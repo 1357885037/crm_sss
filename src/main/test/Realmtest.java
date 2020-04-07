@@ -7,6 +7,7 @@ import java.io.IOException;
 public class Realmtest {
 
     static Logger logger=Logger.getLogger(Realmtest.class);
+
     public static void main(String[] args) throws IOException {
 
         String hashAlgorithmName="MD5"; //加密方式
@@ -17,7 +18,9 @@ public class Realmtest {
       Object result=new SimpleHash(hashAlgorithmName,credentials,salt,hashIterations);
 
       System.out.println("====>"+result);
-
+       String str="2020年04月04日";
+       str=str.replaceAll("年","-").replaceAll("月","-").substring(0,str.length()-1);
+       System.out.println(str);
 
    /*     FileAppender fileAppender=new FileAppender(new PatternLayout(PatternLayout.TTCC_CONVERSION_PATTERN),"1.log");
         ConsoleAppender appender=new ConsoleAppender(

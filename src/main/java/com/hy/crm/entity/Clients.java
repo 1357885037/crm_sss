@@ -1,7 +1,10 @@
 package com.hy.crm.entity;
 
-import java.math.BigDecimal;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <p>
@@ -15,6 +18,7 @@ public class Clients implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "c_id", type = IdType.UUID)
     private String c_id;
 
     private String c_name;
@@ -45,7 +49,7 @@ public class Clients implements Serializable {
 
     private Integer c_splane;
 
-    private Integer c_phone;
+    private Long c_phone;
 
     private Integer c_qq;
 
@@ -160,13 +164,15 @@ public class Clients implements Serializable {
     public void setC_splane(Integer c_splane) {
         this.c_splane = c_splane;
     }
-    public Integer getC_phone() {
+
+    public Long getC_phone() {
         return c_phone;
     }
 
-    public void setC_phone(Integer c_phone) {
+    public void setC_phone(Long c_phone) {
         this.c_phone = c_phone;
     }
+
     public Integer getC_qq() {
         return c_qq;
     }

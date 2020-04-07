@@ -26,7 +26,7 @@ public class Client_finance implements Serializable {
 
     private String cf_duty;
 
-    private Integer cf_phone;
+    private Long cf_phone;
 
     public String getC_id() {
         return c_id;
@@ -70,11 +70,12 @@ public class Client_finance implements Serializable {
     public void setCf_duty(String cf_duty) {
         this.cf_duty = cf_duty;
     }
-    public Integer getCf_phone() {
+
+    public Long getCf_phone() {
         return cf_phone;
     }
 
-    public void setCf_phone(Integer cf_phone) {
+    public void setCf_phone(Long cf_phone) {
         this.cf_phone = cf_phone;
     }
 
