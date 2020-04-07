@@ -19,8 +19,6 @@ public class loadController {
     @ResponseBody
     @RequestMapping("/fileUpload.do")
     public Ajax fileUpload(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, Ajax ajax){
-        System.out.println("加油进来了！！！！！！！！！！！！！！！！！！！！！！！！");
-
         int a=0;
         // 图片上传
 // 设置图片名称，不能重复，可以使用uuid//意思为产生一个随机的名字

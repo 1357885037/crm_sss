@@ -39,9 +39,9 @@ public class ServesController {
 
     @RequestMapping("/addsever.do")
     public String addsever(Serves serves){
+        servesService.save(serves);
 
-
-    return "";
+    return "/page/serve/serves.html";
     }
 
 }
