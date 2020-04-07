@@ -49,8 +49,13 @@
         <!--        mybatisplus自带的分页-->
         <property name="plugins">
             <array>
-                <bean class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor">
-
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                            helperDialect=postgresql
+                            reasonable=true
+                        </value>
+                    </property>
                 </bean>
             </array>
         </property>

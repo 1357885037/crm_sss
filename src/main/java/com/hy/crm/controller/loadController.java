@@ -28,7 +28,7 @@ public class loadController {
 // 获取图片(文件名)后缀
         String extName = oriName.substring(oriName.lastIndexOf("."));
         try {
-            multipartFile.transferTo(new File( request.getSession().getServletContext().getRealPath("/")+"/load/"+ picName + extName));
+            multipartFile.transferTo(new File(  request.getSession().getServletContext().getRealPath("/")+"/img/"+ picName + extName));
         } catch (IOException e) {
             e.printStackTrace();
             a=1;

@@ -45,8 +45,6 @@
     </bean>
 
 
-
-
     <!--  开启 shiro权限注解-->
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
     <bean id="lifecycleBeanPostProcessor"  class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
