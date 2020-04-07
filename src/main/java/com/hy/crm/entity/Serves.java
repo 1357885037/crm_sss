@@ -1,5 +1,7 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 
 /**
@@ -37,6 +39,19 @@ public class Serves implements Serializable {
     private String s_name;
 
     private Integer s_statu;
+
+    private String s_theme;
+
+    @TableField(exist=false)
+    private Contracts contracts;
+
+    public Contracts getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Contracts contracts) {
+        this.contracts = contracts;
+    }
 
     public String getS_id() {
         return s_id;
@@ -126,21 +141,31 @@ public class Serves implements Serializable {
         this.s_statu = s_statu;
     }
 
+    public String getS_theme() {
+        return s_theme;
+    }
+
+    public void setS_theme(String s_theme) {
+        this.s_theme = s_theme;
+    }
+
     @Override
     public String toString() {
         return "Serves{" +
-        "s_id=" + s_id +
-        ", ct_id=" + ct_id +
-        ", s_type=" + s_type +
-        ", s_way=" + s_way +
-        ", s_sdate=" + s_sdate +
-        ", s_odate=" + s_odate +
-        ", s_text=" + s_text +
-        ", s_feedback=" + s_feedback +
-        ", s_grade=" + s_grade +
-        ", s_accessory=" + s_accessory +
-        ", s_name=" + s_name +
-        ", s_statu=" + s_statu +
-        "}";
+                "s_id='" + s_id + '\'' +
+                ", ct_id='" + ct_id + '\'' +
+                ", s_type='" + s_type + '\'' +
+                ", s_way='" + s_way + '\'' +
+                ", s_sdate='" + s_sdate + '\'' +
+                ", s_odate='" + s_odate + '\'' +
+                ", s_text='" + s_text + '\'' +
+                ", s_feedback='" + s_feedback + '\'' +
+                ", s_grade=" + s_grade +
+                ", s_accessory='" + s_accessory + '\'' +
+                ", s_name='" + s_name + '\'' +
+                ", s_statu=" + s_statu +
+                ", s_theme='" + s_theme + '\'' +
+                ", contracts=" + contracts +
+                '}';
     }
 }

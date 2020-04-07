@@ -3,6 +3,7 @@ package com.hy.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hy.crm.entity.Contracts;
 import com.hy.crm.service.IContractsService;
+import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,11 +28,14 @@ public class ContractsController {
 
     @ResponseBody
     @RequestMapping("/queryCon.do")
-    public List<Contracts> queryCon(){
+    public AccountJson queryCon(AccountJson accountJson){
         QueryWrapper<Contracts> queryWrapper=new QueryWrapper<>();
         List<Contracts> contractsList=contractsService.list(queryWrapper);
-
-        return contractsList;
+        accountJson.setCode(1);
+        accountJson.setCount(contractsList.size());
+        accountJson.setData(contractsList);
+        accountJson.setMsg("");
+        return accountJson;
     }
 
 }

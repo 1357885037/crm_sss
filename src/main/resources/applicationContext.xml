@@ -17,9 +17,8 @@
 
     <!--配置数据源-->
     <bean  id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm?characterEncoding=utf-8"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm"></property>
         <property name="user" value="root"></property>
         <property name="password" value="root"></property>
     </bean>
@@ -39,46 +38,28 @@
     <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager"></tx:annotation-driven>
 
 
-    <!--Spring 整合mybatis-->
-    <!-- Mybatis-plus MybatisSqlSessionFactoryBean  Mybatis SqlSessionFactoryBean-->
-    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
-        <property name="dataSource" ref="dateSource"></property>
-        <!--  <property name="configuration" ref="settings"></property>-->
-        <property name="typeAliasesPackage" value="com.hy.crm.entity"></property>
-        <property name="configLocation" value="classpath:Mybatis.xml"></property>
-        <!--插件分页-->
+    <!--    配置sqlsessionfactory-->
+    <bean id="sessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="dataSource" ref="dateSource"/>
+        <!--        不要mybatis的主配置文件的配法-->
+        <!--    扫描别名-->
+        <property name="typeAliasesPackage" value="com.hy.ssm.lanxin.entity"/>
+        <!--        加载mybatisplus主配置文件-->
+        <property name="configLocation" value="classpath:Mybatis.xml"/>
+        <!--        mybatisplus自带的分页-->
         <property name="plugins">
             <array>
-                <!-- 分页插件配置 -->
-                <bean id="paginationInterceptor"
-                      class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"/>
-                <bean class="com.github.pagehelper.PageInterceptor">
-                    <property name="properties">
-                        <props>
-                            <prop key="helperDialect">mysql</prop>
-                            <prop key="reasonable">true</prop>
-                        </props>
-                    </property>
+                <bean class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor">
+
                 </bean>
             </array>
         </property>
-        <!--Mybatis 分页-->
-        <!--  <property name="plugins">
-              <array>
-                  &lt;!&ndash; 分页插件配置 &ndash;&gt;
-                  <bean id="paginationInterceptor"
-                        class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"/>
-                  &lt;!&ndash; 性能拦截器，兼打印sql，不建议生产环境配置&ndash;&gt;
-                  <bean id="performanceInterceptor"
-                        class="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor"/>
-              </array>
-          </property>-->
     </bean>
 
     <!--批量扫描Mapper-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.hy.crm.mapper"></property>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="sqlSessionFactoryBeanName" value="sessionFactory"></property>
     </bean>
 
     <!--<bean id="bookServiceImpl" class="com.hy.ssm.exercise.service.impl.BookServiceImpl"></bean>-->
