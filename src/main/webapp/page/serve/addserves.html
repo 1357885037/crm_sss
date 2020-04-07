@@ -147,7 +147,6 @@
             ,auto:true
             ,accept: 'file' //普通文件
             ,done: function(res){
-                console.log("成功！")
                 $("#s_accessory").val(res.filename);
                 //上传完毕回调
             }
@@ -169,6 +168,8 @@
             //添加验证
             ,verify:'required'
         });
+
+
 
     });
 </script>
