@@ -31,7 +31,7 @@ public class ContractsController {
     public AccountJson queryCon(AccountJson accountJson){
         QueryWrapper<Contracts> queryWrapper=new QueryWrapper<>();
         List<Contracts> contractsList=contractsService.list(queryWrapper);
-        accountJson.setCode(0);
+        accountJson.setCode(1);
         accountJson.setCount(contractsList.size());
         accountJson.setData(contractsList);
         accountJson.setMsg("");

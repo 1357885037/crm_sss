@@ -17,9 +17,8 @@
 
     <!--配置数据源-->
     <bean  id="dateSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm?characterEncoding=utf-8"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/crm"></property>
         <property name="user" value="root"></property>
         <property name="password" value="root"></property>
     </bean>
@@ -50,9 +49,9 @@
         <!--        mybatisplus自带的分页-->
         <property name="plugins">
             <array>
-                <!-- 分页插件配置 -->
-                <bean id="paginationInterceptor"
-                      class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"/>
+                <bean class="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor">
+
+                </bean>
             </array>
         </property>
     </bean>

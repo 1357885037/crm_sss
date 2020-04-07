@@ -26,9 +26,9 @@ public class ServesController {
 
     @ResponseBody
     @RequestMapping("/queryAllServe.do")
-    public AccountJson queryAllServe(@RequestParam(value = "page",required = true,defaultValue = "1") Integer page, @RequestParam(value = "limit",required = true,defaultValue = "3")Integer limit,Serves serves,Integer tiaojian ,String neirong){
+    public AccountJson queryAllServe(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit){
 
-       IPage<Serves> servesIPage = servesService.pages(page,limit,serves);
+       IPage<Serves> servesIPage = servesService.pages(page,limit);
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
         accountJson.setMsg("");

@@ -6,130 +6,133 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
-    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
-    <script src="/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-
 </head>
 <body>
-
-<script type="text/javascript">
-    $.ajax({
-        type:"post",
-        url:"/crm/contracts/queryCon.do",
-        dataType:"json",
-        success:function(data){
-            var option1="<option value=''>请选择</option>";
-            for(var i=0;i<data.length;i++){
-                option1+="<option value="+data[i].ct_id+" >"+data[i].ct_name+"</option>";
-            }
-            $("#hetong").html(option1);
-        },
-        error:function(){
-            alert("出错啦");
-        }
-    });
-</script>
-
-
-<form class="layui-form" action="/crm/serves/addsever.do">
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务的合同</label>
-        <div class="layui-input-block">
-            <select name="ct_id" id="hetong">
-            </select>
-        </div>
-    </div>
-
+<form class="layui-form layui-form-pane" action="/crm/serves/addsever.do">
 
     <div class="layui-form-item">
-        <label class="layui-form-label">服务类型</label>
-        <div class="layui-input-block">
-            <select name="s_type" >
-                <option value="上门测试">上门测试</option>
-                <option value="出问题" selected="">出问题</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">服务类型</label>
-        <div class="layui-input-block">
-            <select name="s_way" >
-                <option value="上门服务">上门服务</option>
-                <option value="网上聊天" selected="">网上聊天</option>
-            </select>
+        <div class="layui-inline">
+                <label class="layui-form-label">服务的合同</label>
+            <div class="layui-input-block">
+                <select name="ct_id" id="hetong" lay-filter="sel" >
+                </select>
+            </div>
         </div>
     </div>
 
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">开始时间</label>
+                <label class="layui-form-label">服务类型</label>
+            <div class="layui-input-block">
+                <select name="s_type" multiple="multiple"  >
+                    <option value="上门测试">上门测试</option>
+                    <option value="出问题" selected="">出问题</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-inline">
+                <label class="layui-form-label">服务类型</label>
+            <div class="layui-input-block">
+                <select name="s_way" >
+                    <option value="上门服务">上门服务</option>
+                    <option value="网上聊天" selected="">网上聊天</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+                <label class="layui-form-label">开始时间</label>
             <div class="layui-input-inline">
                 <input  id="testd2" type="text" name="s_sdate" class="layui-input"  placeholder="yyyy-MM-dd">
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-inline">
+        <div class="layui-inline">
                 <label class="layui-form-label">结束时间</label>
-                <div class="layui-input-inline">
-                    <input  id="testd1" type="text" name="s_odate" class="layui-input"  placeholder="yyyy-MM-dd">
-                </div>
-            </div>
-
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">服务内容</label>
-                <div class="layui-input-block">
-                    <textarea name="s_text" placeholder="请输入服务内容" class="layui-textarea"></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">用户反馈</label>
-                <div class="layui-input-block">
-                    <textarea name="s_feedback" placeholder="请输入用户反馈" class="layui-textarea"></textarea>
-                </div>
-            </div>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">服务评分</label>
-                <div class="layui-input-block">
-                    <input type="radio" naem="s_grade" th:value="1">1
-                    <input type="radio" naem="s_grade" th:value="2">2
-                    <input type="radio" naem="s_grade" th:value="3">3
-                    <input type="radio" naem="s_grade" th:value="4">4
-                    <input type="radio" naem="s_grade" th:value="5">5
-                </div>
-            </div>
-
-            <button type="button" class="layui-btn" id="upload"><i class="layui-icon"></i>上传文件</button>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">服务人:</label>
-                <div class="layui-input-block">
-                    <input type="text" naem="u_name" placeholder="请输入服务人">
-                </div>
-            </div>
-
-
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button type="submit" class="layui-btn" lay-filter="demo1">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                </div>
+            <div class="layui-input-inline">
+                <input  id="testd1" type="text" name="s_odate" class="layui-input"  placeholder="yyyy-MM-dd">
             </div>
         </div>
     </div>
+
+    <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">服务内容</label>
+        <div class="layui-input-block">
+            <textarea name="s_text" placeholder="请输入服务内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">用户反馈</label>
+        <div class="layui-input-block">
+            <textarea name="s_feedback" placeholder="请输入用户反馈" class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">服务评分</label>
+        <div class="layui-inline"  >
+            <input type="radio" name="s_grade" value="1" title="1分">
+            <input type="radio" name="s_grade" value="2" title="两分" >
+            <input type="radio" name="s_grade" value="3" title="三分" >
+            <input type="radio" name="s_grade" value="4" title="四分" >
+            <input type="radio" name="s_grade" value="5" title="五分" >
+        </div>
+            <button type="button" class="layui-btn" id="uploads" ><i class="layui-icon"></i>上传文件</button>
+            <input type="hidden" name="s_accessory" id="s_accessory" />
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+            <label class="layui-form-label">服务人</label>
+        <div class="layui-input-block" id="s_name"></div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-filter="demo1" type="submit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
 </form>
 
 <script src="/layui/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['upload','form','laydate','jquery'],function(){
-        var $ = layui.jquery
-        var laydate = layui.laydate
-        var upload = layui.upload
+    layui.config({
+    }).extend({
+        selectN: '/layui/layui_extends/selectN',
+        selectM: '/layui/layui_extends/selectM',
+    }).use(['jquery','upload','form','laydate','selectM'],function(){
+        var $ = layui.jquery;
+        var laydate = layui.laydate;
+        var upload = layui.upload;
+        var selectM = layui.selectM;
         var form = layui.form;
 
+        //下拉框
+        $.ajax({
+            type:"post",
+            url:"/crm/contracts/queryCon.do",
+            dataType:"json",
+            success:function(data){
+                var option1="";
+                for(var i=0;i<data.data.length;i++){
+                    option1+="<option value="+data.data[i].ct_id+" >"+data.data[i].ct_name+"</option>";
+                }
+                $("#hetong").html(option1);
+                form.render("select");
+            },
+            error:function(){
+                alert("出错啦");
+            }
+        });
+
+        //时间
         laydate.render({
             elem: '#testd1'//指定元素
         });
@@ -137,19 +140,36 @@
             elem: '#testd2'//指定元素
         });
 
-
-        //指定允许上传的文件类型
+        // 上传文件
         upload.render({
-            elem: '#upload'
-            ,url: '/crm/upload/fileUpload.do' //改成您自己的上传接口
+            elem: '#uploads' //绑定元素
+            ,url: '/crm/upload/fileUpload.do' //上传接口
             ,auto:true
             ,accept: 'file' //普通文件
             ,done: function(res){
-                $("#test3").value(res.filename);
-                layer.msg('上传成功');
-                console.log(res);
+                console.log("成功！")
+                $("#s_accessory").val(res.filename);
+                //上传完毕回调
+            }
+            ,error: function(){
+                //请求异常回调
             }
         });
+
+        //多选标签-基本配置
+        var tagIns1 = selectM({
+            //元素容器【必填】
+            elem: '#s_name'
+            //候选数据【必填】
+            ,data: '/sanqi/users/queryAllUser.do'
+            ,max:3//可以选几个
+            ,width:400
+            ,delimiter:','//
+            ,field:{idName:'u_Name',titleName:'u_Name'}
+            //添加验证
+            ,verify:'required'
+        });
+
     });
 </script>
 

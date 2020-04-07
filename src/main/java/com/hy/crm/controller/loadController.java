@@ -18,7 +18,7 @@ public class loadController {
 
     @ResponseBody
     @RequestMapping("/fileUpload.do")
-    public Ajax fileUpload(@RequestParam("s_accessory") MultipartFile multipartFile, HttpServletRequest request, Ajax ajax){
+    public Ajax fileUpload(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, Ajax ajax){
         System.out.println("加油进来了！！！！！！！！！！！！！！！！！！！！！！！！");
 
         int a=0;

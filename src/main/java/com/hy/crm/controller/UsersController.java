@@ -26,8 +26,8 @@ public class UsersController {
     private IUsersService usersService;
 
     @ResponseBody
-    @RequestMapping("/queryAllUser")
-    public  List<Users>  queryAllUser(){
+    @RequestMapping("/queryAllUser.do")
+    public List<Users> queryAllUser(){
         QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
         List<Users>  usersList=usersService.list(queryWrapper);
         return usersList;
