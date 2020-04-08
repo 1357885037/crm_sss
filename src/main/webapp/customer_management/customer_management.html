@@ -23,11 +23,11 @@
 
         table.render({
             elem: '#test'
-            ,url:'#'
+            ,url:'/crm/clients/queryall.do'
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,cols: [[
-                {field:'id', title: 'ID', sort: true}
-                ,{field:'c_name', title: '客户名称'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                 {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                 ,{field:'business_count', title: '商机数', sort: true}
                 ,{field:'turnover', title: '预计成交金额', sort: true}
                 ,{field:'contract_count', title: '合同数', sort: true}
@@ -35,7 +35,8 @@
                 ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
                 ,{field:'service_count', title: '售后服务数', sort: true}
                 ,{field:'servic_Score', title: '服务评分', sort: true}
-            ]]
+            ]
+            ]
         });
     });
 </script>

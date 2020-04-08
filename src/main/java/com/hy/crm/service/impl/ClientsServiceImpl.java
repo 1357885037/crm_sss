@@ -1,9 +1,10 @@
 package com.hy.crm.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hy.crm.entity.Clients;
+import com.hy.crm.entity.Customer_management;
 import com.hy.crm.mapper.ClientsMapper;
 import com.hy.crm.service.IClientsService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,8 @@ public class ClientsServiceImpl extends ServiceImpl<ClientsMapper, Clients> impl
         //查询所有的客户 并按名字首字母排序
         public List<Clients> asc_c_name(){
             return clientsMapper.asc_c_name();
+        }
+        public List<Customer_management> customer_managements(){
+            return clientsMapper.customer_management();
         }
 }

@@ -37,6 +37,14 @@
             <select  id="aaa2" lay-filter="ss" style="width: 200px;">
             </select>
         </div>
+
+        <label class="layui-form-label">优先级</label>
+        <div class="layui-input-inline">
+            <input  name="b_rank" title="低" type="radio" checked="" value="0">
+            <input  name="b_rank" title="中" type="radio" value="1">
+            <input  name="b_rank" title="高" type="radio" value="2">
+        </div>
+
     </div>
 
 
@@ -78,11 +86,11 @@
         </div>
 
         <label class="layui-form-label">商机来源</label>
-        <div class="layui-input-inline" name="b_source">
-            <select  style="width: 200px;">
+        <div class="layui-input-inline" >
+            <select  style="width: 200px;" name="b_source">
                 <option value="0"></option>
                 <option value="老客户">老客户</option>
-                <option value="代理商" selected="">代理商</option>
+                <option value="代理商">代理商</option>
                 <option value="互联网">互联网</option>
                 <option value="独立开发">独立开发</option>
                 <option value="客户介绍">客户介绍</option>
@@ -111,18 +119,32 @@
     </div>
 
     <div class="layui-form-item" >
+
+        <label class="layui-form-label">职务</label>
+        <div class="layui-input-inline">
+            <input name="b_duty" style="width: 200px;" class="layui-input" type="text" placeholder="请输入职务" autocomplete="off" lay-verify="title">
+        </div>
+
         <label class="layui-form-label">固定电话</label>
         <div class="layui-input-inline">
             <input name="b_special" style="width: 200px;" class="layui-input" type="text" placeholder="请输入固定电话" autocomplete="off" lay-verify="title">
         </div>
+    </div>
 
+    <div class="layui-form-item" >
         <div class="layui-inline">
             <label class="layui-form-label">移动电话</label>
             <div class="layui-input-inline">
                 <input name="b_phone" class="layui-input" type="tel"  placeholder="请输入移动电话" autocomplete="off" lay-verify="required|phone">
             </div>
         </div>
+        <label class="layui-form-label">邮件/QQ</label>
+        <div class="layui-input-inline">
+            <input name="b_qq" style="width: 200px;" class="layui-input" type="text" placeholder="请输入邮件/QQ" autocomplete="off" lay-verify="title">
+        </div>
     </div>
+
+
 
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">主要业务需求</label>
@@ -133,26 +155,41 @@
 
 
     <div class="layui-form-item" >
-        <div class="layui-input-inline">
-            <button class="layui-btn" id="test3" type="button"><i class="layui-icon"></i>上传文件</button>
+
+        <label class="layui-form-label">上传附件</label>
+       <div class="layui-input-inline">
+           <button type="button" class="layui-btn" id="uploads" ><i class="layui-icon"></i>选择文件</button>
+           <button type="button" class="layui-btn" id="tj" ><i class="layui-icon"></i>上传文件</button>
+           <input type="hidden" name="b_accessory" id="b_accessory" lay-verify="required" />
         </div>
 
-        <div class="layui-inline">
-            <label class="layui-form-label">邮件/QQ</label>
-            <div class="layui-input-inline">
-                <input name="b_qq" class="layui-input" type="tel"  placeholder="请输入移动电话" autocomplete="off" lay-verify="required|phone">
-            </div>
+        <label class="layui-form-label">商机负责人</label>
+        <div class="layui-input-inline">
+            <select  name="u_id" lay-filter="in_charge_of" id="u_in_charge_of" style="width: 200px;" >
+                <option value="0">请选择</option>
+            </select>
         </div>
     </div>
 
 
     <div class="layui-form-item" >
-        <label class="layui-form-label">所属行业</label>
-        <div class="layui-input-inline">
-            <select  name="" style="width: 200px;">
-            </select>
-        </div>
 
+            <label class="layui-form-label">商机参与人</label>
+            <div class="layui-input-inline" id="u_participation" name="u_participation"></div>
+
+
+        <label class="layui-form-label">商机关注人</label>
+        <div class="layui-input-inline" id="use_attention" name="use_attention"></div>
+    </div>
+    <!--商机状态 审核状态-->
+    <input type="hidden" name="b_code" value="0">
+    <input type="hidden" name="b_audit" value="0">
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" type="submit" lay-filter="demo1" lay-submit="">立即提交</button>
+            <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        </div>
     </div>
 
 
@@ -162,11 +199,19 @@
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-    layui.use(['form', 'layedit', 'laydate'], function(){
+    layui.config({
+    }).extend({
+        selectN: '/layui/layui_extends/selectN',
+        selectM: '/layui/layui_extends/selectM',
+    }).use(['form','upload','layedit', 'laydate','selectM'], function(){
         var form = layui.form
             ,layer = layui.layer
             ,layedit = layui.layedit
-            ,laydate = layui.laydate;
+            ,laydate = layui.laydate
+            ,upload=layui.upload
+            ,selectM = layui.selectM;
+
+
 
         $.get("http://localhost:8080/crm/business/clients_queryall.do",function(data){
             var str="";
@@ -176,6 +221,44 @@
             }
             $("#aaa").append(str);
             form.render("select");
+        });
+
+        $.get("http://localhost:8080/crm/business/in_charge_of.do",function(data){
+            var str="";
+            for(var i in data)
+            {
+                str+=" <option value='"+data[i].u_Id+"'>"+data[i].u_Name+"-"+data[i].u_Realname+"</option>";
+            }
+            $("#u_in_charge_of").append(str);
+            form.render("select");
+        });
+
+
+        //多选标签-基本配置
+        selectM({
+            //元素容器【必填】
+            elem: '#u_participation'
+            //候选数据【必填】
+            ,data: '/crm/business/in_charge_of.do'
+            ,max:5//可以选几个
+            ,width:400
+            ,delimiter:','//
+            ,field:{idName:'u_Id',titleName:'u_Realname'}
+            //添加验证
+            ,verify:'required'
+        });
+        //多选标签-基本配置
+        selectM({
+            //元素容器【必填】
+            elem: '#use_attention'
+            //候选数据【必填】
+            ,data: '/crm/business/in_charge_of.do'
+            ,max:20//可以选几个
+            ,width:400
+            ,delimiter:','//
+            ,field:{idName:'u_Id',titleName:'u_Realname'}
+            //添加验证
+            ,verify:'required'
         });
 
 
@@ -222,16 +305,38 @@
             layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
         });
 
+
+
+
+
+        // 上传文件
+        upload.render({
+            elem: '#uploads' //绑定元素
+            ,url: '/crm/upload/fileUpload.do' //上传接口
+            ,auto:false
+            ,accept: 'file' //普通文件
+            ,multiple:true
+            ,bindAction:"#tj"
+            ,done: function(res){     //上传完毕回调
+                layer.msg('提交成功！', {icon: 6});
+                $("#b_accessory").val(res.filename);
+            }
+            ,error: function(){//请求异常回调
+                layer.msg('上传失败！', {icon: 7});
+            }
+        });
+
+
         //监听提交
         form.on('submit(demo1)', function(data){
-            alert("进入表单提交")
             var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
             $.ajax({
                 type : "post",
                 dataType : "json",
                 //contentType:"application/json",
-                url : "http://localhost:8080/crm/clients/addClients.do",
+                url : "/crm/business/add_Business.do",
                 data:data.field,
+                enctype:"multipart/form-data",
                 success : function(result) {
                     if(result==1){
                         layer.msg('添加成功，(2秒自动关闭)', {
@@ -251,8 +356,8 @@
 
                 }
             });
-            alert("表单提交结束");
         });
+
 
     });
 </script>

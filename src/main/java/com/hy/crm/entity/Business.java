@@ -1,5 +1,8 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -15,6 +18,7 @@ public class Business implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "b_id", type = IdType.UUID)
     private String b_id;
 
     private String c_id;
@@ -37,7 +41,7 @@ public class Business implements Serializable {
 
     private Long b_phone;
 
-    private Integer b_qq;
+    private String b_qq;
 
     private String b_texts;
 
@@ -54,6 +58,16 @@ public class Business implements Serializable {
     private Integer b_audit;
 
     private Integer b_rank;
+
+    private String b_current_time;
+
+    public String getB_current_time() {
+        return b_current_time;
+    }
+
+    public void setB_current_time(String b_current_time) {
+        this.b_current_time = b_current_time;
+    }
 
     public String getB_id() {
         return b_id;
@@ -137,13 +151,14 @@ public class Business implements Serializable {
         this.b_phone = b_phone;
     }
 
-    public Integer getB_qq() {
+    public String getB_qq() {
         return b_qq;
     }
 
-    public void setB_qq(Integer b_qq) {
+    public void setB_qq(String b_qq) {
         this.b_qq = b_qq;
     }
+
     public String getB_texts() {
         return b_texts;
     }
