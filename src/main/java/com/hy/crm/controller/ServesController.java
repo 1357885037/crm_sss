@@ -6,10 +6,10 @@ import com.hy.crm.entity.Serves;
 import com.hy.crm.service.IServesService;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.util.UUID;
  * @author mq
  * @since 2020-04-03
  */
-@RestController
+@Controller
 @RequestMapping("/crm/serves")
 public class ServesController {
     @Autowired
@@ -63,8 +63,6 @@ public class ServesController {
         serves.setS_id(uuid);
         serves.setS_statu(0);
         servesService.save(serves);
-//        ModelAndView modelAndView=new ModelAndView("page/serve/serves");
-//    return modelAndView;
         response.sendRedirect("/page/serve/serves.html");
     }
 

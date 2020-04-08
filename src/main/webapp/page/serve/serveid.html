@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+
+
+</head>
+<body>
+<form class="layui-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">主题</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_theme" readonly   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务的合同</label>
+        <div class="layui-input-block">
+            <input type="text" id="ct_name" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_statu" readonly  class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务人</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_name" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务原因</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_way" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务方式</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_type" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务开始时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_sdate" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务结束时间</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_odate" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">用户反馈</label>
+        <div class="layui-input-block">
+            <textarea id="s_feedback"  readonly class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">服务内容</label>
+        <div class="layui-input-block">
+            <textarea  id="s_text" readonly class="layui-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务评分</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_grade" readonly class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">服务文件</label>
+        <div class="layui-input-block">
+            <input type="text" id="s_accessory" readonly class="layui-input">
+        </div>
+    </div>
+
+
+</form>
+</body>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script>
+layui.use(['form','jquery'], function() {
+        var $ = layui.jquery;
+        var form = layui.form;
+
+    })
+</script>
+
+<!--判断状态-->
+<script type="text/html" id="titleTpl">
+    {{#  if($("#s_statu").val==1){ }}
+    男
+    {{#  } else { }}
+    女
+    {{#  } }}
+</script>
+</html>
