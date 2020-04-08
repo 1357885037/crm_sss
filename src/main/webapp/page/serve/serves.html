@@ -7,46 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/css/serv.css"  media="all">
-
 </head>
-
 <body>
-
 <form class="layui-form layui-form-pane" action="/crm/serves/queryAllServe.do">
-
-    <div class="layui-form-item">
-        <div class="layui-row">
-            <div class="layui-col-md3">
-                <div class="layui-inline">
-                    <div id="u4921" class="ax_default _图片">
-                        <i class="layui-icon layui-icon-read" width="50" height="50">售后服务</i>
+        <div class="layui-form-item">
+            <div class="layui-row">
+                <div class="layui-col-md3">
+                    <div class="layui-inline">
+                        <div id="u4921" class="ax_default _图片">
+                            <i class="layui-icon layui-icon-read" width="50" height="50">售后服务</i>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="layui-col-md9">
-                <div class="layui-inline">
-                    <select name="tiaojian" lay-filter="selec" id="selec">
-                        <option value=1>根据主题查询</option>
-                        <option value=2>根据开始时间</option>
-                        <option value=3>根据服务人</option>
-                        <option value=4>根据服务类型</option>
-                        <option value=5>根据评分</option>
-                    </select>
+                <div class="layui-col-md9">
+                    <div class="layui-inline">
+                        <select name="tiaojian" lay-filter="selec" id="selec">
+                            <option value=1>根据主题查询</option>
+                            <option value=2>根据开始时间</option>
+                            <option value=3>根据服务人</option>
+                            <option value=4>根据服务类型</option>
+                            <option value=5>根据评分</option>
+                        </select>
+                    </div>
+
+                    <div class="layui-inline" id="dis">
+                        <input type="text" name="neirong"  placeholder="请输入内容" class="layui-input">
+                    </div>
+
+                    <div class="layui-inline">
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        <a href="/page/serve/addserves.html" class="layui-btn layui-icon layui-icon-add-1">新增售后服务</a>
+                    </div>
+
                 </div>
-
-            <div class="layui-inline" id="dis">
-                <input type="text" name="neirong"  placeholder="请输入内容" class="layui-input">
-            </div>
-            <div class="layui-inline">
-                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                <a href="/page/serve/addserves.html" class="layui-btn layui-icon layui-icon-add-1">新增售后服务</a>
             </div>
         </div>
-    </div>
- </div>
-
 </form>
 
 <div class="layui-row layui-form-pane">
@@ -91,7 +88,7 @@
     </div>
     <div class="layui-col-xs9">
         <div class="layui-inline">
-        <table class="layui-hide" id="test" lay-filter="test"></table>
+            <table class="layui-hide" id="test" lay-filter="test"></table>
         </div>
     </div>
 </div>
@@ -105,8 +102,7 @@
         var layer = layui.layer;
         var laydate = layui.laydate;
 
-
-
+//监听下拉框值得改变并改变查询的输入框
         form.on('select(selec)', function(data){
             console.log(data.value); //得到被选中的值
             if(data.value==1){
@@ -144,7 +140,7 @@
 
             }
         });
-
+////获取处理中的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?s_statu=" + 0,
@@ -156,7 +152,7 @@
                 alert("出错啦");
             }
         });
-
+//获取已处理的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?s_statu=" + 1,
@@ -168,7 +164,7 @@
                 alert("出错啦");
             }
         });
-
+//获取已搁置的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?s_statu=" + 2,
@@ -180,7 +176,7 @@
                 alert("出错啦");
             }
         });
-
+//获取本周新增一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?b=" + 1,
@@ -192,7 +188,7 @@
                 alert("出错啦");
             }
         });
-
+//获取上周新增一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?b=" + 2,
@@ -204,7 +200,7 @@
                 alert("出错啦");
             }
         });
-
+//获取本月新增一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?b=" + 3,
@@ -216,7 +212,7 @@
                 alert("出错啦");
             }
         });
-
+//获取上月新增一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?b=" + 4,
@@ -228,7 +224,7 @@
                 alert("出错啦");
             }
         });
-
+//获取本季度新增一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?b=" + 5,
@@ -240,7 +236,7 @@
                 alert("出错啦");
             }
         });
-
+//获取上季度新增一共有多少并显示脚表
         $.ajax({
             type: "post",
             url: "/crm/serves/queryAllServe.do?b=" + 6,
@@ -252,17 +248,14 @@
                 alert("出错啦");
             }
         });
-
-
-        //   监听submit
+//   监听submit并改同步提交为异步提交并重新渲染表格
         form.on('submit(demo1)', function (data) {
             table.reload("test", {
                 where: data.field
             });
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
-
-        //获取表数据
+//获取表数据并渲染
         table.render({
             elem: '#test'
             , url: '/crm/serves/queryAllServe.do'
@@ -281,8 +274,7 @@
             , limits: [3, 5, 8, 10]
             , limit: 3
         });
-
-        //监听行单击事件（双击事件为：rowDouble）
+//监听行单击事件并弹出层显示这一行信息
         table.on('row(test)', function (obj) {
             var data = obj.data;
             console.log(data);
@@ -323,9 +315,7 @@
             //标注选中样式
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
-
-
-        //处理中的服务
+//处理中的服务
         $("#on1").click(function () {
             table.render({
                 elem: '#test'
@@ -347,8 +337,7 @@
                 , limit: 3
             });
         })
-
-        //已结束的服务
+//已结束的服务
         $("#on2").click(function () {
             table.render({
                 elem: '#test'
@@ -370,8 +359,7 @@
                 , limit: 3
             });
         })
-
-        //已搁置的服务
+//已搁置的服务
         $("#on3").click(function () {
             table.render({
                 elem: '#test'
@@ -393,7 +381,7 @@
                 , limit: 3
             });
         })
-        //本周的服务
+//本周的服务
         $("#on4").click(function () {
             table.render({
                 elem: '#test'
@@ -415,7 +403,7 @@
                 , limit: 3
             });
         })
-
+//上周新增
         $("#on5").click(function () {
             table.render({
                 elem: '#test'
@@ -437,7 +425,7 @@
                 , limit: 3
             });
         })
-
+//本月新增
         $("#on6").click(function () {
             table.render({
                 elem: '#test'
@@ -459,7 +447,7 @@
                 , limit: 3
             });
         })
-
+//上月新增
         $("#on7").click(function () {
             table.render({
                 elem: '#test'
@@ -481,7 +469,7 @@
                 , limit: 3
             });
         })
-
+//本季度新增
         $("#on8").click(function () {
             table.render({
                 elem: '#test'
@@ -503,7 +491,7 @@
                 , limit: 3
             });
         })
-
+//上季度新增
         $("#on9").click(function () {
             table.render({
                 elem: '#test'
@@ -528,7 +516,6 @@
 
     });
 </script>
-
 
 </body>
 </html>

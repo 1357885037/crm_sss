@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-
+    <title>查看服务</title>
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
-
-
 </head>
 <body>
-<form class="layui-form">
+<form class="layui-form layui-form-pane">
     <div class="layui-form-item">
         <label class="layui-form-label">主题</label>
         <div class="layui-input-block">
@@ -94,7 +90,6 @@
         </div>
     </div>
 
-
 </form>
 </body>
 <script src="/layui/layui.js" charset="utf-8"></script>
@@ -106,12 +101,4 @@ layui.use(['form','jquery'], function() {
     })
 </script>
 
-<!--判断状态-->
-<script type="text/html" id="titleTpl">
-    {{#  if($("#s_statu").val==1){ }}
-    男
-    {{#  } else { }}
-    女
-    {{#  } }}
-</script>
 </html>
