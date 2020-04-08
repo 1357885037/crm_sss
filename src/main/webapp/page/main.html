@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" >
 <head>
 	<meta charset="utf-8">
-	<title>首页--layui后台管理模板 2.0</title>
+	<title>左侧主页面</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -27,58 +27,55 @@
 						<a href="javascript:;" ><i class="layui-icon">&#xe621;上季度新增</i></a>
 					</div>
 				</div>
-				</div>
 			</div>
-		</div>
-
-			<div class="layui-col-md6">
-					<div class="layui-row grid-demo grid-demo-bg1">
-						<div class="layui-col-md12">
-							<blockquote class="layui-elem-quote title">客户关系<i class="layui-icon layui-red">&#xe756;</i></blockquote>
-						</div>
-						<div class="layui-col-md4">
-							<p style="font-size:14px;"><span style="font-family:'微软雅黑';font-weight:400;color:#666666;">全部客户</span></p><p style="font-size:20px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">24</span></p>
-						</div>
-						<div class="layui-col-md4">
-							<p style="font-size:14px;"><span style="font-family:'微软雅黑';font-weight:400;color:#666666;">|全部商机</span></p><p style="font-size:20px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">24</span></p>
-						</div>
-						<div class="layui-col-md4">
-							<p style="font-size:14px;"><span style="font-family:'微软雅黑';font-weight:400;color:#666666;">|全部合同</span></p><p style="font-size:20px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">24</span></p>
-						</div>
-					</div>
-
-			</div>
-
 		</div>
 	</div>
 
-	<div class="layui-row">
-		<div class="layui-col-md6">
-			<blockquote class="layui-elem-quote title" id="ids1">最新文章 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
-			<table class="layui-table mag0" lay-skin="line">
-				<colgroup>
-					<col>
-					<col width="110">
-				</colgroup>
-				<tbody class="hot_news" id="hot_news"></tbody>
-			</table>
-		</div>
-		<div class="layui-col-md6">
-			<blockquote class="layui-elem-quote title" id="ids2">我关注的知识 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
-			<table class="layui-table mag0" lay-skin="line">
-				<colgroup>
-					<col>
-					<col width="110">
-				</colgroup>
-				<tbody class="hot_news" id="newsName"></tbody>
-			</table>
-
+	<div class="layui-col-md6">
+		<div class="layui-row grid-demo grid-demo-bg1">
+			<div class="layui-col-md12">
+				<blockquote class="layui-elem-quote title">客户关系<i class="layui-icon layui-red">&#xe756;</i></blockquote>
+			</div>
+			<div class="layui-col-md4">
+				<p style="font-size:14px;"><span style="font-family:'微软雅黑';font-weight:400;color:#666666;">全部客户</span></p><p style="font-size:20px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">24</span></p>
+			</div>
+			<div class="layui-col-md4">
+				<p style="font-size:14px;"><span style="font-family:'微软雅黑';font-weight:400;color:#666666;">|全部商机</span></p><p style="font-size:20px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">24</span></p>
+			</div>
+			<div class="layui-col-md4">
+				<p style="font-size:14px;"><span style="font-family:'微软雅黑';font-weight:400;color:#666666;">|全部合同</span></p><p style="font-size:20px;"><span style="font-family:'Arial Normal', 'Arial';font-weight:400;">24</span></p>
+			</div>
 		</div>
 	</div>
 
+</div>
 
-	<script type="text/javascript" src="../layui/layui.js"></script>
+<div class="layui-row">
+	<div class="layui-col-md6">
+		<blockquote class="layui-elem-quote title" id="ids1">最新文章 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
+		<table class="layui-table mag0" lay-skin="line">
+			<colgroup>
+				<col>
+				<col width="110">
+			</colgroup>
+			<tbody class="hot_news" id="hot_news"></tbody>
+		</table>
+	</div>
 
-	<script type="text/javascript" src="../js/main.js"></script>
+	<div class="layui-col-md6">
+		<blockquote class="layui-elem-quote title" id="ids2">我关注的知识 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
+		<table class="layui-table mag0" lay-skin="line">
+			<colgroup>
+				<col>
+				<col width="110">
+			</colgroup>
+			<tbody class="hot_news" id="newsName"></tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript" src="../layui/layui.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+
 </body>
 </html>
