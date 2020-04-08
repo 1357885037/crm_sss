@@ -39,6 +39,7 @@ layui.use(['form','element','layer','jquery'],function(){
                 +'</tr>';
         }
         $("#hot_news").html(hotNewsHtml);
+        $("#ids1").append("<span class='layui-badge'>" + data.count + "</span>");
     })
 
     $.get("/json/newsList.json",function(data){
@@ -50,7 +51,10 @@ layui.use(['form','element','layer','jquery'],function(){
                 +'</tr>';
         }
         $("#newsName").html(hotNewsHtml);
+        $("#ids2").append("<span class='layui-badge'>" + data.count + "</span>");
     })
 
 
 })
+
+

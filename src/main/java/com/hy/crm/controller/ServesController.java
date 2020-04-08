@@ -37,7 +37,7 @@ public class ServesController {
           if (tiaojian == 1) {
               serves.setS_theme(neirong);
           } else if (tiaojian == 2) {
-              serves.setS_odate(neirong);
+              serves.setS_sdate(neirong);
           } else if (tiaojian == 3) {
               serves.setS_name(neirong);
           } else if (tiaojian == 4) {

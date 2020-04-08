@@ -10,23 +10,23 @@ public class queryserve {
         StringBuffer sql=new StringBuffer("SELECT s.*,c.ct_id,c.ct_name FROM serves s INNER JOIN contracts c ON s.ct_id=c.ct_id where 1=1 ");
 //      根据主题
         if (serves.getS_theme()!=null && serves.getS_theme()!="null" && !serves.getS_theme().equals("null") && serves.getS_theme()!="") {
-            sql.append(" and s.s_theme = "+serves.getS_theme()+"");
+            sql.append(" and s.s_theme like '%"+serves.getS_theme()+"%'");
         }
 //        根据开始时间
         if (serves.getS_sdate()!=null && serves.getS_sdate()!="null" && !serves.getS_sdate().equals("null") && serves.getS_sdate()!="") {
-            sql.append(" and s.s_sdate = "+serves.getS_sdate()+"");
+            sql.append(" and s.s_sdate = '"+serves.getS_sdate()+"'");
         }
 //        根据服务类型
         if (serves.getS_type()!=null && serves.getS_type()!="null" && !serves.getS_type().equals("null") && serves.getS_type()!="") {
-            sql.append(" and s.s_type = "+serves.getS_type()+"");
+            sql.append(" and s.s_type = '"+serves.getS_type()+"'");
         }
 //        根据服务人
         if (serves.getS_name()!=null && serves.getS_name()!="null" && !serves.getS_name().equals("null") && serves.getS_name()!="") {
             sql.append(" and s.s_name like '%"+serves.getS_name()+"%'");
         }
 //        根据评分
-        if (serves.getS_grade()!=null ) {
-            sql.append(" and s.s_grade = "+serves.getS_grade()+"");
+        if (serves.getS_grade()!=null) {
+            sql.append(" and s.s_grade = '"+serves.getS_grade()+"'");
         }
         //根据状态
         if (serves.getS_statu()!=null&&!serves.getS_statu().equals("") ) {

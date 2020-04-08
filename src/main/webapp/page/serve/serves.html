@@ -26,7 +26,7 @@
 
             <div class="layui-col-md9">
                 <div class="layui-inline">
-                    <select name="tiaojian" lay-filter="aihao">
+                    <select name="tiaojian" lay-filter="selec" id="selec">
                         <option value=1>根据主题查询</option>
                         <option value=2>根据开始时间</option>
                         <option value=3>根据服务人</option>
@@ -35,10 +35,9 @@
                     </select>
                 </div>
 
-            <div class="layui-inline">
+            <div class="layui-inline" id="dis">
                 <input type="text" name="neirong"  placeholder="请输入内容" class="layui-input">
             </div>
-
             <div class="layui-inline">
                 <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
@@ -99,11 +98,52 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script src="/layui/layui.js" charset="utf-8"></script>
 <script>
-    layui.use(['table','form','layer'], function() {
+    layui.use(['table','form','layer','laydate'], function() {
         var $ = layui.jquery;
         var table = layui.table;
         var form = layui.form;
         var layer = layui.layer;
+        var laydate = layui.laydate;
+
+
+
+        form.on('select(selec)', function(data){
+            console.log(data.value); //得到被选中的值
+            if(data.value==1){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='neirong' placeholder='请输入标题进行模糊查询' class='layui-input'>");
+            }
+            if(data.value==2){
+                $("#dis").empty();
+                $("#dis").append(" <input  id='dat1' type='text' name='neirong' class='layui-input'  placeholder='yyyy-MM-dd'>");
+                //时间
+                laydate.render({
+                    elem: '#dat1'//指定元素
+                });
+            }
+            if(data.value==3){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='neirong' placeholder='请输服务人姓名进行模糊查询' class='layui-input'>");
+            }
+            if(data.value==4){
+                $("#dis").empty();
+                $("#dis").append("<select name='neirong'>" +
+                    "                    <option value='上门测试'>上门测试</option>" +
+                    "                    <option value='出问题' >出问题</option>" +
+                    "                </select>");
+                form.render();
+            }
+            if(data.value==5){
+                $("#dis").empty();
+                $("#dis").append(" <input type='radio' name='neirong' value='1' title='1分'>\n" +
+                    "            <input type='radio' name='neirong' value='2' title='两分' >\n" +
+                    "            <input type='radio' name='neirong' value='3' title='三分' >\n" +
+                    "            <input type='radio' name='neirong' value='4' title='四分' >\n" +
+                    "            <input type='radio' name='neirong' value='5' title='五分' >");
+                form.render();
+
+            }
+        });
 
         $.ajax({
             type: "post",
