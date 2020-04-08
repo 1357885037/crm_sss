@@ -42,6 +42,16 @@ public class Serves implements Serializable {
 
     private String s_theme;
 
+    private Integer b;
+
+    public Integer getB() {
+        return b;
+    }
+
+    public void setB(Integer b) {
+        this.b = b;
+    }
+
     @TableField(exist=false)
     private Contracts contracts;
 
