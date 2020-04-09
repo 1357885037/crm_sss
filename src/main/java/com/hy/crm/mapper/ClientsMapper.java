@@ -19,4 +19,5 @@ public interface ClientsMapper extends BaseMapper<Clients> {
     @Select("select * from clients order by convert(c_name using gbk) collate gbk_chinese_ci asc")
     public List<Clients> asc_c_name();
 
+
 }

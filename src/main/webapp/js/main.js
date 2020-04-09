@@ -23,11 +23,49 @@ function getLangDate(){
     setTimeout("getLangDate()",1000);
 }
 
-layui.use(['form','element','layer','jquery'],function(){
+layui.use(['form','element','layer'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         element = layui.element;
         $ = layui.jquery;
+
+    $.ajax({
+        type: "post",
+        url: "/crm/business/sumBusiness.do",
+        // dataType: "json",
+        success: function (data) {
+            $("#byid2").empty();
+            $("#byid2").append(""+data+"人");
+        },
+        error: function () {
+            alert("出错啦");
+        }
+    });
+
+    $.ajax({
+        type: "post",
+        url: "/crm/clients/Sumclients.do",
+        // dataType: "json",
+        success: function (data) {
+            $("#byid1").empty();
+            $("#byid1").append(""+data+"人");
+        },
+        error: function () {
+            alert("出错啦");
+        }
+    });
+    $.ajax({
+        type: "post",
+        url: "/crm/contracts/sumContracts.do",
+        // dataType: "json",
+        success: function (data) {
+            $("#byid3").empty();
+            $("#byid3").append(""+data+"人");
+        },
+        error: function () {
+            alert("出错啦");
+        }
+    });
 
     //最新文章列表
     $.get("/crm/knowledge/queryKonw.do",function(data){
@@ -53,6 +91,8 @@ layui.use(['form','element','layer','jquery'],function(){
         $("#newsName").html(hotNewsHtml);
         $("#ids2").append("<span class='layui-badge'>" + data.count + "</span>");
     })
+
+
 
 
 })

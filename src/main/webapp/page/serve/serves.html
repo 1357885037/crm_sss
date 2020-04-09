@@ -104,7 +104,6 @@
 
 //监听下拉框值得改变并改变查询的输入框
         form.on('select(selec)', function(data){
-            console.log(data.value); //得到被选中的值
             if(data.value==1){
                 $("#dis").empty();
                 $("#dis").append("<input type='text' name='neirong' placeholder='请输入标题进行模糊查询' class='layui-input'>");
