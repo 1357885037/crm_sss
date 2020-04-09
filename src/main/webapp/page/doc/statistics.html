@@ -32,13 +32,22 @@
                 <div class="layuimini-notice">
                     <div class="layuimini-notice-title"><a href="javascript:;" id="on5"><i class="layui-icon">&#xe629;本年统计</i></a> </div>
                 </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on6"><i class="layui-icon">&#xe629;商业销售漏斗</i></a> </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on7"><i class="layui-icon">&#xe629;按行业分布</i></a> </div>
+                </div>
+                <div class="layuimini-notice">
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on8"><i class="layui-icon">&#xe629;按商机来源</i></a> </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 
 <!--    我的统计-->
-    <div class="layui-col-xs9" id="div1" style="display: block">
+    <div class="layui-col-xs9" id="div1" style="display: none">
         <div class="layui-col-md12">
 
             <div class="layui-inline">
@@ -525,7 +534,7 @@
     </div>
 <!--    月表-->
     <div class="layui-col-xs9" id="div3" style="display: none">
-        <table class="layui-table" lay-data="{width:1100, url:'', page: true, limit: 6, limits:[6]}">
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/usermoth.do', page: true, limit: 3, limits:[3,6]}">
             <thead>
             <tr>
                 <th lay-data="{field:'uname', width:150}" rowspan="2">用户名</th>
@@ -535,21 +544,21 @@
                 <th lay-data="{align:'center'}" colspan="2">合同数</th>
             </tr>
             <tr>
-                <th lay-data="{field:'b_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'b_UsersumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'c_UserfulfillsumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'c_UserfulfillsumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'w_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'w_UsersumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'c_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'c_UsersumSMeonkey', width:120}">上周</th>
+                <th lay-data="{field:'b_UsersumMeonkey', width:120}">本月</th>
+                <th lay-data="{field:'b_UsersumSMeonkey', width:120}">上月</th>
+                <th lay-data="{field:'c_UserfulfillsumMeonkey', width:120}">本月</th>
+                <th lay-data="{field:'c_UserfulfillsumSMeonkey', width:120}">上月</th>
+                <th lay-data="{field:'w_UsersumMeonkey', width:120}">本月</th>
+                <th lay-data="{field:'w_UsersumSMeonkey', width:120}">上月</th>
+                <th lay-data="{field:'c_UsersumMeonkey', width:120}">本月</th>
+                <th lay-data="{field:'c_UsersumSMeonkey', width:120}">上月</th>
             </tr>
             </thead>
         </table>
     </div>
 <!--    季度表-->
     <div class="layui-col-xs9" id="div4" style="display: none">
-        <table class="layui-table" lay-data="{width:1100, url:'', page: true, limit: 6, limits:[6]}">
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/userquarter.do', page: true, limit: 3, limits:[3,6]}">
             <thead>
             <tr>
                 <th lay-data="{field:'uname', width:150}" rowspan="2">用户名</th>
@@ -559,21 +568,21 @@
                 <th lay-data="{align:'center'}" colspan="2">合同数</th>
             </tr>
             <tr>
-                <th lay-data="{field:'b_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'b_UsersumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'c_UserfulfillsumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'c_UserfulfillsumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'w_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'w_UsersumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'c_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'c_UsersumSMeonkey', width:120}">上周</th>
+                <th lay-data="{field:'b_UsersumMeonkey', width:120}">本季度</th>
+                <th lay-data="{field:'b_UsersumSMeonkey', width:120}">上季度</th>
+                <th lay-data="{field:'c_UserfulfillsumMeonkey', width:120}">本季度</th>
+                <th lay-data="{field:'c_UserfulfillsumSMeonkey', width:120}">上季度</th>
+                <th lay-data="{field:'w_UsersumMeonkey', width:120}">本季度</th>
+                <th lay-data="{field:'w_UsersumSMeonkey', width:120}">上季度</th>
+                <th lay-data="{field:'c_UsersumMeonkey', width:120}">本季度</th>
+                <th lay-data="{field:'c_UsersumSMeonkey', width:120}">上季度</th>
             </tr>
             </thead>
         </table>
     </div>
 <!--    年表-->
     <div class="layui-col-xs9" id="div5" style="display: none">
-        <table class="layui-table" lay-data="{width:1100, url:'', page: true, limit: 6, limits:[6]}">
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/useryear.do', page: true, limit: 3, limits:[3,6]}">
             <thead>
             <tr>
                 <th lay-data="{field:'uname', width:150}" rowspan="2">用户名</th>
@@ -583,19 +592,33 @@
                 <th lay-data="{align:'center'}" colspan="2">合同数</th>
             </tr>
             <tr>
-                <th lay-data="{field:'b_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'b_UsersumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'c_UserfulfillsumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'c_UserfulfillsumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'w_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'w_UsersumSMeonkey', width:120}">上周</th>
-                <th lay-data="{field:'c_UsersumMeonkey', width:120}">本周</th>
-                <th lay-data="{field:'c_UsersumSMeonkey', width:120}">上周</th>
+                <th lay-data="{field:'b_UsersumMeonkey', width:120}">本年</th>
+                <th lay-data="{field:'b_UsersumSMeonkey', width:120}">上年</th>
+                <th lay-data="{field:'c_UserfulfillsumMeonkey', width:120}">本年</th>
+                <th lay-data="{field:'c_UserfulfillsumSMeonkey', width:120}">上年</th>
+                <th lay-data="{field:'w_UsersumMeonkey', width:120}">本年</th>
+                <th lay-data="{field:'w_UsersumSMeonkey', width:120}">上年</th>
+                <th lay-data="{field:'c_UsersumMeonkey', width:120}">本年</th>
+                <th lay-data="{field:'c_UsersumSMeonkey', width:120}">上年</th>
             </tr>
             </thead>
         </table>
     </div>
+<!--    商业销售漏斗-->
+    <div class="layui-col-xs9" id="div6" style="display: block">
+<!--        <table class="layui-hide" id="test3" lay-filter="test3"></table>-->
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/sumbusinessTJ.do', page: false}">
+            <thead>
+            <tr>
+                <th lay-data="{field:'count'}" >商机数</th>
+                <th lay-data="{field:'hjh'}" >百分比</th>
+                <th lay-data="{field:'monkey'}" >金额</th>
+                <th lay-data="{field:'nkk'}" >百分比</th>
 
+            </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 
 </body>
@@ -605,6 +628,23 @@
             var $ = layui.jquery;
             var table = layui.table;
 
+        //获取表数据并渲染
+        // table.render({
+        //     width:1100,
+        //     elem: '#test3'
+        //     , url: '/crm/userinfo/sumbusinessTJ.do'
+        //     , text: {
+        //         none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
+        //         icon: 'layui-icon-face-surprised'
+        //     }
+        //     , cols: [[
+        //         {field: 'count', width: 200, title: '商机数'}
+        //         , {field: 'hjh', width: 150, title: '百分比'}
+        //         , {field: 'monkey', title: '金额', width: 150, sort: true}
+        //         , {field: 'nkk', width: 100, title: '百分比'}
+        //     ]]
+        //     , page: false
+        // })
         $("#on1").click(function () {
             $("#div2").hide();
             $("#div3").hide();

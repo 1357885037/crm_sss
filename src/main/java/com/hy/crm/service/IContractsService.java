@@ -67,19 +67,59 @@ public interface IContractsService extends IService<Contracts> {
     Double fulfillsumSNMeonkey();
 
 
+
     //////////////////////////////////////用户新增合同额
     //    查询用户本周新增合同金额
     Double UsersumMeonkey(String uid);
 
     //    查询用户上周新增合同金额
     Double UsersumSMeonkey(String uid);
+    //查询本月新增合同金额
+    Double UsersumYMeonkey(String uid);
 
+    //查询上月新增合同金额
+    Double UsersumSYMeonkey(String uid);
+
+    //查询本季度新增合同金额
+    Double UsersumJdMeonkey(String uid);
+
+    //查询上季度新增合同金额
+    Double UsersumSJdMeonkey(String uid);
+
+    //查询本年新增金额合同
+    Double UsersumNMeonkey(String uid);
+
+    //查询上年新增合同金额
+    Double UsersumSNMeonkey(String uid);
+
+
+
+    //////////////////////////////////////用户成交合同额
     //////////////////////////////////////用户成交合同额
     //    查询用户本周成交合同金额
     Double UserfulfillsumMeonkey(String uid);
 
     //    查询用户上周成交合同金额
     Double UserfulfillsumSMeonkey(String uid);
+    //查询本月完成合同金额
+    Double UserfulfillsumYMeonkey(String uid);
+
+    //查询上月完成合同金额
+    Double UserfulfillsumSYMeonkey(String uid);
+
+    //查询本季度完成合同金额
+    Double UserfulfillsumJdMeonkey(String uid);
+
+    //查询上季度完成合同金额
+    Double UserfulfillsumSJdMeonkey(String uid);
+
+    //查询本年完成金额合同
+    Double UserfulfillsumNMeonkey(String uid);
+
+    //查询上年完成合同金额
+    Double UserfulfillsumSNMeonkey(String uid);
+
+
 
 
 

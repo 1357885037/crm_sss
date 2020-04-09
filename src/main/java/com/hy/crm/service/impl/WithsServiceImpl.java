@@ -70,4 +70,34 @@ public class WithsServiceImpl extends ServiceImpl<WithsMapper, Withs> implements
     public Double UsersumSMeonkey(String uid) {
         return withsMapper.UsersumSMeonkey(uid);
     }
+
+    @Override
+    public Double UsersumYMeonkey(String uid) {
+        return withsMapper.UsersumYMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumSYMeonkey(String uid) {
+        return withsMapper.UsersumSYMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumJdMeonkey(String uid) {
+        return withsMapper.UsersumJdMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumSJdMeonkey(String uid) {
+        return withsMapper.UsersumSJdMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumNMeonkey(String uid) {
+        return withsMapper.UsersumNMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumSNMeonkey(String uid) {
+        return withsMapper.UsersumSNMeonkey( uid);
+    }
 }

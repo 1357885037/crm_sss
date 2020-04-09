@@ -115,6 +115,36 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts
     }
 
     @Override
+    public Double UsersumYMeonkey(String uid) {
+        return contractsMapper.UsersumYMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumSYMeonkey(String uid) {
+        return contractsMapper.UsersumSYMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumJdMeonkey(String uid) {
+        return contractsMapper.UsersumJdMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumSJdMeonkey(String uid) {
+        return contractsMapper.UsersumSJdMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumNMeonkey(String uid) {
+        return contractsMapper.UsersumNMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumSNMeonkey(String uid) {
+        return contractsMapper.UsersumSNMeonkey(uid);
+    }
+
+    @Override
     public Double UserfulfillsumMeonkey(String uid) {
         return contractsMapper.UserfulfillsumMeonkey(uid);
     }
@@ -122,6 +152,36 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts
     @Override
     public Double UserfulfillsumSMeonkey(String uid) {
         return contractsMapper.UserfulfillsumSMeonkey(uid);
+    }
+
+    @Override
+    public Double UserfulfillsumYMeonkey(String uid) {
+        return contractsMapper.UserfulfillsumYMeonkey(uid);
+    }
+
+    @Override
+    public Double UserfulfillsumSYMeonkey(String uid) {
+        return contractsMapper.UserfulfillsumSYMeonkey(uid);
+    }
+
+    @Override
+    public Double UserfulfillsumJdMeonkey(String uid) {
+        return contractsMapper.UserfulfillsumJdMeonkey(uid);
+    }
+
+    @Override
+    public Double UserfulfillsumSJdMeonkey(String uid) {
+        return contractsMapper.UserfulfillsumSJdMeonkey(uid);
+    }
+
+    @Override
+    public Double UserfulfillsumNMeonkey(String uid) {
+        return contractsMapper.UserfulfillsumNMeonkey(uid);
+    }
+
+    @Override
+    public Double UserfulfillsumSNMeonkey(String uid) {
+        return contractsMapper.UserfulfillsumSNMeonkey(uid);
     }
 
 }

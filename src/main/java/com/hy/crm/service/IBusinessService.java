@@ -13,9 +13,23 @@ import com.hy.crm.entity.Business;
  */
 public interface IBusinessService extends IService<Business> {
 
-    Double sumMeonkey();
-    Double sumSMeonkey();
+//    所有商机一共多少钱
+String countMeonkey();
 
+
+    String codemonkey2();
+
+    String codemonkey3();
+
+    String codemonkey4();
+
+    String codemonkey5();
+
+
+    //    本周新增
+    Double sumMeonkey();
+//   上周新增
+    Double sumSMeonkey();
 
     //查询本月新增商机金额
     Double sumYMeonkey();
@@ -40,6 +54,25 @@ public interface IBusinessService extends IService<Business> {
 
     //    查询用户上周新增商机金额
     Double UsersumSMeonkey(String uid);
+
+    //查询用户本月新增商机金额
+    Double UsersumYMeonkey(String uid);
+
+    //查询用户上月新增商机金额
+    Double UsersumSYMeonkey(String uid);
+
+    //查询用户本季度新增商机金额
+    Double UsersumJdMeonkey(String uid);
+
+    //查询用户上季度新增商机金额
+    Double UsersumSJdMeonkey(String uid);
+
+    //查询用户本年新增商机金额
+    Double UsersumNMeonkey(String uid);
+
+    //查询用户上年新增商机金额
+    Double UsersumSNMeonkey(String uid);
+
 
 
 

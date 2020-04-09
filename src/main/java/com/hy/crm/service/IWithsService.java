@@ -43,6 +43,25 @@ public interface IWithsService extends IService<Withs> {
     //    查询用户上周新增跟单金额
     Double UsersumSMeonkey(String uid);
 
+    //查询本月新增跟单预计金额
+    Double UsersumYMeonkey(String uid);
+
+    //查询上月新增跟单预计金额
+    Double UsersumSYMeonkey(String uid);
+
+    //查询本季度新增跟单预计金额
+    Double UsersumJdMeonkey(String uid);
+
+    //查询上季度新增跟单预计金额
+    Double UsersumSJdMeonkey(String uid);
+
+    //查询本年新增跟单预计金额
+    Double UsersumNMeonkey(String uid);
+
+    //查询上年新增跟单预计金额
+    Double UsersumSNMeonkey(String uid);
+
+
 
 
 }
