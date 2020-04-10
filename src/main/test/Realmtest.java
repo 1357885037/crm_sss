@@ -16,11 +16,11 @@ public class Realmtest {
         int hashIterations=1024;//加密次数
 
       Object result=new SimpleHash(hashAlgorithmName,credentials,salt,hashIterations);
-
+//
       System.out.println("====>"+result);
-       String str="2020年04月04日";
-       str=str.replaceAll("年","-").replaceAll("月","-").substring(0,str.length()-1);
-       System.out.println(str);
+//       String str="2020年04月04日";
+//       str=str.replaceAll("年","-").replaceAll("月","-").substring(0,str.length()-1);
+//       System.out.println(str);
 
    /*     FileAppender fileAppender=new FileAppender(new PatternLayout(PatternLayout.TTCC_CONVERSION_PATTERN),"1.log");
         ConsoleAppender appender=new ConsoleAppender(

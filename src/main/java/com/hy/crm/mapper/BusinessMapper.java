@@ -2,6 +2,7 @@ package com.hy.crm.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crm.entity.Business;
+import com.hy.crm.entity.Industry_Sources;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -29,8 +30,114 @@ public interface BusinessMapper extends BaseMapper<Business> {
     @Select("select sum(b_monkey) from business where b_code=5")
     String codemonkey5();
 
+//    本季度人
+    @Select("SELECT count(*) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=1")
+    Integer codeJdRen1();
+    @Select("SELECT count(*) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=2")
+    Integer codeJdRen2();
+    @Select("SELECT count(*) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=3")
+    Integer codeJdRen3();
+    @Select("SELECT count(*) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=4")
+    Integer codeJdRen4();
+    @Select("SELECT count(*) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=5")
+    Integer codeJdRen5();
 
-//    查询本周新增商机金额
+
+//    本季度钱
+    @Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=1")
+    String codeJdmonkey1();
+    @Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=2")
+    String codeJdmonkey2();
+    @Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=3")
+    String codeJdmonkey3();
+    @Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=4")
+    String codeJdmonkey4();
+    @Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(now()) and b_code=5")
+    String codeJdmonkey5();
+
+    //上季度人
+    @Select("SELECT count(0) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=1")
+    Integer codeSJdRen1();
+    @Select("SELECT count(0) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=2")
+    Integer codeSJdRen2();
+    @Select("SELECT count(0) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=3")
+    Integer codeSJdRen3();
+    @Select("SELECT count(0) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=4")
+    Integer codeSJdRen4();
+    @Select("SELECT count(0) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=5")
+    Integer codeSJdRen5();
+
+
+
+//    上季度
+@Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=1")
+String codeSJdmonkey1();
+@Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=2")
+String codeSJdmonkey2();
+@Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=3")
+String codeSJdmonkey3();
+@Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=4")
+String codeSJdmonkey4();
+@Select("SELECT SUM(b_monkey) FROM business WHERE QUARTER(b_date) = QUARTER(DATE_SUB(NOW(),interval 1 QUARTER)) and b_code=5")
+String codeSJdmonkey5();
+
+//年度人
+@Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=1")
+Integer codeNRen1();
+@Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=2")
+Integer codeNRen2();
+@Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=3")
+Integer codeNRen3();
+@Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=4")
+Integer codeNRen4();
+@Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=5")
+Integer codeNRen5();
+
+
+
+//年度
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=1")
+String codeNmonkey1();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=2")
+String codeNmonkey2();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=3")
+String codeNmonkey3();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=4")
+String codeNmonkey4();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(NOW()) and b_code=5")
+String codeNmonkey5();
+
+    //上年人
+    @Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=1")
+    Integer codeSNRen1();
+    @Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=2")
+    Integer codeSNRen2();
+    @Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=3")
+    Integer codeSNRen3();
+    @Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=4")
+    Integer codeSNRen4();
+    @Select("SELECT count(*) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=5")
+    Integer codeSNRen5();
+
+
+//上年
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=1")
+String codeSNmonkey1();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=2")
+String codeSNmonkey2();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=3")
+String codeSNmonkey3();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=4")
+String codeSNmonkey4();
+@Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) and b_code=5")
+String codeSNmonkey5();
+
+
+
+
+
+
+    //    查询本周新增商机金额
 @Select("SELECT SUM(b_monkey) FROM business WHERE YEARWEEK(DATE_FORMAT(b_date,'%Y-%m-%d')) = YEARWEEK(NOW())")
 Double sumMeonkey();
 
@@ -96,7 +203,13 @@ Double UsersumSMeonkey(String uid);
     @Select("SELECT SUM(b_monkey) FROM business WHERE YEAR(b_date)=YEAR(date_sub(NOW(),interval 1 YEAR)) AND u_id=#{value}")
     Double UsersumSNMeonkey(String uid);
 
+//根据行业查商机
+@Select("SELECT COUNT(0) AS COUNT,SUM(b_monkey) AS SUM FROM business WHERE c_id IN(SELECT c_id FROM clients WHERE c_industry=#{value})")
+    Industry_Sources queryByindustry(String value);
 
+//根据商机来源查询
+ @Select("SELECT COUNT(0) AS COUNT,SUM(b_monkey) AS SUM FROM business WHERE b_source=#{value}")
+    Industry_Sources querysjly(String value);
 
 
 }

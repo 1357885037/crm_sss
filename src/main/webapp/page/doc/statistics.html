@@ -47,7 +47,7 @@
     </div>
 
 <!--    我的统计-->
-    <div class="layui-col-xs9" id="div1" style="display: none">
+    <div class="layui-col-xs9" id="div1" style="display: block">
         <div class="layui-col-md12">
 
             <div class="layui-inline">
@@ -605,9 +605,39 @@
         </table>
     </div>
 <!--    商业销售漏斗-->
-    <div class="layui-col-xs9" id="div6" style="display: block">
-<!--        <table class="layui-hide" id="test3" lay-filter="test3"></table>-->
+    <div class="layui-col-xs9" id="div6" style="display: none">
+        <div class="layui-row">
+            <div class="layui-col-xs6">
+                <div class="layui-inline">
+                    <img src="/img/u5295.png">
+                </div>
+            </div>
+            <div class="layui-col-xs6">
+                <div class="layui-inline">
         <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/sumbusinessTJ.do', page: false}">
+        <thead>
+        <tr>
+            <th lay-data="{field:'count'}" >商机数</th>
+            <th lay-data="{field:'hjh'}" >百分比</th>
+            <th lay-data="{field:'monkey'}" >金额</th>
+            <th lay-data="{field:'nkk'}" >百分比</th>
+
+        </tr>
+        </thead>
+    </table>
+                </div></div>
+        </div>
+
+<!--        季度-->
+        <div class="layui-row">
+
+            <div class="layui-col-xs6">
+                <div class="layui-inline">
+                    <img src="/img/u5295.png">
+                </div></div>
+            <div class="layui-col-xs6">
+                <div class="layui-inline">
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/sumbusinessJd.do', page: false}">
             <thead>
             <tr>
                 <th lay-data="{field:'count'}" >商机数</th>
@@ -618,7 +648,106 @@
             </tr>
             </thead>
         </table>
+                </div>
+            </div></div>
+<!--        上季度-->
+                    <div class="layui-row">
+
+                        <div class="layui-col-xs6">
+                            <div class="layui-inline">
+                                <img src="/img/u5295.png">
+                            </div></div>
+                        <div class="layui-col-xs6">
+                            <div class="layui-inline">
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/sumbusinessSJd.do', page: false}">
+            <thead>
+            <tr>
+                <th lay-data="{field:'count'}" >商机数</th>
+                <th lay-data="{field:'hjh'}" >百分比</th>
+                <th lay-data="{field:'monkey'}" >金额</th>
+                <th lay-data="{field:'nkk'}" >百分比</th>
+
+            </tr>
+            </thead>
+        </table>
+                            </div>
+                        </div></div>
+
+<!--        年度-->
+                                <div class="layui-row">
+
+                                    <div class="layui-col-xs6">
+                                        <div class="layui-inline">
+                                            <img src="/img/u5295.png">
+                                        </div></div>
+                                    <div class="layui-col-xs6">
+                                        <div class="layui-inline">
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/sumbusinessN.do', page: false}">
+            <thead>
+            <tr>
+                <th lay-data="{field:'count'}" >商机数</th>
+                <th lay-data="{field:'hjh'}" >百分比</th>
+                <th lay-data="{field:'monkey'}" >金额</th>
+                <th lay-data="{field:'nkk'}" >百分比</th>
+
+            </tr>
+            </thead>
+        </table>
+                                        </div>
+                                    </div></div>
+<!--上年度-->
+                                            <div class="layui-row">
+
+                                                <div class="layui-col-xs6">
+                                                    <div class="layui-inline">
+                                                        <img src="/img/u5295.png">
+                                                    </div></div>
+                                                <div class="layui-col-xs6">
+                                                    <div class="layui-inline">
+        <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/sumbusinessSN.do', page: false}">
+            <thead>
+            <tr>
+                <th lay-data="{field:'count'}" >商机数</th>
+                <th lay-data="{field:'hjh'}" >百分比</th>
+                <th lay-data="{field:'monkey'}" >金额</th>
+                <th lay-data="{field:'nkk'}" >百分比</th>
+
+            </tr>
+            </thead>
+        </table>
+
+                                                    </div>
+                                                </div></div>
+
     </div>
+<!--    客户按照行业分布-->
+    <div class="layui-col-xs9" id="div7" style="display: none">
+                    <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/queryByindustry.do', page: false}">
+                        <thead>
+                        <tr>
+                            <th lay-data="{field:'name'}" >行业</th>
+                            <th lay-data="{field:'count'}" >商机个数</th>
+                            <th lay-data="{field:'sum'}" >金额</th>
+
+                        </tr>
+                        </thead>
+                    </table>
+        </div>
+<!--    按商机来源分布-->
+    <div class="layui-col-xs9" id="div8" style="display: none">
+                    <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/querylaiyuanindustry.do', page: false}">
+                        <thead>
+                        <tr>
+                            <th lay-data="{field:'name'}" >商机来源</th>
+                            <th lay-data="{field:'count'}" >商机个数</th>
+                            <th lay-data="{field:'sum'}" >金额</th>
+
+                        </tr>
+                        </thead>
+                    </table>
+        </div>
+
+
 </div>
 
 </body>
@@ -628,28 +757,14 @@
             var $ = layui.jquery;
             var table = layui.table;
 
-        //获取表数据并渲染
-        // table.render({
-        //     width:1100,
-        //     elem: '#test3'
-        //     , url: '/crm/userinfo/sumbusinessTJ.do'
-        //     , text: {
-        //         none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
-        //         icon: 'layui-icon-face-surprised'
-        //     }
-        //     , cols: [[
-        //         {field: 'count', width: 200, title: '商机数'}
-        //         , {field: 'hjh', width: 150, title: '百分比'}
-        //         , {field: 'monkey', title: '金额', width: 150, sort: true}
-        //         , {field: 'nkk', width: 100, title: '百分比'}
-        //     ]]
-        //     , page: false
-        // })
         $("#on1").click(function () {
             $("#div2").hide();
             $("#div3").hide();
             $("#div4").hide();
             $("#div5").hide();
+            $("#div6").hide();
+            $("#div7").hide();
+            $("#div8").hide();
             $("#div1").show();
 
         });
@@ -659,6 +774,9 @@
             $("#div3").hide();
             $("#div4").hide();
             $("#div5").hide();
+            $("#div6").hide();
+            $("#div7").hide();
+            $("#div8").hide();
             $("#div2").show();
         });
         $("#on3").click(function () {
@@ -666,6 +784,9 @@
             $("#div2").hide();
             $("#div4").hide();
             $("#div5").hide();
+            $("#div6").hide();
+            $("#div7").hide();
+            $("#div8").hide();
             $("#div3").show();
         });
         $("#on4").click(function () {
@@ -673,6 +794,9 @@
             $("#div3").hide();
             $("#div2").hide();
             $("#div5").hide();
+            $("#div6").hide();
+            $("#div7").hide();
+            $("#div8").hide();
             $("#div4").show();
         });
         $("#on5").click(function () {
@@ -680,7 +804,40 @@
             $("#div3").hide();
             $("#div4").hide();
             $("#div2").hide();
+            $("#div6").hide();
+            $("#div7").hide();
+            $("#div8").hide();
             $("#div5").show();
+        });
+        $("#on6").click(function () {
+            $("#div1").hide();
+            $("#div3").hide();
+            $("#div4").hide();
+            $("#div2").hide();
+            $("#div5").hide();
+            $("#div7").hide();
+            $("#div8").hide();
+            $("#div6").show();
+        });
+        $("#on7").click(function () {
+            $("#div1").hide();
+            $("#div3").hide();
+            $("#div4").hide();
+            $("#div2").hide();
+            $("#div5").hide();
+            $("#div6").hide();
+            $("#div8").hide();
+            $("#div7").show();
+        });
+        $("#on8").click(function () {
+            $("#div1").hide();
+            $("#div3").hide();
+            $("#div4").hide();
+            $("#div2").hide();
+            $("#div5").hide();
+            $("#div6").hide();
+            $("#div7").hide();
+            $("#div8").show();
         });
 
 
