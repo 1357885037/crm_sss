@@ -1,0 +1,98 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>评论帖子</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+
+
+</head>
+<body>
+<span>发帖人[[${forum.u_name}]]</span>
+<span>点击量[[${forum.f_number}]]</span><span>回复量[[${forum.revert}]]</span>
+        <label class="layui-form-label">帖子所属商机名</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" th:value="${forum.b_name}" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+
+        <label class="layui-form-label">帖子主题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" th:value="${forum.f_title}" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+
+        <label class="layui-form-label">文件</label>
+        <div class="layui-input-block">
+            [[${forum.f_accessory}]]
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">帖子内容</label>
+            <div class="layui-input-block">
+                <textarea name="desc" id="text" th:v-html=" ${forum.f_texts}"  placeholder="请输入内容" class="layui-textarea"></textarea>
+                <p v-html="forum.f_texts">[[${forum.f_texts}]]</p>
+
+
+            </div>
+        </div>
+
+<form class="layui-form" action="">
+
+    <input type="hidden" name="f_id" th:value="${forum.f_id}">
+
+
+    <textarea id="demo" name="f_texts" lay-verify="content" placeholder="对帖子进行回复！！！"></textarea>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
+</body>
+<script>
+    //Demo
+    layui.use(['form','layedit'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layedit = layui.layedit;
+
+
+        var index = layedit.build('demo'); //建立编辑器
+        form.verify({
+            content: function (value) {
+                return layedit.sync(index);
+            }
+        });
+
+        //取消同步提交采用异步提交
+        form.on('submit(formDemo)', function(data){
+            $.ajax({
+                type:"post",
+                url:"/crm/forum/addreplys.do",
+                data:data.field,
+                dataType:"json",
+                enctype:"multipart/form-data",
+                success: function (data) {
+                    window.history.go(-1);
+                },
+                error: function () {
+                    alert("出错啦");
+                }
+            });
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+
+    });
+</script>
+
+</html>

@@ -74,7 +74,7 @@
                 icon:'layui-icon-face-surprised'
             }
             ,cols: [[
-                {field:'f_title', width:200, title: '主题'}
+                { width:200, title: '主题',templet:"<div><a href='/crm/forum/updateForum.do?f_id={{d.f_id}}' class='layui-table-link' style='color: #1e9fff'>{{d.f_title}}</a></div>"}
                 ,{templet:function(d){
                             return d.u_name+"("+layui.util.toDateString(d.f_date, 'yyyy-MM-dd')+")";
                     }, width:150, title: '作者'}
@@ -89,6 +89,7 @@
             ,limits:[3,5,8,10]
             ,limit:3
         });
+
     });
 </script>
 

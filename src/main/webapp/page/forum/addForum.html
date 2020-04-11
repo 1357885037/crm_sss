@@ -40,6 +40,7 @@
 </form>
 
 <script src="/layui/layui.js" charset="utf-8"></script>
+<script src="/js/jquery-3.3.1.min.js" charset="utf-8"></script>
 <script>
 layui.use(['jquery','upload','form','layedit'],function() {
     var $ = layui.jquery;
@@ -55,10 +56,14 @@ layui.use(['jquery','upload','form','layedit'],function() {
             data:data.field,
             dataType:"json",
             enctype:"multipart/form-data",
-            error:function(){
-                alert("内部出错啦！");
+            success: function (data) {
+                window.history.go(-1);
+            },
+            error: function () {
+                alert("出错啦");
             }
         });
+
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
 
