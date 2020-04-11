@@ -1,14 +1,20 @@
 package com.hy.crm.dynamic;
 
 import com.hy.crm.entity.Serves;
+import com.mysql.jdbc.StringUtils;
 import org.apache.ibatis.annotations.Param;
 
 public class queryserve {
     public String query(@Param("serves") Serves serves){
 
-        System.out.println(serves.toString()+"2165456146546515465");
         StringBuffer sql=new StringBuffer("SELECT s.*,c.ct_id,c.ct_name FROM serves s INNER JOIN contracts c ON s.ct_id=c.ct_id where 1=1 ");
-//      根据主题
+
+        //根据 c_id查询当前客户底下所有的售后
+        if(!StringUtils.isNullOrEmpty(serves.getC_id())){
+            sql.append(" and s.ct_id in ( select ct_id from contracts where b_id in ( select b_id from business where c_id = '"+serves.getC_id()+"' )  ) ");
+        }
+
+        //      根据主题
         if (serves.getS_theme()!=null && serves.getS_theme()!="null" && !serves.getS_theme().equals("null") && serves.getS_theme()!="") {
             sql.append(" and s.s_theme like '%"+serves.getS_theme()+"%'");
         }

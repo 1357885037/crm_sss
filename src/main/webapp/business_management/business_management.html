@@ -50,7 +50,7 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
-    <input type="hidden" id="on1" th:value="${c_id}" naem="c_id">
+    <input type="hidden" th:value="${user.getU_Id()}" id="uu_id">
 </form>
 
 <div class="layui-row layui-form-pane">
@@ -124,7 +124,7 @@
 
         table.render({
             elem: '#test'
-            ,url:'/crm/clients/customer_contract2.do'
+            ,url:'/crm/clients/customer_contract2.do?uu_id='+$("#uu_id").val()
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [
                 [
@@ -133,7 +133,7 @@
                     ,{field:'b_monkey', title: '预计成交金额', sort: true}
                     ,{field:'u_realname', title: '商机负责人'}
                     ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
-                    ,{field:'forum_count', title: '讨论版', sort: true} //单元格内容水平居中
+                    ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
                 ]
             ]
             , page: true
@@ -171,7 +171,7 @@
 
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+0,
+            url: "/crm/clients/customer_contract2.do?statu=0&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on01").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -183,7 +183,7 @@
 
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+1,
+            url: "/crm/clients/customer_contract2.do?statu=1&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on2").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -195,7 +195,7 @@
 
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+2,
+            url: "/crm/clients/customer_contract2.do?statu=2&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on3").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -206,7 +206,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+3,
+            url: "/crm/clients/customer_contract2.do?statu=3&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on4").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -217,7 +217,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+4,
+            url: "/crm/clients/customer_contract2.do?statu=4&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on5").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -228,7 +228,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+5,
+            url: "/crm/clients/customer_contract2.do?statu=5&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on6").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -239,7 +239,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+6,
+            url: "/crm/clients/customer_contract2.do?statu=6&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on7").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -250,7 +250,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+7,
+            url: "/crm/clients/customer_contract2.do?statu=7&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on8").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -261,7 +261,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+8,
+            url: "/crm/clients/customer_contract2.do?statu=8&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on9").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -272,7 +272,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+9,
+            url: "/crm/clients/customer_contract2.do?statu=9&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on10").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -283,7 +283,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+10,
+            url: "/crm/clients/customer_contract2.do?statu=10&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on11").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -294,7 +294,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+11,
+            url: "/crm/clients/customer_contract2.do?statu=11&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on12").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -305,7 +305,7 @@
         });
         $.ajax({
             type: "post",
-            url: "/crm/clients/customer_contract2.do?statu="+12,
+            url: "/crm/clients/customer_contract2.do?statu=12&uu_id="+$("#uu_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on13").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -315,9 +315,315 @@
             }
         });
 
+        $("#on01").click(function () {
+
+            table.render({
+                elem: '#test'
+               , url: "/crm/clients/customer_contract2.do?statu=0&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+        $("#on2").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=1&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+        $("#on3").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=2&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+        $("#on4").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=3&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
 
 
 
+        $("#on5").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=4&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+
+        $("#on6").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=5&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+        $("#on7").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=6&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+        $("#on8").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=7&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+        $("#on9").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=8&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+        $("#on10").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=9&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+        $("#on11").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=10&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+        $("#on12").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=11&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+
+        $("#on13").click(function () {
+
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=12&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', sort: true}
+                        ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                        ,{field:'u_realname', title: '商机负责人'}
+                        ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                        ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
 
     });
 </script>

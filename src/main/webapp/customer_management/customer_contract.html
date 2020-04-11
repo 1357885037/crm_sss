@@ -77,8 +77,8 @@
                 ,{field:'b_stage', title: '商机阶段', sort: true}
                 ,{field:'b_monkey', title: '预计成交金额', sort: true}
                 ,{field:'u_realname', title: '商机负责人'}
-                ,{field:'w_date', title: '最后跟单'}
-                ,{field:'forum_count', title: '讨论版', sort: true} //单元格内容水平居中
+                ,{field:'w_date', title: '最后跟单',templet:'<div><a href="/crm/withs/getByid_withs.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.w_date}}</a></div> '}
+                ,{field:'forum_count', title: '讨论版', sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}</a></div> '} //单元格内容水平居中
             ]
             ]
             , page: true

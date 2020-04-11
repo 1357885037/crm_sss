@@ -1,5 +1,7 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -48,6 +50,30 @@ public class Contracts implements Serializable {
     private String ct_dept;
 
     private Integer ct_status;
+
+    //汇款金额
+    @TableField(exist = false)
+    private Double re_monkey;
+
+    //开票金额
+    @TableField(exist = false)
+    private Double ch_monkey;
+
+    public Double getRe_monkey() {
+        return re_monkey;
+    }
+
+    public void setRe_monkey(Double re_monkey) {
+        this.re_monkey = re_monkey;
+    }
+
+    public Double getCh_monkey() {
+        return ch_monkey;
+    }
+
+    public void setCh_monkey(Double ch_monkey) {
+        this.ch_monkey = ch_monkey;
+    }
 
     public String getCt_id() {
         return ct_id;

@@ -179,4 +179,10 @@ public class WithsController {
         return d;
     }
 
+    @RequestMapping("/getByid_forum.do")
+    public String getByid_forum(String b_id,Model model){
+        model.addAttribute("bb_id",b_id);
+        return "page/forum/forum";
+    }
+
 }

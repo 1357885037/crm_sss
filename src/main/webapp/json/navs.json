@@ -30,7 +30,7 @@
 		},{
 			"title": "我的商机",
 			"icon": "icon-log",
-			"href": "page/systemSetting/logs.html",
+			"href": "/crm/business/myBusiness.do",
 			"spread": false
 		}
 	],
@@ -94,7 +94,7 @@
 	{
 		"title": "全部合同",
 		"icon": "icon-mokuai",
-		"href": "page/doc/querycon.html",
+		"href": "contracts_management/contracts_management.html",
 		"spread": false
 	}
 ]

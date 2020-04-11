@@ -12,6 +12,7 @@ import com.hy.crm.service.IForumService;
 import com.hy.crm.service.IReplysService;
 import com.hy.crm.service.IUsersService;
 import com.hy.crm.util.AccountJson;
+import com.mysql.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,9 +53,15 @@ public class ForumController {
 
     @ResponseBody
     @RequestMapping("/queryforum.do")
-    public AccountJson queryforum( @RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit" ,defaultValue = "3")Integer limit,@RequestParam(value = "tiaojian",required = false)Integer tiaojian,@RequestParam(value = "neirong",required = false)String neirong){
+    public AccountJson queryforum( @RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit" ,defaultValue = "3")Integer limit,@RequestParam(value = "tiaojian",required = false)Integer tiaojian,@RequestParam(value = "neirong",required = false)String neirong,@RequestParam(value = "b_id",required = false)String b_id){
         Page pageHelper= PageHelper.startPage(page,limit,true);
         QueryWrapper<Forum> queryWrapper=new QueryWrapper<>();
+
+
+        if(!StringUtils.isNullOrEmpty(b_id)){
+            queryWrapper.eq("b_id",b_id);
+        }
+
         if(tiaojian!=null){
         if(tiaojian==1){
             queryWrapper.like("f_title","%"+neirong+"%");
@@ -165,7 +172,6 @@ public class ForumController {
             accountJson.setData(forumList1);
         }else{
         accountJson.setData(forumList);}
-
         return accountJson;
     }
 

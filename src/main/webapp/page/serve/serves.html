@@ -10,6 +10,7 @@
 </head>
 <body>
 <form class="layui-form layui-form-pane" action="/crm/serves/queryAllServe.do">
+        <input type="hidden" th:value="${c_id}" id="c_id">
         <div class="layui-form-item">
             <div class="layui-row">
                 <div class="layui-col-md3">
@@ -142,7 +143,7 @@
 ////获取处理中的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?s_statu=" + 0,
+            url: "/crm/serves/queryAllServe.do?s_statu=0&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on1").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -154,7 +155,7 @@
 //获取已处理的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?s_statu=" + 1,
+            url: "/crm/serves/queryAllServe.do?s_statu=1&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on2").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -166,7 +167,7 @@
 //获取已搁置的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?s_statu=" + 2,
+            url: "/crm/serves/queryAllServe.do?s_statu=2&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on3").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -178,7 +179,7 @@
 //获取本周新增一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?b=" + 1,
+            url: "/crm/serves/queryAllServe.do?b=1&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on4").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -190,7 +191,7 @@
 //获取上周新增一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?b=" + 2,
+            url: "/crm/serves/queryAllServe.do?b=2&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on5").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -202,7 +203,7 @@
 //获取本月新增一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?b=" + 3,
+            url: "/crm/serves/queryAllServe.do?b=3&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on6").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -214,7 +215,7 @@
 //获取上月新增一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?b=" + 4,
+            url: "/crm/serves/queryAllServe.do?b=4&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on7").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -226,7 +227,7 @@
 //获取本季度新增一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?b=" + 5,
+            url: "/crm/serves/queryAllServe.do?b=5&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on8").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -238,7 +239,7 @@
 //获取上季度新增一共有多少并显示脚表
         $.ajax({
             type: "post",
-            url: "/crm/serves/queryAllServe.do?b=" + 6,
+            url: "/crm/serves/queryAllServe.do?b=6&c_id="+$("#c_id").val(),
             dataType: "json",
             success: function (data) {
                 $("#on9").append("<span class='layui-badge'>" + data.count + "</span>")
@@ -257,18 +258,20 @@
 //获取表数据并渲染
         table.render({
             elem: '#test'
-            , url: '/crm/serves/queryAllServe.do'
+            , url: '/crm/serves/queryAllServe.do?c_id='+$("#c_id").val()
             , text: {
                 none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                 icon: 'layui-icon-face-surprised'
             }
-            , cols: [[
+            , cols: [
+                [
                 {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}</a></div>"}
                 , {field: 's_type', width: 150, title: '服务类型'}
                 , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                 , {field: 's_grade', width: 100, title: '服务评分'}
                 , {field: 's_name', width: 150, title: '服务人'}
-            ]]
+            ]
+            ]
             , page: true
             , limits: [3, 5, 8, 10]
             , limit: 3
@@ -318,19 +321,21 @@
         $("#on1").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?s_statu=' + 0
+                , url: '/crm/serves/queryAllServe.do?s_statu=0&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -340,19 +345,21 @@
         $("#on2").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?s_statu=' + 1
+                , url: '/crm/serves/queryAllServe.do?s_statu=1&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -362,19 +369,21 @@
         $("#on3").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?s_statu=' + 2
+                , url: '/crm/serves/queryAllServe.do?s_statu=2&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -384,19 +393,21 @@
         $("#on4").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?b=' + 1
+                , url: '/crm/serves/queryAllServe.do?b=1&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -406,19 +417,21 @@
         $("#on5").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?b=' + 2
+                , url: '/crm/serves/queryAllServe.do?b=2&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -428,19 +441,21 @@
         $("#on6").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?b=' + 3
+                , url: '/crm/serves/queryAllServe.do?b=3&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -450,19 +465,21 @@
         $("#on7").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?b=' + 4
+                , url: '/crm/serves/queryAllServe.do?b=4&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -472,19 +489,21 @@
         $("#on8").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?b=' + 5
+                , url: '/crm/serves/queryAllServe.do?b=5&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
@@ -494,19 +513,21 @@
         $("#on9").click(function () {
             table.render({
                 elem: '#test'
-                , url: '/crm/serves/queryAllServe.do?b=' + 6
+                , url: '/crm/serves/queryAllServe.do?b=6&c_id='+$("#c_id").val()
                 , text: {
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [[
+                , cols: [
+                    [
                     {field: 's_theme', width: 200, title: '服务主题'}
                     , {field: 's_type', width: 150, title: '服务类型'}
                     , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
                     , {field: 's_grade', width: 100, title: '服务评分'}
                     , {field: 's_name', width: 150, title: '服务人'}
                     , {width: 150, title: '操作', templet: '#barDemo'}
-                ]]
+                ]
+                ]
                 , page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3

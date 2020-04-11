@@ -1,11 +1,13 @@
 package com.hy.crm.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hy.crm.entity.Contracts;
 import com.hy.crm.mapper.ContractsMapper;
 import com.hy.crm.service.IContractsService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,6 +23,12 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts
 
     @Autowired
     private  ContractsMapper contractsMapper;
+
+
+    public List<Contracts> queryall(Contracts contracts){
+        return contractsMapper.queryall(contracts);
+    }
+
 
     @Override
     public Double sumMeonkey() {
@@ -183,5 +191,7 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts
     public Double UserfulfillsumSNMeonkey(String uid) {
         return contractsMapper.UserfulfillsumSNMeonkey(uid);
     }
+
+
 
 }

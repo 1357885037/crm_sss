@@ -1,8 +1,12 @@
 package com.hy.crm.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hy.crm.dynamic.Query_contracts;
 import com.hy.crm.entity.Contracts;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+
+import java.util.List;
 
 /**
  * <p>
@@ -151,7 +155,8 @@ public interface ContractsMapper extends BaseMapper<Contracts> {
     Double UserfulfillsumSNMeonkey(String uid);
 
 
-
+    @SelectProvider(type = Query_contracts.class,method = "query")
+    public List<Contracts> queryall(Contracts contracts);
 
 
 }

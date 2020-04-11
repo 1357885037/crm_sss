@@ -1,13 +1,17 @@
 package com.hy.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.hy.crm.entity.Contracts;
 import com.hy.crm.service.IContractsService;
+import com.hy.crm.service.impl.ContractsServiceImpl;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,12 +23,29 @@ import java.util.List;
  * @author mq
  * @since 2020-04-03
  */
-@RestController
+@Controller
 @RequestMapping("/crm/contracts")
 public class ContractsController {
 
     @Autowired
     private IContractsService contractsService;
+
+    @Autowired
+    private ContractsServiceImpl contractsServiceImpl;
+
+    @RequestMapping("/queryall.do")
+    @ResponseBody
+    public AccountJson queryall(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,Contracts contracts){
+        Page pageHelper= PageHelper.startPage(page,limit,true);
+        List<Contracts> list=contractsServiceImpl.queryall(contracts);
+        AccountJson accountJson=new AccountJson();
+        accountJson.setCode(0);
+        accountJson.setMsg("");
+        accountJson.setCount((int) pageHelper.getTotal());
+        accountJson.setData(list);
+        return accountJson;
+    }
+
 
     @ResponseBody
     @RequestMapping("/queryCon.do")
@@ -39,6 +60,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/sumContracts.do")
+    @ResponseBody
     public Integer sumContracts(){
         Integer i=0;
         QueryWrapper<Contracts> queryWrapper=new QueryWrapper<>();
@@ -54,6 +76,7 @@ public class ContractsController {
 
     //    查询本周新增合同金额
     @RequestMapping("/sumMeonkey.do")
+    @ResponseBody
     Double sumMeonkey(){
         Double d;
         try {
@@ -67,6 +90,7 @@ public class ContractsController {
 
     //    查询上周新增合同金额
     @RequestMapping("/sumSMeonkey.do")
+    @ResponseBody
     Double sumSMeonkey(){
         Double d;
         try {
@@ -81,6 +105,7 @@ public class ContractsController {
 
     //查询本月新增合同金额
     @RequestMapping("/sumYMeonkey.do")
+    @ResponseBody
     Double sumYMeonkey(){
         Double d;
         try {
@@ -94,6 +119,7 @@ public class ContractsController {
 
     //查询上月新增合同金额
     @RequestMapping("/sumSYMeonkey.do")
+    @ResponseBody
     Double sumSYMeonkey(){
         Double d;
         try {
@@ -107,6 +133,7 @@ public class ContractsController {
 
     //查询本季度新增合同金额
     @RequestMapping("/sumJdMeonkey.do")
+    @ResponseBody
     Double sumJdMeonkey(){
         Double d;
         try {
@@ -120,6 +147,7 @@ public class ContractsController {
 
     //查询上季度新增合同金额
     @RequestMapping("/sumSJdMeonkey.do")
+    @ResponseBody
     Double sumSJdMeonkey(){
         Double d;
         try {
@@ -133,6 +161,7 @@ public class ContractsController {
 
     //查询本年新增金额合同
     @RequestMapping("/sumNMeonkey.do")
+    @ResponseBody
     Double sumNMeonkey(){
         Double d;
         try {
@@ -146,6 +175,7 @@ public class ContractsController {
 
     //查询上年新增合同金额
     @RequestMapping("/sumSNMeonkey.do")
+    @ResponseBody
     Double sumSNMeonkey(){
         Double d;
         try {
@@ -159,6 +189,7 @@ public class ContractsController {
 
 //   已完成的合同////////////////////////
     @RequestMapping("/fulfillsumMeonkey.do")
+    @ResponseBody
      Double fulfillsumMeonkey() {
         Double d;
         try {
@@ -171,6 +202,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/fulfillsumSMeonkey.do")
+    @ResponseBody
      Double fulfillsumSMeonkey() {
         Double d;
         try {
@@ -183,6 +215,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/fulfillsumYMeonkey.do")
+    @ResponseBody
      Double fulfillsumYMeonkey() {
         Double d;
         try {
@@ -195,6 +228,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/fulfillsumSYMeonkey.do")
+    @ResponseBody
      Double fulfillsumSYMeonkey() {
         Double d;
         try {
@@ -207,6 +241,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/fulfillsumJdMeonkey.do")
+    @ResponseBody
      Double fulfillsumJdMeonkey() {
         Double d;
         try {
@@ -219,6 +254,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/fulfillsumSJdMeonkey.do")
+    @ResponseBody
      Double fulfillsumSJdMeonkey() {
         Double d;
         try {
@@ -231,6 +267,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/fulfillsumNMeonkey.do")
+    @ResponseBody
      Double fulfillsumNMeonkey() {
         Double d;
         try {
@@ -243,6 +280,7 @@ public class ContractsController {
     }
 
     @RequestMapping("/fulfillsumSNMeonkey.do")
+    @ResponseBody
      Double fulfillsumSNMeonkey() {
         Double d;
         try {

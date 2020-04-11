@@ -68,6 +68,17 @@ public class Business implements Serializable {
     @TableField(exist = false)
     private Integer statu;
 
+    @TableField(exist = false)
+    private  String uu_id;
+
+    public String getUu_id() {
+        return uu_id;
+    }
+
+    public void setUu_id(String uu_id) {
+        this.uu_id = uu_id;
+    }
+
     public Integer getStatu() {
         return statu;
     }

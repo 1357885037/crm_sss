@@ -14,6 +14,8 @@ public class Query_customer {
         System.out.println("进来狗子。.....");
         StringBuffer sql=new StringBuffer("select  c.c_id c_id,c.c_name c_name,(select count(*) from business b where b.c_id=c.c_id )  business_count ,(select sum(b.b_monkey) from business b where b.c_id=c.c_id )  turnover ,(select count(*) from contracts ct  where ct.b_id in (select b.b_id from business b where b.c_id=c.c_id)) contract_count,(select sum(ct_monkey) from contracts ct   where ct.b_id in (select b.b_id from business b where b.c_id=c.c_id)) contract_amount,(select sum(re_monkey) from  remittance re where re.ct_id in (select ct.ct_id from contracts ct   where ct.b_id in (select b.b_id from business b where b.c_id=c.c_id)  )) total_Return_amount ,(select count(*) from serves s where s.ct_id in (select ct.ct_id from contracts ct   where ct.b_id in (select b.b_id from business b where b.c_id=c.c_id)   )) service_count ,(select avg(s_grade) from serves s  where s.ct_id in (select ct.ct_id from contracts ct   where ct.b_id in (select b.b_id from business b where b.c_id=c.c_id) )) servic_Score   from clients c where 1=1 ");
 
+
+
         if(clients.getStatu()!=null){
          System.out.println("二狗子");
             //根据客户名称查询
@@ -63,6 +65,10 @@ public class Query_customer {
     public String query_Contract(@Param("business") Business business){
         System.out.println("进来狗子。.....");
         StringBuffer sql=new StringBuffer("select b.b_id,b.b_name,b_stage,b_monkey,(select u_realname from users u where u.u_id=b.u_id) u_realname ,(select max(w_date) from withs w where w.b_id=b.b_id)  w_date ,(select count(*) from forum f where f.b_id=b.b_id)  forum_count from business b where 1=1");
+
+        if(!StringUtils.isNullOrEmpty(business.getUu_id())){
+            sql.append(" and b.u_id = '"+business.getUu_id()+"'");
+        }
 
         if(!StringUtils.isNullOrEmpty(business.getC_id())){
             sql.append(" and b.c_id = '"+business.getC_id()+"'");

@@ -102,7 +102,7 @@
                 ,{field:'contract_count', title: '合同数', sort: true}
                 ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
                 ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
-                ,{field:'service_count', title: '售后服务数', sort: true}
+                ,{field:'service_count', title: '售后服务数', sort: true,templet:'<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '}
                 ,{field:'servic_Score', title: '服务评分', sort: true}
             ]
             ] , page: true

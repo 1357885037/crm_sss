@@ -2,7 +2,6 @@ package com.hy.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hy.crm.entity.Business;
-import com.hy.crm.entity.Business;
 import com.hy.crm.entity.Clients;
 import com.hy.crm.entity.Users;
 import com.hy.crm.service.impl.BusinessServiceImpl;
@@ -10,9 +9,10 @@ import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.service.impl.UsersServiceImpl;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
@@ -27,7 +27,7 @@ import java.util.List;
  * @author mq
  * @since 2020-04-03
  */
-@RestController
+@Controller
 @RequestMapping("/crm/business")
 public class BusinessController {
 
@@ -50,6 +50,13 @@ public class BusinessController {
         accountJson.setData(businessList);
 
         return accountJson;
+    }
+
+    @RequestMapping("/myBusiness.do")
+    public String myBusiness(HttpSession session, Model model){
+        Users user= (Users) session.getAttribute("users");
+        model.addAttribute("user",user);
+        return "business_management/business_management";
     }
 
 
@@ -135,6 +142,7 @@ public class BusinessController {
     }
 
     @RequestMapping("/sumBusiness.do")
+    @ResponseBody
     public Integer sumBusiness(){
         Integer i=0;
         try {

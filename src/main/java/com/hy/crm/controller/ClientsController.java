@@ -161,4 +161,9 @@ public class ClientsController {
         return i;
     }
 
+    @RequestMapping("/customer_serves.do")
+    public String customer_serves(String c_id, Model model){
+        model.addAttribute("c_id",c_id);
+        return "page/serve/serves";
+    }
 }
