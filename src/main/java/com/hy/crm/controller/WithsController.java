@@ -1,10 +1,17 @@
 package com.hy.crm.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.hy.crm.service.IWithsService;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.hy.crm.entity.Business;
+import com.hy.crm.entity.Users;
+import com.hy.crm.entity.Withs;
+import com.hy.crm.service.impl.BusinessServiceImpl;
+import com.hy.crm.service.impl.WithsServiceImpl;
+import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,7 +38,7 @@ public class WithsController {
 
     @RequestMapping("/getById_b_bid.do")
     @ResponseBody
-    public AccountJson getById_b_bid(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit, Withs withs,String tiaojian){
+    public AccountJson getById_b_bid(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit, Withs withs, String tiaojian){
 
         if(tiaojian!=null){
             withs.setStatu(Integer.parseInt(tiaojian));
@@ -82,8 +89,6 @@ public class WithsController {
         return "withs_management/withs_management";
     }
 
-    @Autowired
-    private IWithsService withsService;
 
     @RequestMapping("/sumMeonkey.do")
     public Double sumMeonkey() {

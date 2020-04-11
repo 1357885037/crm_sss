@@ -102,8 +102,6 @@ public class WithsServiceImpl extends ServiceImpl<WithsMapper, Withs> implements
     public Double UsersumSNMeonkey(String uid) {
         return withsMapper.UsersumSNMeonkey( uid);
     }
-    @Autowired
-    WithsMapper withsMapper;
 
     public List<Withs> query_ByB_id(Withs withs){
         return withsMapper.query_ByB_id(withs);

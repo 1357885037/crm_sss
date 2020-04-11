@@ -1,7 +1,12 @@
 package com.hy.crm.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hy.crm.dynamic.Query_Withs;
 import com.hy.crm.entity.Withs;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
+
+import java.util.List;
 
 /**
  * <p>

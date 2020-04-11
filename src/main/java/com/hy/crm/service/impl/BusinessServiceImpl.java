@@ -6,8 +6,6 @@ import com.hy.crm.entity.Industry_Sources;
 import com.hy.crm.mapper.BusinessMapper;
 import com.hy.crm.service.IBusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +27,6 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
         return businessMapper.asc_b_name();
     }
 
-    @Autowired
-    private BusinessMapper businessMapper;
 
     @Override
     public String countMeonkey() {

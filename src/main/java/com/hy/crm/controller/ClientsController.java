@@ -149,6 +149,7 @@ public class ClientsController {
 
 
     @RequestMapping("/Sumclients.do")
+    @ResponseBody
     public Integer Sumclients(){
         Integer i=0;
         try {
