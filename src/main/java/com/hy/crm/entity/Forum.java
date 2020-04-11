@@ -1,6 +1,9 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  * <p>
@@ -29,6 +32,40 @@ public class Forum implements Serializable {
     private String f_texts;
 
     private Integer f_number;
+    private Date f_date;
+    @TableField(exist = false)
+    private String b_name;
+
+    @TableField(exist = false)
+        private Integer revert;
+    private Date r_date;
+    @TableField(exist = false)
+    private String u_name;
+
+    public String getU_name() {
+        return u_name;
+    }
+
+    public void setU_name(String u_name) {
+        this.u_name = u_name;
+    }
+
+    public Integer getRevert() {
+        return revert;
+    }
+
+    public void setRevert(Integer revert) {
+        this.revert = revert;
+    }
+
+
+    public Date getF_date() {
+        return f_date;
+    }
+
+    public void setF_date(Date f_date) {
+        this.f_date = f_date;
+    }
 
     public String getF_id() {
         return f_id;
@@ -87,17 +124,37 @@ public class Forum implements Serializable {
         this.f_number = f_number;
     }
 
+    public String getB_name() {
+        return b_name;
+    }
+
+    public void setB_name(String b_name) {
+        this.b_name = b_name;
+    }
+
+    public Date getR_date() {
+        return r_date;
+    }
+
+    public void setR_date(Date r_date) {
+        this.r_date = r_date;
+    }
+
     @Override
     public String toString() {
         return "Forum{" +
-        "f_id=" + f_id +
-        ", b_id=" + b_id +
-        ", u_id=" + u_id +
-        ", f_classify=" + f_classify +
-        ", f_title=" + f_title +
-        ", f_accessory=" + f_accessory +
-        ", f_texts=" + f_texts +
-        ", f_number=" + f_number +
-        "}";
+                "f_id='" + f_id + '\'' +
+                ", b_id='" + b_id + '\'' +
+                ", u_id='" + u_id + '\'' +
+                ", f_classify='" + f_classify + '\'' +
+                ", f_title='" + f_title + '\'' +
+                ", f_accessory='" + f_accessory + '\'' +
+                ", f_texts='" + f_texts + '\'' +
+                ", f_number=" + f_number +
+                ", f_date=" + f_date +
+                ", b_name='" + b_name + '\'' +
+                ", revert=" + revert +
+                ", r_date=" + r_date +
+                '}';
     }
 }

@@ -156,4 +156,23 @@ public class Users implements Serializable {
     public void setU_Img(String u_Img) {
         this.u_Img = u_Img;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "u_Id='" + u_Id + '\'' +
+                ", u_Name='" + u_Name + '\'' +
+                ", u_pass='" + u_pass + '\'' +
+                ", u_Realname='" + u_Realname + '\'' +
+                ", u_Sex=" + u_Sex +
+                ", u_Phone=" + u_Phone +
+                ", u_Date='" + u_Date + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", u_Email='" + u_Email + '\'' +
+                ", u_Signature='" + u_Signature + '\'' +
+                ", u_Img='" + u_Img + '\'' +
+                '}';
+    }
 }

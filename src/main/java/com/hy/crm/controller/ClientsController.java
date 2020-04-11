@@ -148,4 +148,16 @@ public class ClientsController {
     }
 
 
+    @RequestMapping("/Sumclients.do")
+    public Integer Sumclients(){
+        Integer i=0;
+        try {
+            QueryWrapper<Clients> queryWrapper=new QueryWrapper<>();
+            i=clientsService.count(queryWrapper);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
 }

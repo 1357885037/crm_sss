@@ -31,4 +31,5 @@ public interface ClientsMapper extends BaseMapper<Clients> {
      @SelectProvider(type = Query_customer.class,method = "query_Contract")
      public List<Customer_contract>  customer_contract(Business business);
 
+
 }

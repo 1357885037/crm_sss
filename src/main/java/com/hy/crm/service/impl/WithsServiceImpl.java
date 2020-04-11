@@ -21,6 +21,88 @@ import java.util.List;
 public class WithsServiceImpl extends ServiceImpl<WithsMapper, Withs> implements IWithsService {
 
     @Autowired
+    private WithsMapper withsMapper;
+
+    @Override
+    public Double sumMeonkey() {
+        return withsMapper.sumMeonkey();
+    }
+
+    @Override
+    public Double sumSMeonkey() {
+        return withsMapper.sumSMeonkey();
+    }
+
+    @Override
+    public Double sumYMeonkey() {
+        return withsMapper.sumYMeonkey();
+    }
+
+    @Override
+    public Double sumSYMeonkey() {
+        return withsMapper.sumSYMeonkey();
+    }
+
+    @Override
+    public Double sumJdMeonkey() {
+        return withsMapper.sumJdMeonkey();
+    }
+
+    @Override
+    public Double sumSJdMeonkey() {
+        return withsMapper.sumSJdMeonkey();
+    }
+
+    @Override
+    public Double sumNMeonkey() {
+        return withsMapper.sumNMeonkey();
+    }
+
+    @Override
+    public Double sumSNMeonkey() {
+        return withsMapper.sumSNMeonkey();
+    }
+
+    @Override
+    public Double UsersumMeonkey(String uid) {
+        return withsMapper.UsersumMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumSMeonkey(String uid) {
+        return withsMapper.UsersumSMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumYMeonkey(String uid) {
+        return withsMapper.UsersumYMeonkey(uid);
+    }
+
+    @Override
+    public Double UsersumSYMeonkey(String uid) {
+        return withsMapper.UsersumSYMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumJdMeonkey(String uid) {
+        return withsMapper.UsersumJdMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumSJdMeonkey(String uid) {
+        return withsMapper.UsersumSJdMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumNMeonkey(String uid) {
+        return withsMapper.UsersumNMeonkey( uid);
+    }
+
+    @Override
+    public Double UsersumSNMeonkey(String uid) {
+        return withsMapper.UsersumSNMeonkey( uid);
+    }
+    @Autowired
     WithsMapper withsMapper;
 
     public List<Withs> query_ByB_id(Withs withs){

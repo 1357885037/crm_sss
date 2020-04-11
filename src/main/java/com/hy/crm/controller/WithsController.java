@@ -1,17 +1,10 @@
 package com.hy.crm.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.hy.crm.entity.Business;
-import com.hy.crm.entity.Users;
-import com.hy.crm.entity.Withs;
-import com.hy.crm.service.impl.BusinessServiceImpl;
-import com.hy.crm.service.impl.WithsServiceImpl;
-import com.hy.crm.util.AccountJson;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.hy.crm.service.IWithsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -87,6 +80,98 @@ public class WithsController {
         Users user= (Users) session.getAttribute("users");
         model.addAttribute("user",user);
         return "withs_management/withs_management";
+    }
+
+    @Autowired
+    private IWithsService withsService;
+
+    @RequestMapping("/sumMeonkey.do")
+    public Double sumMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
+    }
+    @RequestMapping("/sumSMeonkey.do")
+    public Double sumSMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumSMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
+    }
+    @RequestMapping("/sumYMeonkey.do")
+    public Double sumYMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumYMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
+    }
+    @RequestMapping("/sumSYMeonkey.do")
+    public Double sumSYMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumSYMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
+    }
+    @RequestMapping("/sumJdMeonkey.do")
+    public Double sumJdMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumJdMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
+    }
+    @RequestMapping("/sumSJdMeonkey.do")
+    public Double sumSJdMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumSJdMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
+}
+    @RequestMapping("/sumNMeonkey.do")
+    public Double sumNMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumNMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
+    }
+    @RequestMapping("/sumSNMeonkey.do")
+    public Double sumSNMeonkey() {
+        Double d;
+        try {
+            d=withsService.sumSNMeonkey();
+        } catch (Exception e) {
+            e.printStackTrace();
+            d=0.0;
+        }
+        return d;
     }
 
 }
