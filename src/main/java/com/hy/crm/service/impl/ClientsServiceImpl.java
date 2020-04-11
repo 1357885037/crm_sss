@@ -1,7 +1,9 @@
 package com.hy.crm.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hy.crm.entity.Business;
 import com.hy.crm.entity.Clients;
+import com.hy.crm.entity.Customer_contract;
 import com.hy.crm.entity.Customer_management;
 import com.hy.crm.mapper.ClientsMapper;
 import com.hy.crm.service.IClientsService;
@@ -28,7 +30,11 @@ public class ClientsServiceImpl extends ServiceImpl<ClientsMapper, Clients> impl
         public List<Clients> asc_c_name(){
             return clientsMapper.asc_c_name();
         }
-        public List<Customer_management> customer_managements(){
-            return clientsMapper.customer_management();
+        public List<Customer_management> customer_managements(Clients clients){
+            return clientsMapper.customer_management(clients);
         }
+
+    public List<Customer_contract>  customer_contract(Business business){
+            return clientsMapper.customer_contract(business);
+    };
 }

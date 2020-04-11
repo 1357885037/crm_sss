@@ -7,19 +7,88 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/css/serv.css"  media="all">
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-<button class="layui-btn layui-btn-lg" type="button"><a href="/customer_management/add_Clients.html">➕新增客户</a></button>
-<table class="layui-hide" id="test"></table>
 
+<form class="layui-form layui-form-pane" action="/crm/clients/queryall.do">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <div class="layui-inline">
+                    <div id="u4921" class="ax_default _图片">
+                        <i class="layui-icon layui-icon-read" width="50" height="50">售后服务</i>
+                    </div>
+                </div>
+            </div>
 
+            <div class="layui-col-md9">
+                <div class="layui-inline">
+                    <select name="tiaojian" lay-filter="selec" id="selec">
+                        <option value=1>按客户名称</option>
+                        <option value=2>按客户来源</option>
+                        <option value=3>按国家/地区</option>
+                        <option value=4>按所在城市</option>
+                        <option value=5>按所属行业</option>
+                    </select>
+                </div>
+
+                <div class="layui-inline" id="dis">
+                    <input type="text" name="c_name"  placeholder="请输入客户名称" class="layui-input">
+                </div>
+
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+                    <button class="layui-btn" type="button"><a href="/customer_management/add_Clients.html">➕新增客户</a></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<div class="layui-row layui-form-pane">
+    <div class="layui-col-xs3">
+        <div class="layui-inline">
+            <div class="layui-card" id="card">
+                <div class="layui-card-header"><i class="layui-icon ">&#xe60a;</i>分类</div>
+                <div class="layui-card-body layui-text">
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="/customer_management/customer_management.html"><i class="layui-icon">&#xe621;所有分类</i></a> </div>
+                    </div>
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on1"><i class="layui-icon">&#xe621;分类一</i></a> </div>
+                    </div>
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on2"><i class="layui-icon">&#xe621;分类二</i></a> </div>
+                    </div>
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on3"><i class="layui-icon">&#xe621;分类三</i></a> </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs9">
+        <div class="layui-inline">
+            <table class="layui-hide" id="test" lay-filter="test"></table>
+        </div>
+    </div>
+</div>
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
+
 <script>
-    layui.use('table', function(){
+    layui.use(['table','form','layer','laydate'], function(){
+        var $ = layui.jquery;
         var table = layui.table;
+        var form = layui.form;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
 
         table.render({
             elem: '#test'
@@ -28,7 +97,7 @@
             ,cols: [
                 [
                  {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                ,{field:'business_count', title: '商机数', sort: true}
+                ,{field:'business_count', title: '商机数',templet:'<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ', sort: true}
                 ,{field:'turnover', title: '预计成交金额', sort: true}
                 ,{field:'contract_count', title: '合同数', sort: true}
                 ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
@@ -36,8 +105,182 @@
                 ,{field:'service_count', title: '售后服务数', sort: true}
                 ,{field:'servic_Score', title: '服务评分', sort: true}
             ]
-            ]
+            ] , page: true
+            , limits: [3, 5, 8, 10]
+            , limit: 3
         });
+
+
+        //监听下拉框值得改变并改变查询的输入框
+        form.on('select(selec)', function(data){
+            console.log(data.value); //得到被选中的值
+            if(data.value==1){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='c_name' placeholder='请输入客户名称' class='layui-input'>");
+            }
+            if(data.value==2){
+                $("#dis").empty();
+                $("#dis").append(" <select name=\"c_source\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
+                    "                <option value=\"老客户\">老客户</option>\n" +
+                    "                <option value=\"代理商\" selected=\"\">代理商</option>\n" +
+                    "                <option value=\"互联网\">互联网</option>\n" +
+                    "                <option value=\"独立开发\">独立开发</option>\n" +
+                    "                <option value=\"客户介绍\">客户介绍</option>\n" +
+                    "                <option value=\"合作伙伴\">合作伙伴</option>\n" +
+                    "                <option value=\"促销活动\">促销活动</option>\n" +
+                    "                <option value=\"媒体宣传\">媒体宣传</option>\n" +
+                    "                <option value=\"电话访问\">电话访问</option>\n" +
+                    "                <option value=\"公开招标\">公开招标</option>\n" +
+                    "                <option value=\"其他\">其他</option>\n" +
+                    "            </select>");
+                form.render();
+            }
+            if(data.value==3){
+                $("#dis").empty();
+                $("#dis").append(" <select name=\"c_state\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
+                    "                <option value=\"中国\" selected=\"\">中国</option>\n" +
+                    "                <option value=\"美国\" >美国</option>\n" +
+                    "                <option value=\"日本\">日本</option>\n" +
+                    "            </select>");
+                form.render();
+            }
+            if(data.value==4){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='c_city' placeholder='请输入所在城市' class='layui-input'>");
+            }
+            if(data.value==5){
+                $("#dis").empty();
+                $("#dis").append(" <select name=\"c_industry\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
+                    "                <option value=\"IT|互联网|通信|电子\">IT|互联网|通信|电子</option>\n" +
+                    "                <option value=\"金融|银行|保险\">金融|银行|保险</option>\n" +
+                    "                <option value=\"房产|建筑建设|物业\">房产|建筑建设|物业</option>\n" +
+                    "                <option value=\"广告|传媒|印刷出版\">广告|传媒|印刷出版</option>\n" +
+                    "                <option value=\"消费零售|贸易|交通物流\">消费零售|贸易|交通物流</option>\n" +
+                    "                <option value=\"加工制造|仪表设备\">加工制造|仪表设备</option>\n" +
+                    "                <option value=\"管理咨询|教育科研|中介服务\">管理咨询|教育科研|中介服务</option>\n" +
+                    "                <option value=\"医药生物|医疗保健\">医药生物|医疗保健</option>\n" +
+                    "                <option value=\"酒店旅游\">酒店旅游</option>\n" +
+                    "                <option value=\"能源矿产|石油化工\">能源矿产|石油化工</option>\n" +
+                    "                <option value=\"政府|非赢利机构|科研\">政府|非赢利机构|科研</option>\n" +
+                    "                <option value=\"其他\">其他</option>\n" +
+                    "            </select>");
+                form.render();
+
+            }
+        });
+
+//   监听submit并改同步提交为异步提交并重新渲染表格
+        form.on('submit(demo1)', function (data) {
+            table.reload("test", {
+                where: data.field
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+
+        $.ajax({
+            type: "post",
+            url: "/crm/clients/queryall.do?c_classify=" + 1,
+            dataType: "json",
+            success: function (data) {
+                $("#on1").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/crm/clients/queryall.do?c_classify=" + 2,
+            dataType: "json",
+            success: function (data) {
+                $("#on2").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/crm/clients/queryall.do?c_classify=" + 3,
+            dataType: "json",
+            success: function (data) {
+                $("#on3").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
+        $("#on1").click(function () {
+            table.render({
+                elem: '#test'
+                ,url:'/crm/clients/queryall.do?c_classify='+1
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'business_count', title: '商机数',templet:'<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> ',sort: true,}
+                        ,{field:'turnover', title: '预计成交金额', sort: true}
+                        ,{field:'contract_count', title: '合同数', sort: true}
+                        ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
+                        ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
+                        ,{field:'service_count', title: '售后服务数', sort: true}
+                        ,{field:'servic_Score', title: '服务评分', sort: true}
+                    ]
+                ] , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+        $("#on2").click(function () {
+            table.render({
+                elem: '#test'
+                ,url:'/crm/clients/queryall.do?c_classify='+2
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'business_count', title: '商机数', sort: true}
+                        ,{field:'turnover', title: '预计成交金额', sort: true}
+                        ,{field:'contract_count', title: '合同数', sort: true}
+                        ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
+                        ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
+                        ,{field:'service_count', title: '售后服务数', sort: true}
+                        ,{field:'servic_Score', title: '服务评分', sort: true}
+                    ]
+                ] , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
+        $("#on3").click(function () {
+            table.render({
+                elem: '#test'
+                ,url:'/crm/clients/queryall.do?c_classify='+3
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols: [
+                    [
+                        {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'business_count', title: '商机数', sort: true}
+                        ,{field:'turnover', title: '预计成交金额', sort: true}
+                        ,{field:'contract_count', title: '合同数', sort: true}
+                        ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
+                        ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
+                        ,{field:'service_count', title: '售后服务数', sort: true}
+                        ,{field:'servic_Score', title: '服务评分', sort: true}
+                    ]
+                ] , page: true
+                , limits: [3, 5, 8, 10]
+                , limit: 3
+            });
+
+        })
+
     });
 </script>
 

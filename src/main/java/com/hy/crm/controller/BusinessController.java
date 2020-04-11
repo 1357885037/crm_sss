@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -38,8 +39,10 @@ public class BusinessController {
 
     @RequestMapping("/clients_queryall.do")
     @ResponseBody
-    public List<Clients> clients_queryall(){
+    public List<Clients> clients_queryall(HttpSession session){
         List<Clients> clients=clientsService.asc_c_name();
+
+        System.out.println("session测试"+session.getAttribute("u_name"));
         return clients;
     }
 
@@ -75,4 +78,18 @@ public class BusinessController {
 
         return "1";
     }
+    @RequestMapping("/update_Business.do")
+    public String update_Business(Business business){
+        System.out.println("修改商机测试。。。。。。。。。。。。。。。。");
+        System.out.println("看看"+business.toString());
+        businessService.updateById(business);
+        return "1";
+    }
+
+
+    @RequestMapping("/acs_b_name.do")
+    public List<Business> acs_b_name(){
+        return  businessService.asc_b_name();
+    }
+
 }

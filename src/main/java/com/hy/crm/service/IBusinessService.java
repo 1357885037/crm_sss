@@ -1,7 +1,7 @@
 package com.hy.crm.service;
 
-import com.hy.crm.entity.Business;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hy.crm.entity.Business;
 
 /**
  * <p>
@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-04-03
  */
 public interface IBusinessService extends IService<Business> {
+
+
 
 }

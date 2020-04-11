@@ -44,7 +44,7 @@ public class LoginController {
     //登录界面
     @RequestMapping("/login.do")
     @ResponseBody
-    public String login(@RequestParam(value = "username") String u_name,@RequestParam(value = "password") String u_pass, Model model){
+    public String login(@RequestParam(value = "username") String u_name,@RequestParam(value = "password") String u_pass, Model model,HttpSession session){
         System.out.println("进入方法。。。。。。。。。。。。。。");
         System.out.println(u_name+u_pass);
         //ModelAndView model=new ModelAndView();
@@ -63,6 +63,11 @@ public class LoginController {
             //捕获错误登录多次的异常
             return  "4";
         }
+        //从数据库中查询
+        QueryWrapper queryWrapper=new QueryWrapper();
+        queryWrapper.eq("u_name",u_name);
+        Users users=loginServiceImol.getOne(queryWrapper);
+        session.setAttribute("users",users);
         return "1";
     }
 

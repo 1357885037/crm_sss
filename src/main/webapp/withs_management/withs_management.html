@@ -1,0 +1,129 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="/css/serv.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+<form class="layui-form layui-form-pane" action="/crm/withs/getById_b_bid.do">
+    <input type="hidden" id="userr" name="user" th:value="${user.getU_Realname()}">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <div class="layui-inline">
+                    <div id="u4921" class="ax_default _图片">
+                        <i class="layui-icon layui-icon-read" width="50" height="50">售后服务</i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md9">
+                <div class="layui-inline">
+                    <select name="tiaojian" lay-filter="selec" id="selec">
+                        <option value=1>按跟单主题</option>
+                        <option value=2>按跟单人</option>
+                        <option value=3>按跟单时间</option>
+                    </select>
+                </div>
+
+                <div class="layui-inline" id="dis">
+                    <input name="w_title" type="text"  placeholder="请根据条件查询" class="layui-input">
+                </div>
+
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+                    <a href="/crm/withs/add.do"><button class="layui-btn layui-btn-lg" type="button">➕新增商机></button></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<table class="layui-hide" id="test" lay-filter="test"></table>
+<script src="/layui/layui.js" charset="utf-8"></script>
+
+
+<script>
+    layui.config({
+    }).extend({
+        selectN: '/layui/layui_extends/selectN',
+        selectM: '/layui/layui_extends/selectM',
+    }).use(['form','upload','layedit', 'laydate','selectM','table'], function(){
+        var form = layui.form
+            ,$=layui.jquery
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate
+            ,upload=layui.upload
+            ,table=layui.table
+            ,selectM = layui.selectM;
+
+
+        table.render({
+            elem: '#test'
+            ,url:'/crm/withs/getById_b_bid.do?user='+$("#userr").val()
+            , text: {
+                none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
+                icon: 'layui-icon-face-surprised'
+            }
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                    {field:'w_date', title: '跟单时间'}
+                    ,{field:'w_title', title: '跟单主题', } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    ,{field:'u_id', title: '跟单人', }
+                    ,{field:'w_texts', title: '详细内容', sort: true}
+                    ,{field:'w_accessory', title: '附件', sort: true}
+                ]
+            ]
+            , page: true
+            , limits: [3, 5, 8, 10]
+            , limit: 3
+        });
+
+        //监听下拉框值得改变并改变查询的输入框
+        form.on('select(selec)', function(data){
+            console.log(data.value); //得到被选中的值
+
+            if(data.value==1){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='w_title' placeholder='请输入跟单主题' class='layui-input'>");
+            }
+            if(data.value==2){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='u_id' placeholder='请输入跟单人' class='layui-input'>");
+
+            }
+            if(data.value==3){
+                $("#dis").empty();
+                    $("#dis").append("  <input name=\"w_date\" class=\"layui-input\" id=\"date\" type=\"text\" placeholder=\"yyyy-MM-dd\"  lay-verify=\"date\"> ");
+
+                //时间
+                laydate.render({
+                    elem: '#date'//指定元素
+                });
+            }
+
+        });
+
+        //   监听submit并改同步提交为异步提交并重新渲染表格
+        form.on('submit(demo1)', function (data) {
+            table.reload("test", {
+                where: data.field
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+    });
+</script>
+
+</body>
+</html>

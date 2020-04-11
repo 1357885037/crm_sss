@@ -1,5 +1,9 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 /**
@@ -14,6 +18,7 @@ public class Withs implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "w_id", type = IdType.UUID)
     private String w_id;
 
     private String b_id;
@@ -29,6 +34,29 @@ public class Withs implements Serializable {
     private String w_date;
 
     private String w_classify;
+
+    @TableField(exist = false)
+    private Integer statu;
+
+    @TableField(exist = false)
+    private  String user;
+
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public Integer getStatu() {
+        return statu;
+    }
+
+    public void setStatu(Integer statu) {
+        this.statu = statu;
+    }
 
     public String getW_id() {
         return w_id;

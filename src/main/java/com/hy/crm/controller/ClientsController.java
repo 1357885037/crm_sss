@@ -1,9 +1,10 @@
 package com.hy.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hy.crm.entity.Client_finance;
-import com.hy.crm.entity.Clients;
-import com.hy.crm.entity.Customer_management;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.hy.crm.entity.*;
+import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.Client_financeServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.util.AccountJson;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -33,18 +35,26 @@ public class ClientsController {
     @Autowired
     Client_financeServiceImpl client_financeService;
 
+    @Autowired
+    BusinessServiceImpl businessService;
+
 
 
     @RequestMapping("/queryall.do")
     @ResponseBody
-    public AccountJson queryall(){
+    public AccountJson queryall(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,String tiaojian,Clients clients){
 
-        List<Customer_management> list=clientsService.customer_managements();
+        if(tiaojian!=null){
+            clients.setStatu(Integer.parseInt(tiaojian));
+        }
+
+        Page pageHelper= PageHelper.startPage(page,limit,true);
+        List<Customer_management> list=clientsService.customer_managements(clients);
 
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
         accountJson.setMsg("");
-        accountJson.setCount(list.size());
+        accountJson.setCount((int) pageHelper.getTotal());
         accountJson.setData(list);
 
         return accountJson;
@@ -108,4 +118,34 @@ public class ClientsController {
         clientsService.removeById(c_id);*/
         return "1";
     }
+
+    @RequestMapping("/customer_contract.do")
+    public String customer_contract(String c_id,Model model){
+        model.addAttribute("c_id",c_id);
+        System.out.println("进来 走过。。");
+        return "customer_management/customer_contract";
+    }
+
+    @RequestMapping("/customer_contract2.do")
+    @ResponseBody
+    public AccountJson customer_contract2(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,Model model, Business business){
+       Page pageHelper= PageHelper.startPage(page,limit,true);
+       List<Customer_contract> list=clientsService.customer_contract(business);
+       System.out.println("测。。。。。。"+list.size());
+        AccountJson accountJson=new AccountJson();
+        accountJson.setCode(0);
+        accountJson.setMsg("");
+        accountJson.setCount((int) pageHelper.getTotal());
+        accountJson.setData(list);
+        return accountJson;
+    }
+
+    @RequestMapping("/getByid_business.do")
+    public String getByid_business(String b_id,Model model){
+        Business business=businessService.getById(b_id);
+        model.addAttribute("business",business);
+        return "customer_management/redact_business";
+    }
+
+
 }

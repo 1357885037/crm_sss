@@ -1,6 +1,7 @@
 package com.hy.crm.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
@@ -58,6 +59,19 @@ public class Clients implements Serializable {
     private BigDecimal c_capital;
 
     private String c_texts;
+
+
+    //组合查询
+    @TableField(exist = false)
+    private Integer statu;
+
+    public Integer getStatu() {
+        return statu;
+    }
+
+    public void setStatu(Integer statu) {
+        this.statu = statu;
+    }
 
     public String getC_id() {
         return c_id;

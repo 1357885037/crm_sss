@@ -1,6 +1,7 @@
 package com.hy.crm.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
@@ -60,6 +61,28 @@ public class Business implements Serializable {
     private Integer b_rank;
 
     private String b_current_time;
+
+    private  String b_stage;
+
+
+    @TableField(exist = false)
+    private Integer statu;
+
+    public Integer getStatu() {
+        return statu;
+    }
+
+    public void setStatu(Integer statu) {
+        this.statu = statu;
+    }
+
+    public String getB_stage() {
+        return b_stage;
+    }
+
+    public void setB_stage(String b_stage) {
+        this.b_stage = b_stage;
+    }
 
     public String getB_current_time() {
         return b_current_time;

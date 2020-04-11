@@ -38,12 +38,12 @@
 		{
 			"title": "全部跟单",
 			"icon": "icon-mokuai",
-			"href": "page/doc/navDoc.html",
+			"href": "withs_management/withs_management.html",
 			"spread": false
 		},{
 			"title": "我的跟单",
 			"icon": "icon-mokuai",
-			"href": "page/doc/navDoc.html",
+			"href": "/crm/withs/myWihs.do",
 			"spread": false
 		}
 	],

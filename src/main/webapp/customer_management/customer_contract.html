@@ -1,0 +1,122 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+
+<form class="layui-form layui-form-pane" action="/crm/clients/customer_contract2.do">
+    <div class="layui-form-item">
+
+        <div class="layui-inline" >
+            <input type="text" name="b_name"  placeholder="请输入商机名称" class="layui-input">
+        </div>
+
+        <div class="layui-inline">
+            <select  style="width: 200px;" name="b_stage">
+                <option value="">请选择</option>
+                <option value="初期沟通">初期沟通</option>
+                <option value="商务谈判">商务谈判</option>
+                <option value="成交">成交</option>
+                <option value="丢单">丢单</option>
+                <option value="竞争或投标">竞争或投标</option>
+                <option value="方案和报价">方案和报价</option>
+                <option value="搁置">搁置</option>
+            </select>
+        </div>
+
+        <div class="layui-inline" >
+            <select  name="u_id" lay-filter="in_charge_of" id="u_in_charge_of" style="width: 200px;" >
+                <option value="">请选择</option>
+            </select>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">预计结单日期</label>
+            <div class="layui-input-inline">
+                <input name="b_date" class="layui-input" id="date" type="text" placeholder="yyyy-MM-dd"  >
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+
+    <input type="hidden" id="on1" th:value="${c_id}" name="c_id">
+</form>
+
+<table class="layui-hide" id="test">
+</table>
+
+
+<script src="/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script>
+    layui.use(['form','table','laydate'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var table = layui.table;
+        var laydate = layui.laydate;
+
+        table.render({
+            elem: '#test'
+            ,url:'/crm/clients/customer_contract2.do?c_id='+$("#on1").val()
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            ,cols: [
+                [
+                 {field:'b_name', title: '商机名称',templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                ,{field:'b_stage', title: '商机阶段', sort: true}
+                ,{field:'b_monkey', title: '预计成交金额', sort: true}
+                ,{field:'u_realname', title: '商机负责人'}
+                ,{field:'w_date', title: '最后跟单'}
+                ,{field:'forum_count', title: '讨论版', sort: true} //单元格内容水平居中
+            ]
+            ]
+            , page: true
+            , limits: [3, 5, 8, 10]
+            , limit: 3
+        });
+
+        $.get("http://localhost:8080/crm/business/in_charge_of.do",function(data){
+            var str="";
+            for(var i in data)
+            {
+                str+=" <option value='"+data[i].u_Id+"'>"+data[i].u_Name+"-"+data[i].u_Realname+"</option>";
+            }
+            $("#u_in_charge_of").append(str);
+            form.render("select");
+        });
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+
+        //   监听submit并改同步提交为异步提交并重新渲染表格
+        form.on('submit(demo1)', function (data) {
+            table.reload("test", {
+                where: data.field
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+
+
+    });
+</script>
+
+</body>
+</html>
