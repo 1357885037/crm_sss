@@ -261,11 +261,9 @@ return sum;
 
     @RequestMapping("/addreplys.do")
     public Integer addreplys(Forum forum,HttpSession session){
-        System.out.println(forum.toString()+"1111111111111111111111111111111111111111111111111111111111111");
         QueryWrapper<Forum> queryWrapper9=new QueryWrapper<>();
         queryWrapper9.eq("f_id",forum.getF_id());
         Forum forum2=forumService.getOne(queryWrapper9);
-        System.out.println(forum2.toString()+"22222222222222222222222222222222222222222222222222222222222");
         java.util.Date d = new java.util.Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         forum2.setR_date(Date.valueOf(sdf.format(d)));

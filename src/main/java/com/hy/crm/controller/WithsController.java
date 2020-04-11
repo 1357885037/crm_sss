@@ -68,20 +68,20 @@ public class WithsController {
         return "1";
     }
 
-
+    @ResponseBody
     @RequestMapping("/getByid_withs.do")
     public String getByid_withs(String b_id, Model model){
         model.addAttribute("b_id",b_id);
         return "business_management/redact_withs";
     }
-
+    @ResponseBody
     @RequestMapping("/add.do")
     public String ccc(HttpSession session,Model model){
         Users user= (Users) session.getAttribute("users");
         model.addAttribute("user",user);
         return "withs_management/add_withs";
     }
-
+    @ResponseBody
     @RequestMapping("/myWihs.do")
     public String myWiths(HttpSession session,Model model){
         Users user= (Users) session.getAttribute("users");
@@ -89,7 +89,7 @@ public class WithsController {
         return "withs_management/withs_management";
     }
 
-
+    @ResponseBody
     @RequestMapping("/sumMeonkey.do")
     public Double sumMeonkey() {
         Double d;
@@ -101,6 +101,8 @@ public class WithsController {
         }
         return d;
     }
+
+    @ResponseBody
     @RequestMapping("/sumSMeonkey.do")
     public Double sumSMeonkey() {
         Double d;
@@ -112,6 +114,7 @@ public class WithsController {
         }
         return d;
     }
+    @ResponseBody
     @RequestMapping("/sumYMeonkey.do")
     public Double sumYMeonkey() {
         Double d;
@@ -123,6 +126,7 @@ public class WithsController {
         }
         return d;
     }
+    @ResponseBody
     @RequestMapping("/sumSYMeonkey.do")
     public Double sumSYMeonkey() {
         Double d;
@@ -134,6 +138,7 @@ public class WithsController {
         }
         return d;
     }
+    @ResponseBody
     @RequestMapping("/sumJdMeonkey.do")
     public Double sumJdMeonkey() {
         Double d;
@@ -145,6 +150,7 @@ public class WithsController {
         }
         return d;
     }
+    @ResponseBody
     @RequestMapping("/sumSJdMeonkey.do")
     public Double sumSJdMeonkey() {
         Double d;
@@ -156,6 +162,7 @@ public class WithsController {
         }
         return d;
 }
+    @ResponseBody
     @RequestMapping("/sumNMeonkey.do")
     public Double sumNMeonkey() {
         Double d;
@@ -167,6 +174,7 @@ public class WithsController {
         }
         return d;
     }
+    @ResponseBody
     @RequestMapping("/sumSNMeonkey.do")
     public Double sumSNMeonkey() {
         Double d;
@@ -178,7 +186,7 @@ public class WithsController {
         }
         return d;
     }
-
+    @ResponseBody
     @RequestMapping("/getByid_forum.do")
     public String getByid_forum(String b_id,Model model){
         model.addAttribute("bb_id",b_id);
