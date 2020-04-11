@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -188,7 +189,7 @@ return sum;
 
     @ResponseBody
     @RequestMapping("/addForum.do")
-    public Integer addForum(Forum forum){
+    public Integer addForum(Forum forum, HttpSession session){
         System.out.println(forum.toString()+"11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
         String u=UUID.randomUUID().toString();
         forum.setF_id(u);
