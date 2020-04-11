@@ -1,6 +1,11 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
+import java.sql.Date;
 
 /**
  * <p>
@@ -10,10 +15,12 @@ import java.io.Serializable;
  * @author mq
  * @since 2020-04-03
  */
+@TableName("replys")
 public class Replys implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "rp_id",type = IdType.UUID)
     private String rp_id;
 
     private String f_id;
@@ -24,7 +31,7 @@ public class Replys implements Serializable {
 
     private String rp_text;
 
-    private String rp_date;
+    private Date rp_date;
 
     private String rp_superior;
 
@@ -66,11 +73,8 @@ public class Replys implements Serializable {
         this.rp_text = rp_text;
     }
 
-    public String getRp_date() {
-        return rp_date;
-    }
 
-    public void setRp_date(String rp_date) {
+    public void setRp_date(Date rp_date) {
         this.rp_date = rp_date;
     }
 

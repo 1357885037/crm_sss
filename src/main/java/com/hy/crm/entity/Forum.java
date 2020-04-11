@@ -1,6 +1,9 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -13,10 +16,11 @@ import java.sql.Date;
  * @author mq
  * @since 2020-04-03
  */
+@TableName("forum")
 public class Forum implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+@TableId(value = "f_id",type = IdType.UUID)
     private String f_id;
 
     private String b_id;
@@ -32,15 +36,23 @@ public class Forum implements Serializable {
     private String f_texts;
 
     private Integer f_number;
+
     private Date f_date;
+
+    private Date r_date;
+
     @TableField(exist = false)
     private String b_name;
 
     @TableField(exist = false)
         private Integer revert;
-    private Date r_date;
+
     @TableField(exist = false)
     private String u_name;
+
+
+
+
 
     public String getU_name() {
         return u_name;
@@ -57,7 +69,6 @@ public class Forum implements Serializable {
     public void setRevert(Integer revert) {
         this.revert = revert;
     }
-
 
     public Date getF_date() {
         return f_date;

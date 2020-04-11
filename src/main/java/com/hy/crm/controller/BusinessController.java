@@ -11,6 +11,7 @@ import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -102,6 +103,7 @@ public class BusinessController {
 
         return "1";
     }
+    @ResponseBody
     @RequestMapping("/update_Business.do")
     public String update_Business(Business business){
         System.out.println("修改商机测试。。。。。。。。。。。。。。。。");
@@ -110,13 +112,13 @@ public class BusinessController {
         return "1";
     }
 
-
+    @ResponseBody
     @RequestMapping("/acs_b_name.do")
     public List<Business> acs_b_name(){
         return  businessService.asc_b_name();
     }
 
-
+    @ResponseBody
     @RequestMapping("/sumMeonkey.do")
     public Double sumMonkey(){
         Double d;
@@ -128,7 +130,7 @@ public class BusinessController {
         }
         return d;
     }
-
+    @ResponseBody
     @RequestMapping("/sumSMeonkey.do")
     public Double sumSMonkey(){
         Double d;
@@ -140,6 +142,7 @@ public class BusinessController {
         }
         return d;
     }
+
 
     @RequestMapping("/sumBusiness.do")
     @ResponseBody
@@ -157,6 +160,7 @@ public class BusinessController {
 
 
     //查询本月新增商机金额
+    @ResponseBody
 @RequestMapping("/sumYMeonkey.do")
     public Double sumYMeonkey(){
         Double d;
@@ -170,6 +174,7 @@ public class BusinessController {
     }
 
     //查询上月新增商机金额
+    @ResponseBody
     @RequestMapping("/sumSYMeonkey.do")
     Double sumSYMeonkey(){
         Double d;
@@ -183,6 +188,7 @@ public class BusinessController {
     }
 
     //查询本季度新增商机金额
+    @ResponseBody
     @RequestMapping("/sumJdMeonkey.do")
     Double sumJdMeonkey(){
         Double d;
@@ -196,6 +202,7 @@ public class BusinessController {
     }
 
     //查询上季度新增商机金额
+    @ResponseBody
     @RequestMapping("/sumSJdMeonkey.do")
     Double sumSJdMeonkey(){
         Double d;
@@ -209,6 +216,7 @@ public class BusinessController {
     }
 
     //查询本年新增商机金额
+    @ResponseBody
     @RequestMapping("/sumNMeonkey.do")
     Double sumNMeonkey(){
         Double d;
@@ -222,6 +230,7 @@ public class BusinessController {
     }
 
     //查询上年新增商机金额
+    @ResponseBody
     @RequestMapping("/sumSNMeonkey.do")
     Double sumSNMeonkey(){
         Double d;
