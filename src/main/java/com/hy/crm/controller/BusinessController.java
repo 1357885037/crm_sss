@@ -5,6 +5,7 @@ import com.hy.crm.entity.Business;
 import com.hy.crm.entity.Clients;
 import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
+import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,20 @@ public class BusinessController {
 
     @Autowired
     ClientsServiceImpl clientsService;
+
+
+    @ResponseBody
+    @RequestMapping("/queryBusiness.do")
+    public AccountJson queryBusiness(AccountJson accountJson){
+        QueryWrapper<Business> queryWrapper=new QueryWrapper<>();
+        List<Business> businessList=businessService.list(queryWrapper);
+        accountJson.setCode(0);
+        accountJson.setCount(businessList.size());
+        accountJson.setData(businessList);
+
+        return accountJson;
+    }
+
 
 
     @RequestMapping("/clients_queryall.do")

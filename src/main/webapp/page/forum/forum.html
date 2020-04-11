@@ -13,16 +13,61 @@
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <body>
 
-<table class="layui-hide" id="test" lay-filter="test" border="1"></table>
+<form class="layui-form" action="">
 
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">查询条件</label>
+        <div class="layui-input-block">
+            <select name="tiaojian" lay-verify="required">
+                <option value=""></option>
+                <option value=1>主题</option>
+                <option value=2>作者</option>
+                <option value=3>点击量</option>
+                <option value=4>回复量</option>
+            </select>
+            <input type="text" name="neirong" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <button type="button" class="layui-btn layui-btn-primary"><a href="/page/forum/addForum.html">发布帖子</a></button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+<table class="layui-hide" id="test" lay-filter="test" border="1"></table>
+<!--判断男女-->
+<script type="text/html" id="titleTpl">
+    return data.data.u_id+()
+</script>
 <script>
-    layui.use('table', function(){
+    layui.use(['table','form'], function(){
         var table = layui.table;
+        var form = layui.form;
+
+
+        //   监听submit并改同步提交为异步提交并重新渲染表格
+        form.on('submit(formDemo)', function (data) {
+            table.reload("test", {
+                where: data.field
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
 
         //获取表数据
         table.render({
             elem: '#test'
-            // ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             ,url:'/crm/forum/queryforum.do'
             ,text:{
                 none: '暂无相关数据' ,//默认：无数据。注：该属性为 layui 2.2.5 开始新增
@@ -30,10 +75,15 @@
             }
             ,cols: [[
                 {field:'f_title', width:200, title: '主题'}
-                ,{field:'u_id', width:150, title: '作者'}
-                ,{field:'b_id', title: '所属商机', width:150,sort:true}
-                ,{field:'f_number', width:100, title: '点击'}
-                // ,{width:150, title: '操作',templet:'#barDemo'}
+                ,{templet:function(d){
+                            return d.u_name+"("+layui.util.toDateString(d.f_date, 'yyyy-MM-dd')+")";
+                    }, width:150, title: '作者'}
+                ,{field:'b_name', title: '所属商机', width:150,sort:true}
+                ,{field:'f_number', width:100, title: '点击量'}
+                ,{field:'revert', width:100, title: '回复量'}
+                ,{templet:function(d){
+                        return d.r_date ==null?"":layui.util.toDateString(d.r_date, 'yyyy-MM-dd');
+                    }, width:100, title: '最后回复时间'}
             ]]
             ,page: true
             ,limits:[3,5,8,10]
