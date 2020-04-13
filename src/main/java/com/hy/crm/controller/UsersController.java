@@ -50,7 +50,7 @@ public class UsersController {
         }
 
 
-
+        queryWrapper.eq("u_statu",0);
         List<Users>  usersList=usersService.list(queryWrapper);
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
@@ -64,8 +64,10 @@ public class UsersController {
     public Integer delusers(String u_id){
         System.out.println(u_id+"12121212123132132165465464679879875646545678465487465465465498786465465");
         int num=200;
+        Users users=new Users();
+        users.setU_statu(1);
         try {
-            usersService.delusers(u_id);
+            usersService.saveOrUpdate(users);
         } catch (Exception e) {
             num=500;
         }

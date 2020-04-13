@@ -47,6 +47,8 @@ public class Users implements Serializable {
 
     private String u_Img;
 
+    private Integer u_statu;
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -159,6 +161,14 @@ public class Users implements Serializable {
         this.u_Img = u_Img;
     }
 
+    public Integer getU_statu() {
+        return u_statu;
+    }
+
+    public void setU_statu(Integer u_statu) {
+        this.u_statu = u_statu;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -175,6 +185,7 @@ public class Users implements Serializable {
                 ", u_Email='" + u_Email + '\'' +
                 ", u_Signature='" + u_Signature + '\'' +
                 ", u_Img='" + u_Img + '\'' +
+                ", u_statu=" + u_statu +
                 '}';
     }
 }

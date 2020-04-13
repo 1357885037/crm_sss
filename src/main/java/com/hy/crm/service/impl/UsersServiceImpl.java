@@ -25,7 +25,4 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         return usersMapper.asc_u_Realname();
     }
 
-    public void delusers(String u_id){
-        usersMapper.delusers(u_id);
-    }
 }
