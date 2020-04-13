@@ -39,7 +39,7 @@
                     <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
 
-                    <a href="/crm/withs/add.do"><button class="layui-btn layui-btn-lg" type="button">➕新增商机></button></a>
+                    <a href="/crm/withs/add.do"><button class="layui-btn layui-btn-lg" type="button">➕新增跟单></button></a>
                 </div>
 
             </div>
@@ -78,7 +78,7 @@
             ,cols: [
                 [
                     {field:'w_date', title: '跟单时间'}
-                    ,{field:'w_title', title: '跟单主题', } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    ,{field:'w_title', title: '跟单主题',templet:'<div><a href="/crm/withs/update_withs.do?w_id={{d.w_id}}" style="color: #1E9FFF">{{d.w_title}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                     ,{field:'u_id', title: '跟单人', }
                     ,{field:'w_texts', title: '详细内容', sort: true}
                     ,{field:'w_accessory', title: '附件', sort: true}

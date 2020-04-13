@@ -9,9 +9,9 @@ public class queryserve {
 
         StringBuffer sql=new StringBuffer("SELECT s.*,c.ct_id,c.ct_name FROM serves s INNER JOIN contracts c ON s.ct_id=c.ct_id where 1=1 ");
 
-        //根据 c_id查询当前客户底下所有的售后
+        //根据 c_id查询当前客户底下所有的售后   '"+serves.getC_id()+"'
         if(!StringUtils.isNullOrEmpty(serves.getC_id())){
-            sql.append(" and s.ct_id in ( select ct_id from contracts where b_id in ( select b_id from business where c_id = '"+serves.getC_id()+"' )  ) ");
+            sql.append(" and s.ct_id in ( select ct_id from contracts where c_id = '"+serves.getC_id()+"'  ) ");
         }
 
         //      根据主题

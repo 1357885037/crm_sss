@@ -2,7 +2,9 @@ package com.hy.crm.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crm.dynamic.Query_contracts;
+import com.hy.crm.entity.Clients;
 import com.hy.crm.entity.Contracts;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 
@@ -156,7 +158,7 @@ public interface ContractsMapper extends BaseMapper<Contracts> {
 
 
     @SelectProvider(type = Query_contracts.class,method = "query")
-    public List<Contracts> queryall(Contracts contracts);
+    public List<Contracts> queryall(@Param("contracts") Contracts contracts,@Param("clients") Clients clients);
 
 
 }

@@ -1,6 +1,7 @@
 package com.hy.crm.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hy.crm.entity.Clients;
 import com.hy.crm.entity.Contracts;
 import com.hy.crm.mapper.ContractsMapper;
 import com.hy.crm.service.IContractsService;
@@ -25,8 +26,8 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts
     private  ContractsMapper contractsMapper;
 
 
-    public List<Contracts> queryall(Contracts contracts){
-        return contractsMapper.queryall(contracts);
+    public List<Contracts> queryall(Contracts contracts, Clients clients){
+        return contractsMapper.queryall(contracts,clients);
     }
 
 

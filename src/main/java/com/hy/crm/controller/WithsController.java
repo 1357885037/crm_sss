@@ -3,9 +3,11 @@ package com.hy.crm.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hy.crm.entity.Business;
+import com.hy.crm.entity.Clients;
 import com.hy.crm.entity.Users;
 import com.hy.crm.entity.Withs;
 import com.hy.crm.service.impl.BusinessServiceImpl;
+import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.service.impl.WithsServiceImpl;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,9 @@ public class WithsController {
 
     @Autowired
     BusinessServiceImpl businessService;
+
+    @Autowired
+    ClientsServiceImpl clientsService;
 
     @RequestMapping("/getById_b_bid.do")
     @ResponseBody
@@ -68,6 +73,25 @@ public class WithsController {
         return "1";
     }
 
+    @RequestMapping("/update_withs.do")
+    public String redact(String w_id,Model model){
+        Withs withs=withsService.getById(w_id);
+        Business business=businessService.getById(withs.getB_id());
+        Clients clients=clientsService.getById(business.getC_id());
+        model.addAttribute("withs",withs);
+        model.addAttribute("business",business);
+        model.addAttribute("clients",clients);
+
+        return "withs_management/update_withs";
+    }
+
+    @RequestMapping("/update_withs2.do")
+    @ResponseBody
+    public String update(Business business){
+        businessService.saveOrUpdate(business);
+        return "1";
+    }
+
 
     @RequestMapping("/getByid_withs.do")
     public String getByid_withs(String b_id, Model model){
@@ -91,6 +115,7 @@ public class WithsController {
 
 
     @RequestMapping("/sumMeonkey.do")
+    @ResponseBody
     public Double sumMeonkey() {
         Double d;
         try {
@@ -102,6 +127,7 @@ public class WithsController {
         return d;
     }
     @RequestMapping("/sumSMeonkey.do")
+    @ResponseBody
     public Double sumSMeonkey() {
         Double d;
         try {
@@ -113,6 +139,7 @@ public class WithsController {
         return d;
     }
     @RequestMapping("/sumYMeonkey.do")
+    @ResponseBody
     public Double sumYMeonkey() {
         Double d;
         try {
@@ -124,6 +151,7 @@ public class WithsController {
         return d;
     }
     @RequestMapping("/sumSYMeonkey.do")
+    @ResponseBody
     public Double sumSYMeonkey() {
         Double d;
         try {
@@ -135,6 +163,7 @@ public class WithsController {
         return d;
     }
     @RequestMapping("/sumJdMeonkey.do")
+    @ResponseBody
     public Double sumJdMeonkey() {
         Double d;
         try {
@@ -146,6 +175,7 @@ public class WithsController {
         return d;
     }
     @RequestMapping("/sumSJdMeonkey.do")
+    @ResponseBody
     public Double sumSJdMeonkey() {
         Double d;
         try {
@@ -157,6 +187,7 @@ public class WithsController {
         return d;
 }
     @RequestMapping("/sumNMeonkey.do")
+    @ResponseBody
     public Double sumNMeonkey() {
         Double d;
         try {
@@ -168,6 +199,7 @@ public class WithsController {
         return d;
     }
     @RequestMapping("/sumSNMeonkey.do")
+    @ResponseBody
     public Double sumSNMeonkey() {
         Double d;
         try {

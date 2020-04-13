@@ -1,6 +1,8 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -17,9 +19,10 @@ public class Contracts implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "ct_id", type = IdType.UUID)
     private String ct_id;
 
-    private String b_id;
+    private String c_id;
 
     private String u_id;
 
@@ -35,11 +38,11 @@ public class Contracts implements Serializable {
 
     private String ct_linkman;
 
-    private Integer ct_gdphone;
+    private Long ct_gdphone;
 
-    private Integer ct_ydphone;
+    private Long ct_ydphone;
 
-    private Integer ct_qq;
+    private String ct_qq;
 
     private String ct_technology;
 
@@ -82,13 +85,15 @@ public class Contracts implements Serializable {
     public void setCt_id(String ct_id) {
         this.ct_id = ct_id;
     }
-    public String getB_id() {
-        return b_id;
+
+    public String getC_id() {
+        return c_id;
     }
 
-    public void setB_id(String b_id) {
-        this.b_id = b_id;
+    public void setC_id(String c_id) {
+        this.c_id = c_id;
     }
+
     public String getU_id() {
         return u_id;
     }
@@ -141,27 +146,31 @@ public class Contracts implements Serializable {
     public void setCt_linkman(String ct_linkman) {
         this.ct_linkman = ct_linkman;
     }
-    public Integer getCt_gdphone() {
+
+    public Long getCt_gdphone() {
         return ct_gdphone;
     }
 
-    public void setCt_gdphone(Integer ct_gdphone) {
+    public void setCt_gdphone(Long ct_gdphone) {
         this.ct_gdphone = ct_gdphone;
     }
-    public Integer getCt_ydphone() {
+
+    public Long getCt_ydphone() {
         return ct_ydphone;
     }
 
-    public void setCt_ydphone(Integer ct_ydphone) {
+    public void setCt_ydphone(Long ct_ydphone) {
         this.ct_ydphone = ct_ydphone;
     }
-    public Integer getCt_qq() {
+
+    public String getCt_qq() {
         return ct_qq;
     }
 
-    public void setCt_qq(Integer ct_qq) {
+    public void setCt_qq(String ct_qq) {
         this.ct_qq = ct_qq;
     }
+
     public String getCt_technology() {
         return ct_technology;
     }
@@ -201,23 +210,25 @@ public class Contracts implements Serializable {
     @Override
     public String toString() {
         return "Contracts{" +
-        "ct_id=" + ct_id +
-        ", b_id=" + b_id +
-        ", u_id=" + u_id +
-        ", ct_name=" + ct_name +
-        ", ct_monkey=" + ct_monkey +
-        ", ct_qddate=" + ct_qddate +
-        ", ct_sxdate=" + ct_sxdate +
-        ", ct_fwqdate=" + ct_fwqdate +
-        ", ct_linkman=" + ct_linkman +
-        ", ct_gdphone=" + ct_gdphone +
-        ", ct_ydphone=" + ct_ydphone +
-        ", ct_qq=" + ct_qq +
-        ", ct_technology=" + ct_technology +
-        ", ct_clause=" + ct_clause +
-        ", ct_file=" + ct_file +
-        ", ct_dept=" + ct_dept +
-        ", ct_status=" + ct_status +
-        "}";
+                "ct_id='" + ct_id + '\'' +
+                ", c_id='" + c_id + '\'' +
+                ", u_id='" + u_id + '\'' +
+                ", ct_name='" + ct_name + '\'' +
+                ", ct_monkey=" + ct_monkey +
+                ", ct_qddate='" + ct_qddate + '\'' +
+                ", ct_sxdate='" + ct_sxdate + '\'' +
+                ", ct_fwqdate='" + ct_fwqdate + '\'' +
+                ", ct_linkman='" + ct_linkman + '\'' +
+                ", ct_gdphone=" + ct_gdphone +
+                ", ct_ydphone=" + ct_ydphone +
+                ", ct_qq='" + ct_qq + '\'' +
+                ", ct_technology='" + ct_technology + '\'' +
+                ", ct_clause='" + ct_clause + '\'' +
+                ", ct_file='" + ct_file + '\'' +
+                ", ct_dept='" + ct_dept + '\'' +
+                ", ct_status=" + ct_status +
+                ", re_monkey=" + re_monkey +
+                ", ch_monkey=" + ch_monkey +
+                '}';
     }
 }

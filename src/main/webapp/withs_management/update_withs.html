@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Layui</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+
+<blockquote class="layui-elem-quote layui-text">
+    欢迎您,请正确添加客户信息！！！
+</blockquote>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>客户信息</legend>
+</fieldset>
+
+<form class="layui-form" action="/crm/withs/update_withs2.do" >
+    <input type="hidden" name="c_id" th:value="${clients.getC_id()}">
+    <input type="hidden" th:value="${business.getB_id()}" name="b_id">
+
+    <div class="layui-form-item"  >
+
+        <label class="layui-form-label">客户名称</label>
+        <div class="layui-input-inline">
+            <input name="c_name" th:value="${clients.getC_name()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入客户名称" autocomplete="off" lay-verify="title">
+        </div>
+
+
+        <label class="layui-form-label">所属行业</label>
+        <div class="layui-input-inline">
+            <select name="c_industry" lay-filter="aihao" style="width: 200px;">
+                <option value="0" th:selected="${clients.getC_industry() ==0 }"></option>
+                <option value="IT|互联网|通信|电子" th:selected="${clients.getC_industry() =='IT|互联网|通信|电子' }">IT|互联网|通信|电子</option>
+                <option value="金融|银行|保险" th:selected="${clients.getC_industry() =='金融|银行|保险' }">金融|银行|保险</option>
+                <option value="房产|建筑建设|物业" th:selected="${clients.getC_industry() =='房产|建筑建设|物业' }">房产|建筑建设|物业</option>
+                <option value="广告|传媒|印刷出版" th:selected="${clients.getC_industry() =='广告|传媒|印刷出版' }">广告|传媒|印刷出版</option>
+                <option value="消费零售|贸易|交通物流" th:selected="${clients.getC_industry() =='消费零售|贸易|交通物流' }">消费零售|贸易|交通物流</option>
+                <option value="加工制造|仪表设备" th:selected="${clients.getC_industry() =='加工制造|仪表设备' }">加工制造|仪表设备</option>
+                <option value="管理咨询|教育科研|中介服务" th:selected="${clients.getC_industry() =='管理咨询|教育科研|中介服务' }">管理咨询|教育科研|中介服务</option>
+                <option value="医药生物|医疗保健" th:selected="${clients.getC_industry() =='医药生物|医疗保健' }">医药生物|医疗保健</option>
+                <option value="酒店旅游" th:selected="${clients.getC_industry() =='酒店旅游' }">酒店旅游</option>
+                <option value="能源矿产|石油化工" th:selected="${clients.getC_industry() =='能源矿产|石油化工' }">能源矿产|石油化工</option>
+                <option value="政府|非赢利机构|科研" th:selected="${clients.getC_industry() =='政府|非赢利机构|科研' }">政府|非赢利机构|科研</option>
+                <option value="其他" th:selected="${clients.getC_industry() =='其他' }">其他</option>
+            </select>
+        </div>
+    </div>
+
+
+
+
+    <div class="layui-form-item" >
+
+        <label class="layui-form-label">所在城市</label>
+        <div class="layui-input-inline">
+            <input name="c_city" th:value="${clients.getC_city()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入所在城市" autocomplete="off" lay-verify="title">
+        </div>
+
+
+        <label class="layui-form-label">详细地址</label>
+        <div class="layui-input-inline">
+            <input name="c_site" th:value="${clients.getC_site()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入详细地址" autocomplete="off" lay-verify="title">
+        </div>
+    </div>
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>商机信息</legend>
+    </fieldset>
+
+
+    <div class="layui-form-item" >
+        <label class="layui-form-label">商机名称</label>
+        <div class="layui-input-inline">
+            <input name="b_name" th:value="${business.getB_name()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入所在城市" autocomplete="off" lay-verify="title">
+        </div>
+
+        <label class="layui-form-label">预成交额</label>
+        <div class="layui-input-inline">
+            <input name="b_monkey" th:value="${business.getB_monkey()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入邮政编码" autocomplete="off" lay-verify="title">
+        </div>
+
+    </div>
+
+    <div class="layui-form-item" >
+        <div class="layui-inline">
+            <label class="layui-form-label">预计结单日期</label>
+            <div class="layui-input-inline">
+                <input name="b_date" th:value="${business.getB_date()}" class="layui-input" id="date" type="text" placeholder="yyyy-MM-dd" autocomplete="off" lay-verify="date">
+            </div>
+        </div>
+
+        <label class="layui-form-label">商机来源</label>
+        <div class="layui-input-inline" >
+            <select  style="width: 200px;" name="b_source">
+                <option value="0" th:selected="${business.getB_source()=='0'}"></option>
+                <option value="老客户" th:selected="${business.getB_source()=='老客户'}">老客户</option>
+                <option value="代理商" th:selected="${business.getB_source()=='代理商'}">代理商</option>
+                <option value="互联网" th:selected="${business.getB_source()=='互联网'}">互联网</option>
+                <option value="独立开发" th:selected="${business.getB_source()=='独立开发'}">独立开发</option>
+                <option value="客户介绍" th:selected="${business.getB_source()=='客户介绍'}">客户介绍</option>
+                <option value="合作伙伴" th:selected="${business.getB_source()=='合作伙伴'}">合作伙伴</option>
+                <option value="促销活动" th:selected="${business.getB_source()=='促销活动'}">促销活动</option>
+                <option value="媒体宣传"  th:selected="${business.getB_source()=='媒体宣传'}">媒体宣传</option>
+                <option value="电话访问" th:selected="${business.getB_source()=='电话访问'}">电话访问</option>
+                <option value="公开招标" th:selected="${business.getB_source()=='公开招标'}">公开招标</option>
+                <option value="其他" th:selected="${business.getB_source()=='其他'}">其他</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item" >
+        <label class="layui-form-label">联系人</label>
+        <div class="layui-input-inline">
+            <input name="b_linkman" th:value="${business.getB_linkman()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入所在城市" autocomplete="off" lay-verify="title">
+        </div>
+
+        <label class="layui-form-label">部门</label>
+        <div class="layui-input-inline">
+            <input name="b_dept" th:value="${business.getB_dept()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入部门" autocomplete="off" lay-verify="title">
+        </div>
+
+    </div>
+
+    <div class="layui-form-item" >
+
+        <label class="layui-form-label">职务</label>
+        <div class="layui-input-inline">
+            <input name="b_duty" th:value="${business.getB_duty()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入职务" autocomplete="off" lay-verify="title">
+        </div>
+
+        <label class="layui-form-label">固定电话</label>
+        <div class="layui-input-inline">
+            <input name="b_special" th:value="${business.getB_special()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入固定电话" autocomplete="off" lay-verify="title">
+        </div>
+    </div>
+
+    <div class="layui-form-item" >
+        <div class="layui-inline">
+            <label class="layui-form-label">移动电话</label>
+            <div class="layui-input-inline">
+                <input name="b_phone" th:value="${business.getB_phone()}" class="layui-input" type="tel"  placeholder="请输入移动电话" autocomplete="off" lay-verify="required|phone">
+            </div>
+        </div>
+        <label class="layui-form-label">邮件/QQ</label>
+        <div class="layui-input-inline">
+            <input name="b_qq" th:value="${business.getB_qq()}" style="width: 200px;" class="layui-input" type="text" placeholder="请输入邮件/QQ" autocomplete="off" lay-verify="title">
+        </div>
+    </div>
+
+
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">主要业务需求</label>
+        <div class="layui-input-block">
+            <textarea class="layui-textarea" name="b_texts" th:text="${business.b_texts}" placeholder="请输入内容"></textarea>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item" >
+
+        <label class="layui-form-label">上传附件</label>
+        <div class="layui-input-inline">
+            <div class="layui-input-inline">
+                <button type="button" class="layui-btn" id="uploads" ><i class="layui-icon"></i>选择文件</button>
+            </div>
+            <div class="layui-input-inline">
+                <button type="button" class="layui-btn" id="tj" ><i class="layui-icon"></i>上传文件</button>
+            </div>
+            <input type="hidden" name="b_accessory" th:value="${business.getB_accessory()}" id="b_accessory" lay-verify="required" />
+        </div>
+    </div>
+
+
+    <div class="layui-form-item" >
+
+
+        <label class="layui-form-label">商机阶段</label>
+        <div class="layui-input-inline" >
+            <select  style="width: 200px;" name="b_stage">
+                <option value="初期沟通" th:selected="${business.getB_stage()=='初期沟通'}">初期沟通</option>
+                <option value="商务谈判"  th:selected="${business.getB_stage()=='商务谈判'}">商务谈判</option>
+                <option value="成交" th:selected="${business.getB_stage()=='成交'}">成交</option>
+                <option value="丢单" th:selected="${business.getB_stage()=='丢单'}">丢单</option>
+                <option value="竞争或投标" th:selected="${business.getB_stage()=='竞争或投标'}">竞争或投标</option>
+                <option value="方案和报价" th:selected="${business.getB_stage()=='方案和报价'}">方案和报价</option>
+                <option value="搁置" th:selected="${business.getB_stage()=='搁置'}">搁置</option>
+            </select>
+        </div>
+
+
+        <label class="layui-form-label">商机负责人</label>
+        <div class="layui-input-inline">
+            <select  name="u_id" lay-filter="in_charge_of" id="u_in_charge_of" style="width: 200px;" >
+                <option value="0">请选择</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="layui-form-item" >
+
+        <label class="layui-form-label">商机参与人</label>
+        <div class="layui-input-inline" id="u_participation" name="u_participation"></div>
+
+
+        <label class="layui-form-label">商机关注人</label>
+        <div class="layui-input-inline" id="use_attention" name="use_attention"></div>
+    </div>
+    <!--商机状态 审核状态-->
+    <input type="hidden" name="b_code" value="0">
+    <input type="hidden" name="b_audit" value="0">
+    <input type="hidden" name="b_current_time" th:value="${business.getB_current_time()}">
+
+
+    <input type="hidden" th:value="${business.getC_id()}" id="c_id">
+    <input type="hidden" th:value="${business.getU_id()}" id="u_id">
+    <input type="hidden" th:value="${business.getU_participation()}" id="u_participations">
+    <input type="hidden" th:value="${business.getUse_attention()}" id="Use_attentions">
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" type="submit" lay-filter="demom1" lay-submit="">修改</button>
+            <button class="layui-btn" type="submit" lay-filter="demom2" lay-submit="">删除</button>
+            <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+        </div>
+    </div>
+
+</form>
+
+
+<script src="/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.config({
+    }).extend({
+        selectN: '/layui/layui_extends/selectN',
+        selectM: '/layui/layui_extends/selectM',
+    }).use(['form','upload','layedit', 'laydate','selectM','layer'], function(){
+        var form = layui.form
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate
+            ,upload=layui.upload
+            ,$=layui.jquery
+            ,layer=layui.layer
+            ,selectM = layui.selectM;
+
+
+        $.get("http://localhost:8080/crm/business/in_charge_of.do",function(data){
+            var str="";
+            for(var i in data)
+            {
+                var a=data[i].u_Id;
+                var b=$("#u_id").val();
+                str+=" <option value='"+a+"' selected='"+a+"=="+b+"?'selected':'' ' >"+data[i].u_Name+"-"+data[i].u_Realname+"</option>";
+            }
+            $("#u_in_charge_of").append(str);
+            form.render("select");
+        });
+
+
+        var str = $("#u_participations").val();
+        var arr = str.split(',');
+        var str2 = $("#Use_attentions").val();
+        var arr2 = str.split(',');
+        //多选标签-基本配置
+        selectM({
+            //元素容器【必填】
+            elem: '#u_participation'
+            //候选数据【必填】
+            ,data: '/crm/business/in_charge_of.do'
+            ,max:5//可以选几个
+            ,width:400
+            ,delimiter:','//
+            ,field:{idName:'u_Id',titleName:'u_Realname'}
+            ,selected:arr
+            //添加验证
+            ,verify:'required'
+        });
+        //多选标签-基本配置
+        selectM({
+            //元素容器【必填】
+            elem: '#use_attention'
+            //候选数据【必填】
+            ,data: '/crm/business/in_charge_of.do'
+            ,max:20//可以选几个
+            ,width:400
+            ,delimiter:','//
+            ,field:{idName:'u_Id',titleName:'u_Realname'}
+            ,selected:arr2
+            //添加验证
+            ,verify:'required'
+        });
+
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+        // 上传文件
+        upload.render({
+            elem: '#uploads' //绑定元素
+            ,url: '/crm/upload/fileUpload.do' //上传接口
+            ,auto:false
+            ,accept: 'file' //普通文件
+            ,multiple:true
+            ,bindAction:"#tj"
+            ,done: function(res){     //上传完毕回调
+                layer.msg('提交成功！', {icon: 6});
+                $("#b_accessory").val(res.filename);
+            }
+            ,error: function(){//请求异常回调
+                layer.msg('上传失败！', {icon: 7});
+            }
+        });
+
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+         /*   var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
+            $.ajax({
+                type : "post",
+                dataType : "json",
+                //contentType:"application/json",
+                url : "/crm/withs/update_withs2.do",
+                data:data.field,
+                enctype:"multipart/form-data",
+                success : function(result) {
+                    if(result==1){
+                        layer.msg('修改成功，(2秒自动关闭)', {
+                            icon: 1,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            //do something
+                        });
+                   // window.location.href ="/crm/clients/customer_contract.do?c_id"+$("#c_id").val()
+                    }else{
+                        layer.msg('修改失败', {
+                            icon: 1,
+                            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                        }, function(){
+                            //do something
+                        });
+                    }
+
+                }
+            });
+*/
+            return true;
+        });
+
+
+    });
+</script>
+
+</body>
+</html>

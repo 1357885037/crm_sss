@@ -8,17 +8,249 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
-    <link rel="stylesheet" href="../../css/public.css" media="all" />
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/css/public.css" media="all" />
 </head>
 <body class="childrenBody">
+<form class="layui-form layui-form-pane" action="/crm/contracts/queryall.do">
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <div class="layui-inline">
+                    <div id="u4921" class="ax_default _图片">
+                        <i class="layui-icon layui-icon-read" width="50" height="50">合同管理</i>
+                    </div>
+                </div>
+            </div>
 
-<script type="text/javascript" src="../../layui/layui.js"></script>
+            <div class="layui-col-md9">
+                <div class="layui-inline">
+                    <select name="tiaojian" lay-filter="selec" id="selec">
+                        <option value=1>按客户名称</option>
+                        <option value=2>按客户来源</option>
+                        <option value=3>按国家/地区</option>
+                        <option value=4>按所在城市</option>
+                        <option value=5>按所属行业</option>
+                    </select>
+                </div>
 
+                <div class="layui-inline" id="dis">
+                    <input type="text" name="c_name"  placeholder="请输入客户名称" class="layui-input">
+                </div>
+
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+
+                    <button class="layui-btn" type="button"><a href="/contracts_management/add_contracts.html">➕新增合同</a></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<div class="layui-row layui-form-pane">
+    <div class="layui-col-xs3">
+        <div class="layui-inline">
+            <div class="layui-card" id="card">
+                <div class="layui-card-header"><i class="layui-icon ">&#xe60a;</i>分类</div>
+                <div class="layui-card-body layui-text">
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="/customer_management/customer_management.html"><i class="layui-icon">&#xe621;所有分类</i></a> </div>
+                    </div>
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on1"><i class="layui-icon">&#xe621;执行中的合同</i></a> </div>
+                    </div>
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on2"><i class="layui-icon">&#xe621;已关闭的合同</i></a> </div>
+                    </div>
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on3"><i class="layui-icon">&#xe621;已撤出的合同</i></a> </div>
+                    </div>
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on4"><i class="layui-icon">&#xe621;已搁置的合同</i></a> </div>
+                    </div>
+
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on5"><i class="layui-icon">&#xe621;本周新增</i></a> </div>
+                    </div>
+
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on6"><i class="layui-icon">&#xe621;上周新增</i></a> </div>
+                    </div>
+
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on7"><i class="layui-icon">&#xe621;本月新增</i></a> </div>
+                    </div>
+
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on8"><i class="layui-icon">&#xe621;上月新增</i></a> </div>
+                    </div>
+
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on9"><i class="layui-icon">&#xe621;本季度新增</i></a> </div>
+                    </div>
+
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on10"><i class="layui-icon">&#xe621;上季度新增</i></a> </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs9">
+        <div class="layui-inline">
+            <table class="layui-hide" id="test" lay-filter="test"></table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/layui/layui.js"></script>
+
+
+<script type="text/html" id="titleTpl">
+    {{#  if(d.re_monkey == null){ }}
+    <a href="/crm/checks/register_checks.do?ct_id={{d.ct_id}}" class="layui-table-link">0[+]</a>
+    {{#  } else { }}
+    <a href="/crm/checks/register_checks.do?ct_id={{d.ct_id}}" class="layui-table-link">{{d.re_monkey}}[+]</a>
+    {{#  } }}
+</script>
+
+<script type="text/html" id="titleTp2">
+    {{#  if(d.ch_monkey == null){ }}
+    <a href="/crm/checks/register_checks.do?ct_id={{d.ct_id}}" class="layui-table-link">0[+]</a>
+    {{#  } else { }}
+    <a href="/crm/checks/register_checks.do?ct_id={{d.ct_id}}" class="layui-table-link">{{d.ch_monkey}}[+]</a>
+    {{#  } }}
+</script>
 
 <script>
-    layui.use(['table','layer','form'], function(){
+    layui.use(['table','form','layer','laydate'], function(){
+        var $ = layui.jquery;
         var table = layui.table;
+        var form = layui.form;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+
+
+
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 0,
+            dataType: "json",
+            success: function (data) {
+                $("#on1").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 1,
+            dataType: "json",
+            success: function (data) {
+                $("#on2").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 2,
+            dataType: "json",
+            success: function (data) {
+                $("#on3").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 3,
+            dataType: "json",
+            success: function (data) {
+                $("#on4").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 4,
+            dataType: "json",
+            success: function (data) {
+                $("#on5").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 5,
+            dataType: "json",
+            success: function (data) {
+                $("#on6").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 6,
+            dataType: "json",
+            success: function (data) {
+                $("#on7").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 7,
+            dataType: "json",
+            success: function (data) {
+                $("#on8").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 8,
+            dataType: "json",
+            success: function (data) {
+                $("#on9").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
+
+        $.ajax({
+            type: "post",
+            url: "/crm/contracts/queryall.do?ct_status=" + 9,
+            dataType: "json",
+            success: function (data) {
+                $("#on10").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
 
         //获取表数据
         table.render({
@@ -30,17 +262,90 @@
                 icon:'layui-icon-face-surprised'
             }
             ,cols: [[
-                {field:'ct_name', width:200, title: '合同全称'}
+                {field:'ct_name', width:200, title: '合同全称',templet:'<div><a href="/crm/contracts/redact.do?ct_id={{d.ct_id}}" style="color: #1E9FFF">{{d.ct_name}}</a></div> '}
                 ,{field:'ct_id', width:150, title: '合同编号'}
                 ,{field:'ct_monkey', title: '合同金额', width:150,sort:true}
-                 ,{field:'re_monkey', width:100, title: '汇款额'}
-                 ,{field:'ch_monkey' ,width:150,title:'开票额'}
+                 ,{field:'re_monkey',width:100, title: '汇款额',templet:'#titleTpl'}
+                 ,{field:'ch_monkey' ,width:150,title:'开票额',templet:'#titleTp2'}
                 ,{field:'ct_qddate' ,width:150,title:'签单日期',sort:true}
             ]]
             ,page: true
             ,limits:[3,5,8,10]
             ,limit:3
         });
+
+
+
+        //监听下拉框值得改变并改变查询的输入框
+        form.on('select(selec)', function(data){
+            console.log(data.value); //得到被选中的值
+            if(data.value==1){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='c_name' placeholder='请输入客户名称' class='layui-input'>");
+            }
+            if(data.value==2){
+                $("#dis").empty();
+                $("#dis").append(" <select name=\"c_source\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
+                    "                <option value=\"老客户\">老客户</option>\n" +
+                    "                <option value=\"代理商\" selected=\"\">代理商</option>\n" +
+                    "                <option value=\"互联网\">互联网</option>\n" +
+                    "                <option value=\"独立开发\">独立开发</option>\n" +
+                    "                <option value=\"客户介绍\">客户介绍</option>\n" +
+                    "                <option value=\"合作伙伴\">合作伙伴</option>\n" +
+                    "                <option value=\"促销活动\">促销活动</option>\n" +
+                    "                <option value=\"媒体宣传\">媒体宣传</option>\n" +
+                    "                <option value=\"电话访问\">电话访问</option>\n" +
+                    "                <option value=\"公开招标\">公开招标</option>\n" +
+                    "                <option value=\"其他\">其他</option>\n" +
+                    "            </select>");
+                form.render();
+            }
+            if(data.value==3){
+                $("#dis").empty();
+                $("#dis").append(" <select name=\"c_state\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
+                    "                <option value=\"中国\" selected=\"\">中国</option>\n" +
+                    "                <option value=\"美国\" >美国</option>\n" +
+                    "                <option value=\"日本\">日本</option>\n" +
+                    "            </select>");
+                form.render();
+            }
+            if(data.value==4){
+                $("#dis").empty();
+                $("#dis").append("<input type='text' name='c_city' placeholder='请输入所在城市' class='layui-input'>");
+            }
+            if(data.value==5){
+                $("#dis").empty();
+                $("#dis").append(" <select name=\"c_industry\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
+                    "                <option value=\"IT|互联网|通信|电子\">IT|互联网|通信|电子</option>\n" +
+                    "                <option value=\"金融|银行|保险\">金融|银行|保险</option>\n" +
+                    "                <option value=\"房产|建筑建设|物业\">房产|建筑建设|物业</option>\n" +
+                    "                <option value=\"广告|传媒|印刷出版\">广告|传媒|印刷出版</option>\n" +
+                    "                <option value=\"消费零售|贸易|交通物流\">消费零售|贸易|交通物流</option>\n" +
+                    "                <option value=\"加工制造|仪表设备\">加工制造|仪表设备</option>\n" +
+                    "                <option value=\"管理咨询|教育科研|中介服务\">管理咨询|教育科研|中介服务</option>\n" +
+                    "                <option value=\"医药生物|医疗保健\">医药生物|医疗保健</option>\n" +
+                    "                <option value=\"酒店旅游\">酒店旅游</option>\n" +
+                    "                <option value=\"能源矿产|石油化工\">能源矿产|石油化工</option>\n" +
+                    "                <option value=\"政府|非赢利机构|科研\">政府|非赢利机构|科研</option>\n" +
+                    "                <option value=\"其他\">其他</option>\n" +
+                    "            </select>");
+                form.render();
+
+            }
+        });
+
+//   监听submit并改同步提交为异步提交并重新渲染表格
+        form.on('submit(demo1)', function (data) {
+            table.reload("test", {
+                where: data.field
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+
+
+
+
     });
 </script>
 </body>

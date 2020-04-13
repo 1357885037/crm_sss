@@ -3,12 +3,14 @@ package com.hy.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.hy.crm.entity.Clients;
 import com.hy.crm.entity.Contracts;
 import com.hy.crm.service.IContractsService;
 import com.hy.crm.service.impl.ContractsServiceImpl;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,12 +34,14 @@ public class ContractsController {
 
     @Autowired
     private ContractsServiceImpl contractsServiceImpl;
-
     @RequestMapping("/queryall.do")
     @ResponseBody
-    public AccountJson queryall(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,Contracts contracts){
+    public AccountJson queryall(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit, Contracts contracts,String tiaojian,Clients clients){
+        if(tiaojian!=null){
+            clients.setStatu(Integer.parseInt(tiaojian));
+        }
         Page pageHelper= PageHelper.startPage(page,limit,true);
-        List<Contracts> list=contractsServiceImpl.queryall(contracts);
+        List<Contracts> list=contractsServiceImpl.queryall(contracts,clients);
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
         accountJson.setMsg("");
@@ -46,6 +50,27 @@ public class ContractsController {
         return accountJson;
     }
 
+
+    @RequestMapping("/redact.do")
+    public  String redact(String ct_id, Model model){
+        Contracts contracts=contractsService.getById(ct_id);
+        model.addAttribute("contracts",contracts);
+        return "contracts_management/redact_contracts";
+    }
+
+    @RequestMapping("/update_contracts.do")
+    @ResponseBody
+    public String update_contracts(Contracts contracts){
+        contractsService.updateById(contracts);
+        return "1";
+    }
+
+    @RequestMapping("/add_contracts.do")
+    @ResponseBody
+    public  String add_contracts(Contracts contracts){
+        contractsService.save(contracts);
+        return "1";
+    }
 
     @ResponseBody
     @RequestMapping("/queryCon.do")

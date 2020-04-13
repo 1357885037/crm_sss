@@ -313,8 +313,9 @@ public class UserInfoController {
     }
 
 //季度
-    @ResponseBody
+
     @RequestMapping("/sumbusinessJd.do")
+    @ResponseBody
     public AccountJson sumbusinessJd(AccountJson accountJson){
         List<Shangji> list=new ArrayList<>();
         Integer num=businessService.codeJdRen1();

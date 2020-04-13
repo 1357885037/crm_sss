@@ -1,5 +1,8 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -15,6 +18,7 @@ public class Remittance implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "rq_id", type = IdType.UUID)
     private String rq_id;
 
     private String ct_id;
