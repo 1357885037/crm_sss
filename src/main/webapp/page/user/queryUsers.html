@@ -1,0 +1,158 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>个人资料--layui后台管理模板 2.0</title>
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+</head>
+<!--判断男女-->
+<script type="text/html" id="titleTpl">
+    {{#  if(d.u_Sex==1){ }}
+    男
+    {{#  } else { }}
+    女
+    {{#  } }}
+</script>
+<body class="childrenBody">
+<!--添加修改和删除按钮-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-sm layui-icon" lay-event="edit">&#xe642;修改</a>
+    <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">&#xe640;删除</a>
+</script>
+<form class="layui-form layui-row" >
+             <div>
+                <label class="layui-form-label">根据用户名</label>
+                <div class="layui-inline" >
+                    <input type="text" name="u_Name"  placeholder="请输入内容" class="layui-input">
+                </div>
+            </div>
+    <div>
+
+    <label class="layui-form-label">根据真实姓名</label>
+                <div class="layui-inline" >
+                    <input type="text" name="u_Realname"  placeholder="请输入内容" class="layui-input">
+                </div>
+    </div>
+    <div>
+
+    <label class="layui-form-label">根据性别</label>
+                <div class="layui-inline">
+                    <input type="radio" name="u_Sex" value="1" title="男"/>
+                    <input type="radio" name="u_Sex" value="2" title="女"/>
+                </div>
+    </div>
+<div>
+    <label class="layui-form-label">根据生日</label>
+                <div class="layui-inline" >
+                    <input  id="testd1" type="text" name="u_Date" class="layui-input"  placeholder="yyyy-MM-dd">
+                </div>
+    </div>
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">联合查询</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</form>
+
+<div class="layui-inline">
+    <table class="layui-hide" id="test" lay-filter="test"></table>
+</div>
+</body>
+<script src="../../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script>
+
+    layui.use(['table','form','laydate'], function() {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+        var laydate = layui.laydate;
+
+
+        //   监听submit并改同步提交为异步提交并重新渲染表格
+        form.on('submit(demo1)', function (data) {
+            table.reload("test", {
+                where: data.field
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+//获取表数据并渲染
+        table.render({
+            elem: '#test'
+            , url: '/sanqi/users/queryAllUser.do'
+            , text: {
+                none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
+                icon: 'layui-icon-face-surprised'
+            }
+            , cols: [
+                [
+                    {field: 'u_Name', width: 200, title: '用户名',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.u_Name}}</a></div>"}
+                    , {field: 'u_Realname', width: 150, title: '真实姓名'}
+                    , {field: 'u_Sex', title: '性别', width: 150, templet:"#titleTpl"}
+                    , {field: 'u_Phone', width: 100, title: '联系电话'}
+                    , {field: 'u_Date', width: 150, title: '出生年月'}
+                    , {field: 'province', width: 150, title: '所在省'}
+                    , {field: 'city', width: 150, title: '所在城市'}
+                    , {field: 'area', width: 150, title: '所在区'}
+                    , {field: 'u_Email', width: 150, title: '邮箱'}
+                    , {field: 'u_Signature', width: 150, title: '个性签名'}
+                    ,{field:'u_Img' ,width:100,height:100,title:'头像',templet:'<div><img src="img/{{d.u_Img}}"/></div>'}
+                    ,{width:200, title: '操作',templet:'#barDemo'}
+                ]
+            ]
+            , page: true
+            , limits: [3, 5, 8, 10]
+            , limit: 3
+        });
+
+
+        //时间
+        laydate.render({
+            elem: '#testd1'//指定元素
+        });
+
+        //监听事件
+        table.on('tool(test)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('真的删除行么', function(index){
+                    $.ajax({
+                        url: "/sanqi/users/delusers.do?u_id="+data.u_Id ,
+                        // data: {'u_id':data.u_id} ,
+                        type: "post" ,
+                        // dataType:'json',
+                        success:function(data){
+                            if(data==200){
+                                table.reload("test",{})
+                            }else{
+                                layer.msg("删除失败");
+                            }
+                        }
+                    });
+                    obj.del();
+                    layer.close(index);
+                });
+            }
+            if(obj.event === 'edit'){
+                layer.open({
+                    type: 2,
+                    area: ['500px', '500px'],
+                    content: 'accounts/queryById.do?aid='+data.aid, //这里content是一个普通的String
+                    end: function(){
+                        table.reload("test",{})
+                    }
+                });
+            }
+        });
+
+
+
+
+    });
+</script>
+</html>

@@ -2,6 +2,7 @@ package com.hy.crm.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.sun.xml.internal.ws.developer.Serialization;
 
 import java.io.Serializable;
 
@@ -18,6 +19,7 @@ public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Serialization
     @TableId(value = "u_id", type = IdType.UUID)
     private String u_Id;
 

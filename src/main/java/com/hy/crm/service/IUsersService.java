@@ -12,5 +12,6 @@ import com.hy.crm.entity.Users;
  * @since 2020-04-03
  */
 public interface IUsersService extends IService<Users> {
+     void delusers(String value);
 
 }
