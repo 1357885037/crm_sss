@@ -1,11 +1,13 @@
 package com.hy.crm.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -20,14 +22,17 @@ public class Replys implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "rp_id",type = IdType.UUID)
-    private String rp_id;
+    @TableId(value = "rp_id",type = IdType.AUTO)
+    private Integer rp_id;
 
     private String f_id;
 
     private String u_id;
-
-    private String rep_rpid;
+    @TableField(exist = false)
+    private String u_name;
+    @TableField(exist = false)
+    private String rep_name;
+    private Integer rep_rpid;
 
     private String rp_text;
 
@@ -36,14 +41,45 @@ public class Replys implements Serializable {
     private String rp_superior;
 
     private Integer rp_statu;
+    @TableField(exist = false)
+    private List<Replys> replysList;
 
-    public String getRp_id() {
+    public String getU_name() {
+        return u_name;
+    }
+
+    public void setU_name(String u_name) {
+        this.u_name = u_name;
+    }
+
+    public Date getRp_date() {
+        return rp_date;
+    }
+
+    public List<Replys> getReplysList() {
+        return replysList;
+    }
+
+    public String getRep_name() {
+        return rep_name;
+    }
+
+    public void setRep_name(String rep_name) {
+        this.rep_name = rep_name;
+    }
+
+    public void setReplysList(List<Replys> replysList) {
+        this.replysList = replysList;
+    }
+
+    public Integer getRp_id() {
         return rp_id;
     }
 
-    public void setRp_id(String rp_id) {
+    public void setRp_id(Integer rp_id) {
         this.rp_id = rp_id;
     }
+
     public String getF_id() {
         return f_id;
     }
@@ -58,13 +94,15 @@ public class Replys implements Serializable {
     public void setU_id(String u_id) {
         this.u_id = u_id;
     }
-    public String getRep_rpid() {
+
+    public Integer getRep_rpid() {
         return rep_rpid;
     }
 
-    public void setRep_rpid(String rep_rpid) {
+    public void setRep_rpid(Integer rep_rpid) {
         this.rep_rpid = rep_rpid;
     }
+
     public String getRp_text() {
         return rp_text;
     }
@@ -96,14 +134,17 @@ public class Replys implements Serializable {
     @Override
     public String toString() {
         return "Replys{" +
-        "rp_id=" + rp_id +
-        ", f_id=" + f_id +
-        ", u_id=" + u_id +
-        ", rep_rpid=" + rep_rpid +
-        ", rp_text=" + rp_text +
-        ", rp_date=" + rp_date +
-        ", rp_superior=" + rp_superior +
-        ", rp_statu=" + rp_statu +
-        "}";
+                "rp_id=" + rp_id +
+                ", f_id='" + f_id + '\'' +
+                ", u_id='" + u_id + '\'' +
+                ", u_name='" + u_name + '\'' +
+                ", rep_name='" + rep_name + '\'' +
+                ", rep_rpid=" + rep_rpid +
+                ", rp_text='" + rp_text + '\'' +
+                ", rp_date=" + rp_date +
+                ", rp_superior='" + rp_superior + '\'' +
+                ", rp_statu=" + rp_statu +
+                ", replysList=" + replysList +
+                '}';
     }
 }

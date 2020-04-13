@@ -185,6 +185,7 @@ public class ForumController {
                 QueryWrapper<Replys> queryWrapper4=new QueryWrapper<>();
                 queryWrapper4.eq("rep_rpid",replys2.getRp_id());
                 List<Replys> replysList4=replysService.list(queryWrapper4);
+                replys2.setReplysList(replysList4);
                 sum+=replysList4.size();
                 sum+=diedai(replysList4,sum);
             }
@@ -241,6 +242,7 @@ return sum;
         QueryWrapper<Replys> queryWrapper2=new QueryWrapper<>();
         queryWrapper2.eq("f_id",forum3.getF_id());
         List<Replys> replysList2=replysService.list(queryWrapper2);
+        forum3.setReplysList(replysList2);
         Integer sum=replysList2.size();
         for(Replys replys:replysList2){
             //二级回复人
@@ -254,9 +256,11 @@ return sum;
 
         ModelAndView modelAndView=new ModelAndView("/page/forum/updateForum.html");
         modelAndView.addObject("forum",forum3);
+
         return modelAndView;
 
     }
+
 
 
     @RequestMapping("/addreplys.do")
@@ -278,9 +282,66 @@ return sum;
         replys.setRp_text(forum.getF_texts());
         replys.setRp_date(Date.valueOf(sdf.format(d)));
         replys.setRp_statu(0);
+
         replysService.save(replys);
 
         return 1;
+    }
+
+    @RequestMapping("/queryRes.do")
+    public List<Replys> queryRes(String rp_id){
+        if(rp_id==null||rp_id==""){
+            return null;
+        }else{
+
+
+//获取上级的对象
+        QueryWrapper<Replys> queryWrapper0=new QueryWrapper<>();
+        queryWrapper0.eq("rp_id",rp_id);
+        Replys replys1=replysService.getOne(queryWrapper0);
+//获取上级的名字
+        QueryWrapper<Users> queryWrapper3=new QueryWrapper<>();
+        queryWrapper3.eq("u_id",replys1.getU_id());
+        Users users6=usersService.getOne(queryWrapper3);
+
+//        获取关于上级的所欲回复
+        QueryWrapper<Replys> queryWrapper4=new QueryWrapper<>();
+        queryWrapper4.eq("rep_rpid",rp_id);
+        List<Replys> replysList1=replysService.list(queryWrapper4);
+
+
+        for (Replys replys:replysList1){
+//            获取自己的名字
+            QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
+            queryWrapper.eq("u_id",replys.getU_id());
+            Users users5=usersService.getOne(queryWrapper);
+            replys.setU_name(users5.getU_Name());
+            replys.setRep_name(users6.getU_Name());
+        }
+            return replysList1;
+        }
+
+
+
+    }
+    @RequestMapping("/addrepii.do")
+    public Integer addrepii(Replys replys,HttpSession session){
+System.out.println(replys.toString()+"1254654646546546546546544984444444444444444444444444444444444444444444451000000000000000000000000000");
+
+        Users users=(Users) session.getAttribute("users");
+        java.util.Date d = new java.util.Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        replys.setU_id(users.getU_Id());
+        replys.setRep_rpid(replys.getRp_id());
+        replys.setRp_date(Date.valueOf(sdf.format(d)));
+        replys.setRp_statu(0);
+        replys.setRp_superior("1123.html");
+
+        replysService.save(replys);
+
+
+        return 0;
     }
 
 

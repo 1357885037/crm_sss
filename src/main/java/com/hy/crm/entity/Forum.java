@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -49,10 +50,16 @@ public class Forum implements Serializable {
 
     @TableField(exist = false)
     private String u_name;
+    @TableField(exist = false)
+    private List<Replys> replysList;
 
+    public List<Replys> getReplysList() {
+        return replysList;
+    }
 
-
-
+    public void setReplysList(List<Replys> replysList) {
+        this.replysList = replysList;
+    }
 
     public String getU_name() {
         return u_name;
