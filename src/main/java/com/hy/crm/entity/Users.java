@@ -2,6 +2,7 @@ package com.hy.crm.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.sun.xml.internal.ws.developer.Serialization;
 
 import java.io.Serializable;
 
@@ -18,6 +19,7 @@ public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Serialization
     @TableId(value = "u_id", type = IdType.UUID)
     private String u_Id;
 
@@ -44,6 +46,8 @@ public class Users implements Serializable {
     private String u_Signature;
 
     private String u_Img;
+
+    private Integer u_statu;
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -157,6 +161,14 @@ public class Users implements Serializable {
         this.u_Img = u_Img;
     }
 
+    public Integer getU_statu() {
+        return u_statu;
+    }
+
+    public void setU_statu(Integer u_statu) {
+        this.u_statu = u_statu;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -173,6 +185,7 @@ public class Users implements Serializable {
                 ", u_Email='" + u_Email + '\'' +
                 ", u_Signature='" + u_Signature + '\'' +
                 ", u_Img='" + u_Img + '\'' +
+                ", u_statu=" + u_statu +
                 '}';
     }
 }

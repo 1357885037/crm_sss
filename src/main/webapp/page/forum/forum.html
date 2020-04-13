@@ -13,10 +13,9 @@
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 <body>
 
-
 <form class="layui-form" action="">
 
-    <input type="hidden" th:value="${bb_id}" id="b_id">
+
     <div class="layui-form-item">
         <label class="layui-form-label">查询条件</label>
         <div class="layui-input-block">
@@ -56,7 +55,6 @@
     layui.use(['table','form'], function(){
         var table = layui.table;
         var form = layui.form;
-        var $=layui.jquery;
 
 
         //   监听submit并改同步提交为异步提交并重新渲染表格
@@ -75,9 +73,8 @@
                 none: '暂无相关数据' ,//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                 icon:'layui-icon-face-surprised'
             }
-            ,cols: [
-                [
-                {field:'f_title', width:200, title: '主题'}
+            ,cols: [[
+                { width:200, title: '主题',templet:"<div><a href='/crm/forum/updateForum.do?f_id={{d.f_id}}' class='layui-table-link' style='color: #1e9fff'>{{d.f_title}}</a></div>"}
                 ,{templet:function(d){
                             return d.u_name+"("+layui.util.toDateString(d.f_date, 'yyyy-MM-dd')+")";
                     }, width:150, title: '作者'}
@@ -85,14 +82,14 @@
                 ,{field:'f_number', width:100, title: '点击量'}
                 ,{field:'revert', width:100, title: '回复量'}
                 ,{templet:function(d){
-                        return d.r_date ==null?"":layui.util.toDateString(d.r_date, 'yyyy-MM-dd');
+                        return d.r_date ==null?"无回复":layui.util.toDateString(d.r_date, 'yyyy-MM-dd');
                     }, width:100, title: '最后回复时间'}
-            ]
-            ]
+            ]]
             ,page: true
             ,limits:[3,5,8,10]
             ,limit:3
         });
+
     });
 </script>
 

@@ -6,10 +6,15 @@
     <script src="/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 
-
+    <script type="text/html" id="titleTpl">
+        return data.data.u_id+()
+    </script>
 </head>
 <body>
-<span>发帖人[[${forum.u_name}]]</span>
+
+
+
+<span>点击量[[${forum.u_name}]]</span>
 <span>点击量[[${forum.f_number}]]</span><span>回复量[[${forum.revert}]]</span>
         <label class="layui-form-label">帖子所属商机名</label>
         <div class="layui-input-block">
@@ -35,6 +40,84 @@
 
             </div>
         </div>
+[[${forum.replysList.size()}]]
+
+    <div th:each="ement:${forum.replysList}">
+        <div th:id="1" th:name="${ement.rp_id}">[[${ement.u_name}]]回复帖子：[[${ement.rp_text}]]
+            <a href="javascript:;" th:id="${ement.rp_id}"  onclick="add(this.id)"> 回复他  </a>
+            <a href="javascript:;" th:id="${ement.rp_id}"  onclick="querys(this.id)">  查看回复 </a>
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+
+    function querys(idsss) {
+        $.ajax({
+            type: "post",
+            url: "/crm/forum/queryRes.do?rp_id=" + idsss,
+            dataType: "json",
+            success: function (data) {
+                for (var i in data) {
+                    if(data[i].rp_id!=0&&data[i].rp_id!=null){
+                        var div = document.createElement("div");
+                        div.setAttribute("id",data[i].rp_id);
+                        $("#"+idsss).append("&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n");
+                        $("#"+idsss).append(div);
+                        $("#"+data[i].rp_id).append("&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n&nbsp;\n" +
+                            "\n"+data[i].u_name+"回复"+data[i].u_name+"："+data[i].rp_text+
+                            "<a href='javascript:;'  onclick='add("+data[i].rp_id+")'>回复他   </a>"+
+                            "<a href='javascript:;'  onclick='querys("+data[i].rp_id+")'>   查看回复</a></div>");
+                    }
+                    }
+
+
+            }
+        });
+    }
+    function add(e) {
+        var id=e;
+        console.log(e+"121212121321212132132132132");
+        layer.open({
+            title: "修改文件属性",
+            type: 2,
+            content: "/page/forum/addreplys.html",
+            area: ['50%', '70%'],
+            skin: "layui-layer-molv",
+            success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口
+                let body = layer.getChildFrame('body', index);
+                body.find("#rp_id").val(id);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
+                layui.form.render();
+            }
+        });
+
+    }
+
+
+</script>
 
 <form class="layui-form" action="">
 
@@ -49,6 +132,10 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
+
+
+
+
 </form>
 
 
@@ -59,10 +146,14 @@
 </body>
 <script>
     //Demo
-    layui.use(['form','layedit'], function(){
+    layui.use(['form','layedit','jquery',], function(){
         var form = layui.form;
         var $ = layui.jquery;
         var layedit = layui.layedit;
+
+
+
+
 
 
         var index = layedit.build('demo'); //建立编辑器
@@ -92,7 +183,7 @@
         });
 
 
+
     });
 </script>
-
 </html>
