@@ -1,10 +1,11 @@
 package com.hy.crm.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.sun.xml.internal.ws.developer.Serialization;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -19,7 +20,6 @@ public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Serialization
     @TableId(value = "u_id", type = IdType.UUID)
     private String u_Id;
 
@@ -48,6 +48,20 @@ public class Users implements Serializable {
     private String u_Img;
 
     private Integer u_statu;
+
+    @TableField(exist = false)
+    private List<Roles> rolesList;
+
+@TableField(exist = false)
+    private String u_roles;
+
+    public String getU_roles() {
+        return u_roles;
+    }
+
+    public void setU_roles(String u_roles) {
+        this.u_roles = u_roles;
+    }
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
@@ -169,6 +183,14 @@ public class Users implements Serializable {
         this.u_statu = u_statu;
     }
 
+    public List<Roles> getRolesList() {
+        return rolesList;
+    }
+
+    public void setRolesList(List<Roles> rolesList) {
+        this.rolesList = rolesList;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -186,6 +208,8 @@ public class Users implements Serializable {
                 ", u_Signature='" + u_Signature + '\'' +
                 ", u_Img='" + u_Img + '\'' +
                 ", u_statu=" + u_statu +
+                ", u_roles=" + u_roles +
+                ", rolesList=" + rolesList +
                 '}';
     }
 }

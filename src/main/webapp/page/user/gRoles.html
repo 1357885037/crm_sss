@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+</head>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">添加角色</a>
+</script>
+<body>
+<script type="text/html" id="bartable">
+    <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">设置角色权限</a>
+</script>
+<table class="layui-hide" id="test" lay-filter="test"></table>
+</body>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['table','form','layer','laydate'], function() {
+        var $ = layui.jquery;
+        var table = layui.table;
+        //获取表数据并渲染
+        table.render({
+            elem: '#test'
+            ,toolbar: '#barDemo' //开启头部工具栏，并为其绑定左侧模板
+            , url: '/crm/roles/queryRoles.do'
+            , text: {
+            none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
+            icon: 'layui-icon-face-surprised'
+            }
+            , cols: [
+            [
+            {field: 'r_id', width: 200, title: '服务主题'}
+            , {field: 'r_name', width: 150, title: '服务类型'}
+                ,{width:200, title: '操作',templet:'#bartable'}
+            ]
+            ]
+            , page: false
+        });
+
+        //头工具栏事件
+        table.on('toolbar(test)', function(obj){
+
+            layer.open({
+                title: "添加角色",
+                type: 2,
+                content: "/page/user/addroles.html",
+                area: ['50%', '70%'],
+                skin: "layui-layer-molv",
+                // btn: ['确定', '关闭'],
+                success: function (layero, index) {
+                }
+            })
+        });
+
+        table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+            var data = obj.data; //获得当前行数据
+            var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+            var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+
+
+            window.location.href="/crm/roles-jurisdiction/queryroles.do?r_id="+data.r_id;
+
+
+        });
+
+});
+</script>
+</html>

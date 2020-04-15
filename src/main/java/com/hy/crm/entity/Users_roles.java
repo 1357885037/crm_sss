@@ -1,5 +1,7 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 /**
@@ -14,8 +16,10 @@ public class Users_roles implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId
     private String u_id;
 
+    @TableId
     private String r_id;
 
     public String getU_id() {

@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加角色</title>
+</head>
+<body>
+
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">请输入新角色</label>
+        <div class="layui-input-block">
+            <input type="text" name="r_name" placeholder="请输入角色" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script>
+    layui.use(['table','form','layer','laydate'], function() {
+        var $ = layui.jquery;
+        var table = layui.table;
+        var form = layui.form;
+//   监听submit并改同步提交为异步提交并重新渲染表格
+        form.on('submit(demo1)', function (data) {
+
+            //获取已处理的服务一共有多少并显示脚表
+            $.ajax({
+                type: "post",
+                url: "/crm/roles/addroles.do",
+                data:data.field,
+                dataType: "json",
+                success: function (data) {
+                    if(data==1){
+                        // window.history.go(-1);
+
+                        var index = parent.layer.getFrameIndex(window.name);
+
+                        parent.location.reload(); //刷新父页
+                        parent.layer.close(index);
+                    }
+                },
+                error: function () {
+                    alert("出错啦");
+                }
+            });
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+    });
+</script>
+</body>
+</html>

@@ -3,14 +3,19 @@ package com.hy.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.hy.crm.entity.Roles;
 import com.hy.crm.entity.Users;
+import com.hy.crm.entity.Users_roles;
+import com.hy.crm.service.IRolesService;
 import com.hy.crm.service.IUsersService;
+import com.hy.crm.service.IUsers_rolesService;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -28,6 +33,10 @@ public class UsersController {
 
     @Autowired
     private IUsersService usersService;
+    @Autowired
+    private IUsers_rolesService usersRolesService;
+    @Autowired
+    private IRolesService rolesService;
 
     @ResponseBody
     @RequestMapping("/queryAllUser.do")
@@ -52,6 +61,26 @@ public class UsersController {
 
         queryWrapper.eq("u_statu",0);
         List<Users>  usersList=usersService.list(queryWrapper);
+        for (Users users1:usersList){
+            QueryWrapper<Users_roles> queryWrapper1=new QueryWrapper<>();
+            queryWrapper1.eq("u_id",users1.getU_Id());
+           List<Users_roles> usersRolesList=usersRolesService.list(queryWrapper1);
+            for (Users_roles usersRoles:usersRolesList){
+                QueryWrapper<Roles> queryWrapper2=new QueryWrapper<>();
+                queryWrapper2.eq("r_id",usersRoles.getR_id());
+                List<Roles> rolesList=rolesService.list(queryWrapper2);
+                for (Roles roles:rolesList){
+                    if(users1.getU_roles()==null){
+                        users1.setU_roles(roles.getR_name());
+                    }else {
+                        users1.setU_roles(users1.getU_roles() + "," + roles.getR_name());
+                    }
+                }
+
+            }
+
+        }
+
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
         accountJson.setCount(usersList.size());
@@ -74,6 +103,44 @@ public class UsersController {
         return num;
 
     }
+
+    @RequestMapping("/userRoles.do")
+    public  ModelAndView userRoles(String u_Id,ModelAndView modelAndView){
+
+        QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("u_statu",0);
+        queryWrapper.eq("u_id",u_Id);
+        Users  users=usersService.getOne(queryWrapper);
+
+        QueryWrapper<Users_roles> queryWrapper1=new QueryWrapper<>();
+        queryWrapper1.eq("u_id",users.getU_Id());
+        List<Users_roles> usersRolesList=usersRolesService.list(queryWrapper1);
+
+        QueryWrapper<Roles> queryWrapper3=new QueryWrapper<>();
+        List<Roles> rolesList=rolesService.list(queryWrapper3);
+
+        for (Roles  roles:rolesList){
+            for (Users_roles usersRoles:usersRolesList){
+                if(roles.getR_id().equals(usersRoles.getR_id())){
+                    roles.setStart(1);
+                    break;
+                }else{
+                    roles.setStart(2);
+                }
+
+            }
+        }
+        for (Roles  roles:rolesList){
+           System.out.println(roles.toString()+"9999999999999999999999999999999999999999999999999999999999999999999999999999999999");
+        }
+
+         modelAndView.addObject("users",users);
+         modelAndView.addObject("rolesList",rolesList);
+         modelAndView.setViewName("/page/user/roles.html");
+
+        return modelAndView;
+    }
+
 
 }
 
