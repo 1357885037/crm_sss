@@ -5,9 +5,8 @@
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
 </head>
 <body>
-<form class="layui-form layui-form-pane" id="forms" action="/crm/users-roles/upuserroles.do">
-    <input type="hidden" th:value="${users.u_Id}" name="u_Id" />
-
+<form class="layui-form layui-form-pane" id="forms" >
+    <input type="hidden" th:value="${users.u_Id}" id="ids" name="u_Id" />
     为用户[[${users.u_Name}]]设置角色
     <div th:each="roles:${rolesList}">
             <input  type="checkbox" id="r_name" name="r_name" th:value="${roles.r_id}" th:title="${roles.r_name}" th:checked="${roles.start} == 1 ? true:false "/>
@@ -26,32 +25,34 @@
             var $ = layui.jquery;
             var form = layui.form;
 
-            // //取消同步提交采用异步提交
-            // form.on('submit(demo1)', function(data){
-            //     quotation = new Array();
-            //     $("input:checkbox[name='r_name']:checked").each(function(){
-            //         quotation.push($(this).val());
-            //     });
-            //     var json = {};
-            //     for (var i = 0; i < quotation.length; i++) {
-            //         json[i] = quotation[i];
-            //     }
-            //     let myJson = JSON.stringify(json);
-            //     // var str=JSON.parse(myJson);
-            //     data.field.r_name = myJson ;
-            //
-            //     $.ajax({
-            //         type:"get",
-            //         url:"/crm/users-roles/upuserroles.do",
-            //         data:data.field,
-            //         dataType:"json",
-            //         enctype:"multipart/form-data",
-            //         error:function(){
-            //             alert("内部出错啦！");
-            //         }
-            //     });
-            //     return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-            // });
+            //取消同步提交采用异步提交
+            form.on('submit(demo1)', function(data){
+                quotation = new Array();
+                $("input:checkbox[name='r_name']:checked").each(function(){
+                    quotation.push($(this).val());
+                });
+                window.location.href="/crm/users-roles/upuserroles.do?u_Id="+$("#ids").val()+"&r_name="+quotation;
+
+                // var json = {};
+                // for (var i = 0; i < quotation.length; i++) {
+                //     json[i] = quotation[i];
+                // }
+                // let myJson = JSON.stringify(json);
+                // // var str=JSON.parse(myJson);
+                // data.field.r_name = myJson ;
+                //
+                // $.ajax({
+                //     type:"get",
+                //     url:"/crm/users-roles/upuserroles.do",
+                //     data:data.field,
+                //     dataType:"json",
+                //     enctype:"multipart/form-data",
+                //     error:function(){
+                //         alert("内部出错啦！");
+                //     }
+                // });
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
 
         });
     </script>

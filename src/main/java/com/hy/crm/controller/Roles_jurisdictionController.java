@@ -90,4 +90,24 @@ public class Roles_jurisdictionController {
         return modelAndView;
     }
 
+
+    @RequestMapping("/updaterolejursdiction.do")
+    public ModelAndView updaterolejursdiction(String r_id,String[] j_id,ModelAndView modelAndView){
+
+        QueryWrapper<Roles_jurisdiction> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("r_id",r_id);
+        iRolesJurisdictionService.remove(queryWrapper);
+
+        for (int i=0;i<j_id.length;i++){
+
+            Roles_jurisdiction rolesJurisdiction=new Roles_jurisdiction();
+            rolesJurisdiction.setR_id(r_id);
+            rolesJurisdiction.setJ_id(j_id[i]);
+            iRolesJurisdictionService.save(rolesJurisdiction);
+
+        }
+        modelAndView.setViewName("page/user/gRoles.html");
+        return modelAndView;
+    }
+
 }

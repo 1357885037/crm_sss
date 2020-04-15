@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>设置角色权限</title>
+    <title>设置用户权限</title>
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
 </head>
 
@@ -10,11 +10,11 @@
 <form class="layui-form" action="" lay-fiter="test">
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <input type="hidden" name="r_id" id="ids" th:value="${r_id}"  required  lay-verify="required"  class="layui-input">
+            <input type="hidden" name="" id="ids" th:value="${users.u_Id}"  required  lay-verify="required"  class="layui-input">
         </div>
     </div>
-为角色[[${r_name}]]设置权限
-        <span th:each="ement:${jurisdictionsList}">
+    为角色[[${users.u_Name}]]设置权限
+    <span th:each="ement:${jurisdictionsList}">
             <input lay-filter="test" th:id="${ement.j_name}" type="checkbox" th:value="${ement.j_id}" name="j_id" th:title="${ement.j_name}" lay-skin="primary" th:checked="${ement.status} == 1 ? true:false "/>
                 <span th:each="index:${ement.jurisdictionsList}" >
                     <input   th:id="${ement.j_name}" type="checkbox" th:value="${index.j_id}" name="j_id" th:title="${index.j_name}" lay-skin="primary" th:checked="${index.status} == 1 ? true:false "/>
@@ -35,8 +35,8 @@
 </form>
 
 </body>
-   <script src="/layui/layui.js" charset="utf-8"></script>
-   <script src="/js/jquery-3.3.1.min.js" charset="utf-8"></script>
+<script src="/layui/layui.js" charset="utf-8"></script>
+<script src="/js/jquery-3.3.1.min.js" charset="utf-8"></script>
 <script>
     layui.use(['form','jquery'], function(){
         var form = layui.form;
@@ -46,7 +46,7 @@
             $("input:checkbox[name='j_id']:checked").each(function(){
                 quotation.push($(this).val());
             });
-            window.location.href="/crm/roles-jurisdiction/updaterolejursdiction.do?r_id="+$("#ids").val()+"&j_id="+quotation;
+            window.location.href="/crm/users-jurisdictions/userUpjur.do?u_Id="+$("#ids").val()+"&j_id="+quotation;
 
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
@@ -58,8 +58,8 @@
 
             if(data.elem.checked==true){
                 $("#"+sr).each(function(){
-                   // console.log(this.title);
-                   //  this.checked=true;
+                    // console.log(this.title);
+                    //  this.checked=true;
                     $(this).prop('checked', true);
                     form.render('checkbox');
                 });

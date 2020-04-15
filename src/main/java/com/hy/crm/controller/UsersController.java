@@ -3,12 +3,8 @@ package com.hy.crm.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.hy.crm.entity.Roles;
-import com.hy.crm.entity.Users;
-import com.hy.crm.entity.Users_roles;
-import com.hy.crm.service.IRolesService;
-import com.hy.crm.service.IUsersService;
-import com.hy.crm.service.IUsers_rolesService;
+import com.hy.crm.entity.*;
+import com.hy.crm.service.*;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +33,12 @@ public class UsersController {
     private IUsers_rolesService usersRolesService;
     @Autowired
     private IRolesService rolesService;
+
+    @Autowired
+    private IJurisdictionsService jurisdictionsService;
+
+    @Autowired
+    private IUsers_jurisdictionsService users_jurisdictionsService;
 
     @ResponseBody
     @RequestMapping("/queryAllUser.do")
@@ -130,13 +132,45 @@ public class UsersController {
 
             }
         }
-        for (Roles  roles:rolesList){
-           System.out.println(roles.toString()+"9999999999999999999999999999999999999999999999999999999999999999999999999999999999");
-        }
 
          modelAndView.addObject("users",users);
          modelAndView.addObject("rolesList",rolesList);
          modelAndView.setViewName("/page/user/roles.html");
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping("/userjurisdiction.do")
+    public  ModelAndView userjurisdiction(String u_Id,ModelAndView modelAndView){
+
+        QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("u_statu",0);
+        queryWrapper.eq("u_id",u_Id);
+        Users  users=usersService.getOne(queryWrapper);
+
+        QueryWrapper<Users_jurisdictions> queryWrapper1=new QueryWrapper<>();
+        queryWrapper1.eq("u_id",users.getU_Id());
+        List<Users_jurisdictions> usersJurisdictions=users_jurisdictionsService.list(queryWrapper1);
+
+        QueryWrapper<Jurisdictions> queryWrapper2=new QueryWrapper<>();
+        List<Jurisdictions> jurisdictionsList=jurisdictionsService.list(queryWrapper2);
+
+        for (Jurisdictions  jurisdictions:jurisdictionsList){
+            for (Users_jurisdictions usersJurisdictions1:usersJurisdictions){
+                if(jurisdictions.getJ_id().equals(usersJurisdictions1.getJ_id())){
+                    jurisdictions.setStatus(1);
+                    break;
+                }else{
+                    jurisdictions.setStatus(2);
+                }
+
+            }
+        }
+
+        modelAndView.addObject("users",users);
+        modelAndView.addObject("jurisdictionsList",jurisdictionsList);
+        modelAndView.setViewName("page/user/userUPjurisdictions.html");
 
         return modelAndView;
     }

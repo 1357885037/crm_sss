@@ -24,13 +24,14 @@ public class Users_rolesController {
     private IUsers_rolesService usersRolesService;
 
     @RequestMapping("/upuserroles.do")
-    public ModelAndView upuserroles(String[]  r_name, String u_Id,ModelAndView modelAndView){
+    public ModelAndView upuserroles(String[]  r_name,String u_Id,ModelAndView modelAndView){
+
         QueryWrapper<Users_roles> queryWrapper=new QueryWrapper<>();
         queryWrapper.eq("u_id",u_Id);
         usersRolesService.remove(queryWrapper);
-    System.out.println(r_name.length);
+
         for (int i=0;i<r_name.length;i++){
-            System.out.println(r_name[i]);
+
             Users_roles usersRoles=new Users_roles();
             usersRoles.setU_id(u_Id);
             usersRoles.setR_id(r_name[i]);
