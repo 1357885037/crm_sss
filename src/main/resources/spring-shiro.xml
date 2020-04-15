@@ -44,6 +44,7 @@
     <property name="filterChainDefinitions">
         <value>
             /css/**=anon
+            /font/**=anon
             /img/**=anon
             /js/**=anon
             /images/**=anon

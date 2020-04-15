@@ -140,6 +140,14 @@ public class ClientsController {
         return accountJson;
     }
 
+    @RequestMapping("/customer_contractsss.do")
+    public String customer_contractsss(String c_id,Model model){
+        model.addAttribute("c_id",c_id);
+        Users users=new Users();
+        model.addAttribute("users",users);
+        return "contracts_management/contracts_management";
+    }
+
     @RequestMapping("/getByid_business.do")
     public String getByid_business(String b_id,Model model){
         Business business=businessService.getById(b_id);

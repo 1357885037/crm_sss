@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hy.crm.entity.Clients;
 import com.hy.crm.entity.Contracts;
+import com.hy.crm.entity.Users;
 import com.hy.crm.service.IContractsService;
 import com.hy.crm.service.impl.ContractsServiceImpl;
 import com.hy.crm.util.AccountJson;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -50,6 +52,12 @@ public class ContractsController {
         return accountJson;
     }
 
+    @RequestMapping("/my_contracts.do")
+    public String  my_contracts(Model model, HttpSession session){
+        Users users= (Users) session.getAttribute("users");
+        model.addAttribute("users",users);
+        return "contracts_management/contracts_management";
+    }
 
     @RequestMapping("/redact.do")
     public  String redact(String ct_id, Model model){

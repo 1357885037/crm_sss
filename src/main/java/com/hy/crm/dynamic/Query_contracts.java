@@ -12,6 +12,14 @@ public class Query_contracts {
 
         StringBuffer sql=new StringBuffer("select *,(select sum(re_monkey) from remittance r where r.ct_id=ct.ct_id )  re_monkey ,(select sum(ch_monkey) from checks ch where ch.ct_id=ct.ct_id)  ch_monkey  from  contracts ct  ,clients c where ct.c_id=c.c_id");
 
+        if(!StringUtils.isNullOrEmpty(contracts.getC_id())){
+            sql.append(" and ct.c_id = '"+contracts.getC_id()+"' ");
+        }
+
+        if(!StringUtils.isNullOrEmpty(contracts.getU_id())){
+            sql.append(" and ct.u_id = '"+contracts.getU_id()+"' ");
+        }
+
         if(contracts.getCt_status()!=null && contracts.getCt_status()<4 ){
             sql.append(" and ct.ct_status = '"+contracts.getCt_status()+"' ");
         }

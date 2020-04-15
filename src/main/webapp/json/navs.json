@@ -5,6 +5,12 @@
 			"icon": "icon-text",
 			"href": "customer_management/customer_management.html",
 			"spread": false
+		},
+		{
+			"title": "添加客户",
+			"icon": "icon-text",
+			"href": "customer_management/add_Clients.html",
+			"spread": false
 		}
 	],
 	"memberCenter": [
@@ -96,7 +102,12 @@
 		"icon": "icon-mokuai",
 		"href": "contracts_management/contracts_management.html",
 		"spread": false
-	}
+	},{
+			"title": "我的合同",
+			"icon": "icon-log",
+			"href": "/crm/contracts/my_contracts.do",
+			"spread": false
+		}
 ]
 }
 

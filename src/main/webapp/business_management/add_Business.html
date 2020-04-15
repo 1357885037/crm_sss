@@ -45,6 +45,10 @@
             <input  name="b_rank" title="高" type="radio" value="2">
         </div>
 
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <a class='btn btn-info' href="javascript:history.go(-1)"><button class="layui-btn" type="button">返回上一步</button></a>
+        </div>
     </div>
 
 
@@ -366,7 +370,7 @@
                             icon: 1,
                             time: 2000 //2秒关闭（如果不配置，默认是3秒）
                         }, function(){
-                            //do something
+                            window.location.href ="/customer_management/customer_management.html";
                         });
                     }else{
                         layer.msg('添加失败,该用户已存在！', {

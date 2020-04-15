@@ -1,7 +1,9 @@
 package com.hy.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * <p>
@@ -15,6 +17,7 @@ public class Checks implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @TableId(value = "ch_id", type = IdType.UUID)
     private String ch_id;
 
     private String ch_cause;
@@ -41,9 +44,9 @@ public class Checks implements Serializable {
 
     private Integer ch_account;
 
-    private Integer ch_phone;
+    private Long ch_phone;
 
-    private BigDecimal ch_monkey;
+    private Double ch_monkey;
 
     private String ch_big;
 
@@ -143,20 +146,23 @@ public class Checks implements Serializable {
     public void setCh_account(Integer ch_account) {
         this.ch_account = ch_account;
     }
-    public Integer getCh_phone() {
+
+    public Long getCh_phone() {
         return ch_phone;
     }
 
-    public void setCh_phone(Integer ch_phone) {
+    public void setCh_phone(Long ch_phone) {
         this.ch_phone = ch_phone;
     }
-    public BigDecimal getCh_monkey() {
+
+    public Double getCh_monkey() {
         return ch_monkey;
     }
 
-    public void setCh_monkey(BigDecimal ch_monkey) {
+    public void setCh_monkey(Double ch_monkey) {
         this.ch_monkey = ch_monkey;
     }
+
     public String getCh_big() {
         return ch_big;
     }
@@ -175,23 +181,23 @@ public class Checks implements Serializable {
     @Override
     public String toString() {
         return "Checks{" +
-        "ch_id=" + ch_id +
-        ", ch_cause=" + ch_cause +
-        ", u_id=" + u_id +
-        ", ch_dept=" + ch_dept +
-        ", ch_date=" + ch_date +
-        ", ch_overdate=" + ch_overdate +
-        ", ch_state=" + ch_state +
-        ", c_id=" + c_id +
-        ", ct_id=" + ct_id +
-        ", ch_kind=" + ch_kind +
-        ", ch_number=" + ch_number +
-        ", ch_cilct=" + ch_cilct +
-        ", ch_account=" + ch_account +
-        ", ch_phone=" + ch_phone +
-        ", ch_monkey=" + ch_monkey +
-        ", ch_big=" + ch_big +
-        ", ch_accessory=" + ch_accessory +
-        "}";
+                "ch_id='" + ch_id + '\'' +
+                ", ch_cause='" + ch_cause + '\'' +
+                ", u_id='" + u_id + '\'' +
+                ", ch_dept='" + ch_dept + '\'' +
+                ", ch_date='" + ch_date + '\'' +
+                ", ch_overdate='" + ch_overdate + '\'' +
+                ", ch_state='" + ch_state + '\'' +
+                ", c_id='" + c_id + '\'' +
+                ", ct_id='" + ct_id + '\'' +
+                ", ch_kind='" + ch_kind + '\'' +
+                ", ch_number='" + ch_number + '\'' +
+                ", ch_cilct='" + ch_cilct + '\'' +
+                ", ch_account=" + ch_account +
+                ", ch_phone=" + ch_phone +
+                ", ch_monkey=" + ch_monkey +
+                ", ch_big='" + ch_big + '\'' +
+                ", ch_accessory='" + ch_accessory + '\'' +
+                '}';
     }
 }

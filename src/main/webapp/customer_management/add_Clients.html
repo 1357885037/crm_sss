@@ -20,7 +20,7 @@
     <legend>新增客户</legend>
 </fieldset>
 
-<form class="layui-form" >
+<form class="layui-form layui-form-pane" >
     <div class="layui-form-item" >
         <label class="layui-form-label">客户名称</label>
         <div class="layui-input-inline">
@@ -36,6 +36,7 @@
                 <option value="3">客户分类三</option>
             </select>
         </div>
+
 
     </div>
 
@@ -283,7 +284,6 @@
 
         //监听提交
         form.on('submit(demo1)', function(data){
-            alert("进入表单提交")
             var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
             $.ajax({
                 type : "post",
@@ -297,7 +297,7 @@
                             icon: 1,
                             time: 2000 //2秒关闭（如果不配置，默认是3秒）
                         }, function(){
-                            //do something
+                            //window.location.href ="/customer_management/customer_management.html";       //do something
                         });
                     }else{
                         layer.msg('添加失败,该用户已存在！', {

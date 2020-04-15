@@ -13,6 +13,16 @@
 	<base th:href="@{/}">
 	<link rel="stylesheet" th:href="@{../layui/css/layui.css}" media="all" />
 	<link rel="stylesheet" th:href="@{../css/index.css}" media="all" />
+	<script th:src="@{../font/iconfont.js}"></script>
+	<style type="text/css">
+		.icon {
+			width:1em;
+			height:1em;
+			vertical-align: -0.15em;
+			fill: currentColor;
+			overflow: hidden;
+		}
+	</style>
 </head>
 <body class="main_body">
 	<div class="layui-layout layui-layout-admin">
@@ -27,47 +37,47 @@
 					<li class="layui-nav-item" data-menu="contentManagement">
 						<a href="javascript:;"><i class="seraph icon-caidan"></i><cite>layuiCMS</cite></a>
 						<dl class="layui-nav-child">
-							<dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>客户管理</cite></a></dd>
-							<dd data-menu="memberCenter"><a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>用户中心</cite></a></dd>
-							<dd data-menu="systemeSttings"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>商机管理</cite></a></dd>
-							<dd data-menu="seraphApi"><a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>跟单管理</cite></a></dd>
-							<dd data-menu="mengqi"><a href="javascript:;"></a><i class="iconfont" data-icon="&#xe620;">&#xe6ae;</i><cite>论坛</cite></dd>
-							<dd data-menu="heto"><a href="javascript:;"></a><i class="iconfont" data-icon="&#xe620;">&#xe6ae;</i><cite>合同</cite></dd>
-							<dd data-menu="shouhou"><a href="javascript:;"></a><i class="iconfont" data-icon="&#xe620;">&#xe6ae;</i><cite>售后</cite></dd>
-							<dd data-menu="tongji"><a href="javascript:;"></a><i class="iconfont" data-icon="&#xe620;">&#xe6ae;</i><cite>统计</cite></dd>
-							<dd data-menu="xitong"><a href="javascript:;"></a><i class="iconfont" data-icon="&#xe620;">&#xe6ae;</i><cite>系统</cite></dd>
+							<dd class="layui-this" data-menu="contentManagement"><a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kehuguanli"></use></svg><cite>客户管理</cite></a></dd>
+							<dd data-menu="memberCenter"><a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-_huabanfuben"></use></svg><cite>用户中心</cite></a></dd>
+							<dd data-menu="systemeSttings"><a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shangjiguanli1"></use></svg><cite>商机管理</cite></a></dd>
+							<dd data-menu="seraphApi"><a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gendanguanli1"></use></svg><cite>跟单管理</cite></a></dd>
+							<dd data-menu="mengqi"><a href="javascript:;"></a><svg class="icon" aria-hidden="true"><use xlink:href="#icon-luntan1"></use></svg><cite>论坛</cite></dd>
+							<dd data-menu="heto"><a href="javascript:;"></a><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hetongguanli3"></use></svg><cite>合同管理</cite></dd>
+							<dd data-menu="shouhou"><a href="javascript:;"></a><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shouhouguanli1"></use></svg><cite>售后服务</cite></dd>
+							<dd data-menu="tongji"><a href="javascript:;"></a><svg class="icon" aria-hidden="true"><use xlink:href="#icon-statistics1"></use></svg><cite>统计</cite></dd>
+							<dd data-menu="xitong"><a href="javascript:;"></a><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shezhi1"></use></svg><cite>系统设置</cite></dd>
 
 						</dl>
 					</li>
 				</ul>
 				<ul class="layui-nav topLevelMenus" pc>
 					<li class="layui-nav-item layui-this" data-menu="contentManagement">
-						<a href="javascript:;"><i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i><cite>客户管理</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-kehuguanli"></use></svg><cite>客户管理</cite></a>
 					</li>
 					<li class="layui-nav-item" data-menu="memberCenter" pc>
-						<a href="javascript:;"><i class="seraph icon-icon10" data-icon="icon-icon10"></i><cite>用户中心</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-_huabanfuben"></use></svg><cite>用户中心</cite></a>
 					</li>
 					<li class="layui-nav-item" data-menu="systemeSttings" pc>
-						<a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>商机设置</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shangjiguanli1"></use></svg><cite>商机管理</cite></a>
 					</li>
 					<li class="layui-nav-item" data-menu="seraphApi" pc>
-						<a href="javascript:;"><i class="layui-icon" data-icon="&#xe620;">&#xe620;</i><cite>跟单设置</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gendanguanli1"></use></svg><cite>跟单管理</cite></a>
 					</li>
 					<li class="layui-nav-item" data-menu="mengqi" pc>
-						<a href="javascript:;"><i class="iconfont">&#xe6ae;</i><cite>论坛</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-luntan1"></use></svg><cite>论坛</cite></a>
 					</li>
 					<li class="layui-nav-item" data-menu="heto" pc>
-						<a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>合同管理</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-hetongguanli3"></use></svg><cite>合同管理</cite></a>
 					</li>
 					<li class="layui-nav-item" data-menu="shouhou" pc>
-						<a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>售后管理</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shouhouguanli1"></use></svg><cite>售后管理</cite></a>
 					</li>
 
 					<li class="layui-nav-item" data-menu="tongji" pc>
-						<a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>统级</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-statistics1"></use></svg><cite>统计</cite></a>
 					</li>
 					<li class="layui-nav-item" data-menu="xitong" pc>
-						<a href="javascript:;"><i class="layui-icon" data-icon="&#xe705;">&#xe705;</i><cite>系统管理</cite></a>
+						<a href="javascript:;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-shezhi1"></use></svg><cite>系统管理</cite></a>
 					</li>
 
 

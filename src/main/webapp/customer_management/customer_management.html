@@ -8,22 +8,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/css/serv.css"  media="all">
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style type="text/css">
+        .layui-col-xs9{
+            right: 110px;
+        }
+        .icon {
+            width: 5em;
+            height: 5em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        .icon2 {
+            width: 2em;
+            height:2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        #ceshi{
+            left: 100px;
+        }
+    </style>
 </head>
+
 <body>
 
 <form class="layui-form layui-form-pane" action="/crm/clients/queryall.do">
     <div class="layui-form-item">
         <div class="layui-row">
             <div class="layui-col-md3">
-                <div class="layui-inline">
-                    <div id="u4921" class="ax_default _图片">
-                        <i class="layui-icon layui-icon-read" width="50" height="50">售后服务</i>
-                    </div>
+                <div class="layui-inline" >
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-kehuguanli1"></use>
+                    </svg>
+                </div>
+                <div class="layui-inline" >
+                    <h1 style="display:inline;">客户管理</h1>
                 </div>
             </div>
-
             <div class="layui-col-md9">
+                <div class="layui-block">&nbsp;</div>
                 <div class="layui-inline">
                     <select name="tiaojian" lay-filter="selec" id="selec">
                         <option value=1>按客户名称</option>
@@ -41,8 +68,6 @@
                 <div class="layui-inline">
                     <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-
-                    <button class="layui-btn" type="button"><a href="/customer_management/add_Clients.html">➕新增客户</a></button>
                 </div>
 
             </div>
@@ -53,7 +78,7 @@
     <div class="layui-col-xs3">
         <div class="layui-inline">
             <div class="layui-card" id="card">
-                <div class="layui-card-header"><i class="layui-icon ">&#xe60a;</i>分类</div>
+                <div class="layui-card-header"><div class="layui-inline"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie"></use></svg></div>  <div class="layui-inline" ><h5 style="display:inline;"><b>类别:</b></h5></div></div>
                 <div class="layui-card-body layui-text">
                     <div class="layuimini-notice">
                         <div class="layuimini-notice-title"><a href="/customer_management/customer_management.html"><i class="layui-icon">&#xe621;所有分类</i></a> </div>
@@ -73,17 +98,46 @@
         </div>
     </div>
     <div class="layui-col-xs9">
-        <div class="layui-inline">
+       <div class="layui-inline">
             <table class="layui-hide" id="test" lay-filter="test"></table>
-        </div>
+    </div>
     </div>
 </div>
 <script src="/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
+<script type="text/html" id="titleTpl">
+    {{#  if(d.turnover == null){ }}
+        0
+    {{#  } else { }}
+    {{d.turnover}}
+    {{#  } }}
+</script>
 
+<script type="text/html" id="titleTp2">
+    {{#  if(d.contract_amount == null){ }}
+    0
+    {{#  } else { }}
+    {{d.contract_amount}}
+    {{#  } }}
+</script>
+
+<script type="text/html" id="titleTp3">
+    {{#  if(d.total_Return_amount == null){ }}
+    0
+    {{#  } else { }}
+    {{d.total_Return_amount}}
+    {{#  } }}
+</script>
+<script type="text/html" id="titleTp4">
+    {{#  if(d.servic_Score == null){ }}
+    0
+    {{#  } else { }}
+    {{d.servic_Score}}
+    {{#  } }}
+</script>
 <script>
-    layui.use(['table','form','layer','laydate'], function(){
+    layui.use(['table','form','layer','laydate'], function() {
         var $ = layui.jquery;
         var table = layui.table;
         var form = layui.form;
@@ -92,33 +146,57 @@
 
         table.render({
             elem: '#test'
-            ,url:'/crm/clients/queryall.do'
-            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-            ,cols: [
+            , url: '/crm/clients/queryall.do'
+            , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+            , cols: [
                 [
-                 {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                ,{field:'business_count', title: '商机数',templet:'<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ', sort: true}
-                ,{field:'turnover', title: '预计成交金额', sort: true}
-                ,{field:'contract_count', title: '合同数', sort: true}
-                ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
-                ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
-                ,{field:'service_count', title: '售后服务数', sort: true,templet:'<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '}
-                ,{field:'servic_Score', title: '服务评分', sort: true}
-            ]
-            ] , page: true
-            , limits: [3, 5, 8, 10]
-            , limit: 3
+                    {
+                        field: 'c_name',
+                        title: '客户名称',
+                        templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> ',
+                        width: "200"
+                    } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    , {
+                    field: 'business_count',
+                    title: '商机数',
+                    templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
+                    sort: true,
+                    width: "145"
+                }
+                    , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl', width: "145"}
+                    , {
+                    field: 'contract_count',
+                    title: '合同数',
+                    sort: true,
+                    templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> ',
+                    width: "145"
+                }
+                    , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2', width: "145"} //单元格内容水平居中
+                    , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3', width: "145"} //单元格内容水平居中
+                    , {
+                    field: 'service_count',
+                    title: '售后服务数',
+                    sort: true,
+                    templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> ',
+                    width: "145"
+                }
+                    , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4', width: "145"}
+                ]
+            ], page: true
+            , limits: [5, 10, 15, 20]
+            , limit: 10
+
         });
 
 
         //监听下拉框值得改变并改变查询的输入框
-        form.on('select(selec)', function(data){
+        form.on('select(selec)', function (data) {
             console.log(data.value); //得到被选中的值
-            if(data.value==1){
+            if (data.value == 1) {
                 $("#dis").empty();
                 $("#dis").append("<input type='text' name='c_name' placeholder='请输入客户名称' class='layui-input'>");
             }
-            if(data.value==2){
+            if (data.value == 2) {
                 $("#dis").empty();
                 $("#dis").append(" <select name=\"c_source\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
                     "                <option value=\"老客户\">老客户</option>\n" +
@@ -135,7 +213,7 @@
                     "            </select>");
                 form.render();
             }
-            if(data.value==3){
+            if (data.value == 3) {
                 $("#dis").empty();
                 $("#dis").append(" <select name=\"c_state\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
                     "                <option value=\"中国\" selected=\"\">中国</option>\n" +
@@ -144,11 +222,11 @@
                     "            </select>");
                 form.render();
             }
-            if(data.value==4){
+            if (data.value == 4) {
                 $("#dis").empty();
                 $("#dis").append("<input type='text' name='c_city' placeholder='请输入所在城市' class='layui-input'>");
             }
-            if(data.value==5){
+            if (data.value == 5) {
                 $("#dis").empty();
                 $("#dis").append(" <select name=\"c_industry\" lay-filter=\"aihao\" style=\"width: 200px;\">\n" +
                     "                <option value=\"IT|互联网|通信|电子\">IT|互联网|通信|电子</option>\n" +
@@ -215,20 +293,39 @@
         $("#on1").click(function () {
             table.render({
                 elem: '#test'
-                ,url:'/crm/clients/queryall.do?c_classify='+1
-                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                ,cols: [
+                , url: '/crm/clients/queryall.do?c_classify=' + 1
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , cols: [
                     [
-                        {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                        ,{field:'business_count', title: '商机数',templet:'<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> ',sort: true,}
-                        ,{field:'turnover', title: '预计成交金额', sort: true}
-                        ,{field:'contract_count', title: '合同数', sort: true}
-                        ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
-                        ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
-                        ,{field:'service_count', title: '售后服务数', sort: true}
-                        ,{field:'servic_Score', title: '服务评分', sort: true}
+                        {
+                            field: 'c_name',
+                            title: '客户名称',
+                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '
+                        } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        , {
+                        field: 'business_count',
+                        title: '商机数',
+                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
+                        sort: true
+                    }
+                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl'}
+                        , {
+                        field: 'contract_count',
+                        title: '合同数',
+                        sort: true,
+                        templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> '
+                    }
+                        , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2'} //单元格内容水平居中
+                        , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3'} //单元格内容水平居中
+                        , {
+                        field: 'service_count',
+                        title: '售后服务数',
+                        sort: true,
+                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '
+                    }
+                        , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4'}
                     ]
-                ] , page: true
+                ], page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
@@ -238,20 +335,39 @@
         $("#on2").click(function () {
             table.render({
                 elem: '#test'
-                ,url:'/crm/clients/queryall.do?c_classify='+2
-                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                ,cols: [
+                , url: '/crm/clients/queryall.do?c_classify=' + 2
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , cols: [
                     [
-                        {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                        ,{field:'business_count', title: '商机数', sort: true}
-                        ,{field:'turnover', title: '预计成交金额', sort: true}
-                        ,{field:'contract_count', title: '合同数', sort: true}
-                        ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
-                        ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
-                        ,{field:'service_count', title: '售后服务数', sort: true}
-                        ,{field:'servic_Score', title: '服务评分', sort: true}
+                        {
+                            field: 'c_name',
+                            title: '客户名称',
+                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '
+                        } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        , {
+                        field: 'business_count',
+                        title: '商机数',
+                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
+                        sort: true
+                    }
+                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl'}
+                        , {
+                        field: 'contract_count',
+                        title: '合同数',
+                        sort: true,
+                        templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> '
+                    }
+                        , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2'} //单元格内容水平居中
+                        , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3'} //单元格内容水平居中
+                        , {
+                        field: 'service_count',
+                        title: '售后服务数',
+                        sort: true,
+                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '
+                    }
+                        , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4'}
                     ]
-                ] , page: true
+                ], page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
@@ -261,26 +377,44 @@
         $("#on3").click(function () {
             table.render({
                 elem: '#test'
-                ,url:'/crm/clients/queryall.do?c_classify='+3
-                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                ,cols: [
+                , url: '/crm/clients/queryall.do?c_classify=' + 3
+                , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                , cols: [
                     [
-                        {field:'c_name', title: '客户名称',templet:'<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                        ,{field:'business_count', title: '商机数', sort: true}
-                        ,{field:'turnover', title: '预计成交金额', sort: true}
-                        ,{field:'contract_count', title: '合同数', sort: true}
-                        ,{field:'contract_amount', title: '合同金额', sort: true} //单元格内容水平居中
-                        ,{field:'total_Return_amount', title: '回款额', sort: true} //单元格内容水平居中
-                        ,{field:'service_count', title: '售后服务数', sort: true}
-                        ,{field:'servic_Score', title: '服务评分', sort: true}
+                        {
+                            field: 'c_name',
+                            title: '客户名称',
+                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '
+                        } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        , {
+                        field: 'business_count',
+                        title: '商机数',
+                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
+                        sort: true
+                    }
+                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl'}
+                        , {
+                        field: 'contract_count',
+                        title: '合同数',
+                        sort: true,
+                        templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> '
+                    }
+                        , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2'} //单元格内容水平居中
+                        , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3'} //单元格内容水平居中
+                        , {
+                        field: 'service_count',
+                        title: '售后服务数',
+                        sort: true,
+                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '
+                    }
+                        , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4'}
                     ]
-                ] , page: true
+                ], page: true
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
 
         })
-
     });
 </script>
 

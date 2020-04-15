@@ -92,7 +92,6 @@ public class WithsController {
         return "1";
     }
 
-    @ResponseBody
     @RequestMapping("/getByid_withs.do")
     public String getByid_withs(String b_id, Model model){
         model.addAttribute("b_id",b_id);
