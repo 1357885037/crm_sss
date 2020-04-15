@@ -94,7 +94,13 @@
 		"icon": "icon-mokuai",
 		"href": "/page/user/queryUsers.html",
 		"spread": false
-	}
+	},
+		{
+			"title": "用户角色",
+			"icon": "icon-mokuai",
+			"href": "/page/user/gRoles.html",
+			"spread": false
+		}
 ],
 	"heto": [
 	{

@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>个人资料--layui后台管理模板 2.0</title>
-    <link rel="stylesheet" href="../../layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
 </head>
 <!--判断男女-->
 <script type="text/html" id="titleTpl">
@@ -17,6 +17,8 @@
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-sm layui-icon" lay-event="edit">&#xe642;修改</a>
     <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">&#xe640;删除</a>
+    <a class="layui-btn layui-btn-danger layui-btn-sm " lay-event="roles">&#xe640;设置角色</a>
+    <a class="layui-btn layui-btn-danger layui-btn-sm " lay-event="quanx">&#xe640;设置权限</a>
 </script>
 <form class="layui-form layui-row" >
              <div>
@@ -93,6 +95,7 @@
                 [
                     {field: 'u_Name', width: 200, title: '用户名',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.u_Name}}</a></div>"}
                     , {field: 'u_Realname', width: 150, title: '真实姓名'}
+                    , {field: 'u_roles', width: 150, title: '角色'}
                     , {field: 'u_Sex', title: '性别', width: 150, templet:"#titleTpl"}
                     , {field: 'u_Phone', width: 100, title: '联系电话'}
                     , {field: 'u_Date', width: 150, title: '出生年月'}
@@ -102,7 +105,7 @@
                     , {field: 'u_Email', width: 150, title: '邮箱'}
                     , {field: 'u_Signature', width: 150, title: '个性签名'}
                     ,{field:'u_Img' ,width:100,height:100,title:'头像',templet:'<div><img src="img/{{d.u_Img}}"/></div>'}
-                    ,{width:200, title: '操作',templet:'#barDemo'}
+                    ,{width:500, title: '操作',templet:'#barDemo'}
                 ]
             ]
             , page: true
@@ -147,6 +150,30 @@
                         table.reload("test",{})
                     }
                 });
+            }
+
+            if(obj.event === 'roles'){
+                window.location.href="/sanqi/users/userRoles.do?u_Id="+data.u_Id;
+                // layer.open({
+                //     title: "修改角色",
+                //     type: 2,
+                //     content:
+                //     area: ['80%', '80%'],
+                //     skin: "layui-layer-molv",
+                //     success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口
+                //     } ,
+                //     end: function(){
+                //         table.reload("test",{})
+                //     }
+                // })
+
+
+
+            }
+
+            if(obj.event === 'quanx'){
+                window.location.href="/sanqi/users/userjurisdiction.do?u_Id="+data.u_Id;
+
             }
         });
 

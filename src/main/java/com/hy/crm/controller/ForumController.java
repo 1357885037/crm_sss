@@ -326,7 +326,6 @@ return sum;
     }
     @RequestMapping("/addrepii.do")
     public Integer addrepii(Replys replys,HttpSession session){
-System.out.println(replys.toString()+"1254654646546546546546544984444444444444444444444444444444444444444444451000000000000000000000000000");
 
         Users users=(Users) session.getAttribute("users");
         java.util.Date d = new java.util.Date();
@@ -342,6 +341,19 @@ System.out.println(replys.toString()+"125465464654654654654654498444444444444444
 
 
         return 0;
+    }
+
+    @RequestMapping("/delforum.do")
+    public Integer delforum(String f_id){
+        QueryWrapper<Forum> querywrapper=new QueryWrapper();
+        querywrapper.eq("f_id",f_id);
+        Integer num=200;
+        try {
+            forumService.remove(querywrapper);
+        } catch (Exception e) {
+            num=500;
+        }
+        return num;
     }
 
 
