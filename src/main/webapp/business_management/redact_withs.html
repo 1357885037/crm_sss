@@ -7,7 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/css/serv.css"  media="all">
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style type="text/css">
+        .icon {
+            width: 3em;
+            height: 3em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 <blockquote class="layui-elem-quote layui-text">
@@ -18,11 +28,24 @@
 
     <input type="hidden"  name="b_id" th:value="${b_id}" id="b_id" >
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>历史跟单记录</legend>
+        <legend>   <div class="layui-inline" ><svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-jifenshangcheng"></use>
+        </svg>
+            </div>
+            <div class="layui-inline" >
+                <h3 style="display:inline;">历史跟单记录</h3>
+            </div></legend>
     </fieldset>
     <table class="layui-hide" id="test" lay-filter="test"></table>
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>新增跟单记录</legend>
+        <legend><div class="layui-inline" >
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-pingfen1"></use>
+            </svg>
+        </div>
+            <div class="layui-inline" >
+                <h3 style="display:inline;">新增跟单</h3>
+            </div></legend>
     </fieldset>
 
     <div class="layui-form-item" >
@@ -71,12 +94,15 @@
             <div class="layui-input-inline">
                 <button type="button" class="layui-btn" id="uploads" ><i class="layui-icon"></i>选择文件</button>
             </div>
-            <div class="layui-input-inline">
-                <button type="button" class="layui-btn" id="tj" ><i class="layui-icon"></i>上传文件</button>
-            </div>
-            <input type="hidden" name="w_accessory" id="w_accessory" lay-verify="required" />
         </div>
 
+        <div class="layui-input-inline">
+            <button type="button" class="layui-btn" id="tj" ><i class="layui-icon"></i>上传文件</button>
+        </div>
+
+        <input type="hidden" name="w_accessory" id="w_accessory" lay-verify="required" />
+
+    </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" type="submit" lay-filter="demo1" lay-submit="">立即提交</button>

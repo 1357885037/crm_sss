@@ -7,7 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/css/serv.css"  media="all">
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style type="text/css">
+        .icon {
+            width:4em;
+            height:4em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 <form class="layui-form layui-form-pane" action="/crm/withs/getById_b_bid.do">
@@ -15,10 +25,13 @@
     <div class="layui-form-item">
         <div class="layui-row">
             <div class="layui-col-md3">
-                <div class="layui-inline">
-                    <div id="u4921" class="ax_default _图片">
-                        <i class="layui-icon layui-icon-read" width="50" height="50">售后服务</i>
-                    </div>
+                <div class="layui-inline" >
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-Mwodegendan"></use>
+                    </svg>
+                </div>
+                <div class="layui-inline" >
+                    <h2 style="display:inline;">跟单管理</h2>
                 </div>
             </div>
 
@@ -39,7 +52,8 @@
                     <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">查找</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
 
-                    <a href="/crm/withs/add.do"><button class="layui-btn layui-btn-lg" type="button">➕新增跟单></button></a>
+                  <!--  <a href="/crm/withs/add.do"><button class="layui-btn layui-btn-lg" type="button">➕新增跟单></button></a>
+                -->
                 </div>
 
             </div>

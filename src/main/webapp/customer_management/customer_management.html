@@ -31,6 +31,13 @@
         #ceshi{
             left: 100px;
         }
+        .icon3 {
+            width: 1em;
+            height:1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
     </style>
 </head>
 
@@ -78,19 +85,19 @@
     <div class="layui-col-xs3">
         <div class="layui-inline">
             <div class="layui-card" id="card">
-                <div class="layui-card-header"><div class="layui-inline"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie"></use></svg></div>  <div class="layui-inline" ><h5 style="display:inline;"><b>类别:</b></h5></div></div>
+                <div class="layui-card-header"><div class="layui-inline"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-tubiaozhizuomoban1-copy"></use></svg></div>  <div class="layui-inline" ><h5 style="display:inline;"><b>类别:</b></h5></div></div>
                 <div class="layui-card-body layui-text">
                     <div class="layuimini-notice">
-                        <div class="layuimini-notice-title"><a href="/customer_management/customer_management.html"><i class="layui-icon">&#xe621;所有分类</i></a> </div>
+                        <div class="layuimini-notice-title"><a href="/customer_management/customer_management.html"> <svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>所有分类</a> </div>
                     </div>
                     <div class="layuimini-notice">
-                        <div class="layuimini-notice-title"><a href="javascript:;" id="on1"><i class="layui-icon">&#xe621;分类一</i></a> </div>
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on1"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>分类一</a> </div>
                     </div>
                     <div class="layuimini-notice">
-                        <div class="layuimini-notice-title"><a href="javascript:;" id="on2"><i class="layui-icon">&#xe621;分类二</i></a> </div>
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on2"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>分类二</a> </div>
                     </div>
                     <div class="layuimini-notice">
-                        <div class="layuimini-notice-title"><a href="javascript:;" id="on3"><i class="layui-icon">&#xe621;分类三</i></a> </div>
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on3"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>分类三</a> </div>
                     </div>
 
                 </div>
@@ -108,32 +115,33 @@
 
 <script type="text/html" id="titleTpl">
     {{#  if(d.turnover == null){ }}
-        0
+        0<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-xinzengchengjiaojine"></use></svg>
     {{#  } else { }}
-    {{d.turnover}}
+    {{d.turnover}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-xinzengchengjiaojine"></use></svg>
     {{#  } }}
 </script>
 
 <script type="text/html" id="titleTp2">
     {{#  if(d.contract_amount == null){ }}
-    0
+    0<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-hetongjine"></use></svg>
     {{#  } else { }}
-    {{d.contract_amount}}
+    {{d.contract_amount}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-hetongjine"></use></svg>
     {{#  } }}
 </script>
 
 <script type="text/html" id="titleTp3">
     {{#  if(d.total_Return_amount == null){ }}
-    0
+    0<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-gongsihuikuane"></use></svg>
+
     {{#  } else { }}
-    {{d.total_Return_amount}}
+    {{d.total_Return_amount}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-gongsihuikuane"></use></svg>
     {{#  } }}
 </script>
 <script type="text/html" id="titleTp4">
     {{#  if(d.servic_Score == null){ }}
-    0
+    0<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-icon-"></use></svg>
     {{#  } else { }}
-    {{d.servic_Score}}
+    {{d.servic_Score}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-icon-"></use></svg>
     {{#  } }}
 </script>
 <script>
@@ -153,34 +161,37 @@
                     {
                         field: 'c_name',
                         title: '客户名称',
-                        templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> ',
+                        templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></a></div> ',
                         width: "200"
                     } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                     , {
                     field: 'business_count',
-                    title: '商机数',
-                    templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
+                    title: '商机数/个',
+                    templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-APPtubiao_xinzengshangjishu"></use></svg></a></div> ',
                     sort: true,
-                    width: "145"
+                    width: "125"
+                    ,align:"center"
                 }
-                    , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl', width: "145"}
-                    , {
+                    , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl', width: "125"  ,align:"center"},
+                     {
                     field: 'contract_count',
-                    title: '合同数',
+                    title: '合同数/个',
                     sort: true,
-                    templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> ',
-                    width: "145"
+                    templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-zonghetongshu"></use></svg></a></div> ',
+                    width: "125",
+                    align:"center"
                 }
-                    , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2', width: "145"} //单元格内容水平居中
-                    , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3', width: "145"} //单元格内容水平居中
+                    , {field: 'contract_amount', title: '合同金额/元', sort: true, templet: '#titleTp2', width: "125"   ,align:"center"} //单元格内容水平居中
+                    , {field: 'total_Return_amount', title: '回款额/元', sort: true, templet: '#titleTp3', width: "125"   ,align:"center"} //单元格内容水平居中
                     , {
                     field: 'service_count',
-                    title: '售后服务数',
+                    title: '售后服务数/个',
                     sort: true,
-                    templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> ',
-                    width: "145"
+                    templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-ic-fuwushu"></use></svg></a></div> ',
+                    width: "125"
+                    ,align:"center"
                 }
-                    , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4', width: "145"}
+                    , {field: 'servic_Score', title: '服务评分/分', sort: true, templet: '#titleTp4', width: "125" ,align:"center"}
                 ]
             ], page: true
             , limits: [5, 10, 15, 20]
@@ -295,35 +306,42 @@
                 elem: '#test'
                 , url: '/crm/clients/queryall.do?c_classify=' + 1
                 , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                , cols: [
+                , cols:  [
                     [
                         {
                             field: 'c_name',
                             title: '客户名称',
-                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '
+                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></a></div> ',
+                            width: "200"
                         } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                         , {
                         field: 'business_count',
-                        title: '商机数',
-                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
-                        sort: true
-                    }
-                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl'}
-                        , {
-                        field: 'contract_count',
-                        title: '合同数',
+                        title: '商机数/个',
+                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-APPtubiao_xinzengshangjishu"></use></svg></a></div> ',
                         sort: true,
-                        templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> '
+                        width: "125"
+                        ,align:"center"
                     }
-                        , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2'} //单元格内容水平居中
-                        , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3'} //单元格内容水平居中
+                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl', width: "125"  ,align:"center"},
+                        {
+                            field: 'contract_count',
+                            title: '合同数/个',
+                            sort: true,
+                            templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-zonghetongshu"></use></svg></a></div> ',
+                            width: "125",
+                            align:"center"
+                        }
+                        , {field: 'contract_amount', title: '合同金额/元', sort: true, templet: '#titleTp2', width: "125"   ,align:"center"} //单元格内容水平居中
+                        , {field: 'total_Return_amount', title: '回款额/元', sort: true, templet: '#titleTp3', width: "125"   ,align:"center"} //单元格内容水平居中
                         , {
                         field: 'service_count',
-                        title: '售后服务数',
+                        title: '售后服务数/个',
                         sort: true,
-                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '
+                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-ic-fuwushu"></use></svg></a></div> ',
+                        width: "125"
+                        ,align:"center"
                     }
-                        , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4'}
+                        , {field: 'servic_Score', title: '服务评分/分', sort: true, templet: '#titleTp4', width: "125" ,align:"center"}
                     ]
                 ], page: true
                 , limits: [3, 5, 8, 10]
@@ -337,35 +355,42 @@
                 elem: '#test'
                 , url: '/crm/clients/queryall.do?c_classify=' + 2
                 , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                , cols: [
+                , cols:  [
                     [
                         {
                             field: 'c_name',
                             title: '客户名称',
-                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '
+                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></a></div> ',
+                            width: "200"
                         } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                         , {
                         field: 'business_count',
-                        title: '商机数',
-                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
-                        sort: true
-                    }
-                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl'}
-                        , {
-                        field: 'contract_count',
-                        title: '合同数',
+                        title: '商机数/个',
+                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-APPtubiao_xinzengshangjishu"></use></svg></a></div> ',
                         sort: true,
-                        templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> '
+                        width: "125"
+                        ,align:"center"
                     }
-                        , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2'} //单元格内容水平居中
-                        , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3'} //单元格内容水平居中
+                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl', width: "125"  ,align:"center"},
+                        {
+                            field: 'contract_count',
+                            title: '合同数/个',
+                            sort: true,
+                            templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-zonghetongshu"></use></svg></a></div> ',
+                            width: "125",
+                            align:"center"
+                        }
+                        , {field: 'contract_amount', title: '合同金额/元', sort: true, templet: '#titleTp2', width: "125"   ,align:"center"} //单元格内容水平居中
+                        , {field: 'total_Return_amount', title: '回款额/元', sort: true, templet: '#titleTp3', width: "125"   ,align:"center"} //单元格内容水平居中
                         , {
                         field: 'service_count',
-                        title: '售后服务数',
+                        title: '售后服务数/个',
                         sort: true,
-                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '
+                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-ic-fuwushu"></use></svg></a></div> ',
+                        width: "125"
+                        ,align:"center"
                     }
-                        , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4'}
+                        , {field: 'servic_Score', title: '服务评分/分', sort: true, templet: '#titleTp4', width: "125" ,align:"center"}
                     ]
                 ], page: true
                 , limits: [3, 5, 8, 10]
@@ -379,35 +404,42 @@
                 elem: '#test'
                 , url: '/crm/clients/queryall.do?c_classify=' + 3
                 , cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-                , cols: [
+                , cols:  [
                     [
                         {
                             field: 'c_name',
                             title: '客户名称',
-                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}</a></div> '
+                            templet: '<div><a href="/crm/clients/redact.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.c_name}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></a></div> ',
+                            width: "200"
                         } //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                         , {
                         field: 'business_count',
-                        title: '商机数',
-                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}</a></div> ',
-                        sort: true
-                    }
-                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl'}
-                        , {
-                        field: 'contract_count',
-                        title: '合同数',
+                        title: '商机数/个',
+                        templet: '<div><a href="/crm/clients/customer_contract.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.business_count}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-APPtubiao_xinzengshangjishu"></use></svg></a></div> ',
                         sort: true,
-                        templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}</a></div> '
+                        width: "125"
+                        ,align:"center"
                     }
-                        , {field: 'contract_amount', title: '合同金额', sort: true, templet: '#titleTp2'} //单元格内容水平居中
-                        , {field: 'total_Return_amount', title: '回款额', sort: true, templet: '#titleTp3'} //单元格内容水平居中
+                        , {field: 'turnover', title: '预计成交金额', sort: true, templet: '#titleTpl', width: "125"  ,align:"center"},
+                        {
+                            field: 'contract_count',
+                            title: '合同数/个',
+                            sort: true,
+                            templet: '<div><a href="/crm/clients/customer_contractsss.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.contract_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-zonghetongshu"></use></svg></a></div> ',
+                            width: "125",
+                            align:"center"
+                        }
+                        , {field: 'contract_amount', title: '合同金额/元', sort: true, templet: '#titleTp2', width: "125"   ,align:"center"} //单元格内容水平居中
+                        , {field: 'total_Return_amount', title: '回款额/元', sort: true, templet: '#titleTp3', width: "125"   ,align:"center"} //单元格内容水平居中
                         , {
                         field: 'service_count',
-                        title: '售后服务数',
+                        title: '售后服务数/个',
                         sort: true,
-                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}</a></div> '
+                        templet: '<div><a href="/crm/clients/customer_serves.do?c_id={{d.c_id}}" style="color: #1E9FFF">{{d.service_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-ic-fuwushu"></use></svg></a></div> ',
+                        width: "125"
+                        ,align:"center"
                     }
-                        , {field: 'servic_Score', title: '服务评分', sort: true, templet: '#titleTp4'}
+                        , {field: 'servic_Score', title: '服务评分/分', sort: true, templet: '#titleTp4', width: "125" ,align:"center"}
                     ]
                 ], page: true
                 , limits: [3, 5, 8, 10]

@@ -38,28 +38,33 @@
 			"icon": "icon-log",
 			"href": "/crm/business/myBusiness.do",
 			"spread": false
+		},{
+			"title": "添加商机",
+			"icon": "icon-log",
+			"href": "business_management/add_Business.html",
+			"spread": false
 		}
 	],
 	"seraphApi": [
 		{
 			"title": "全部跟单",
-			"icon": "icon-mokuai",
+			"icon": "icon-text",
 			"href": "withs_management/withs_management.html",
 			"spread": false
 		},{
 			"title": "我的跟单",
-			"icon": "icon-mokuai",
+			"icon": "icon-text",
 			"href": "/crm/withs/myWihs.do",
+			"spread": false
+		},{
+			"title": "添加跟单",
+			"icon": "icon-text",
+			"href": "/crm/withs/add.do",
 			"spread": false
 		}
 	],
 	"mengqi": [
 		{
-			"title": "我的发表",
-			"icon": "icon-mokuai",
-			"href": "page/doc/addressDoc.html",
-			"spread": false
-		},{
 			"title": "全部论坛",
 			"icon": "icon-mokuai",
 			"href": "page/forum/forum.html",
@@ -112,6 +117,11 @@
 			"title": "我的合同",
 			"icon": "icon-log",
 			"href": "/crm/contracts/my_contracts.do",
+			"spread": false
+		},{
+			"title": "添加合同",
+			"icon": "icon-log",
+			"href": "contracts_management/add_contracts.html",
 			"spread": false
 		}
 ]

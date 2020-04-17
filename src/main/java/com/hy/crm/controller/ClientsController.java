@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hy.crm.entity.*;
+import com.hy.crm.mapper.ClientsMapper;
 import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.Client_financeServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
@@ -38,7 +39,8 @@ public class ClientsController {
     @Autowired
     BusinessServiceImpl businessService;
 
-
+    @Autowired
+    ClientsMapper clientsMapper;
 
     @RequestMapping("/queryall.do")
     @ResponseBody
@@ -69,20 +71,24 @@ public class ClientsController {
         QueryWrapper<Clients> queryWrapper=new QueryWrapper();
         queryWrapper.eq("c_name",clients.getC_name());
         Clients clients1=clientsService.getOne(queryWrapper);
-        if (clients1==null){
-            clientsService.save(clients);
-
+        if (clients1!=null){
+            System.out.println("========================================2");
+            return "2";
+        }else{
+            System.out.println("========================================1");
+           // clientsService.save(clients);
+            System.out.println( "====================="+ clients.getC_id());
             //add进去重新查询获取uuid 赋值给客户财务信息表
-            QueryWrapper<Clients> queryWrapper2=new QueryWrapper();
+          QueryWrapper<Clients> queryWrapper2=new QueryWrapper();
             queryWrapper.eq("c_name",clients.getC_name());
             Clients clients2=clientsService.getOne(queryWrapper);
 
             client_finance.setC_id(clients.getC_id());
             //add财务信息表
             client_financeService.save(client_finance);
-            return "1";
-        }else{
-            return "2";
+
+
+          return "1";
         }
     }
 

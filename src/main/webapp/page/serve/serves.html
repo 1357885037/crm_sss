@@ -7,6 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/css/serv.css"  media="all">
+    <script src="/font/iconfont.js"></script>
+    <style type="text/css">
+        .layui-col-xs9{
+            right: 110px;
+        }
+        .icon {
+            width: 5em;
+            height: 5em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        .icon2 {
+            width: 2em;
+            height:2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        #ceshi{
+            left: 100px;
+        }
+        .icon3 {
+            width: 1em;
+            height:1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 <form class="layui-form layui-form-pane" action="/crm/serves/queryAllServe.do">
@@ -14,13 +44,16 @@
         <div class="layui-form-item">
             <div class="layui-row">
                 <div class="layui-col-md3">
-                    <div class="layui-inline">
-                        <div id="u4921" class="ax_default _图片">
-                            <i class="layui-icon layui-icon-read" width="50" height="50">售后服务</i>
-                        </div>
+                    <div class="layui-inline" >
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-shouhouguanli"></use>
+                        </svg>
+                    </div>
+                    <div class="layui-inline" >
+                        <h1 style="display:inline;">售后服务</h1>
                     </div>
                 </div>
-
+                <br>
                 <div class="layui-col-md9">
                     <div class="layui-inline">
                         <select name="tiaojian" lay-filter="selec" id="selec">
@@ -51,37 +84,37 @@
     <div class="layui-col-xs3">
         <div class="layui-inline">
         <div class="layui-card" id="card">
-            <div class="layui-card-header"><i class="layui-icon ">&#xe60a;</i>分类</div>
+            <div class="layui-card-header"><div class="layui-inline"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-tubiaozhizuomoban1-copy"></use></svg></div>  <div class="layui-inline" ><h5 style="display:inline;"><b>类别:</b></h5></div></div>
             <div class="layui-card-body layui-text">
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="/page/serve/serves.html"><i class="layui-icon">&#xe621;所有分类</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="/page/serve/serves.html"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>所有分类</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on1"><i class="layui-icon">&#xe621;处理中的服务</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on1"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>处理中的服务</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on2"><i class="layui-icon">&#xe621;已结束的服务</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on2"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>已结束的服务</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on3"><i class="layui-icon">&#xe621;已撤离的服务</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on3"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>已撤离的服务</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on4"><i class="layui-icon">&#xe621;本周新增</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on4"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>本周新增</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on5"><i class="layui-icon">&#xe621;上周新增</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on5"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>上周新增</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on6"><i class="layui-icon">&#xe621;本月新增</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on6"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>本月新增</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on7"><i class="layui-icon">&#xe621;上月新增</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on7"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>上月新增</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on8"><i class="layui-icon">&#xe621;本季度新增</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on8"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>本季度新增</a> </div>
                 </div>
                 <div class="layuimini-notice">
-                    <div class="layuimini-notice-title"><a href="javascript:;" id="on9"><i class="layui-icon">&#xe621;上季度新增</i></a> </div>
+                    <div class="layuimini-notice-title"><a href="javascript:;" id="on9"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>上季度新增</a> </div>
                 </div>
             </div>
         </div>

@@ -7,18 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/css/serv.css"  media="all">
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style type="text/css">
+        .icon {
+            width: 3em;
+            height: 3em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        #yidong {
+
+            position: absolute;
+
+            left:200px;
+
+            top:170px;
+
+        }
+    </style>
 </head>
 <body>
 <blockquote class="layui-elem-quote layui-text">
     欢迎您,请正确添加收入登记！！！
 </blockquote>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>收入登记</legend>
+    <legend> <div class="layui-inline" >
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-leijichengjiaojine"></use>
+        </svg>
+    </div>
+        <div class="layui-inline" >
+            <h2 style="display:inline;">收入登记</h2>
+        </div></legend>
 </fieldset>
 
 
-<form class="layui-form" >
+<div class="layui-form" >
+    <div id="yidong">
     <input type="hidden" th:value="${ct_id}" name="ct_id">
     <div class="layui-form-item" >
         <div class="layui-inline">
@@ -62,18 +89,17 @@
             <option value="投资收益" >银行转账</option>
         </select>
     </div>
+        <label class="layui-form-label">登记人</label>
+        <div class="layui-input-inline">
+            <input name="u_id" th:value="${users.getU_Realname()}"  style="width: 200px;" class="layui-input" readonly="readonly" type="text" placeholder="请输入登记人" autocomplete="off" lay-verify="title">
+        </div>
 
+    </div>
         <div class="layui-form-item" >
-            <label class="layui-form-label">登记人</label>
-            <div class="layui-input-inline">
-                <input name="u_id" th:value="${users.getU_Realname()}"  style="width: 200px;" class="layui-input" readonly="readonly" type="text" placeholder="请输入登记人" autocomplete="off" lay-verify="title">
-            </div>
-
             <label class="layui-form-label">关联部门</label>
             <div class="layui-input-inline">
-                <input name="re_dept"  style="width: 200px;" class="layui-input" type="text" placeholder="请输入登记人" autocomplete="off" lay-verify="title">
+                <input name="re_dept"  style="width: 200px;" class="layui-input" type="text" placeholder="请输入关联部门" autocomplete="off" lay-verify="title">
             </div>
-
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">收入说明</label>
@@ -81,9 +107,6 @@
                 <textarea class="layui-textarea"  name="re_text" ></textarea>
             </div>
         </div>
-
-    </div>
-
 
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -95,7 +118,7 @@
     </div>
 
 
-
+</div>
 </form>
 <script src="/layui/layui.js" charset="utf-8"></script>
 

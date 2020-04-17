@@ -8,21 +8,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style type="text/css">
+        .icon {
+            width: 5em;
+            height: 5em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        #yidong {
 
+            position: absolute;
+
+            left:200px;
+
+            top:170px;
+
+        }
+    </style>
 </head>
 <body>
 
 <blockquote class="layui-elem-quote layui-text">
-    欢迎您,请正确添加商机信息！！！
+    欢迎您,请正确修改商机信息！！！
 </blockquote>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>客户基本信息</legend>
+    <legend><div class="layui-inline" >
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-hetongguanli2"></use>
+        </svg>
+    </div>
+        <div class="layui-inline" >
+            <h1 style="display:inline;">修改商机</h1>
+        </div></legend>
 </fieldset>
 
 <form class="layui-form" >
-
+    <div id="yidong">
     <input type="hidden" th:value="${business.getB_id()}" name="b_id">
     <div class="layui-form-item" >
 
@@ -162,11 +187,11 @@
             <div class="layui-input-inline">
                 <button type="button" class="layui-btn" id="uploads" ><i class="layui-icon"></i>选择文件</button>
             </div>
-            <div class="layui-input-inline">
-                <button type="button" class="layui-btn" id="tj" ><i class="layui-icon"></i>上传文件</button>
-            </div>
-            <input type="hidden" name="b_accessory" th:value="${business.getB_accessory()}" id="b_accessory" lay-verify="required" />
         </div>
+        <div class="layui-input-inline">
+            <button type="button" class="layui-btn" id="tj" ><i class="layui-icon"></i>上传文件</button>
+        </div>
+        <input type="hidden" name="b_accessory" th:value="${business.getB_accessory()}" id="b_accessory" lay-verify="required" />
     </div>
 
 
@@ -221,6 +246,7 @@
     <input type="hidden" th:value="${business.getU_id()}" id="u_id">
     <input type="hidden" th:value="${business.getU_participation()}" id="u_participations">
     <input type="hidden" th:value="${business.getUse_attention()}" id="Use_attentions">
+    </div>
 </form>
 
 
@@ -395,7 +421,7 @@
                         });
                         window.location.href ="/crm/clients/customer_contract.do?c_id"+$("#c_id").val()
                     }else{
-                        layer.msg('添加失败,该用户已存在！', {
+                        layer.msg('修改失败,该用户已存在！', {
                             icon: 1,
                             time: 2000 //2秒关闭（如果不配置，默认是3秒）
                         }, function(){

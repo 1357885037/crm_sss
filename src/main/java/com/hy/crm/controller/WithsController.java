@@ -97,7 +97,6 @@ public class WithsController {
         model.addAttribute("b_id",b_id);
         return "business_management/redact_withs";
     }
-    @ResponseBody
     @RequestMapping("/add.do")
     public String ccc(HttpSession session,Model model){
         Users user= (Users) session.getAttribute("users");

@@ -8,20 +8,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <script src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <style type="text/css">
+        .icon {
+            width: 3em;
+            height: 3em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        #yidong {
 
+            position: absolute;
+
+            left:200px;
+
+            top:170px;
+
+        }
+    </style>
 </head>
 <body>
 
 <blockquote class="layui-elem-quote layui-text">
-    欢迎您,请正确添加合同信息！！！
+    欢迎您,请正确修改合同信息！！！
 </blockquote>
 
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>客户基本信息</legend>
+    <legend> <div class="layui-inline" >
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-kehuguanli2"></use>
+        </svg>
+    </div>
+        <div class="layui-inline" >
+            <h2 style="display:inline;">客户基本信息</h2>
+        </div></legend>
 </fieldset>
 
 <form class="layui-form" >
+    <div id="yidong">
     <input type="hidden" th:value="${contracts.getCt_id()}" name="ct_id" id="ct_id">
     <input type="hidden" th:value="${contracts.getC_id()}"  id="c_id" >
     <input type="hidden" th:value="${contracts.getU_id()}"  id="u_id">
@@ -37,6 +63,12 @@
         <div class="layui-input-inline">
             <select  id="aaa2" lay-filter="ss" style="width: 200px;">
             </select>
+        </div>
+
+
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <a class='btn btn-info' href="javascript:history.go(-1)"><button class="layui-btn" type="button">返回上一步</button></a>
         </div>
     </div>
 
@@ -54,7 +86,14 @@
     </div>
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>合同信息</legend>
+        <legend><div class="layui-inline" >
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-hetongguanli2"></use>
+            </svg>
+        </div>
+            <div class="layui-inline" >
+                <h2 style="display:inline;">合同信息</h2>
+            </div></legend>
     </fieldset>
 
     <div class="layui-form-item" >
@@ -176,12 +215,16 @@
 
     <div class="layui-form-item">
         <div class="layui-input-block">
+            <div id="abc" style="display: none">
             <button class="layui-btn" type="submit" lay-filter="demo1" lay-submit="">立即提交</button>
             <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+             <button class="layui-btn" type="button" id="zz2">不可编辑</button>
+            </div>
+            <div id="bca" ><button class="layui-btn" type="button" id="zz">编辑</button></div>
         </div>
     </div>
 
-
+    </div>
 </form>
 
 
@@ -339,6 +382,45 @@
 
             return false;
         });
+
+
+
+        $(":input").prop('readonly',true); //输入框、文本域
+        $("select").each(function () {
+            $(this).attr("disabled","disabled");
+        });
+
+        form.render("select");
+        $('#zz').click(function () {
+            $("#abc").show();
+            $(":input").prop('readonly',false); //输入框、文本域
+            $("select").each(function () {
+                $(this).attr("disabled",false);
+            });
+            $("#bca").hide();
+            form.render("select");
+            layer.msg('当前状态可编辑！，(2秒自动关闭)', {
+                icon: 1,
+                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+            }, function(){
+                //do something
+            });
+        })
+        $("#zz2").click(function () {
+            $(":input").prop('readonly',true); //输入框、文本域
+            $("select").each(function () {
+                $(this).attr("disabled","disabled");
+            });
+            form.render("select");
+            $("#abc").hide();
+            $("#bca").show();
+            layer.msg('当前状态不可编辑！，(2秒自动关闭)', {
+                icon: 1,
+                time: 2000 //2秒关闭（如果不配置，默认是3秒）
+            }, function(){
+                //do something
+            });
+        })
 
 
     });

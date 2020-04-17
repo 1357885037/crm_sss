@@ -7,21 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <link rel="stylesheet" href="/css/serv.css"  media="all">
-    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <script src="/font/iconfont.js"></script>
+    <style type="text/css">
+        .icon {
+            width:3em;
+            height:3em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        #yidong {
+
+            position: absolute;
+
+            left:200px;
+
+            top:170px;
+
+        }
+    </style>
 </head>
 <body>
 <blockquote class="layui-elem-quote layui-text">
     欢迎您,请正确添加开票登记！！！
 </blockquote>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>开票登记</legend>
+    <legend> <div class="layui-inline" >
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-hetongjine"></use>
+        </svg>
+    </div>
+        <div class="layui-inline" >
+            <h2 style="display:inline;">开票登记</h2>
+        </div></legend>
 </fieldset>
 
 
 <form class="layui-form" >
+    <div id="yidong">
     <input type="hidden" th:value="${ct_id}" name="ct_id">
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>基本信息</legend>
+        <legend>
+            <div class="layui-inline" >
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-hetongguanli2"></use>
+            </svg>
+        </div>
+            <div class="layui-inline" >
+                <h2 style="display:inline;">申请信息</h2>
+            </div></legend>
     </fieldset>
 
     <div class="layui-form-item" >
@@ -35,10 +69,6 @@
             <input readonly="readonly" th:value="${'  填单-责任人:'+users.getU_Realname()}" style="width: 200px;" class="layui-input" type="text"  >
         </div>
     </div>
-
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-        <legend>申请信息</legend>
-    </fieldset>
 
     <div class="layui-form-item" >
         <label class="layui-form-label">申请人姓名</label>
@@ -156,7 +186,7 @@
     </div>
 
 
-
+</div>
 </form>
 <script src="/layui/layui.js" charset="utf-8"></script>
 
