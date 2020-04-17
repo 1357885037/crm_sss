@@ -52,18 +52,9 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
             }
         }
     })
-    //选择出生日期
+
     laydate.render({
-        elem: '.userBirthday',
-        format: 'yyyy年MM月dd日',
-        trigger: 'click',
-        max : 0,
-        mark : {"0-12-15":"生日"},
-        done: function(value, date){
-            if(date.month === 12 && date.date === 15){ //点击每年12月15日，弹出提示语
-                layer.msg('今天是马哥的生日，也是layuicms2.0的发布日，快来送上祝福吧！');
-            }
-        }
+        elem: '.userBirthday'//指定元素
     });
 
     //获取省信息
@@ -72,28 +63,32 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
     form.on("submit(changeUser)",function(data){
         var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
         //将填写的用户信息存到session以便下次调取
-        var key,userInfoHtml = '';
-        userInfoHtml = {
-            'realName' : $(".realName").val(),
-            'sex' : data.field.sex,
-            'userPhone' : $(".userPhone").val(),
-            'userBirthday' : $(".userBirthday").val(),
-            'province' : data.field.province,
-            'city' : data.field.city,
-            'area' : data.field.area,
-            'userEmail' : $(".userEmail").val(),
-            'myself' : $(".myself").val()
-        };
-        for(key in data.field){
-            if(key.indexOf("like") != -1){
-                userInfoHtml[key] = "on";
+
+        //获取已处理的服务一共有多少并显示脚表
+        $.ajax({
+            type: "post",
+            url: "/sanqi/users/updateuser.do",
+            data:data.field,
+            dataType: "json",
+            success: function (data) {
+                if(data==200){
+                    setTimeout(function(){
+                        layer.close(index);
+                        layer.msg("提交成功！");
+                    },2000);
+                }else{
+                    setTimeout(function(){
+                        layer.close(index);
+                        layer.msg("提交失败！");
+                    },2000);
+                }
+            },
+            error: function () {
+                alert("出错啦");
             }
-        }
-        window.sessionStorage.setItem("userInfo",JSON.stringify(userInfoHtml));
-        setTimeout(function(){
-            layer.close(index);
-            layer.msg("提交成功！");
-        },2000);
+        });
+
+
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     })
 

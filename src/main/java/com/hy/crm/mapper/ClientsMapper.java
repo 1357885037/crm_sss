@@ -2,10 +2,7 @@ package com.hy.crm.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crm.dynamic.Query_customer;
-import com.hy.crm.entity.Business;
-import com.hy.crm.entity.Clients;
-import com.hy.crm.entity.Customer_contract;
-import com.hy.crm.entity.Customer_management;
+import com.hy.crm.entity.*;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
 
@@ -32,7 +29,7 @@ public interface ClientsMapper extends BaseMapper<Clients> {
      public List<Customer_contract>  customer_contract(Business business);
 
 
-//     @Select("select ")
-
+     @Select("SELECT c_source AS name,COUNT(1) AS value FROM clients GROUP BY c_source ")
+    List<Eachtes> querygroup();
 
 }

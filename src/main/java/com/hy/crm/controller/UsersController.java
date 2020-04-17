@@ -6,6 +6,8 @@ import com.github.pagehelper.PageHelper;
 import com.hy.crm.entity.*;
 import com.hy.crm.service.*;
 import com.hy.crm.util.AccountJson;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -204,6 +207,46 @@ public class UsersController {
 
         return modelAndView;
     }
+
+    @ResponseBody
+    @RequestMapping("/updateuser.do")
+    public Integer updateuser(Users users) {
+        Integer num=200;
+        try {
+            usersService.saveOrUpdate(users);
+        } catch (Exception e) {
+            num=500;
+        }
+        return num;
+    }
+
+    @RequestMapping("/getuserpwd.do")
+    public ModelAndView getuserpwd(HttpSession session,ModelAndView modelAndView){
+        modelAndView.setViewName("page/user/changePwd.html");
+        modelAndView.addObject("user",(Users)session.getAttribute("users"));
+
+        return modelAndView;
+    }
+
+    @ResponseBody
+    @RequestMapping("/upuserpwd.do")
+    public Integer upuserpwd(Users users,String oldpwd,String newpwd){
+        QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("u_id",users.getU_Id());
+        Users users1=usersService.getOne(queryWrapper);
+
+       Object value= new SimpleHash("MD5",oldpwd, ByteSource.Util.bytes(users1.getU_Name()),1024);
+        if (value.toString().equals(users1.getU_pass())){
+            Object pass= new SimpleHash("MD5",newpwd, ByteSource.Util.bytes(users1.getU_Name()),1024);
+            users1.setU_pass(pass.toString());
+            usersService.saveOrUpdate(users1);
+            return 200;
+        }else{
+            return 500;
+        }
+
+    }
+
 
 
 }
