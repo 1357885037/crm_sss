@@ -60,7 +60,7 @@ public class ForumController {
         QueryWrapper<Forum> queryWrapper=new QueryWrapper<>();
 
 
-        if(!StringUtils.isNullOrEmpty(b_id)){
+        if(!StringUtils.isNullOrEmpty(b_id)&&b_id!=null){
             queryWrapper.eq("b_id",b_id);
         }
 
@@ -98,7 +98,7 @@ public class ForumController {
                         queryWrapper3.eq("rep_rpid",replys.getRp_id());
                         List<Replys> replysList3=replysService.list(queryWrapper3);
                         sum+=replysList3.size();
-                        sum=diedai(replysList3,sum);
+                        sum+=diedai(replysList3);
                     }
 
                     forum.setRevert(sum);
@@ -149,10 +149,11 @@ public class ForumController {
                 queryWrapper3.eq("rep_rpid",replys.getRp_id());
                 List<Replys> replysList3=replysService.list(queryWrapper3);
                 sum+=replysList3.size();
-                sum=diedai(replysList3,sum);
+                sum+=diedai(replysList3);
             }
 
         forum.setRevert(sum);
+            System.out.println(forum.getRevert()+"9999999999999999999999999999999999999999999999999999999999");
         if(tiaojian!=null&&tiaojian==4){
             if(Integer.valueOf(neirong).equals(forum.getRevert())){
 
@@ -177,17 +178,18 @@ public class ForumController {
         return accountJson;
     }
 
-    public Integer diedai(List<Replys> list,Integer sum){
+    public Integer diedai(List<Replys> list){
+        Integer sum=0;
         if(list.size()<=0){
             return sum;
         }else{
+
             for(Replys replys2:list){
                 QueryWrapper<Replys> queryWrapper4=new QueryWrapper<>();
                 queryWrapper4.eq("rep_rpid",replys2.getRp_id());
                 List<Replys> replysList4=replysService.list(queryWrapper4);
-                replys2.setReplysList(replysList4);
                 sum+=replysList4.size();
-                sum+=diedai(replysList4,sum);
+                sum+=diedai(replysList4);
             }
 
         }
@@ -221,7 +223,6 @@ return sum;
       }else{
           forum2.setF_number(forum2.getF_number()+1);
       }
-        forum2.setF_number(forum2.getF_number()+1);
         forumService.saveOrUpdate(forum2);
 
         QueryWrapper<Forum> queryWrapper=new QueryWrapper<>();
@@ -250,7 +251,7 @@ return sum;
             queryWrapper3.eq("rep_rpid",replys.getRp_id());
             List<Replys> replysList3=replysService.list(queryWrapper3);
             sum+=replysList3.size();
-            sum=diedai(replysList3,sum);
+            sum+=diedai(replysList3);
             }
         forum3.setRevert(sum);
 
@@ -294,43 +295,42 @@ return sum;
             return null;
         }else{
 
-
 //获取上级的对象
-        QueryWrapper<Replys> queryWrapper0=new QueryWrapper<>();
-        queryWrapper0.eq("rp_id",rp_id);
-        Replys replys1=replysService.getOne(queryWrapper0);
+        QueryWrapper<Replys> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("rp_id",rp_id);
+        Replys replys1=replysService.getOne(queryWrapper);
 //获取上级的名字
-        QueryWrapper<Users> queryWrapper3=new QueryWrapper<>();
-        queryWrapper3.eq("u_id",replys1.getU_id());
-        Users users6=usersService.getOne(queryWrapper3);
+        QueryWrapper<Users> queryWrapper1=new QueryWrapper<>();
+        queryWrapper1.eq("u_id",replys1.getU_id());
+        Users users=usersService.getOne(queryWrapper1);
 
-//        获取关于上级的所欲回复
-        QueryWrapper<Replys> queryWrapper4=new QueryWrapper<>();
-        queryWrapper4.eq("rep_rpid",rp_id);
-        List<Replys> replysList1=replysService.list(queryWrapper4);
+//获取关于上级的所欲回复
+        QueryWrapper<Replys> queryWrapper2=new QueryWrapper<>();
+        queryWrapper2.eq("rep_rpid",rp_id);
+        List<Replys> replysList1=replysService.list(queryWrapper2);
 
+            for (Replys replys:replysList1){
+    //            获取自己的名字
+                QueryWrapper<Users> queryWrapper3=new QueryWrapper<>();
+                queryWrapper3.eq("u_id",replys.getU_id());
+                Users users2=usersService.getOne(queryWrapper3);
+                replys.setU_name(users2.getU_Name());
+                replys.setRep_name(users.getU_Name());
+            }
 
-        for (Replys replys:replysList1){
-//            获取自己的名字
-            QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
-            queryWrapper.eq("u_id",replys.getU_id());
-            Users users5=usersService.getOne(queryWrapper);
-            replys.setU_name(users5.getU_Name());
-            replys.setRep_name(users6.getU_Name());
-        }
             return replysList1;
         }
 
 
 
     }
+    @ResponseBody
     @RequestMapping("/addrepii.do")
-    public Integer addrepii(Replys replys,HttpSession session){
-
+    public String addrepii(Replys replys ,HttpSession session){
+        System.out.println(replys.getRp_id()+"*******************************************************************************************");
         Users users=(Users) session.getAttribute("users");
         java.util.Date d = new java.util.Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
         replys.setU_id(users.getU_Id());
         replys.setRep_rpid(replys.getRp_id());
         replys.setRp_date(Date.valueOf(sdf.format(d)));
@@ -340,7 +340,7 @@ return sum;
         replysService.save(replys);
 
 
-        return 0;
+        return "0";
     }
 
     @RequestMapping("/delforum.do")

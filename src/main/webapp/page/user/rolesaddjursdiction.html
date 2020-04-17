@@ -58,8 +58,6 @@
 
             if(data.elem.checked==true){
                 $("#"+sr).each(function(){
-                   // console.log(this.title);
-                   //  this.checked=true;
                     $(this).prop('checked', true);
                     form.render('checkbox');
                 });
@@ -67,9 +65,6 @@
 
             if(data.elem.checked==false){
                 $("#"+sr).each(function(){
-                    // console.log(this.checked);
-                    // this.checked=false;
-                    // console.log(this.checked);
                     $(this).prop('checked', false);
                     form.render('checkbox');
                 });

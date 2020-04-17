@@ -82,7 +82,7 @@ public class LoginController {
     //主界面跳个人资料
     @RequestMapping("/Personal_Data.do")
     public String Personal_Data(HttpSession session, Model model){
-        String user= (String) session.getAttribute("user");
+        String user= session.getAttribute("user").toString();
         //从数据库中查询
         QueryWrapper queryWrapper=new QueryWrapper();
         queryWrapper.eq("u_name",user);

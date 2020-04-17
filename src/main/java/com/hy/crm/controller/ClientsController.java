@@ -180,4 +180,14 @@ public class ClientsController {
         model.addAttribute("c_id",c_id);
         return "page/serve/serves";
     }
+
+
+@ResponseBody
+    @RequestMapping("/querygroup.do")
+    public List<Eachtes> querygroup(){
+
+
+        return clientsService.queryccc();
+    }
+
 }

@@ -50,31 +50,72 @@ public class Forum implements Serializable {
 
     @TableField(exist = false)
     private String u_name;
+
     @TableField(exist = false)
     private List<Replys> replysList;
 
-    public List<Replys> getReplysList() {
-        return replysList;
+    public String getF_id() {
+        return f_id;
     }
 
-    public void setReplysList(List<Replys> replysList) {
-        this.replysList = replysList;
+    public void setF_id(String f_id) {
+        this.f_id = f_id;
     }
 
-    public String getU_name() {
-        return u_name;
+    public String getB_id() {
+        return b_id;
     }
 
-    public void setU_name(String u_name) {
-        this.u_name = u_name;
+    public void setB_id(String b_id) {
+        this.b_id = b_id;
     }
 
-    public Integer getRevert() {
-        return revert;
+    public String getU_id() {
+        return u_id;
     }
 
-    public void setRevert(Integer revert) {
-        this.revert = revert;
+    public void setU_id(String u_id) {
+        this.u_id = u_id;
+    }
+
+    public String getF_classify() {
+        return f_classify;
+    }
+
+    public void setF_classify(String f_classify) {
+        this.f_classify = f_classify;
+    }
+
+    public String getF_title() {
+        return f_title;
+    }
+
+    public void setF_title(String f_title) {
+        this.f_title = f_title;
+    }
+
+    public String getF_accessory() {
+        return f_accessory;
+    }
+
+    public void setF_accessory(String f_accessory) {
+        this.f_accessory = f_accessory;
+    }
+
+    public String getF_texts() {
+        return f_texts;
+    }
+
+    public void setF_texts(String f_texts) {
+        this.f_texts = f_texts;
+    }
+
+    public Integer getF_number() {
+        return f_number;
+    }
+
+    public void setF_number(Integer f_number) {
+        this.f_number = f_number;
     }
 
     public Date getF_date() {
@@ -85,61 +126,12 @@ public class Forum implements Serializable {
         this.f_date = f_date;
     }
 
-    public String getF_id() {
-        return f_id;
+    public Date getR_date() {
+        return r_date;
     }
 
-    public void setF_id(String f_id) {
-        this.f_id = f_id;
-    }
-    public String getB_id() {
-        return b_id;
-    }
-
-    public void setB_id(String b_id) {
-        this.b_id = b_id;
-    }
-    public String getU_id() {
-        return u_id;
-    }
-
-    public void setU_id(String u_id) {
-        this.u_id = u_id;
-    }
-    public String getF_classify() {
-        return f_classify;
-    }
-
-    public void setF_classify(String f_classify) {
-        this.f_classify = f_classify;
-    }
-    public String getF_title() {
-        return f_title;
-    }
-
-    public void setF_title(String f_title) {
-        this.f_title = f_title;
-    }
-    public String getF_accessory() {
-        return f_accessory;
-    }
-
-    public void setF_accessory(String f_accessory) {
-        this.f_accessory = f_accessory;
-    }
-    public String getF_texts() {
-        return f_texts;
-    }
-
-    public void setF_texts(String f_texts) {
-        this.f_texts = f_texts;
-    }
-    public Integer getF_number() {
-        return f_number;
-    }
-
-    public void setF_number(Integer f_number) {
-        this.f_number = f_number;
+    public void setR_date(Date r_date) {
+        this.r_date = r_date;
     }
 
     public String getB_name() {
@@ -150,12 +142,28 @@ public class Forum implements Serializable {
         this.b_name = b_name;
     }
 
-    public Date getR_date() {
-        return r_date;
+    public Integer getRevert() {
+        return revert;
     }
 
-    public void setR_date(Date r_date) {
-        this.r_date = r_date;
+    public void setRevert(Integer revert) {
+        this.revert = revert;
+    }
+
+    public String getU_name() {
+        return u_name;
+    }
+
+    public void setU_name(String u_name) {
+        this.u_name = u_name;
+    }
+
+    public List<Replys> getReplysList() {
+        return replysList;
+    }
+
+    public void setReplysList(List<Replys> replysList) {
+        this.replysList = replysList;
     }
 
     @Override
@@ -170,9 +178,11 @@ public class Forum implements Serializable {
                 ", f_texts='" + f_texts + '\'' +
                 ", f_number=" + f_number +
                 ", f_date=" + f_date +
+                ", r_date=" + r_date +
                 ", b_name='" + b_name + '\'' +
                 ", revert=" + revert +
-                ", r_date=" + r_date +
+                ", u_name='" + u_name + '\'' +
+                ", replysList=" + replysList +
                 '}';
     }
 }

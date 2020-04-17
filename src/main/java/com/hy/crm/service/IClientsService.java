@@ -1,7 +1,10 @@
 package com.hy.crm.service;
 
-import com.hy.crm.entity.Clients;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hy.crm.entity.Clients;
+import com.hy.crm.entity.Eachtes;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,6 +16,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IClientsService extends IService<Clients> {
 
-
-
+    /**
+     * fdsf
+     * @return
+     */
+    List<Eachtes> queryccc();
 }

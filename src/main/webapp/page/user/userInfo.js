@@ -12,17 +12,37 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
         laydate = layui.laydate,
         address = layui.address;
 
+
     //上传头像
     upload.render({
-        elem: '.userFaceBtn',
-        url: '../../json/userface.json',
-        method : "get",  //此处是为了演示之用，实际使用中请将此删除，默认用post方式提交
-        done: function(res, index, upload){
-            var num = parseInt(4*Math.random());  //生成0-4的随机数，随机显示一个头像信息
-            $('#userFace').attr('src',res.data[num].src);
-            window.sessionStorage.setItem('userFace',res.data[num].src);
+        elem: '#test0',
+        url: '/crm/upload/userUpload.do',
+        method : "get"  //此处是为了演示之用，实际使用中请将此删除，默认用post方式提交
+        ,before: function(obj){
+        //预读本地文件示例，不支持ie8
+        obj.preview(function(res){
+            $('#userFace').attr('src', res); //图片链接（base64）
+            layer.msg("头像修改成功！！！");
+
+        });
+    }
+    ,done: function(res){
+        //如果上传失败
+        if(res.code > 0){
+            return layer.msg('上传失败');
         }
+        //上传成功
+    }
+    ,error: function(){
+        //演示失败状态，并实现重传
+        var demoText = $('#demoText');
+        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+        demoText.find('.demo-reload').on('click', function(){
+            uploadInst.upload();
+        });
+    }
     });
+
 
     //添加验证规则
     form.verify({
@@ -32,49 +52,43 @@ layui.use(['form','layer','upload','laydate',"address"],function(){
             }
         }
     })
-    //选择出生日期
+
     laydate.render({
-        elem: '.userBirthday',
-        format: 'yyyy年MM月dd日',
-        trigger: 'click',
-        max : 0,
-        mark : {"0-12-15":"生日"},
-        done: function(value, date){
-            if(date.month === 12 && date.date === 15){ //点击每年12月15日，弹出提示语
-                layer.msg('今天是马哥的生日，也是layuicms2.0的发布日，快来送上祝福吧！');
-            }
-        }
+        elem: '.userBirthday'//指定元素
     });
 
     //获取省信息
-    address.provinces();
 
     //提交个人资料
     form.on("submit(changeUser)",function(data){
         var index = layer.msg('提交中，请稍候',{icon: 16,time:false,shade:0.8});
         //将填写的用户信息存到session以便下次调取
-        var key,userInfoHtml = '';
-        userInfoHtml = {
-            'realName' : $(".realName").val(),
-            'sex' : data.field.sex,
-            'userPhone' : $(".userPhone").val(),
-            'userBirthday' : $(".userBirthday").val(),
-            'province' : data.field.province,
-            'city' : data.field.city,
-            'area' : data.field.area,
-            'userEmail' : $(".userEmail").val(),
-            'myself' : $(".myself").val()
-        };
-        for(key in data.field){
-            if(key.indexOf("like") != -1){
-                userInfoHtml[key] = "on";
+
+        //获取已处理的服务一共有多少并显示脚表
+        $.ajax({
+            type: "post",
+            url: "/sanqi/users/updateuser.do",
+            data:data.field,
+            dataType: "json",
+            success: function (data) {
+                if(data==200){
+                    setTimeout(function(){
+                        layer.close(index);
+                        layer.msg("提交成功！");
+                    },2000);
+                }else{
+                    setTimeout(function(){
+                        layer.close(index);
+                        layer.msg("提交失败！");
+                    },2000);
+                }
+            },
+            error: function () {
+                alert("出错啦");
             }
-        }
-        window.sessionStorage.setItem("userInfo",JSON.stringify(userInfoHtml));
-        setTimeout(function(){
-            layer.close(index);
-            layer.msg("提交成功！");
-        },2000);
+        });
+
+
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     })
 

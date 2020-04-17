@@ -67,10 +67,6 @@ layui.use(['jquery','upload','form','layedit'],function() {
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
 
-
-
-
-
     //获取下拉框值
     $.ajax({
         type:"post",
@@ -98,6 +94,7 @@ layui.use(['jquery','upload','form','layedit'],function() {
             return layedit.sync(index);
         }
     });
+
     // 上传文件
     upload.render({
         elem: '#uploads' //绑定元素

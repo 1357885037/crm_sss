@@ -1,19 +1,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>设置用户权限</title>
+    <title>设置用户权限！！！</title>
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
 </head>
-
 <body>
 
-<form class="layui-form" action="" lay-fiter="test">
+<form class="layui-form">
+
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <input type="hidden" name="" id="ids" th:value="${users.u_Id}"  required  lay-verify="required"  class="layui-input">
+            <input type="hidden" name="u_Id" id="ids" th:value="${users.u_Id}"/>
         </div>
     </div>
-    为角色[[${users.u_Name}]]设置权限
+    为角色[[${r_name}]]设置权限
     <span th:each="ement:${jurisdictionsList}">
             <input lay-filter="test" th:id="${ement.j_name}" type="checkbox" th:value="${ement.j_id}" name="j_id" th:title="${ement.j_name}" lay-skin="primary" th:checked="${ement.status} == 1 ? true:false "/>
                 <span th:each="index:${ement.jurisdictionsList}" >
@@ -21,26 +21,20 @@
                 </span>
         </span>
 
-
-
-
-
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            <button class="layui-btn" lay-submit lay-filter="*">修改权限</button>
+            <button type="reset" class="layui-btn layui-btn-primary">清空全部权限</button>
         </div>
     </div>
 
 </form>
-
-</body>
 <script src="/layui/layui.js" charset="utf-8"></script>
 <script src="/js/jquery-3.3.1.min.js" charset="utf-8"></script>
 <script>
     layui.use(['form','jquery'], function(){
-        var form = layui.form;
-        var $ = layui.jquery;
+         form = layui.form,
+         $ = layui.jquery;
         form.on('submit(*)', function(data){
             quotation = new Array();
             $("input:checkbox[name='j_id']:checked").each(function(){
@@ -58,8 +52,6 @@
 
             if(data.elem.checked==true){
                 $("#"+sr).each(function(){
-                    // console.log(this.title);
-                    //  this.checked=true;
                     $(this).prop('checked', true);
                     form.render('checkbox');
                 });
@@ -67,19 +59,14 @@
 
             if(data.elem.checked==false){
                 $("#"+sr).each(function(){
-                    // console.log(this.checked);
-                    // this.checked=false;
-                    // console.log(this.checked);
                     $(this).prop('checked', false);
                     form.render('checkbox');
                 });
             }
 
-
-
-
         });
 
     });
 </script>
+</body>
 </html>

@@ -90,8 +90,62 @@ layui.use(['form','element','layer'],function(){
         }
         $("#newsName").html(hotNewsHtml);
         $("#ids2").append("<span class='layui-badge'>" + data.count + "</span>");
-    })
+    });
 
+
+    $.get("/crm/clients/querygroup.do", function (data) {
+        //要操作的DOM
+        var dom = document.getElementById("container");
+        // 初始化实例，基于要操作的DOM
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        // 指定图表的配置项和数据
+        option = {
+            title: {
+                text: '客户关系管理系统-客户来源统计',
+                subtext: '数据真实有效',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: data
+            },
+            series: [
+                {
+                    name: '客户数量(占比)',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '40%'],
+                    data: data,
+                    itemStyle: {
+                        emphasis: {
+                            // 阴影的大小
+                            shadowBlur: 10,
+                            // 阴影水平方向上的偏移
+                            shadowOffsetX: 0,
+                            // 阴影颜色
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        if (option && typeof option === "object") {
+            // 使用刚指定的配置项和数据显示 图表
+            myChart.setOption(option, true);
+        }
+        // echarts 窗口缩放自适应
+        window.onresize = function () {
+            myChart.resize();
+        }
+        console.log(data)
+    });
 
 
 

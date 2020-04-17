@@ -77,12 +77,6 @@
 			"icon": "icon-text",
 			"href": "/page/serve/serves.html",
 			"spread": false
-		},
-		{
-			"title": "我的售后",
-			"icon": "&#xe634;",
-			"href": "templeate/query.html",
-			"spread": false
 		}
 	],
 		"tongji": [
