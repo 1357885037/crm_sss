@@ -1,130 +1,128 @@
 <html xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="utf-8">
-    <title>全部论坛</title>
+    <title>论坛主页</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
-    <script src="/layui/layui.js" charset="utf-8"></script>
+    <style type="text/css">
+        .icon {
+            width: 5em;
+            height: 5em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <form class="layui-form" layui-row >
+
+            <label class="layui-form-label">选择查询条件:</label>
+            <div class="layui-input-inline">
+                <select name="tiaojian" lay-verify="required">
+                    <option value=""></option>
+                    <option value=1>主题</option>
+                    <option value=2>作者</option>
+                    <option value=3>点击量</option>
+                    <option value=4>回复量</option>
+                </select>
+
+            </div>
+
+            <div class="layui-input-inline">
+                <input type="text" name="neirong" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+            </div>
+
+            <div class="layui-input-inline">
+                <button class="layui-btn" lay-submit lay-filter="formDemo" ><i class="layui-icon layui-icon-search"></i>立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-refresh"></i> 重置</button>
+                <a href="/page/forum/addForum.html" class="layui-btn"><i class="layui-icon layui-icon-add-1"></i> 发布帖子</a>
+            </div>
+
+
+
+    </form>
+
+    <!--    渲染数据的表格-->
+    <table class="layui-hide" id="test" lay-filter="test" border="1"/>
+
+</body>
+
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script src="/layui/layui.js" charset="utf-8"></script>
+
     <!--引入jquery文件-->
     <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+
     <!--添加修改和删除按钮-->
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-danger layui-btn-sm layui-icon" lay-event="del">&#xe640;删除</a>
     </script>
-</head>
-<body>
 
-<form class="layui-form" action="">
+    <!-- js事件   -->
+    <script>
+        layui.use(['table','form'], function(){
+            var table = layui.table;
+            var form = layui.form;
 
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">查询条件</label>
-        <div class="layui-input-block">
-            <select name="tiaojian" lay-verify="required">
-                <option value=""></option>
-                <option value=1>主题</option>
-                <option value=2>作者</option>
-                <option value=3>点击量</option>
-                <option value=4>回复量</option>
-            </select>
-            <input type="text" name="neirong" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-
-
-
-
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            <button type="button" class="layui-btn layui-btn-primary"><a href="/page/forum/addForum.html">发布帖子</a></button>
-        </div>
-    </div>
-</form>
-
-
-
-
-
-<table class="layui-hide" id="test" lay-filter="test" border="1"></table>
-<!--判断男女-->
-<script type="text/html" id="titleTpl">
-    return data.data.u_id+()
-</script>
-<script>
-    layui.use(['table','form'], function(){
-        var table = layui.table;
-        var form = layui.form;
-
-
-        //   监听submit并改同步提交为异步提交并重新渲染表格
-        form.on('submit(formDemo)', function (data) {
-            table.reload("test", {
-                where: data.field
-            });
-            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-        });
-
-        //获取表数据
-        table.render({
-            elem: '#test'
-            ,url:'/crm/forum/queryforum.do'
-            ,text:{
-                none: '暂无相关数据' ,//默认：无数据。注：该属性为 layui 2.2.5 开始新增
-                icon:'layui-icon-face-surprised'
-            }
-            ,cols: [[
-                { width:200, title: '主题',templet:"<div><a href='/crm/forum/updateForum.do?f_id={{d.f_id}}' class='layui-table-link' style='color: #1e9fff'>{{d.f_title}}</a></div>"}
-                ,{templet:function(d){
-                            return d.u_name+"("+layui.util.toDateString(d.f_date, 'yyyy-MM-dd')+")";
-                    }, width:150, title: '作者'}
-                ,{field:'b_name', title: '所属商机', width:150,sort:true}
-                ,{field:'f_number', width:100, title: '点击量'}
-                ,{field:'revert', width:100, title: '回复量'}
-                ,{templet:function(d){
-                        return d.r_date ==null?"无回复":layui.util.toDateString(d.r_date, 'yyyy-MM-dd');
-                    }, width:100, title: '最后回复时间'}
-                ,{width:200, title: '操作',templet:'#barDemo'}
-
-            ]]
-            ,page: true
-            ,limits:[3,5,8,10]
-            ,limit:3
-        });
-
-
-
-        //监听事件
-        table.on('tool(test)', function(obj) {
-            var data = obj.data;
-            if (obj.event === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    $.ajax({
-                        url: "/crm/forum/delforum.do?f_id=" + data.f_id,
-                        type: "post",
-                        success: function (data) {
-                            if (data == 200) {
-                                table.reload("test", {})
-                            } else {
-                                layer.msg("删除失败");
-                            }
-                        }
-                    });
-                    obj.del();
-                    layer.close(index);
+            //   监听submit并改同步提交为异步提交并重新渲染表格
+            form.on('submit(formDemo)', function (data) {
+                table.reload("test", {
+                    where: data.field
                 });
-            }
+                return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+            });
+
+            //获取表数据
+            table.render({
+                elem: '#test'
+                ,url:'/crm/forum/queryforum.do'
+                ,text:{
+                    none: '暂无相关数据' ,//默认：无数据。注：该属性为 layui 2.2.5 开始新增
+                    icon:'layui-icon-face-surprised'
+                }
+                ,cols: [[
+                    { title: '主题',templet:"<div><a href='/crm/forum/updateForum.do?f_id={{d.f_id}}' class='layui-table-link' style='color: #1e9fff'>{{d.f_title}}</a></div>"}
+                    ,{templet:function(d){ return d.u_name+"("+layui.util.toDateString(d.f_date, 'yyyy-MM-dd')+")";}, title: '作者'}
+                    ,{field:'b_name', title: '所属商机',sort:true}
+                    ,{field:'f_number', title: '点击量'}
+                    ,{field:'revert', title: '回复量'}
+                    ,{templet:function(d){ return d.r_date ==null?"无回复":layui.util.toDateString(d.r_date, 'yyyy-MM-dd');}, title: '最后回复时间'}
+                    ,{title: '操作',templet:'#barDemo'}
+                ]]
+                ,page: true
+                ,limits:[3,5,8,10]
+                ,limit:3
+            });
+
+            //监听事件
+            table.on('tool(test)', function(obj) {
+                var data = obj.data;
+                if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        $.ajax({
+                            url: "/crm/forum/delforum.do?f_id=" + data.f_id,
+                            type: "post",
+                            success: function (data) {
+                                if (data == 200) {
+                                    table.reload("test", {})
+                                } else {
+                                    layer.msg("删除失败");
+                                }
+                            }
+                        });
+                        obj.del();
+                        layer.close(index);
+                    });
+                }
+            });
+
         });
+    </script>
 
-
-
-    });
-</script>
-
-</body>
 </html>

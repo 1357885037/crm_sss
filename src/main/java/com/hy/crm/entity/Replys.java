@@ -44,34 +44,6 @@ public class Replys implements Serializable {
     @TableField(exist = false)
     private List<Replys> replysList;
 
-    public String getU_name() {
-        return u_name;
-    }
-
-    public void setU_name(String u_name) {
-        this.u_name = u_name;
-    }
-
-    public Date getRp_date() {
-        return rp_date;
-    }
-
-    public List<Replys> getReplysList() {
-        return replysList;
-    }
-
-    public String getRep_name() {
-        return rep_name;
-    }
-
-    public void setRep_name(String rep_name) {
-        this.rep_name = rep_name;
-    }
-
-    public void setReplysList(List<Replys> replysList) {
-        this.replysList = replysList;
-    }
-
     public Integer getRp_id() {
         return rp_id;
     }
@@ -87,12 +59,29 @@ public class Replys implements Serializable {
     public void setF_id(String f_id) {
         this.f_id = f_id;
     }
+
     public String getU_id() {
         return u_id;
     }
 
     public void setU_id(String u_id) {
         this.u_id = u_id;
+    }
+
+    public String getU_name() {
+        return u_name;
+    }
+
+    public void setU_name(String u_name) {
+        this.u_name = u_name;
+    }
+
+    public String getRep_name() {
+        return rep_name;
+    }
+
+    public void setRep_name(String rep_name) {
+        this.rep_name = rep_name;
     }
 
     public Integer getRep_rpid() {
@@ -111,6 +100,9 @@ public class Replys implements Serializable {
         this.rp_text = rp_text;
     }
 
+    public Date getRp_date() {
+        return rp_date;
+    }
 
     public void setRp_date(Date rp_date) {
         this.rp_date = rp_date;
@@ -123,12 +115,21 @@ public class Replys implements Serializable {
     public void setRp_superior(String rp_superior) {
         this.rp_superior = rp_superior;
     }
+
     public Integer getRp_statu() {
         return rp_statu;
     }
 
     public void setRp_statu(Integer rp_statu) {
         this.rp_statu = rp_statu;
+    }
+
+    public List<Replys> getReplysList() {
+        return replysList;
+    }
+
+    public void setReplysList(List<Replys> replysList) {
+        this.replysList = replysList;
     }
 
     @Override

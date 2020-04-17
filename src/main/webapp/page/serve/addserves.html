@@ -113,17 +113,19 @@
 </form>
 
 <script src="/layui/layui.js" charset="utf-8"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+
 <script>
     layui.config({
     }).extend({
         selectN: '/layui/layui_extends/selectN',
         selectM: '/layui/layui_extends/selectM',
     }).use(['jquery','upload','form','laydate','selectM'],function(){
-        var $ = layui.jquery;
-        var laydate = layui.laydate;
-        var upload = layui.upload;
-        var selectM = layui.selectM;
-        var form = layui.form;
+         $ = layui.jquery,
+         laydate = layui.laydate,
+         upload = layui.upload,
+         selectM = layui.selectM,
+         form = layui.form;
 
         //获取下拉框值
         $.ajax({
@@ -158,7 +160,7 @@
             ,auto:false
             ,accept: 'file' //普通文件
             ,multiple:true
-            ,bindAction:"#tj"
+            ,bindAction:"#tj"//当点击
             ,done: function(res){     //上传完毕回调
                 layer.msg('提交成功！', {icon: 6});
                 $("#s_accessory").val(res.filename);
@@ -173,7 +175,7 @@
             //元素容器【必填】
             elem: '#s_name'
             //候选数据【必填】
-            ,data: '/sanqi/users/queryAllUser.do'
+            ,data: '/sanqi/users/queryuser.do'
             ,max:3//可以选几个
             ,width:400
             ,delimiter:','//
@@ -181,6 +183,7 @@
             //添加验证
             ,verify:'required'
         });
+
 
         //取消同步提交采用异步提交
         form.on('submit(*)', function(data){

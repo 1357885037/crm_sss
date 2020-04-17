@@ -27,23 +27,27 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/crm/serves")
 public class ServesController {
+
     @Autowired
     private IServesService servesService;
 
     @ResponseBody
     @RequestMapping("/queryAllServe.do")
     public AccountJson queryAllServe(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,Serves serves,@RequestParam(value = "tiaojian",required = false)Integer tiaojian,@RequestParam(value = "neirong",required = false)String neirong){
-      if(tiaojian !=null) {
-          if (tiaojian == 1) {
-              serves.setS_theme(neirong);
-          } else if (tiaojian == 2) {
-              serves.setS_sdate(neirong);
-          } else if (tiaojian == 3) {
-              serves.setS_name(neirong);
-          } else if (tiaojian == 4) {
-              serves.setS_type(neirong);
-          } else if (tiaojian == 5) {
-              serves.setS_grade(Integer.valueOf(neirong));
+
+        if(tiaojian !=null) {
+          if (neirong != null&&neirong!=""){
+              if (tiaojian == 1) {
+                  serves.setS_theme(neirong);
+              } else if (tiaojian == 2) {
+                  serves.setS_sdate(neirong);
+              } else if (tiaojian == 3) {
+                  serves.setS_name(neirong);
+              } else if (tiaojian == 4) {
+                  serves.setS_type(neirong);
+              } else if (tiaojian == 5) {
+                  serves.setS_grade(Integer.valueOf(neirong));
+              }
           }
       }
 

@@ -43,7 +43,6 @@ public class UsersController {
     @ResponseBody
     @RequestMapping("/queryAllUser.do")
     public AccountJson queryAllUser(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,Users users){
-     System.out.println(users.toString()+"1111111111111111111111111111111111111111111111111111111111111111111111111");
 
        Page pages= PageHelper.startPage(page,limit,true);
         QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
@@ -90,12 +89,23 @@ public class UsersController {
         return accountJson;
     }
 
+    @ResponseBody
+    @RequestMapping("/queryuser.do")
+    public  List<Users> queryuser(AccountJson accountJson){
+
+        QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("u_statu",0);
+        List<Users> usersList=usersService.list(queryWrapper);
+
+        return usersList;
+    }
+
 
     @RequestMapping("/delusers.do")
     public Integer delusers(String u_id){
-        System.out.println(u_id+"12121212123132132165465464679879875646545678465487465465465498786465465");
         int num=200;
         Users users=new Users();
+        users.setU_Id(u_id);
         users.setU_statu(1);
         try {
             usersService.saveOrUpdate(users);
@@ -144,21 +154,28 @@ public class UsersController {
     @RequestMapping("/userjurisdiction.do")
     public  ModelAndView userjurisdiction(String u_Id,ModelAndView modelAndView){
 
-        QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
-        queryWrapper.eq("u_statu",0);
-        queryWrapper.eq("u_id",u_Id);
-        Users  users=usersService.getOne(queryWrapper);
+        QueryWrapper<Jurisdictions> queryWrapper=new QueryWrapper<>();
+        queryWrapper.isNull("jur_jid");
+        List<Jurisdictions> jurisdictionsList=jurisdictionsService.list(queryWrapper);
+
+        for (Jurisdictions jurisdictions:jurisdictionsList){
+            QueryWrapper<Jurisdictions> queryWrapper2=new QueryWrapper<>();
+            queryWrapper2.eq("jur_jid",jurisdictions.getJ_id());
+            List<Jurisdictions>  jurisdictions2=jurisdictionsService.list(queryWrapper2);
+            jurisdictions.setJurisdictionsList(jurisdictions2);
+
+        }
 
         QueryWrapper<Users_jurisdictions> queryWrapper1=new QueryWrapper<>();
-        queryWrapper1.eq("u_id",users.getU_Id());
-        List<Users_jurisdictions> usersJurisdictions=users_jurisdictionsService.list(queryWrapper1);
+        queryWrapper1.eq("u_id",u_Id);
+        List<Users_jurisdictions> rolesJurisdictions=users_jurisdictionsService.list(queryWrapper1);
 
-        QueryWrapper<Jurisdictions> queryWrapper2=new QueryWrapper<>();
-        List<Jurisdictions> jurisdictionsList=jurisdictionsService.list(queryWrapper2);
-
-        for (Jurisdictions  jurisdictions:jurisdictionsList){
-            for (Users_jurisdictions usersJurisdictions1:usersJurisdictions){
-                if(jurisdictions.getJ_id().equals(usersJurisdictions1.getJ_id())){
+        QueryWrapper<Users> queryWrapper2=new QueryWrapper<>();
+        queryWrapper2.eq("u_id",u_Id);
+        Users users=usersService.getOne(queryWrapper2);
+        for (Jurisdictions jurisdictions:jurisdictionsList){
+            for (Users_jurisdictions rolesJurisdiction:rolesJurisdictions){
+                if(jurisdictions.getJ_id().equals(rolesJurisdiction.getJ_id())){
                     jurisdictions.setStatus(1);
                     break;
                 }else{
@@ -166,11 +183,24 @@ public class UsersController {
                 }
 
             }
-        }
 
-        modelAndView.addObject("users",users);
+            for (Jurisdictions jurisdictions1:jurisdictions.getJurisdictionsList()){
+                for (Users_jurisdictions rolesJurisdiction:rolesJurisdictions){
+                    if(jurisdictions1.getJ_id().equals(rolesJurisdiction.getJ_id())){
+                        jurisdictions1.setStatus(1);
+                        break;
+                    }else{
+                        jurisdictions1.setStatus(2);
+                    }
+
+                }
+
+            }
+
+        }
         modelAndView.addObject("jurisdictionsList",jurisdictionsList);
-        modelAndView.setViewName("page/user/userUPjurisdictions.html");
+        modelAndView.addObject("users",users);
+        modelAndView.setViewName("/page/user/user_Right.html");
 
         return modelAndView;
     }

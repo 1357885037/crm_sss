@@ -124,12 +124,14 @@
             if(data.value==4){
                 $("#dis").empty();
                 $("#dis").append("<select name='neirong'>" +
+                    "                    <option value=''>请选择</option>" +
                     "                    <option value='上门测试'>上门测试</option>" +
                     "                    <option value='出问题' >出问题</option>" +
                     "                </select>");
                 form.render();
             }
             if(data.value==5){
+
                 $("#dis").empty();
                 $("#dis").append(" <input type='radio' name='neirong' value='1' title='1分'>\n" +
                     "            <input type='radio' name='neirong' value='2' title='两分' >\n" +
@@ -140,6 +142,7 @@
 
             }
         });
+
 ////获取处理中的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -152,6 +155,7 @@
                 alert("出错啦");
             }
         });
+
 //获取已处理的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -164,6 +168,7 @@
                 alert("出错啦");
             }
         });
+
 //获取已搁置的服务一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -176,6 +181,7 @@
                 alert("出错啦");
             }
         });
+
 //获取本周新增一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -188,6 +194,7 @@
                 alert("出错啦");
             }
         });
+
 //获取上周新增一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -200,6 +207,7 @@
                 alert("出错啦");
             }
         });
+
 //获取本月新增一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -212,6 +220,7 @@
                 alert("出错啦");
             }
         });
+
 //获取上月新增一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -224,6 +233,7 @@
                 alert("出错啦");
             }
         });
+
 //获取本季度新增一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -236,6 +246,7 @@
                 alert("出错啦");
             }
         });
+
 //获取上季度新增一共有多少并显示脚表
         $.ajax({
             type: "post",
@@ -248,13 +259,23 @@
                 alert("出错啦");
             }
         });
+
 //   监听submit并改同步提交为异步提交并重新渲染表格
         form.on('submit(demo1)', function (data) {
-            table.reload("test", {
-                where: data.field
-            });
+            if ($("#selec").val()==5){
+                data.field.neirong="";
+                table.reload("test", {
+                    where: data.field
+                });
+            }else{
+                table.reload("test", {
+                    where: data.field
+                });
+            }
+
             return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
         });
+
 //获取表数据并渲染
         table.render({
             elem: '#test'
@@ -276,6 +297,7 @@
             , limits: [3, 5, 8, 10]
             , limit: 3
         });
+
 //监听行单击事件并弹出层显示这一行信息
         table.on('row(test)', function (obj) {
             var data = obj.data;
@@ -290,13 +312,13 @@
                 success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口
                     let body = layer.getChildFrame('body', index);
                     var statu;
-                    if(data.s_statu==0){
+                    if(data.s_statu===0){
                         statu="处理中";
                     }
-                    if(data.s_statu==1){
+                    if(data.s_statu===1){
                         statu="已结束";
                     }
-                    if(data.s_statu==2){
+                    if(data.s_statu===2){
                         statu="已搁置";
                     }
                     body.find("#s_theme").val(data.s_theme);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
@@ -313,10 +335,11 @@
                     body.find("#ct_name").val(data.contracts.ct_name);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
                     layui.form.render();
                 }
-            })
+            });
             //标注选中样式
             obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
         });
+
 //处理中的服务
         $("#on1").click(function () {
             table.render({
@@ -340,7 +363,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //已结束的服务
         $("#on2").click(function () {
             table.render({
@@ -364,7 +388,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //已搁置的服务
         $("#on3").click(function () {
             table.render({
@@ -388,7 +413,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //本周的服务
         $("#on4").click(function () {
             table.render({
@@ -412,7 +438,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //上周新增
         $("#on5").click(function () {
             table.render({
@@ -436,7 +463,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //本月新增
         $("#on6").click(function () {
             table.render({
@@ -460,7 +488,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //上月新增
         $("#on7").click(function () {
             table.render({
@@ -484,7 +513,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //本季度新增
         $("#on8").click(function () {
             table.render({
@@ -508,7 +538,8 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
+
 //上季度新增
         $("#on9").click(function () {
             table.render({
@@ -532,7 +563,7 @@
                 , limits: [3, 5, 8, 10]
                 , limit: 3
             });
-        })
+        });
 
     });
 </script>

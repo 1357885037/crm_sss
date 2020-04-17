@@ -55,11 +55,6 @@
 	],
 	"mengqi": [
 		{
-			"title": "我的发表",
-			"icon": "icon-mokuai",
-			"href": "page/doc/addressDoc.html",
-			"spread": false
-		},{
 			"title": "全部论坛",
 			"icon": "icon-mokuai",
 			"href": "page/forum/forum.html",
@@ -71,12 +66,6 @@
 			"title": "全部售后",
 			"icon": "icon-text",
 			"href": "/page/serve/serves.html",
-			"spread": false
-		},
-		{
-			"title": "我的售后",
-			"icon": "&#xe634;",
-			"href": "templeate/query.html",
 			"spread": false
 		}
 	],
