@@ -104,7 +104,6 @@ layui.use(['form','element','layer'],function(){
         option = {
             title: {
                 text: '客户关系管理系统-客户来源统计',
-                subtext: '数据真实有效',
                 x: 'center'
             },
             tooltip: {
@@ -115,6 +114,17 @@ layui.use(['form','element','layer'],function(){
                 orient: 'vertical',
                 left: 'left',
                 data: data
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
             },
             series: [
                 {
@@ -145,6 +155,124 @@ layui.use(['form','element','layer'],function(){
             myChart.resize();
         }
         console.log(data)
+    });
+
+    var myChart3 = echarts.init(document.getElementById('tu2'));
+    $.post("/crm/userinfo/bshangjishu.do").done(function (data) {
+        myChart3.setOption({
+            title: {
+                text: '存在类型的商机',
+                x: 'center'
+            },
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: data
+            }, grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+
+                series: [
+                {
+                    name: '客户数量(占比)',
+                    type: 'pie',
+                    radius: '55%',
+                    center: ['50%', '40%'],
+                    data: data,
+                    itemStyle: {
+                        emphasis: {
+                            // 阴影的大小
+                            shadowBlur: 10,
+                            // 阴影水平方向上的偏移
+                            shadowOffsetX: 0,
+                            // 阴影颜色
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+
+
+        });
+    });
+    var myChart4 = echarts.init(document.getElementById('tu3'));
+    $.post("/crm/userinfo/hetongzhexina.do").done(function (data) {
+        myChart4.setOption({
+            title: {
+                text: '本/上周合同成交量比较'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['本周', '上周']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['本/上周一', '本/上周二', '本/上周三', '本/上周四', '本/上周五','本/上周六', '本/上周日']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name: '本周',
+                    type: 'line',
+                    data: data.arrthree
+                },
+                {
+                    name: '上周',
+                    type: 'line',
+                    data: data.arrtwo
+                }
+            ]
+
+        });
+    });
+
+
+    $("#on1").click(function () {
+        $("#tu2").hide();
+        $("#tu3").hide();
+        $("#container").show();
+
+    });
+
+    $("#on2").click(function () {
+        $("#container").hide();
+        $("#tu3").hide();
+        $("#tu2").show();
+
+    });
+
+    $("#on3").click(function () {
+        $("#container").hide();
+        $("#tu2").hide();
+        $("#tu3").show();
     });
 
 

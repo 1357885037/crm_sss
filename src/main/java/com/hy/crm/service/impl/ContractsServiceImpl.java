@@ -193,6 +193,119 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts
         return contractsMapper.UserfulfillsumSNMeonkey(uid);
     }
 
+    @Override
+    public double queryszr() {
 
+        if(contractsMapper.queryszr()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.queryszr());
+    }
+
+    @Override
+    public double queryszl() {
+        if(contractsMapper.queryszl()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.queryszl());
+    }
+
+    @Override
+    public double queryszw() {
+        if(contractsMapper.queryszw()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.queryszw());
+}
+
+    @Override
+    public double queryszf() {
+        if(contractsMapper.queryszf()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.queryszf());
+    }
+
+    @Override
+    public double queryszs() {
+        if(contractsMapper.queryszs()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.queryszs());
+    }
+
+    @Override
+    public double querysze() {
+        if(contractsMapper.querysze()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.querysze());
+    }
+
+    @Override
+    public double queryszy() {
+        if(contractsMapper.queryszy()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.queryszy());
+    }
+
+    @Override
+    public double querybzy() {
+
+        if(contractsMapper.querybzy()==null){
+            return 0.0;
+        }
+            return Double.valueOf(contractsMapper.querybzy());
+
+    }
+
+    @Override
+    public double querybze() {
+        if(contractsMapper.querybze()==null){
+            return 0.0;
+        }
+            return Double.valueOf(contractsMapper.querybze());
+}
+
+    @Override
+    public double querybzs() {
+        if(contractsMapper.querybzs()==null){
+            return 0.0;
+        }
+            return Double.valueOf(contractsMapper.querybzs());
+    }
+
+    @Override
+    public double querybzf() {
+        if(contractsMapper.querybzf()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.querybzf());
+    }
+
+    @Override
+    public double querybzw() {
+        if(contractsMapper.querybzw()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.querybzw());
+    }
+
+    @Override
+    public double querybzl() {
+        if(contractsMapper.querybzl()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.querybzl());
+    }
+
+    @Override
+    public double querybzr() {
+        if(contractsMapper.querybzr()==null) {
+            return 0.0;
+        }
+        return Double.valueOf(contractsMapper.querybzr());
+    }
 
 }

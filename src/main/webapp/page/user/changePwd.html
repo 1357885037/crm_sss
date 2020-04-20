@@ -68,6 +68,9 @@
 				if(value.length < 6){
 					return "密码长度不能小于6位";
 				}
+				if($("#old").val()==value){
+					return "新旧密码一致，请重新输入！";
+				}
 			},
 			confirmPwd : function(value, item){
 				if(!new RegExp($("#oldPwd").val()).test(value)){

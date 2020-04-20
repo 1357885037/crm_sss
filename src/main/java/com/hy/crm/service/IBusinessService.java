@@ -164,4 +164,16 @@ String countMeonkey();
     //   根据客户类型饼状图
     List<Eachtes> bshangjishu();
 
+    //   根据客户类型饼状图
+    List<Eachtes> bkehushangjigeshu();
+
+    //   根据客户类型饼状图
+    List<Eachtes> bkehumonkey();
+
+
+
+
+
+
+
 }

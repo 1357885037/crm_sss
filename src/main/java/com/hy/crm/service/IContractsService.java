@@ -121,7 +121,35 @@ public interface IContractsService extends IService<Contracts> {
 
 
 
+    //    上星期天
+    double queryszr();
+    //    上星期六
+    double queryszl();
+    //上星期五
+    double queryszw();
+    //上星期四
+    double queryszf();
+    //上星期三
+    double queryszs();
+    //上星期二
+    double querysze();
+    //上星期一
+    double queryszy();
 
 
+    //本周一
+    double querybzy();
+    //本周二
+    double querybze();
+    //            本周三
+    double querybzs();
+    //            本周四
+    double querybzf();
+    //            本周五
+    double querybzw();
+    //            本周六
+    double querybzl();
+    //            本周日
+    double querybzr();
 
 }

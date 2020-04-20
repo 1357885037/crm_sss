@@ -4,10 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hy.crm.entity.*;
-import com.hy.crm.service.IBusinessService;
-import com.hy.crm.service.IContractsService;
-import com.hy.crm.service.IUsersService;
-import com.hy.crm.service.IWithsService;
+import com.hy.crm.service.*;
 import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +27,8 @@ public class UserInfoController {
     private IContractsService contractsService;
     @Autowired
     private IUsersService usersService;
+    @Autowired
+    private IClientsService iClientsService;
 
 //    用户周
     @ResponseBody
@@ -839,33 +838,33 @@ public class UserInfoController {
         for(int i=1;i<=5;i++){
             if(i==1){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.queryByindustry("IT|互联网|通信|电子");
-                industrySources.setName("IT|互联网|通信|电子");
+                industrySources=businessService.queryByindustry("老客户");
+                industrySources.setName("老客户");
                 list.add(industrySources);
             }
 
             if(i==2){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.queryByindustry("金融|银行|保险");
-                industrySources.setName("金融|银行|保险");
+                industrySources=businessService.queryByindustry("代理商");
+                industrySources.setName("代理商");
                 list.add(industrySources);
             }
             if(i==3){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.queryByindustry("房产|建筑建设|物业");
-                industrySources.setName("房产|建筑建设|物业");
+                industrySources=businessService.queryByindustry("独立开发");
+                industrySources.setName("独立开发");
                 list.add(industrySources);
             }
             if(i==4){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.queryByindustry("广告|传媒|印刷出版");
-                industrySources.setName("广告|传媒|印刷出版");
+                industrySources=businessService.queryByindustry("合作伙伴");
+                industrySources.setName("合作伙伴");
                 list.add(industrySources);
             }
             if(i==5){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.queryByindustry("医药生物|医疗保健");
-                industrySources.setName("医药生物|医疗保健");
+                industrySources=businessService.queryByindustry("电话访问");
+                industrySources.setName("电话访问");
                 list.add(industrySources);
             }
 
@@ -878,9 +877,6 @@ public class UserInfoController {
         return accountJson;
 
     }
-
-
-
     //    根据商机来源查询
     @ResponseBody
     @RequestMapping("/querylaiyuanindustry.do")
@@ -889,33 +885,33 @@ public class UserInfoController {
         for(int i=1;i<=5;i++){
             if(i==1){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.querysjly("老客户");
-                industrySources.setName("老客户");
+                industrySources=businessService.querysjly("IT|互联网|通信|电子");
+                industrySources.setName("IT|互联网|通信|电子");
                 list.add(industrySources);
             }
 
             if(i==2){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.querysjly("代理商");
-                industrySources.setName("代理商");
+                industrySources=businessService.querysjly("金融|银行|保险");
+                industrySources.setName("金融|银行|保险");
                 list.add(industrySources);
             }
             if(i==3){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.querysjly("独立开发");
-                industrySources.setName("独立开发");
+                industrySources=businessService.querysjly("房产|建筑建设|物业");
+                industrySources.setName("房产|建筑建设|物业");
                 list.add(industrySources);
             }
             if(i==4){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.querysjly("合作伙伴");
-                industrySources.setName("合作伙伴");
+                industrySources=businessService.querysjly("广告|传媒|印刷出版");
+                industrySources.setName("广告|传媒|印刷出版");
                 list.add(industrySources);
             }
             if(i==5){
                 Industry_Sources industrySources=new Industry_Sources();
-                industrySources=businessService.querysjly("电话访问");
-                industrySources.setName("电话访问");
+                industrySources=businessService.querysjly("医药生物|医疗保健");
+                industrySources.setName("医药生物|医疗保健");
                 list.add(industrySources);
             }
 
@@ -960,6 +956,152 @@ public class UserInfoController {
         queryWrapper5.eq("b_source","医药生物|医疗保健");
         List<Business> businessList5=businessService.list(queryWrapper5);
         arr[4]=businessList5.size();
+
+        return arr;
+    }
+//    kehulaiyuan商机数柱状图
+      @ResponseBody
+    @RequestMapping("/kehuzshangjishu.do")
+    public Integer[] kehuzshangjishu(){
+
+        Integer[] arr=new Integer[5];
+
+        QueryWrapper<Clients> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("c_industry","老客户");
+        List<Clients> clientsList=iClientsService.list(queryWrapper);
+        Integer num=0;
+        for(Clients clients:clientsList){
+            QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+            queryWrapper1.eq("c_id",clients.getC_id());
+            List<Business> businessList1=businessService.list(queryWrapper1);
+            num+=businessList1.size();
+        }
+        arr[0]=num;
+
+          QueryWrapper<Clients> queryWrapper2=new QueryWrapper<>();
+          queryWrapper2.eq("c_industry","代理商");
+          List<Clients> clientsList2=iClientsService.list(queryWrapper2);
+          Integer num2=0;
+          for(Clients clients:clientsList2){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              num2+=businessList1.size();
+          }
+          arr[1]=num2;
+
+          QueryWrapper<Clients> queryWrapper3=new QueryWrapper<>();
+          queryWrapper3.eq("c_industry","独立开发");
+          List<Clients> clientsList3=iClientsService.list(queryWrapper3);
+          Integer num3=0;
+          for(Clients clients:clientsList3){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              num3+=businessList1.size();
+          }
+          arr[2]=num3;
+
+          QueryWrapper<Clients> queryWrapper4=new QueryWrapper<>();
+          queryWrapper4.eq("c_industry","合作伙伴");
+          List<Clients> clientsList4=iClientsService.list(queryWrapper4);
+          Integer num4=0;
+          for(Clients clients:clientsList4){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              num4+=businessList1.size();
+          }
+          arr[3]=num4;
+
+          QueryWrapper<Clients> queryWrapper5=new QueryWrapper<>();
+          queryWrapper5.eq("c_industry","电话访问");
+          List<Clients> clientsList5=iClientsService.list(queryWrapper5);
+          Integer num5=0;
+          for(Clients clients:clientsList5){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              num5+=businessList1.size();
+          }
+          arr[4]=num5;
+
+        return arr;
+    }
+//    kehulaiyuanqianshu商机数柱状图
+      @ResponseBody
+    @RequestMapping("/kehuzmonkey.do")
+    public double[] kehuzmonkey(){
+
+        double[] arr=new double[5];
+
+        QueryWrapper<Clients> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("c_industry","老客户");
+        List<Clients> clientsList=iClientsService.list(queryWrapper);
+          double num=0;
+        for(Clients clients:clientsList){
+            QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+            queryWrapper1.eq("c_id",clients.getC_id());
+            List<Business> businessList1=businessService.list(queryWrapper1);
+            for(Business business:businessList1){
+                num+=business.getB_monkey().doubleValue();
+            }
+        }
+        arr[0]=num;
+
+          QueryWrapper<Clients> queryWrapper2=new QueryWrapper<>();
+          queryWrapper2.eq("c_industry","代理商");
+          List<Clients> clientsList2=iClientsService.list(queryWrapper2);
+          double num2=0;
+          for(Clients clients:clientsList2){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              for(Business business:businessList1){
+                  num+=business.getB_monkey().doubleValue();
+              }
+          }
+          arr[1]=num2;
+
+          QueryWrapper<Clients> queryWrapper3=new QueryWrapper<>();
+          queryWrapper3.eq("c_industry","独立开发");
+          List<Clients> clientsList3=iClientsService.list(queryWrapper3);
+          double num3=0;
+          for(Clients clients:clientsList3){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              for(Business business:businessList1){
+                  num+=business.getB_monkey().doubleValue();
+              }          }
+          arr[2]=num3;
+
+          QueryWrapper<Clients> queryWrapper4=new QueryWrapper<>();
+          queryWrapper4.eq("c_industry","合作伙伴");
+          List<Clients> clientsList4=iClientsService.list(queryWrapper4);
+          double num4=0;
+          for(Clients clients:clientsList4){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              for(Business business:businessList1){
+                  num+=business.getB_monkey().doubleValue();
+              }
+          }
+          arr[3]=num4;
+
+          QueryWrapper<Clients> queryWrapper5=new QueryWrapper<>();
+          queryWrapper5.eq("c_industry","电话访问");
+          List<Clients> clientsList5=iClientsService.list(queryWrapper5);
+          double num5=0;
+          for(Clients clients:clientsList5){
+              QueryWrapper<Business> queryWrapper1=new QueryWrapper<>();
+              queryWrapper1.eq("c_id",clients.getC_id());
+              List<Business> businessList1=businessService.list(queryWrapper1);
+              for(Business business:businessList1){
+                  num+=business.getB_monkey().doubleValue();
+              }          }
+          arr[4]=num5;
 
         return arr;
     }
@@ -1034,5 +1176,53 @@ public class UserInfoController {
         return arr;
     }
 
+    @ResponseBody
+    @RequestMapping("/bkehushangjishu.do")
+    public List<Eachtes> bkehushangjishu(){
+
+return businessService.bkehushangjigeshu();
+
+    }
+
+    @ResponseBody
+    @RequestMapping("/bkehumonkey.do")
+    public List<Eachtes> bkehumonkey(){
+
+return businessService.bkehumonkey();
+
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/hetongzhexina.do")
+    public Eachtes hetongzhexina(Eachtes e ){
+
+        double[] arrthree=new double[7];
+        arrthree[0]=contractsService.querybzy();
+        arrthree[1]=contractsService.querybze();
+        arrthree[2]=contractsService.querybzs();
+        arrthree[3]=contractsService.querybzf();
+        arrthree[4]=contractsService.querybzw();
+        arrthree[5]=contractsService.querybzl();
+        arrthree[6]=contractsService.querybzr();
+
+        double[] arrtwo=new double[7];
+        arrtwo[0]=contractsService.queryszy();
+        arrtwo[1]=contractsService.querysze();
+        arrtwo[2]=contractsService.queryszs();
+        arrtwo[3]=contractsService.queryszf();
+        arrtwo[4]=contractsService.queryszw();
+        arrtwo[5]=contractsService.queryszl();
+        arrtwo[6]=contractsService.queryszr();
+
+
+
+        Eachtes eachtes=new Eachtes();
+        eachtes.setArrthree(arrthree);
+        eachtes.setArrtwo(arrtwo);
+
+return eachtes;
+
+    }
 
 }

@@ -353,4 +353,17 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
     public List<Eachtes> bshangjishu() {
         return businessMapper.bshangjishu();
     }
+
+    @Override
+    public List<Eachtes> bkehushangjigeshu() {
+        return businessMapper.bkehushangjigeshu();
+    }
+
+    @Override
+    public List<Eachtes> bkehumonkey() {
+        return businessMapper.bkehumonkey();
+    }
+
+
+
 }

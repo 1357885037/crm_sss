@@ -7,6 +7,8 @@ public class Eachtes {
 
     private Integer[] arr;
     private String[] arrs;
+    private double[] arrtwo;
+    private double[] arrthree;
 
     public String getName() {
         return name;
@@ -38,6 +40,22 @@ public class Eachtes {
 
     public void setArrs(String[] arrs) {
         this.arrs = arrs;
+    }
+
+    public double[] getArrtwo() {
+        return arrtwo;
+    }
+
+    public void setArrtwo(double[] arrtwo) {
+        this.arrtwo = arrtwo;
+    }
+
+    public double[] getArrthree() {
+        return arrthree;
+    }
+
+    public void setArrthree(double[] arrthree) {
+        this.arrthree = arrthree;
     }
 
     @Override
