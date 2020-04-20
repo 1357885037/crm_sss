@@ -67,7 +67,6 @@ public class ClientsController {
     public String addClients(Clients clients, Client_finance client_finance){
         System.out.println("客户信息"+clients.toString());
         System.out.println("财务信息"+client_finance);
-        System.out.println(clients.getC_id());
         QueryWrapper<Clients> queryWrapper=new QueryWrapper();
         queryWrapper.eq("c_name",clients.getC_name());
         Clients clients1=clientsService.getOne(queryWrapper);
@@ -76,10 +75,9 @@ public class ClientsController {
             return "2";
         }else{
             System.out.println("========================================1");
-           // clientsService.save(clients);
-            System.out.println( "====================="+ clients.getC_id());
+             clientsService.save(clients);
             //add进去重新查询获取uuid 赋值给客户财务信息表
-          QueryWrapper<Clients> queryWrapper2=new QueryWrapper();
+            QueryWrapper<Clients> queryWrapper2=new QueryWrapper();
             queryWrapper.eq("c_name",clients.getC_name());
             Clients clients2=clientsService.getOne(queryWrapper);
 

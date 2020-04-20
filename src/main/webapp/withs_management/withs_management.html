@@ -24,6 +24,13 @@
             fill: currentColor;
             overflow: hidden;
         }
+        .icon4 {
+            width:2em;
+            height:2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -68,6 +75,15 @@
     </div>
 </form>
 
+<script type="text/html" id="titleTpl">
+    {{#  if(d.w_accessory == null){ }}
+    <div><a href="/images/{{d.w_accessory}}">暂无附件<svg class="icon4" aria-hidden="true"><use xlink:href="#icon-wenjian1"></use></svg></a></div>
+    {{#  } else { }}
+    <div><a href="/images/{{d.w_accessory}}">附件<svg class="icon4" aria-hidden="true"><use xlink:href="#icon-wenjian1"></use></svg></a></div>
+    {{#  } }}
+</script>
+
+
 <table class="layui-hide" id="test" lay-filter="test"></table>
 <script src="/layui/layui.js" charset="utf-8"></script>
 
@@ -102,12 +118,12 @@
                     ,{field:'w_title', title: '跟单主题',templet:'<div><a href="/crm/withs/update_withs.do?w_id={{d.w_id}}" style="color: #1E9FFF">{{d.w_title}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
                     ,{field:'u_id', title: '跟单人',templet:'<div>{{d.u_id}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-fuzeren"></use></svg></div>' }
                     ,{field:'w_texts', title: '详细内容', sort: true,templet:'<div>{{d.w_texts}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-hetongguanli1"></use></svg></div>'}
-                    ,{field:'w_accessory', title: '附件', sort: true,templet:'<div>{{d.w_accessory}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-wenjian1"></use></svg></div>' }
+                    ,{field:'w_accessory', title: '附件', sort: true,templet:'#titleTpl' }
                 ]
             ]
             , page: true
-            , limits: [3, 5, 8, 10]
-            , limit: 3
+            , limits: [3, 6,9, 12]
+            , limit: 10
         });
 
         //监听下拉框值得改变并改变查询的输入框

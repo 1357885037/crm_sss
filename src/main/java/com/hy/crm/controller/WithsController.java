@@ -68,7 +68,7 @@ public class WithsController {
         Business business=businessService.getById(withs.getB_id());
         withs.setW_title(business.getB_name()+"-"+withs.getW_classify());
         System.out.println("=="+withs.toString());
-        withs.setU_id("123");
+      /*  withs.setU_id("123");*/
         withsService.save(withs);
         return "1";
     }
@@ -93,8 +93,10 @@ public class WithsController {
     }
 
     @RequestMapping("/getByid_withs.do")
-    public String getByid_withs(String b_id, Model model){
+    public String getByid_withs(String b_id, Model model,HttpSession session){
         model.addAttribute("b_id",b_id);
+        Users user= (Users) session.getAttribute("users");
+        model.addAttribute("user",user);
         return "business_management/redact_withs";
     }
     @RequestMapping("/add.do")

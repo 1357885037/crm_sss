@@ -162,6 +162,13 @@ public class Query_customer {
                 sql2.append(" and b.use_attention like '%"+business.getUu_id()+"%'");
               return sql2.toString();
             }
+
+            //参与
+            if(business.getStatu()==14){
+                StringBuffer sql2=new StringBuffer("select b.b_id,b.b_name,b_stage,b_monkey,(select u_realname from users u where u.u_id=b.u_id) u_realname ,(select max(w_date) from withs w where w.b_id=b.b_id)  w_date ,(select count(*) from forum f where f.b_id=b.b_id)  forum_count from business b where 1=1");
+                sql2.append(" and b.u_participation like '%"+business.getUu_id()+"%'");
+                return sql2.toString();
+            }
         }
 
         return sql.toString();

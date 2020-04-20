@@ -170,6 +170,11 @@
                     <div class="layuimini-notice">
                         <div class="layuimini-notice-title"><a href="javascript:;" id="on14"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>我关注的商机</a> </div>
                     </div>
+
+                    <div class="layuimini-notice">
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="on15"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>我参与的商机</a> </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -411,6 +416,20 @@
                 alert("出错啦");
             }
         });
+
+
+        $.ajax({
+            type: "post",
+            url: "/crm/clients/customer_contract2.do?statu=14&uu_id="+$("#uu_id").val(),
+            dataType: "json",
+            success: function (data) {
+                $("#on15").append("<span class='layui-badge'>" + data.count + "</span>")
+            },
+            error: function () {
+                alert("出错啦");
+            }
+        });
+
 
         $("#on01").click(function () {
 
@@ -736,6 +755,27 @@
                         ,{field:'u_realname', title: '商机负责人', width: "160",templet:'<div>{{d.u_realname}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren"></use></svg></div>'}
                         ,{field:'w_date', title: '最后跟单', width: "160",templet:'#titleTpl'}
                         ,{field:'forum_count', title: '讨论版', width: "160", sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-luntan"></use></svg></a></div> '}
+                    ]
+                ]
+                , page: true
+                , limits: [3, 6, 9, 12]
+                , limit: 10
+            });
+
+        })
+
+        $("#on15").click(function () {
+            table.render({
+                elem: '#test'
+                , url: "/crm/clients/customer_contract2.do?statu=14&uu_id="+$("#uu_id").val()
+                ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
+                ,cols:  [
+                    [    {field:'b_name', title: '商机名称', width: "170",templet:'<div><a href="/crm/clients/getByid_business.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.b_name}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-business"></use></svg></a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                        ,{field:'b_stage', title: '商机阶段', width: "170", sort: true,templet:'<div>{{d.b_stage}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-icon_jieduan"></use></svg></div>'}
+                        ,{field:'b_monkey', title: '预计成交金额', width: "170", sort: true,templet:'<div>{{d.b_monkey}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leijichengjiaojine"></use></svg></div>'}
+                        ,{field:'u_realname', title: '商机负责人', width: "170",templet:'<div>{{d.u_realname}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren"></use></svg></div>'}
+                        ,{field:'w_date', title: '最后跟单', width: "170",templet:'#titleTpl'}
+                        ,{field:'forum_count', title: '讨论版', width: "170", sort: true,templet:'<div><a href="/crm/withs/getByid_forum.do?b_id={{d.b_id}}" style="color: #1E9FFF">{{d.forum_count}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-luntan"></use></svg></a></div> '}
                     ]
                 ]
                 , page: true

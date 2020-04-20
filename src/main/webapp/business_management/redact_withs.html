@@ -74,7 +74,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">跟单人</label>
             <div class="layui-input-inline">
-                <span id="u_id" name="u_id">123</span>
+                <input id="u_id" name="u_id" th:value="${user.getU_Realname()}" style="width: 200px;" class="layui-input" readonly="readonly" >
             </div>
         </div>
 
