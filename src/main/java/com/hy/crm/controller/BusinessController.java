@@ -11,7 +11,6 @@ import com.hy.crm.util.AccountJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -57,7 +56,7 @@ public class BusinessController {
     public String myBusiness(HttpSession session, Model model){
         Users user= (Users) session.getAttribute("users");
         model.addAttribute("user",user);
-        return "business_management/business_management";
+        return "business_management/business_management2";
     }
 
 
@@ -106,10 +105,12 @@ public class BusinessController {
     @ResponseBody
     @RequestMapping("/update_Business.do")
     public String update_Business(Business business){
-        System.out.println("修改商机测试。。。。。。。。。。。。。。。。");
-        System.out.println("看看"+business.toString());
-        businessService.updateById(business);
-        return "1";
+        try {
+            businessService.updateById(business);
+            return "1";
+        }catch (Exception e){
+            return "2";
+        }
     }
 
     @ResponseBody
@@ -245,5 +246,61 @@ public class BusinessController {
     }
 
 
+    @RequestMapping("/Concern.do")
+    @ResponseBody
+    public String Concern(String str,HttpSession session){
+        Users  users= (Users) session.getAttribute("users");
+        String[] sss=str.split(",");
+        int c=0;
+        for (int i = sss.length - 1; i >= 0; i--) {
+           Business business=businessService.getById(sss[i]);
+           if(business.getUse_attention().indexOf(users.getU_Id())==-1){
+               String use=business.getUse_attention()+","+users.getU_Id();
+               business.setUse_attention(use);
+               businessService.updateById(business);
+               c++;
+           }
+        }
+
+        if(c>0){
+            return "1";
+        }else {
+            return "0";
+        }
+
+    }
+
+    @RequestMapping("/no_Concern.do")
+    @ResponseBody
+    public String no_Concern(String str,HttpSession session){
+        Users  users= (Users) session.getAttribute("users");
+        String[] sss=str.split(",");
+        int c=0;
+        for (int i = sss.length - 1; i >= 0; i--) {
+            Business business=businessService.getById(sss[i]);
+            if(business.getUse_attention().indexOf(users.getU_Id())!=-1){
+                String [] use=business.getUse_attention().split(",");
+                String strr="";
+                for (int i1 = 0; i1 < use.length; i1++) {
+                  if(!use[i1].equals(users.getU_Id())){
+                      strr+=use[i1]+",";
+                  }
+                }
+                if (strr.length() > 0) {
+                   strr=strr.substring(0, strr.length()-1);
+                }
+
+                business.setUse_attention(strr);
+                businessService.updateById(business);
+                c++;
+            }
+        }
+
+        if(c>0){
+            return "1";
+        }else {
+            return "0";
+        }
+    }
 
 }

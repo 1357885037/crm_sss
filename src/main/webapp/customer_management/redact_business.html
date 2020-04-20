@@ -84,6 +84,11 @@
         <div class="layui-input-inline">
             <input   readonly="readonly" id="aaa4" style="width: 200px;" class="layui-input" type="text" placeholder="请输入客户网址" autocomplete="off" lay-verify="title">
         </div>
+
+        <label class="layui-form-label"></label>
+        <div class="layui-input-inline">
+            <a class='btn btn-info' href="javascript:history.go(-1)"><button class="layui-btn" type="button">返回上一步</button></a>
+        </div>
     </div>
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -257,14 +262,13 @@
     }).extend({
         selectN: '/layui/layui_extends/selectN',
         selectM: '/layui/layui_extends/selectM',
-    }).use(['form','upload','layedit', 'laydate','selectM','layer'], function(){
+    }).use(['form','upload','layedit','laydate','selectM','layer'], function(){
         var form = layui.form
             ,layer = layui.layer
             ,layedit = layui.layedit
             ,laydate = layui.laydate
             ,upload=layui.upload
             ,$=layui.jquery
-            ,layer=layui.layer
             ,selectM = layui.selectM;
 
 
@@ -297,7 +301,7 @@
             {
                 var a=data[i].u_Id;
                 var b=$("#u_id").val();
-                str+=" <option value='"+a+"' selected='"+a+"=="+b+"?'selected':'' ' >"+data[i].u_Name+"-"+data[i].u_Realname+"</option>";
+                str+=" <option value='"+a+"' selected='"+a+"=="+b+"?'selected':'' ' >用户名:"+data[i].u_Name+"--姓名:"+data[i].u_Realname+"</option>";
             }
             $("#u_in_charge_of").append(str);
             form.render("select");
@@ -305,8 +309,6 @@
 
         var str = $("#u_participations").val();
         var arr = str.split(',');
-        var str2 = $("#Use_attentions").val();
-        var arr2 = str.split(',');
         //多选标签-基本配置
         selectM({
             //元素容器【必填】
@@ -322,6 +324,9 @@
             ,verify:'required'
         });
         //多选标签-基本配置
+
+        var str2 = $("#Use_attentions").val();
+        var arr2 = str2.split(',');
         selectM({
             //元素容器【必填】
             elem: '#use_attention'
@@ -333,7 +338,7 @@
             ,field:{idName:'u_Id',titleName:'u_Realname'}
             ,selected:arr2
             //添加验证
-            ,verify:'required'
+
         });
 
 
@@ -419,7 +424,7 @@
                         }, function(){
                             //do something
                         });
-                        window.location.href ="/crm/clients/customer_contract.do?c_id"+$("#c_id").val()
+                        //window.location.href ="/crm/clients/customer_contract.do?c_id"+$("#c_id").val()
                     }else{
                         layer.msg('修改失败,该用户已存在！', {
                             icon: 1,
@@ -431,6 +436,8 @@
 
                 }
             });
+
+            return false;
         });
 
 

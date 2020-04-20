@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script src="/font/iconfont.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
     <script src="/layui/layui.js" charset="utf-8"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -26,16 +27,33 @@
             fill: currentColor;
             overflow: hidden;
         }
+        .icon3 {
+            width: 1.5em;
+            height: 1.5em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
 
 <form class="layui-form" action="">
-    <input type="hidden" th:value="${bb_id}" id="b_id">
-
     <div class="layui-form-item">
-        <label class="layui-form-label">查询条件</label>
-        <div class="layui-input-block">
+    <div class="layui-inline" >
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-luntan"></use>
+        </svg>
+    </div>
+    <div class="layui-inline" >
+        <h1 style="display:inline;">论坛管理</h1>
+    </div>
+    </div>
+    <br>
+    <input type="hidden" th:value="${bb_id}" id="b_id">
+    <div class="layui-form-item">
+        <div class="layui-inline">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div class="layui-inline">
             <select name="tiaojian" lay-verify="required">
                 <option value=""></option>
                 <option value=1>主题</option>
@@ -43,38 +61,37 @@
                 <option value=3>点击量</option>
                 <option value=4>回复量</option>
             </select>
+           <!-- <input type="text" name="neirong" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">-->
+        </div>
+
+        <div class="layui-inline">
             <input type="text" name="neirong" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
         </div>
+
+        <div class="layui-inline">
+            <button class="layui-btn" lay-submit lay-filter="formDemo" ><i class="layui-icon layui-icon-search"></i>立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-refresh"></i> 重置</button>
+           <!-- <a href="/page/forum/addForum.html" class="layui-btn"><i class="layui-icon layui-icon-add-1"></i> 发布帖子</a>-->
+        </div>
+
     </div>
-
-            <div class="layui-input-inline">
-                <input type="text" name="neirong" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
-            </div>
-
-            <div class="layui-input-inline">
-                <button class="layui-btn" lay-submit lay-filter="formDemo" ><i class="layui-icon layui-icon-search"></i>立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-danger"><i class="layui-icon layui-icon-refresh"></i> 重置</button>
-                <a href="/page/forum/addForum.html" class="layui-btn"><i class="layui-icon layui-icon-add-1"></i> 发布帖子</a>
-            </div>
-
-
 
     </form>
 
-
-
-    <script src="/font/iconfont.js"></script>
-    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
-    <script src="/layui/layui.js" charset="utf-8"></script>
-
-    <!--引入jquery文件-->
-    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 
 <table class="layui-hide" id="test" lay-filter="test" border="1"></table>
 <!--判断男女-->
 <script type="text/html" id="titleTpl">
     return data.data.u_id+()
 </script>
+<script type="text/html" id="titleTp2">
+    {{#  if(d.r_date == null){ }}
+    无回复<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg>
+    {{#  } else { }}
+    {{d.r_date}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg>
+    {{#  } }}
+</script>
+
 <script>
     layui.use(['table','form'], function(){
         var table = layui.table;
@@ -92,6 +109,7 @@
         //获取表数据
         table.render({
             elem: '#test'
+            ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,url:'/crm/forum/queryforum.do?b_id='+$("#b_id").val()
             ,text:{
                 none: '暂无相关数据' ,//默认：无数据。注：该属性为 layui 2.2.5 开始新增
@@ -99,17 +117,15 @@
             }
             ,cols: [
                 [
-                { width:200, title: '主题',templet:"<div><a href='/crm/forum/updateForum.do?f_id={{d.f_id}}' class='layui-table-link' style='color: #1e9fff'>{{d.f_title}}</a></div>"}
+                { width:200, title: '主题',templet:"<div><a href='/crm/forum/updateForum.do?f_id={{d.f_id}}' class='layui-table-link' style='color: #1e9fff'>{{d.f_title}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\" #icon-wodefabiao\"></use></svg></a></div>"}
                 ,{templet:function(d){
                             return d.u_name+"("+layui.util.toDateString(d.f_date, 'yyyy-MM-dd')+")";
-                    }, width:150, title: '作者'}
-                ,{field:'b_name', title: '所属商机', width:150,sort:true}
-                ,{field:'f_number', width:100, title: '点击量'}
-                ,{field:'revert', width:100, title: '回复量'}
-                ,{templet:function(d){
-                        return d.r_date ==null?"无回复":layui.util.toDateString(d.r_date, 'yyyy-MM-dd');
-                    }, width:100, title: '最后回复时间'}
-                ,{width:200, title: '操作',templet:'#barDemo'}
+                    }, title: '作者'}
+                ,{field:'b_name', title: '所属商机', sort:true,templet:'<div>{{d.b_name}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></div>'}
+                ,{field:'f_number',  title: '点击量',templet:'<div>{{d.f_number}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-wodeshangji1"></use></svg></div>'}
+                ,{field:'revert',  title: '回复量',templet:'<div>{{d.revert}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-taolun"></use></svg></div>'}
+                ,{ field:'r_date',  title: '最后回复时间',templet:'#titleTp2'}
+                ,{ title: '操作',templet:'#barDemo'}
 
             ]
             ]

@@ -64,7 +64,7 @@ public class loadController {
         }
         Users users=(Users) session.getAttribute("users");
         users.setU_Img(picName+extName);
-       boolean b=iUsersService.saveOrUpdate(users);
+        boolean b=iUsersService.saveOrUpdate(users);
 
 
 

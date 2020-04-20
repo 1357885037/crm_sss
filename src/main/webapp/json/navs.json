@@ -69,6 +69,11 @@
 			"icon": "icon-mokuai",
 			"href": "page/forum/forum.html",
 			"spread": false
+		},{
+			"title": "发布贴子",
+			"icon": "icon-mokuai",
+			"href": "page/forum/addForum.html",
+			"spread": false
 		}
 	],
 	"shouhou": [
@@ -76,6 +81,11 @@
 			"title": "全部售后",
 			"icon": "icon-text",
 			"href": "/page/serve/serves.html",
+			"spread": false
+		},{
+			"title": "新增售后",
+			"icon": "icon-text",
+			"href": "/page/serve/addserves.html",
 			"spread": false
 		}
 	],

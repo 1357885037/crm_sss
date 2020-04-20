@@ -3,18 +3,52 @@
     <meta charset="UTF-8">
     <title>发布帖子</title>
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script src="/font/iconfont.js"></script>
+    <style type="text/css">
+        .icon {
+            width: 3em;
+            height: 3em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+
+        #yidong {
+
+            position: absolute;
+
+            left:200px;
+
+            top:170px;
+
+        }
+    </style>
 </head>
 
 <body>
 
+<blockquote class="layui-elem-quote layui-text">
+    欢迎您,请正确添加贴子信息！！！
+</blockquote>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>
+        <div class="layui-inline" >
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-luntan4"></use>
+            </svg>
+        </div>
+        <div class="layui-inline" >
+            <h2 style="display:inline;">新增贴子</h2>
+        </div>
+    </legend>
+</fieldset>
 
 <form class="layui-form" action="">
-
     <div class="layui-form-item">
         <label class="layui-form-label">选择商机</label>
         <div class="layui-input-block">
             <select name="b_id" lay-verify="required" id="b_id">
-
             </select>
         </div>
     </div>

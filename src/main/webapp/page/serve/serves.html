@@ -10,7 +10,7 @@
     <script src="/font/iconfont.js"></script>
     <style type="text/css">
         .layui-col-xs9{
-            right: 110px;
+            right: 50px;
         }
         .icon {
             width: 5em;
@@ -72,7 +72,7 @@
                     <div class="layui-inline">
                         <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
                         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                        <a href="/page/serve/addserves.html" class="layui-btn layui-icon layui-icon-add-1">新增售后服务</a>
+                       <!-- <a href="/page/serve/addserves.html" class="layui-btn layui-icon layui-icon-add-1">新增售后服务</a>-->
                     </div>
 
                 </div>
@@ -319,11 +319,11 @@
             }
             , cols: [
                 [
-                {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}</a></div>"}
-                , {field: 's_type', width: 150, title: '服务类型'}
-                , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                , {field: 's_grade', width: 100, title: '服务评分'}
-                , {field: 's_name', width: 150, title: '服务人'}
+                {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
             ]
             ]
             , page: true
@@ -382,15 +382,14 @@
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [
+                , cols:  [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -409,13 +408,12 @@
                 }
                 , cols: [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -432,15 +430,14 @@
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [
+                , cols:  [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -459,13 +456,12 @@
                 }
                 , cols: [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -484,13 +480,12 @@
                 }
                 , cols: [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -509,13 +504,12 @@
                 }
                 , cols: [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -532,15 +526,14 @@
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [
+                , cols:  [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -557,15 +550,14 @@
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [
+                , cols:  [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]
@@ -582,15 +574,14 @@
                     none: '暂无相关数据',//默认：无数据。注：该属性为 layui 2.2.5 开始新增
                     icon: 'layui-icon-face-surprised'
                 }
-                , cols: [
+                , cols:  [
                     [
-                    {field: 's_theme', width: 200, title: '服务主题'}
-                    , {field: 's_type', width: 150, title: '服务类型'}
-                    , {field: 's_sdate', title: '开始时间', width: 150, sort: true}
-                    , {field: 's_grade', width: 100, title: '服务评分'}
-                    , {field: 's_name', width: 150, title: '服务人'}
-                    , {width: 150, title: '操作', templet: '#barDemo'}
-                ]
+                        {field: 's_theme', width: 200, title: '服务主题',templet:"<div><a href='javascript:;' class='layui-table-link' style='color: #1e9fff'>{{d.s_theme}}<svg class=\"icon3\" aria-hidden=\"true\"><use xlink:href=\"#icon-mingchengleiruqiyekehumingchengxiangmumingcheng\"></use></svg></a></div>"}
+                        , {field: 's_type', width: 200, title: '服务类型',templet:'<div>{{d.s_type}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-leibie2"></use></svg></div>'}
+                        , {field: 's_sdate', title: '开始时间', width: 200, sort: true,templet:'<div>{{d.s_sdate}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                        , {field: 's_grade', width: 200, title: '服务评分',templet:'<div>{{d.s_grade}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-pingfen"></use></svg></div>'}
+                        , {field: 's_name', width: 200, title: '服务人',templet:'<div>{{d.s_name}}<svg class="icon2" aria-hidden="true"><use xlink:href="#icon-fuzeren1"></use></svg></div>'}
+                    ]
                 ]
                 , page: true
                 , limits: [3, 5, 8, 10]

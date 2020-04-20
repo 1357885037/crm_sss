@@ -3,6 +3,36 @@
     <meta charset="utf-8">
     <title>个人资料--layui后台管理模板 2.0</title>
     <link rel="stylesheet" href="/layui/css/layui.css" media="all" />
+    <script src="/font/iconfont.js"></script>
+    <style type="text/css">
+        .layui-col-xs9{
+            right: 110px;
+        }
+        .icon {
+            width: 5em;
+            height: 5em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        .icon2 {
+            width: 2em;
+            height:2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        #ceshi{
+            left: 100px;
+        }
+        .icon3 {
+            width: 1em;
+            height:1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <!--判断男女-->
 <script type="text/html" id="titleTpl">
@@ -21,7 +51,51 @@
     <a class="layui-btn layui-btn-danger layui-btn-sm " lay-event="quanx">&#xe640;设置权限</a>
 </script>
 <form class="layui-form layui-row" >
-             <div>
+
+    <div class="layui-form-item">
+        <div class="layui-row">
+            <div class="layui-col-md3">
+                <div class="layui-inline" >
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-_huabanfuben"></use>
+                    </svg>
+                </div>
+                <div class="layui-inline" >
+                    <h1 style="display:inline;">用户管理</h1>
+                </div>
+            </div>
+            <div class="layui-col-md9">
+                <div class="layui-block">&nbsp;</div>
+                <div class="layui-inline" >
+                    <input type="text" name="u_Name"  placeholder="根据用户名" class="layui-input">
+                </div>
+
+                <div class="layui-inline" >
+                    <input type="text" name="u_Realname"  placeholder="根据真实姓名" class="layui-input">
+                </div>
+
+                <div class="layui-inline">
+                    <input type="radio" name="u_Sex" value="1" title="男"/>
+                    <input type="radio" name="u_Sex" value="2" title="女"/>
+                </div>
+
+                <div class="layui-inline" >
+                    <input  id="testd1" type="text" name="u_Date" class="layui-input"  placeholder="yyyy-MM-dd">
+                </div>
+
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">联合查询</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-------------------------------------------------------------------------->
+
+
+ <!--            <div>
                 <label class="layui-form-label">根据用户名</label>
                 <div class="layui-inline" >
                     <input type="text" name="u_Name"  placeholder="请输入内容" class="layui-input">
@@ -36,7 +110,7 @@
     </div>
     <div>
 
-    <label class="layui-form-label">根据性别</label>
+                <label class="layui-form-label">根据性别</label>
                 <div class="layui-inline">
                     <input type="radio" name="u_Sex" value="1" title="男"/>
                     <input type="radio" name="u_Sex" value="2" title="女"/>
@@ -57,7 +131,7 @@
         </div>
     </div>
 
-</div>
+</div>-->
 </form>
 
 <div class="layui-inline">

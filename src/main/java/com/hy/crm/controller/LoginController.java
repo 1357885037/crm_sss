@@ -74,20 +74,22 @@ public class LoginController {
 
     //登录后跳转主界面
     @RequestMapping("/transpond.do")
-    public String transpond(String username, Model model){
-        model.addAttribute("user",username);
+    public String transpond(String username, Model model,HttpSession session){
+        Users user= (Users) session.getAttribute("users");
+        model.addAttribute("user",user);
         return "/main_ Interface/index";
     }
 
     //主界面跳个人资料
     @RequestMapping("/Personal_Data.do")
     public String Personal_Data(HttpSession session, Model model){
-        String user= session.getAttribute("user").toString();
+        Users users= (Users) session.getAttribute("users");
         //从数据库中查询
-        QueryWrapper queryWrapper=new QueryWrapper();
+      /*  QueryWrapper queryWrapper=new QueryWrapper();
         queryWrapper.eq("u_name",user);
-        Users users=loginServiceImol.getOne(queryWrapper);
-        model.addAttribute("user",users);
+        Users users=loginServiceImol.getOne(queryWrapper);*/
+        Users user=loginServiceImol.getById(users.getU_Id());
+        model.addAttribute("user",user);
         return "page/user/userInfo";
     }
 

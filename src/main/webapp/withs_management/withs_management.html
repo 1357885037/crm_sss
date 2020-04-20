@@ -17,6 +17,13 @@
             fill: currentColor;
             overflow: hidden;
         }
+        .icon3 {
+            width:1.2em;
+            height:1.2em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -34,7 +41,7 @@
                     <h2 style="display:inline;">跟单管理</h2>
                 </div>
             </div>
-
+            <br>
             <div class="layui-col-md9">
                 <div class="layui-inline">
                     <select name="tiaojian" lay-filter="selec" id="selec">
@@ -91,11 +98,11 @@
             ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
             ,cols: [
                 [
-                    {field:'w_date', title: '跟单时间'}
-                    ,{field:'w_title', title: '跟单主题',templet:'<div><a href="/crm/withs/update_withs.do?w_id={{d.w_id}}" style="color: #1E9FFF">{{d.w_title}}</a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-                    ,{field:'u_id', title: '跟单人', }
-                    ,{field:'w_texts', title: '详细内容', sort: true}
-                    ,{field:'w_accessory', title: '附件', sort: true}
+                    {field:'w_date', title: '跟单时间',templet:'<div>{{d.w_date}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-shijian"></use></svg></div>'}
+                    ,{field:'w_title', title: '跟单主题',templet:'<div><a href="/crm/withs/update_withs.do?w_id={{d.w_id}}" style="color: #1E9FFF">{{d.w_title}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></a></div> '} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
+                    ,{field:'u_id', title: '跟单人',templet:'<div>{{d.u_id}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-fuzeren"></use></svg></div>' }
+                    ,{field:'w_texts', title: '详细内容', sort: true,templet:'<div>{{d.w_texts}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-hetongguanli1"></use></svg></div>'}
+                    ,{field:'w_accessory', title: '附件', sort: true,templet:'<div>{{d.w_accessory}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-wenjian1"></use></svg></div>' }
                 ]
             ]
             , page: true

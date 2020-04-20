@@ -16,11 +16,12 @@
 	<div class="layui-row">
 		<div class="layui-col-md3 layui-col-xs12 user_right">
 			<div class="layui-upload-list">
-				<img src="/images/${user.u_Img}" class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace">
+				<img th:src="@{'/images/'+${user.getU_Img()}}" class="layui-nav-img userAvatar" style="width: 235px;height: 235px;" id="demo1">
+				<!--<img src="/images/0e5a1878-1182-4947-b5b1-af3095d77b5a.jpg" class="layui-upload-img layui-circle userFaceBtn userAvatar" id="userFace">-->
 			</div>
 			<button type="button" id="test0" class="layui-btn layui-btn-primary userFaceBtn"><i class="layui-icon">&#xe67c;</i> 掐指一算，我要换一个头像了</button>
-
 		</div>
+
 		<form class="layui-form">
 		<div class="layui-col-md6 layui-col-xs12">
 
