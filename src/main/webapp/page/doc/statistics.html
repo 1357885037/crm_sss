@@ -759,7 +759,7 @@
                     <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/queryByindustry.do', page: false}">
                         <thead>
                         <tr>
-                            <th lay-data="{field:'name'}" >行业</th>
+                            <th lay-data="{field:'name'}" >商机来源</th>
                             <th lay-data="{field:'count'}" >商机个数</th>
                             <th lay-data="{field:'sum'}" >金额</th>
 
@@ -773,6 +773,43 @@
                 <li>金额柱状图</li>
                 <li>商机数饼状图</li>
                 <li>金额饼状图</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 500px;">
+                <div class="layui-tab-item">
+                    <div id="tj1" style="width: 800px;height:400px;"></div>
+                </div>
+                <div class="layui-tab-item">
+                    <div id="tj2" style="width: 800px;height:400px;"></div>
+                </div>
+                <div class="layui-tab-item">
+                    <div id="tj3" style="width: 800px;height:400px;"></div>
+                </div>
+                <div class="layui-tab-item">
+                    <div id="tj4" style="width: 800px;height:400px;"></div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+<!--    按商机来源分布-->
+    <div class="layui-col-xs9" id="div8" style="display: none">
+                    <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/querylaiyuanindustry.do', page: false}">
+                        <thead>
+                        <tr>
+                            <th lay-data="{field:'name'}" >所属行业</th>
+                            <th lay-data="{field:'count'}" >商机个数</th>
+                            <th lay-data="{field:'sum'}" >金额</th>
+
+                        </tr>
+                        </thead>
+                    </table>
+
+        <div class="layui-tab layui-tab-card">
+            <ul class="layui-tab-title">
+                <li class="layui-this">客户来源商机数柱状图</li>
+                <li>客户来源金额柱状图</li>
+                <li>客户来源商机数饼状图</li>
+                <li>客户来源金额饼状图</li>
             </ul>
             <div class="layui-tab-content" style="height: 500px;">
                 <div class="layui-tab-item">
@@ -790,19 +827,7 @@
             </div>
         </div>
 
-        </div>
-<!--    按商机来源分布-->
-    <div class="layui-col-xs9" id="div8" style="display: none">
-                    <table class="layui-table" lay-data="{width:1100, url:'/crm/userinfo/querylaiyuanindustry.do', page: false}">
-                        <thead>
-                        <tr>
-                            <th lay-data="{field:'name'}" >商机来源</th>
-                            <th lay-data="{field:'count'}" >商机个数</th>
-                            <th lay-data="{field:'sum'}" >金额</th>
 
-                        </tr>
-                        </thead>
-                    </table>
         </div>
 
 
@@ -1333,7 +1358,17 @@
         var myChart = echarts.init(document.getElementById('tu1'));
         $.post("/crm/userinfo/zshangjishu.do").done(function (data) {
             myChart.setOption({
-                tooltip: {},
+                tooltip: {}, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
                 title: {
                     text: '商机数柱状图',
                     x: 'center'
@@ -1345,6 +1380,81 @@
             yAxis: {
                 type: 'value'
             },
+            series: [{
+                data:data,
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(220, 220, 220, 0.8)'
+                }
+            }]
+
+         });
+        });
+
+    //    kehulaiyuan商机数柱状图
+        var myCharttj1 = echarts.init(document.getElementById('tj1'));
+        $.post("/crm/userinfo/kehuzshangjishu.do").done(function (data) {
+            myCharttj1.setOption({
+                tooltip: {},
+                title: {
+                    text: '商机数柱状图',
+                    x: 'center'
+                }, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+            xAxis: {
+                type: 'category',
+                data: ['老客户', '代理商', '独立开发', '合作伙伴', '电话访问']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data:data,
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                    color: 'rgba(220, 220, 220, 0.8)'
+                }
+            }]
+
+         });
+        });
+    //    kehulaiyuan商机数柱状图
+        var myCharttj2 = echarts.init(document.getElementById('tj2'));
+        $.post("/crm/userinfo/kehuzmonkey.do").done(function (data) {
+            myCharttj2.setOption({
+                tooltip: {},
+                title: {
+                    text: '商机数柱状图',
+                    x: 'center'
+                },
+            xAxis: {
+                type: 'category',
+                data: ['老客户', '代理商', '独立开发', '合作伙伴', '电话访问']
+            },
+            yAxis: {
+                type: 'value'
+            }, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
             series: [{
                 data:data,
                 type: 'bar',
@@ -1372,6 +1482,16 @@
                 },
                 yAxis: {
                     type: 'value'
+                }, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
                 },
                 series: [{
                     data:data,
@@ -1401,6 +1521,16 @@
                     orient: 'vertical',
                     left: 'left',
                     data: data
+                }, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
                 },
                 series: [
                     {
@@ -1426,9 +1556,6 @@
             });
         });
 
-
-
-
         //    商机金额饼状图
         var myChart4 = echarts.init(document.getElementById('tu4'));
         $.post("/crm/userinfo/bshangjimonkey.do").done(function (data) {
@@ -1445,7 +1572,118 @@
                     orient: 'vertical',
                     left: 'left',
                     data: data
+                }, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
                 },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                series: [
+                    {
+                        name: '客户数量(占比)',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '40%'],
+                        data: data,
+                        itemStyle: {
+                            emphasis: {
+                                // 阴影的大小
+                                shadowBlur: 10,
+                                // 阴影水平方向上的偏移
+                                shadowOffsetX: 0,
+                                // 阴影颜色
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+
+
+            });
+        });
+        //    商机金额饼状图
+        var myChartj3 = echarts.init(document.getElementById('tj3'));
+        $.post("/crm/userinfo/bkehushangjishu.do").done(function (data) {
+            myChartj3.setOption({
+                title: {
+                    text: 'kehu的商机',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: data
+                }, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                series: [
+                    {
+                        name: '客户数量(占比)',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['50%', '40%'],
+                        data: data,
+                        itemStyle: {
+                            emphasis: {
+                                // 阴影的大小
+                                shadowBlur: 10,
+                                // 阴影水平方向上的偏移
+                                shadowOffsetX: 0,
+                                // 阴影颜色
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+
+
+            });
+        });
+        //    商机金额饼状图
+        var myChartj4 = echarts.init(document.getElementById('tj4'));
+        $.post("/crm/userinfo/bkehumonkey.do").done(function (data) {
+            myChartj4.setOption({
+                title: {
+                    text: 'kehu的商机',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: data
+                }, grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+
                 series: [
                     {
                         name: '客户数量(占比)',

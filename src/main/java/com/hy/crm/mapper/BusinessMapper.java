@@ -226,4 +226,15 @@ Double UsersumSMeonkey(String uid);
     @Select("SELECT COUNT(1) AS  'value',b_source AS 'name' FROM business GROUP BY b_source")
     List<Eachtes> bshangjishu();
 
+    //   根据客户类型饼状图
+    @Select("SELECT c.c_industry AS 'name',COUNT(1) AS 'value' FROM clients c,business b GROUP BY c.c_industry ")
+    List<Eachtes> bkehushangjigeshu();
+@Select("SELECT c.c_industry AS \"name\",SUM(b.b_monkey) AS 'value' FROM clients c,business b GROUP BY c.c_industry  ")
+    List<Eachtes> bkehumonkey();
+
+
+
+
+
+
 }

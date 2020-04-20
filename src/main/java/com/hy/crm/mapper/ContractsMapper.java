@@ -161,4 +161,50 @@ public interface ContractsMapper extends BaseMapper<Contracts> {
     public List<Contracts> queryall(@Param("contracts") Contracts contracts,@Param("clients") Clients clients);
 
 
+
+    //本周一
+    @Select(" SELECT SUM(ct_monkey) FROM contracts WHERE  ct_qddate=  SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%'))")
+    String querybzy();
+    //本周二
+    @Select("SELECT  SUM(ct_monkey) FROM contracts WHERE ct_qddate=   SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%')-1)" )
+    String querybze();
+    //            本周三
+    @Select("    SELECT  SUM(ct_monkey) FROM contracts WHERE ct_qddate=  SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%')-2)")
+    String querybzs();
+    //            本周四
+    @Select("    SELECT  SUM(ct_monkey) FROM contracts WHERE ct_qddate=   SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%')-3)")
+    String querybzf();
+    //            本周五
+    @Select("    SELECT  SUM(ct_monkey) FROM contracts WHERE ct_qddate=  SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%')-4)")
+    String querybzw();
+    //            本周六
+    @Select("    SELECT  SUM(ct_monkey) FROM contracts WHERE ct_qddate=   SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%')-5)")
+    String querybzl();
+    //            本周日
+    @Select("    SELECT  SUM(ct_monkey) FROM contracts WHERE ct_qddate=  SUBDATE(CURDATE(),DATE_FORMAT(CURDATE(),'%')-6)")
+    String querybzr();
+
+
+    //    上星期天
+    @Select("    SELECT SUM(ct_monkey) FROM contracts WHERE ct_qddate=  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 1 DAY),'%Y-%m-%d')")
+    String queryszr();
+    //    上星期六
+    @Select("SELECT SUM(ct_monkey) FROM contracts WHERE ct_qddate=  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 2 DAY),'%Y-%m-%d')")
+    String queryszl();
+    //上星期五
+    @Select("    SELECT SUM(ct_monkey) FROM contracts WHERE ct_qddate=  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 3 DAY),'%Y-%m-%d')")
+    String queryszw();
+    //上星期四
+    @Select("    SELECT SUM(ct_monkey) FROM contracts WHERE ct_qddate=  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 4 DAY),'%Y-%m-%d')")
+    String queryszf();
+    //上星期三
+    @Select("    SELECT SUM(ct_monkey) FROM contracts WHERE ct_qddate=  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 5 DAY),'%Y-%m-%d')")
+    String queryszs();
+    //上星期二
+    @Select("    SELECT SUM(ct_monkey) FROM contracts WHERE ct_qddate=  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 6 DAY),'%Y-%m-%d')")
+    String querysze();
+    //上星期一
+    @Select("    SELECT SUM(ct_monkey) FROM contracts WHERE ct_qddate=  DATE_FORMAT(DATE_SUB(NOW(),INTERVAL 7 DAY),'%Y-%m-%d')")
+    String queryszy();
+
 }
