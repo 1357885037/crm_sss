@@ -2,8 +2,10 @@ package com.hy.crm.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hy.crm.entity.Business;
-import com.hy.crm.entity.Business;
+import com.hy.crm.entity.Eachtes;
 import com.hy.crm.entity.Industry_Sources;
+
+import java.util.List;
 
 /**
  * <p>
@@ -156,5 +158,10 @@ String countMeonkey();
 //        按商机来源查询
     Industry_Sources querysjly(String value);
 
+    //   根据客户类型进行差钱数的柱状图
+    List<Eachtes> zquerybusiness();
+
+    //   根据客户类型饼状图
+    List<Eachtes> bshangjishu();
 
 }

@@ -5,6 +5,9 @@ public class Eachtes {
     private String name;
     private Integer value;
 
+    private Integer[] arr;
+    private String[] arrs;
+
     public String getName() {
         return name;
     }
@@ -19,6 +22,22 @@ public class Eachtes {
 
     public void setValue(Integer value) {
         this.value = value;
+    }
+
+    public Integer[] getArr() {
+        return arr;
+    }
+
+    public void setArr(Integer[] arr) {
+        this.arr = arr;
+    }
+
+    public String[] getArrs() {
+        return arrs;
+    }
+
+    public void setArrs(String[] arrs) {
+        this.arrs = arrs;
     }
 
     @Override

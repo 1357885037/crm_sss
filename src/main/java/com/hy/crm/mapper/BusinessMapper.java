@@ -2,12 +2,11 @@ package com.hy.crm.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.hy.crm.entity.Business;
+import com.hy.crm.entity.Eachtes;
+import com.hy.crm.entity.Industry_Sources;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import com.hy.crm.entity.Business;
-import com.hy.crm.entity.Industry_Sources;
-import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -218,5 +217,13 @@ Double UsersumSMeonkey(String uid);
 
     @Select("select * from business order by convert(b_name using gbk) collate gbk_chinese_ci asc")
     public List<Business> asc_b_name();
+
+//   根据客户类型进行差钱数的柱状图
+    @Select("SELECT SUM(b_monkey) AS 'value',b_source AS 'name' FROM business GROUP BY b_source")
+    List<Eachtes> zquerybusiness();
+
+    //   根据客户类型饼状图
+    @Select("SELECT COUNT(1) AS  'value',b_source AS 'name' FROM business GROUP BY b_source")
+    List<Eachtes> bshangjishu();
 
 }
