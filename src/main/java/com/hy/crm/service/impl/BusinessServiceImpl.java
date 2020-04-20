@@ -2,6 +2,7 @@ package com.hy.crm.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hy.crm.entity.Business;
+import com.hy.crm.entity.Eachtes;
 import com.hy.crm.entity.Industry_Sources;
 import com.hy.crm.mapper.BusinessMapper;
 import com.hy.crm.service.IBusinessService;
@@ -341,5 +342,15 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
     @Override
     public Industry_Sources querysjly(String value) {
         return businessMapper.querysjly(value);
+    }
+
+    @Override
+    public List<Eachtes> zquerybusiness() {
+        return businessMapper.zquerybusiness();
+    }
+
+    @Override
+    public List<Eachtes> bshangjishu() {
+        return businessMapper.bshangjishu();
     }
 }

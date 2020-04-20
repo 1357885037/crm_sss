@@ -695,9 +695,6 @@ public class UserInfoController {
         accountJson.setCode(0);
         accountJson.setCount(5);
         accountJson.setData(list);
-        for(Shangji shangji:list){
-            System.out.println(shangji.toString()+"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-        }
 
         return accountJson;
     }
@@ -931,5 +928,111 @@ public class UserInfoController {
         return accountJson;
 
     }
+
+//    商机数柱状图
+      @ResponseBody
+    @RequestMapping("/zshangjishu.do")
+    public Integer[] zshangjishu(){
+
+        Integer[] arr=new Integer[5];
+
+        QueryWrapper<Business> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("b_source","IT|互联网|通信|电子");
+        List<Business> businessList=businessService.list(queryWrapper);
+        arr[0]=businessList.size();
+
+        QueryWrapper<Business> queryWrapper2=new QueryWrapper<>();
+        queryWrapper2.eq("b_source","金融|银行|保险");
+        List<Business> businessList2=businessService.list(queryWrapper2);
+        arr[1]=businessList2.size();
+
+        QueryWrapper<Business> queryWrapper3=new QueryWrapper<>();
+        queryWrapper3.eq("b_source","房产|建筑建设|物业");
+        List<Business> businessList3=businessService.list(queryWrapper3);
+        arr[2]=businessList3.size();
+
+        QueryWrapper<Business> queryWrapper4=new QueryWrapper<>();
+        queryWrapper4.eq("b_source","广告|传媒|印刷出版");
+        List<Business> businessList4=businessService.list(queryWrapper4);
+        arr[3]=businessList4.size();
+
+        QueryWrapper<Business> queryWrapper5=new QueryWrapper<>();
+        queryWrapper5.eq("b_source","医药生物|医疗保健");
+        List<Business> businessList5=businessService.list(queryWrapper5);
+        arr[4]=businessList5.size();
+
+        return arr;
+    }
+
+    @ResponseBody
+    @RequestMapping("/bshangjishu.do")
+    public List<Eachtes> bshangjishu(){
+        List<Eachtes> businessList=businessService.bshangjishu();
+        return businessList;
+    }
+
+    @ResponseBody
+    @RequestMapping("/bshangjimonkey.do")
+    public List<Eachtes> bshangjimonkey( ){
+        List<Eachtes> businessList=businessService.zquerybusiness();
+        return businessList;
+    }
+
+    @ResponseBody
+    @RequestMapping("/zshangjimonkey.do")
+    public double[] zshangjimonkey(Eachtes eachtes){
+
+        double[] arr=new double[5];
+
+        QueryWrapper<Business> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("b_source","IT|互联网|通信|电子");
+        List<Business> businessList=businessService.list(queryWrapper);
+        double d=0;
+        for(Business business:businessList){
+            d+=business.getB_monkey().doubleValue();
+        }
+
+        arr[0]=d;
+
+        QueryWrapper<Business> queryWrapper2=new QueryWrapper<>();
+        queryWrapper2.eq("b_source","金融|银行|保险");
+        List<Business> businessList2=businessService.list(queryWrapper2);
+        double d2=0;
+        for(Business business:businessList2){
+            d2+=business.getB_monkey().doubleValue();
+        }
+        arr[1]=d2;
+
+        QueryWrapper<Business> queryWrapper3=new QueryWrapper<>();
+        queryWrapper3.eq("b_source","房产|建筑建设|物业");
+        List<Business> businessList3=businessService.list(queryWrapper3);
+        double d3=0;
+        for(Business business:businessList3){
+            d3+=business.getB_monkey().doubleValue();
+        }
+        arr[2]=d3;
+
+        QueryWrapper<Business> queryWrapper4=new QueryWrapper<>();
+        queryWrapper4.eq("b_source","广告|传媒|印刷出版");
+        List<Business> businessList4=businessService.list(queryWrapper4);
+        double d4=0;
+        for(Business business:businessList4){
+            d4+=business.getB_monkey().doubleValue();
+        }
+        arr[3]=d4;
+
+        QueryWrapper<Business> queryWrapper5=new QueryWrapper<>();
+        queryWrapper5.eq("b_source","医药生物|医疗保健");
+        List<Business> businessList5=businessService.list(queryWrapper5);
+        double d5=0;
+        for(Business business:businessList5){
+            d5+=business.getB_monkey().doubleValue();
+        }
+        arr[4]=d5;
+
+
+        return arr;
+    }
+
 
 }
