@@ -62,10 +62,11 @@ public class Contracts implements Serializable {
     @TableField(exist = false)
     private Double ch_monkey;
 
+
+
     public Double getRe_monkey() {
         return re_monkey;
     }
-
     public void setRe_monkey(Double re_monkey) {
         this.re_monkey = re_monkey;
     }
@@ -73,7 +74,6 @@ public class Contracts implements Serializable {
     public Double getCh_monkey() {
         return ch_monkey;
     }
-
     public void setCh_monkey(Double ch_monkey) {
         this.ch_monkey = ch_monkey;
     }
@@ -81,7 +81,6 @@ public class Contracts implements Serializable {
     public String getCt_id() {
         return ct_id;
     }
-
     public void setCt_id(String ct_id) {
         this.ct_id = ct_id;
     }
@@ -89,7 +88,6 @@ public class Contracts implements Serializable {
     public String getC_id() {
         return c_id;
     }
-
     public void setC_id(String c_id) {
         this.c_id = c_id;
     }
@@ -97,32 +95,34 @@ public class Contracts implements Serializable {
     public String getU_id() {
         return u_id;
     }
-
     public void setU_id(String u_id) {
         this.u_id = u_id;
     }
+
     public String getCt_name() {
         return ct_name;
     }
-
     public void setCt_name(String ct_name) {
         this.ct_name = ct_name;
     }
+
     public BigDecimal getCt_monkey() {
         return ct_monkey;
     }
-
     public void setCt_monkey(BigDecimal ct_monkey) {
         this.ct_monkey = ct_monkey;
     }
+
     public String getCt_linkman() {
         return ct_linkman;
+    }
+    public void setCt_linkman(String ct_linkman) {
+        this.ct_linkman = ct_linkman;
     }
 
     public String getCt_qddate() {
         return ct_qddate;
     }
-
     public void setCt_qddate(String ct_qddate) {
         this.ct_qddate = ct_qddate;
     }
@@ -130,7 +130,6 @@ public class Contracts implements Serializable {
     public String getCt_sxdate() {
         return ct_sxdate;
     }
-
     public void setCt_sxdate(String ct_sxdate) {
         this.ct_sxdate = ct_sxdate;
     }
@@ -138,19 +137,13 @@ public class Contracts implements Serializable {
     public String getCt_fwqdate() {
         return ct_fwqdate;
     }
-
     public void setCt_fwqdate(String ct_fwqdate) {
         this.ct_fwqdate = ct_fwqdate;
-    }
-
-    public void setCt_linkman(String ct_linkman) {
-        this.ct_linkman = ct_linkman;
     }
 
     public Long getCt_gdphone() {
         return ct_gdphone;
     }
-
     public void setCt_gdphone(Long ct_gdphone) {
         this.ct_gdphone = ct_gdphone;
     }
@@ -158,7 +151,6 @@ public class Contracts implements Serializable {
     public Long getCt_ydphone() {
         return ct_ydphone;
     }
-
     public void setCt_ydphone(Long ct_ydphone) {
         this.ct_ydphone = ct_ydphone;
     }
@@ -166,7 +158,6 @@ public class Contracts implements Serializable {
     public String getCt_qq() {
         return ct_qq;
     }
-
     public void setCt_qq(String ct_qq) {
         this.ct_qq = ct_qq;
     }
@@ -174,35 +165,34 @@ public class Contracts implements Serializable {
     public String getCt_technology() {
         return ct_technology;
     }
-
     public void setCt_technology(String ct_technology) {
         this.ct_technology = ct_technology;
     }
+
     public String getCt_clause() {
         return ct_clause;
     }
-
     public void setCt_clause(String ct_clause) {
         this.ct_clause = ct_clause;
     }
+
     public String getCt_file() {
         return ct_file;
     }
-
     public void setCt_file(String ct_file) {
         this.ct_file = ct_file;
     }
+
     public String getCt_dept() {
         return ct_dept;
     }
-
     public void setCt_dept(String ct_dept) {
         this.ct_dept = ct_dept;
     }
+
     public Integer getCt_status() {
         return ct_status;
     }
-
     public void setCt_status(Integer ct_status) {
         this.ct_status = ct_status;
     }
@@ -231,4 +221,5 @@ public class Contracts implements Serializable {
                 ", ch_monkey=" + ch_monkey +
                 '}';
     }
+
 }

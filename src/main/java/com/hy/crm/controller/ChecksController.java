@@ -25,6 +25,7 @@ public class ChecksController {
 
     @Autowired
     RemittanceServiceImpl remittanceService;
+
     //收入登记
     @RequestMapping("/register_checks.do")
     public String register_checks(String ct_id, Model model,HttpSession session){
@@ -40,4 +41,5 @@ public class ChecksController {
         remittanceService.save(remittance);
         return "1";
     }
+
 }

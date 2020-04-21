@@ -20,16 +20,11 @@ public interface ClientsMapper extends BaseMapper<Clients> {
 
     @Select("select * from clients order by convert(c_name using gbk) collate gbk_chinese_ci asc")
     public List<Clients> asc_c_name();
-
-     @SelectProvider(type = Query_customer.class,method = "query")
+    @SelectProvider(type = Query_customer.class,method = "query")
     public List<Customer_management> customer_management(Clients clients);
-
-
-     @SelectProvider(type = Query_customer.class,method = "query_Contract")
-     public List<Customer_contract>  customer_contract(Business business);
-
-
-     @Select("SELECT c_source AS name,COUNT(1) AS value FROM clients GROUP BY c_source ")
+    @SelectProvider(type = Query_customer.class,method = "query_Contract")
+    public List<Customer_contract>  customer_contract(Business business);
+    @Select("SELECT c_source AS name,COUNT(1) AS value FROM clients GROUP BY c_source ")
     List<Eachtes> querygroup();
 
 }

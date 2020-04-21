@@ -22,7 +22,9 @@ public class ServesServiceImpl extends ServiceImpl<ServesMapper, Serves> impleme
 
     @Autowired
     private ServesMapper servesMapper;
-    public List<Serves> pages( Serves serves) {
+    @Override
+    public List<Serves> pages(Serves serves) {
         return servesMapper.queryAll(serves);
     }
+
 }

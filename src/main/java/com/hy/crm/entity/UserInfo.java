@@ -12,10 +12,11 @@ public class UserInfo {
     private Double c_UserfulfillsumMeonkey;
     private Double c_UserfulfillsumSMeonkey;
 
+
+
     public String getUname() {
         return uname;
     }
-
     public void setUname(String uname) {
         this.uname = uname;
     }
@@ -23,7 +24,6 @@ public class UserInfo {
     public Double getB_UsersumMeonkey() {
         return b_UsersumMeonkey;
     }
-
     public void setB_UsersumMeonkey(Double b_UsersumMeonkey) {
         this.b_UsersumMeonkey = b_UsersumMeonkey;
     }
@@ -31,7 +31,6 @@ public class UserInfo {
     public Double getB_UsersumSMeonkey() {
         return b_UsersumSMeonkey;
     }
-
     public void setB_UsersumSMeonkey(Double b_UsersumSMeonkey) {
         this.b_UsersumSMeonkey = b_UsersumSMeonkey;
     }
@@ -39,7 +38,6 @@ public class UserInfo {
     public Double getW_UsersumMeonkey() {
         return w_UsersumMeonkey;
     }
-
     public void setW_UsersumMeonkey(Double w_UsersumMeonkey) {
         this.w_UsersumMeonkey = w_UsersumMeonkey;
     }
@@ -47,7 +45,6 @@ public class UserInfo {
     public Double getW_UsersumSMeonkey() {
         return w_UsersumSMeonkey;
     }
-
     public void setW_UsersumSMeonkey(Double w_UsersumSMeonkey) {
         this.w_UsersumSMeonkey = w_UsersumSMeonkey;
     }
@@ -55,7 +52,6 @@ public class UserInfo {
     public Double getC_UsersumMeonkey() {
         return c_UsersumMeonkey;
     }
-
     public void setC_UsersumMeonkey(Double c_UsersumMeonkey) {
         this.c_UsersumMeonkey = c_UsersumMeonkey;
     }
@@ -63,7 +59,6 @@ public class UserInfo {
     public Double getC_UsersumSMeonkey() {
         return c_UsersumSMeonkey;
     }
-
     public void setC_UsersumSMeonkey(Double c_UsersumSMeonkey) {
         this.c_UsersumSMeonkey = c_UsersumSMeonkey;
     }
@@ -71,7 +66,6 @@ public class UserInfo {
     public Double getC_UserfulfillsumMeonkey() {
         return c_UserfulfillsumMeonkey;
     }
-
     public void setC_UserfulfillsumMeonkey(Double c_UserfulfillsumMeonkey) {
         this.c_UserfulfillsumMeonkey = c_UserfulfillsumMeonkey;
     }
@@ -79,7 +73,6 @@ public class UserInfo {
     public Double getC_UserfulfillsumSMeonkey() {
         return c_UserfulfillsumSMeonkey;
     }
-
     public void setC_UserfulfillsumSMeonkey(Double c_UserfulfillsumSMeonkey) {
         this.c_UserfulfillsumSMeonkey = c_UserfulfillsumSMeonkey;
     }
@@ -98,4 +91,5 @@ public class UserInfo {
                 ", c_UserfulfillsumSMeonkey=" + c_UserfulfillsumSMeonkey +
                 '}';
     }
+
 }

@@ -31,6 +31,8 @@ public class Jurisdictions implements Serializable {
     @TableField(exist = false)
     private Integer status;
 
+
+
     public String getJur_jid() {
         return jur_jid;
     }
@@ -76,12 +78,13 @@ public class Jurisdictions implements Serializable {
     @Override
     public String toString() {
         return "Jurisdictions{" +
-        "j_id=" + j_id +
-        ", jur_jid=" + jur_jid +
-        ", j_name=" + j_name +
-        ", j_url=" + j_url +
-        ", status=" + status +
-        ", jurisdictionsList=" + jurisdictionsList +
-        "}";
+                "j_id='" + j_id + '\'' +
+                ", jur_jid='" + jur_jid + '\'' +
+                ", j_name='" + j_name + '\'' +
+                ", j_url='" + j_url + '\'' +
+                ", jurisdictionsList=" + jurisdictionsList +
+                ", status=" + status +
+                '}';
     }
+
 }

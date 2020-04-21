@@ -48,11 +48,9 @@ public class WithsController {
         if(tiaojian!=null){
             withs.setStatu(Integer.parseInt(tiaojian));
         }
-        System.out.println("1232132141421：：：："+withs.getUser());
 
         Page pageHelper= PageHelper.startPage(page,limit,true);
         List<Withs> list=withsService.query_ByB_id(withs);
-        System.out.println("测。。。。。。"+list.size());
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
         accountJson.setMsg("");
@@ -67,7 +65,6 @@ public class WithsController {
     public  String add_withs(Withs withs){
         Business business=businessService.getById(withs.getB_id());
         withs.setW_title(business.getB_name()+"-"+withs.getW_classify());
-        System.out.println("=="+withs.toString());
       /*  withs.setU_id("123");*/
         withsService.save(withs);
         return "1";
@@ -99,6 +96,7 @@ public class WithsController {
         model.addAttribute("user",user);
         return "business_management/redact_withs";
     }
+
     @RequestMapping("/add.do")
     public String ccc(HttpSession session,Model model){
         Users user= (Users) session.getAttribute("users");
@@ -126,6 +124,7 @@ public class WithsController {
         }
         return d;
     }
+
     @RequestMapping("/sumSMeonkey.do")
     @ResponseBody
     public Double sumSMeonkey() {
@@ -138,6 +137,7 @@ public class WithsController {
         }
         return d;
     }
+
     @RequestMapping("/sumYMeonkey.do")
     @ResponseBody
     public Double sumYMeonkey() {
@@ -150,6 +150,7 @@ public class WithsController {
         }
         return d;
     }
+
     @RequestMapping("/sumSYMeonkey.do")
     @ResponseBody
     public Double sumSYMeonkey() {
@@ -162,6 +163,7 @@ public class WithsController {
         }
         return d;
     }
+
     @RequestMapping("/sumJdMeonkey.do")
     @ResponseBody
     public Double sumJdMeonkey() {
@@ -174,6 +176,7 @@ public class WithsController {
         }
         return d;
     }
+
     @RequestMapping("/sumSJdMeonkey.do")
     @ResponseBody
     public Double sumSJdMeonkey() {
@@ -186,6 +189,7 @@ public class WithsController {
         }
         return d;
 }
+
     @RequestMapping("/sumNMeonkey.do")
     @ResponseBody
     public Double sumNMeonkey() {
@@ -198,6 +202,7 @@ public class WithsController {
         }
         return d;
     }
+
     @RequestMapping("/sumSNMeonkey.do")
     @ResponseBody
     public Double sumSNMeonkey() {

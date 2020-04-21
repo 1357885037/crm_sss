@@ -36,6 +36,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     static Logger logger=Logger.getLogger(LoginController.class);
+
     @Autowired
     private ILoginService iLoginService;
     @Autowired
@@ -45,14 +46,10 @@ public class LoginController {
     @RequestMapping("/login.do")
     @ResponseBody
     public String login(@RequestParam(value = "username") String u_name,@RequestParam(value = "password") String u_pass, Model model,HttpSession session){
-        System.out.println("进入方法。。。。。。。。。。。。。。");
-        System.out.println(u_name+u_pass);
-        //ModelAndView model=new ModelAndView();
         UsernamePasswordToken token=new UsernamePasswordToken(u_name,u_pass); /*令牌*/
         Subject subject =SecurityUtils.getSubject();
         try {
             subject.login(token);
-            logger.info("登录成功！");
         }catch (UnknownAccountException uae){
             //捕获未知用户名异常
             return  "2";
@@ -85,9 +82,6 @@ public class LoginController {
     public String Personal_Data(HttpSession session, Model model){
         Users users= (Users) session.getAttribute("users");
         //从数据库中查询
-      /*  QueryWrapper queryWrapper=new QueryWrapper();
-        queryWrapper.eq("u_name",user);
-        Users users=loginServiceImol.getOne(queryWrapper);*/
         Users user=loginServiceImol.getById(users.getU_Id());
         model.addAttribute("user",user);
         return "page/user/userInfo";
@@ -101,10 +95,7 @@ public class LoginController {
        QueryWrapper queryWrapper=new QueryWrapper();
        queryWrapper.eq("u_name",user.getU_Name());
        Users users=loginServiceImol.getOne(queryWrapper);
-       System.out.println(users+"666666666666666");
        if(users==null){
-
-           System.out.println("注册中...");
            //出生年月转换 2020年04月04日转换成 xxxx-xx-xx
            String str=user.getU_Date();
            str=str.replaceAll("年","-").replaceAll("月","-").substring(0,str.length()-1);
@@ -122,5 +113,11 @@ public class LoginController {
 
    }
 
+    //退出页面
+    @RequestMapping("/outlogin.do")
+    public String outlogin(HttpSession session){
+        session.setAttribute("users","");
+        return "redirect:/index.html";
+    }
 
 }

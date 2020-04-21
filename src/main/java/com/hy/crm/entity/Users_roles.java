@@ -25,14 +25,13 @@ public class Users_roles implements Serializable {
     public String getU_id() {
         return u_id;
     }
-
     public void setU_id(String u_id) {
         this.u_id = u_id;
     }
+
     public String getR_id() {
         return r_id;
     }
-
     public void setR_id(String r_id) {
         this.r_id = r_id;
     }
@@ -40,8 +39,9 @@ public class Users_roles implements Serializable {
     @Override
     public String toString() {
         return "Users_roles{" +
-        "u_id=" + u_id +
-        ", r_id=" + r_id +
-        "}";
+                "u_id='" + u_id + '\'' +
+                ", r_id='" + r_id + '\'' +
+                '}';
     }
+
 }

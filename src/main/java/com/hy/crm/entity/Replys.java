@@ -28,10 +28,13 @@ public class Replys implements Serializable {
     private String f_id;
 
     private String u_id;
+
     @TableField(exist = false)
     private String u_name;
+
     @TableField(exist = false)
     private String rep_name;
+
     private Integer rep_rpid;
 
     private String rp_text;
@@ -41,13 +44,15 @@ public class Replys implements Serializable {
     private String rp_superior;
 
     private Integer rp_statu;
+
     @TableField(exist = false)
     private List<Replys> replysList;
+
+
 
     public Integer getRp_id() {
         return rp_id;
     }
-
     public void setRp_id(Integer rp_id) {
         this.rp_id = rp_id;
     }
@@ -55,7 +60,6 @@ public class Replys implements Serializable {
     public String getF_id() {
         return f_id;
     }
-
     public void setF_id(String f_id) {
         this.f_id = f_id;
     }
@@ -63,7 +67,6 @@ public class Replys implements Serializable {
     public String getU_id() {
         return u_id;
     }
-
     public void setU_id(String u_id) {
         this.u_id = u_id;
     }
@@ -71,7 +74,6 @@ public class Replys implements Serializable {
     public String getU_name() {
         return u_name;
     }
-
     public void setU_name(String u_name) {
         this.u_name = u_name;
     }
@@ -79,7 +81,6 @@ public class Replys implements Serializable {
     public String getRep_name() {
         return rep_name;
     }
-
     public void setRep_name(String rep_name) {
         this.rep_name = rep_name;
     }
@@ -87,7 +88,6 @@ public class Replys implements Serializable {
     public Integer getRep_rpid() {
         return rep_rpid;
     }
-
     public void setRep_rpid(Integer rep_rpid) {
         this.rep_rpid = rep_rpid;
     }
@@ -95,7 +95,6 @@ public class Replys implements Serializable {
     public String getRp_text() {
         return rp_text;
     }
-
     public void setRp_text(String rp_text) {
         this.rp_text = rp_text;
     }
@@ -103,7 +102,6 @@ public class Replys implements Serializable {
     public Date getRp_date() {
         return rp_date;
     }
-
     public void setRp_date(Date rp_date) {
         this.rp_date = rp_date;
     }
@@ -111,7 +109,6 @@ public class Replys implements Serializable {
     public String getRp_superior() {
         return rp_superior;
     }
-
     public void setRp_superior(String rp_superior) {
         this.rp_superior = rp_superior;
     }
@@ -119,7 +116,6 @@ public class Replys implements Serializable {
     public Integer getRp_statu() {
         return rp_statu;
     }
-
     public void setRp_statu(Integer rp_statu) {
         this.rp_statu = rp_statu;
     }
@@ -127,7 +123,6 @@ public class Replys implements Serializable {
     public List<Replys> getReplysList() {
         return replysList;
     }
-
     public void setReplysList(List<Replys> replysList) {
         this.replysList = replysList;
     }
@@ -148,4 +143,5 @@ public class Replys implements Serializable {
                 ", replysList=" + replysList +
                 '}';
     }
+
 }

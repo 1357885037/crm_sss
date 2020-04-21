@@ -65,18 +65,14 @@ public class BusinessController {
     @ResponseBody
     public List<Clients> clients_queryall(HttpSession session){
         List<Clients> clients=clientsService.asc_c_name();
-
-        System.out.println("session测试"+session.getAttribute("u_name"));
         return clients;
     }
 
     @RequestMapping("/clients_getById.do")
     @ResponseBody
     public Clients clients_getById(String c_id){
-        System.out.println("测试c_id有没有值"+c_id);
         Clients clients= clientsService.getById(c_id);
-        System.out.println("根据客户追加："+clients.toString());
-    return clients;
+        return clients;
     }
 
     @RequestMapping("/in_charge_of.do")
@@ -89,7 +85,6 @@ public class BusinessController {
     @RequestMapping("/add_Business")
     @ResponseBody
     public String add_Business(Business business){
-        System.out.println("添加商机测试。。。。。。。。。。。。。。。。");
         System.out.println(business.toString());
         //我要获取当前的日期
         Date date = new Date();
@@ -131,6 +126,7 @@ public class BusinessController {
         }
         return d;
     }
+
     @ResponseBody
     @RequestMapping("/sumSMeonkey.do")
     public Double sumSMonkey(){
@@ -143,7 +139,6 @@ public class BusinessController {
         }
         return d;
     }
-
 
     @RequestMapping("/sumBusiness.do")
     @ResponseBody
@@ -158,11 +153,9 @@ public class BusinessController {
         return i;
     }
 
-
-
     //查询本月新增商机金额
     @ResponseBody
-@RequestMapping("/sumYMeonkey.do")
+    @RequestMapping("/sumYMeonkey.do")
     public Double sumYMeonkey(){
         Double d;
         try {
@@ -177,7 +170,7 @@ public class BusinessController {
     //查询上月新增商机金额
     @ResponseBody
     @RequestMapping("/sumSYMeonkey.do")
-    Double sumSYMeonkey(){
+    public Double sumSYMeonkey(){
         Double d;
         try {
             d=businessService.sumSYMeonkey();
@@ -191,7 +184,7 @@ public class BusinessController {
     //查询本季度新增商机金额
     @ResponseBody
     @RequestMapping("/sumJdMeonkey.do")
-    Double sumJdMeonkey(){
+    public Double sumJdMeonkey(){
         Double d;
         try {
             d=businessService.sumJdMeonkey();
@@ -205,7 +198,7 @@ public class BusinessController {
     //查询上季度新增商机金额
     @ResponseBody
     @RequestMapping("/sumSJdMeonkey.do")
-    Double sumSJdMeonkey(){
+    public Double sumSJdMeonkey(){
         Double d;
         try {
             d=businessService.sumSJdMeonkey();
@@ -219,7 +212,7 @@ public class BusinessController {
     //查询本年新增商机金额
     @ResponseBody
     @RequestMapping("/sumNMeonkey.do")
-    Double sumNMeonkey(){
+    public Double sumNMeonkey(){
         Double d;
         try {
             d=businessService.sumNMeonkey();
@@ -233,7 +226,7 @@ public class BusinessController {
     //查询上年新增商机金额
     @ResponseBody
     @RequestMapping("/sumSNMeonkey.do")
-    Double sumSNMeonkey(){
+    public Double sumSNMeonkey(){
         Double d;
         try {
             d=businessService.sumSNMeonkey();
@@ -244,7 +237,6 @@ public class BusinessController {
         return d;
 
     }
-
 
     @RequestMapping("/Concern.do")
     @ResponseBody

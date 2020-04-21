@@ -20,7 +20,8 @@ import java.util.List;
 @Service
 public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements IUsersService {
     @Autowired
-    UsersMapper usersMapper;
+    private UsersMapper usersMapper;
+
     public List<Users> asc_u_Realname(){
         return usersMapper.asc_u_Realname();
     }

@@ -36,6 +36,7 @@ public class ContractsController {
 
     @Autowired
     private ContractsServiceImpl contractsServiceImpl;
+
     @RequestMapping("/queryall.do")
     @ResponseBody
     public AccountJson queryall(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit, Contracts contracts,String tiaojian,Clients clients){
@@ -110,7 +111,7 @@ public class ContractsController {
     //    查询本周新增合同金额
     @RequestMapping("/sumMeonkey.do")
     @ResponseBody
-    Double sumMeonkey(){
+    public Double sumMeonkey(){
         Double d;
         try {
             d=contractsService.sumMeonkey();
@@ -124,7 +125,7 @@ public class ContractsController {
     //    查询上周新增合同金额
     @RequestMapping("/sumSMeonkey.do")
     @ResponseBody
-    Double sumSMeonkey(){
+    public Double sumSMeonkey(){
         Double d;
         try {
             d=contractsService.sumSMeonkey();
@@ -139,7 +140,7 @@ public class ContractsController {
     //查询本月新增合同金额
     @RequestMapping("/sumYMeonkey.do")
     @ResponseBody
-    Double sumYMeonkey(){
+    public Double sumYMeonkey(){
         Double d;
         try {
             d=contractsService.sumYMeonkey();
@@ -153,7 +154,7 @@ public class ContractsController {
     //查询上月新增合同金额
     @RequestMapping("/sumSYMeonkey.do")
     @ResponseBody
-    Double sumSYMeonkey(){
+    public Double sumSYMeonkey(){
         Double d;
         try {
             d=contractsService.sumSYMeonkey();
@@ -167,7 +168,7 @@ public class ContractsController {
     //查询本季度新增合同金额
     @RequestMapping("/sumJdMeonkey.do")
     @ResponseBody
-    Double sumJdMeonkey(){
+    public Double sumJdMeonkey(){
         Double d;
         try {
             d=contractsService.sumJdMeonkey();
@@ -181,7 +182,7 @@ public class ContractsController {
     //查询上季度新增合同金额
     @RequestMapping("/sumSJdMeonkey.do")
     @ResponseBody
-    Double sumSJdMeonkey(){
+    public Double sumSJdMeonkey(){
         Double d;
         try {
             d=contractsService.sumSJdMeonkey();
@@ -195,7 +196,7 @@ public class ContractsController {
     //查询本年新增金额合同
     @RequestMapping("/sumNMeonkey.do")
     @ResponseBody
-    Double sumNMeonkey(){
+    public Double sumNMeonkey(){
         Double d;
         try {
             d=contractsService.sumNMeonkey();
@@ -209,7 +210,7 @@ public class ContractsController {
     //查询上年新增合同金额
     @RequestMapping("/sumSNMeonkey.do")
     @ResponseBody
-    Double sumSNMeonkey(){
+    public Double sumSNMeonkey(){
         Double d;
         try {
             d=contractsService.sumSNMeonkey();
@@ -223,7 +224,7 @@ public class ContractsController {
 //   已完成的合同////////////////////////
     @RequestMapping("/fulfillsumMeonkey.do")
     @ResponseBody
-     Double fulfillsumMeonkey() {
+    public Double fulfillsumMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumMeonkey();
@@ -236,7 +237,7 @@ public class ContractsController {
 
     @RequestMapping("/fulfillsumSMeonkey.do")
     @ResponseBody
-     Double fulfillsumSMeonkey() {
+    public Double fulfillsumSMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumSMeonkey();
@@ -249,7 +250,7 @@ public class ContractsController {
 
     @RequestMapping("/fulfillsumYMeonkey.do")
     @ResponseBody
-     Double fulfillsumYMeonkey() {
+    public Double fulfillsumYMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumYMeonkey();
@@ -262,7 +263,7 @@ public class ContractsController {
 
     @RequestMapping("/fulfillsumSYMeonkey.do")
     @ResponseBody
-     Double fulfillsumSYMeonkey() {
+    public Double fulfillsumSYMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumSYMeonkey();
@@ -275,7 +276,7 @@ public class ContractsController {
 
     @RequestMapping("/fulfillsumJdMeonkey.do")
     @ResponseBody
-     Double fulfillsumJdMeonkey() {
+    public Double fulfillsumJdMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumJdMeonkey();
@@ -288,7 +289,7 @@ public class ContractsController {
 
     @RequestMapping("/fulfillsumSJdMeonkey.do")
     @ResponseBody
-     Double fulfillsumSJdMeonkey() {
+    public Double fulfillsumSJdMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumSJdMeonkey();
@@ -301,7 +302,7 @@ public class ContractsController {
 
     @RequestMapping("/fulfillsumNMeonkey.do")
     @ResponseBody
-     Double fulfillsumNMeonkey() {
+    public Double fulfillsumNMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumNMeonkey();
@@ -314,7 +315,7 @@ public class ContractsController {
 
     @RequestMapping("/fulfillsumSNMeonkey.do")
     @ResponseBody
-     Double fulfillsumSNMeonkey() {
+    public Double fulfillsumSNMeonkey() {
         Double d;
         try {
             d=contractsService.fulfillsumSNMeonkey();
@@ -324,7 +325,5 @@ public class ContractsController {
         }
         return d;
     }
-
-
 
 }

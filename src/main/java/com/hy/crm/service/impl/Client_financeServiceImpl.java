@@ -18,18 +18,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class Client_financeServiceImpl extends ServiceImpl<Client_financeMapper, Client_finance> implements IClient_financeService {
 
-        @Autowired
-        Client_financeMapper client_financeMapper;
+    @Autowired
+    private  Client_financeMapper client_financeMapper;
 
-        public Client_finance getbyc_id(String c_id){
+    public Client_finance getbyc_id(String c_id){
             return client_financeMapper.getByid(c_id);
         }
 
-        public Client_finance updateByC_id(Client_finance client_finance){
+    public Client_finance updateByC_id(Client_finance client_finance){
             return client_financeMapper.updateByc_id(client_finance);
         }
-
-
-
 
 }

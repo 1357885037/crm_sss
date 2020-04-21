@@ -42,17 +42,8 @@ public class Serves implements Serializable {
 
     private String s_theme;
 
-
     @TableField(exist=false)
     private Integer b;
-
-    public Integer getB() {
-        return b;
-    }
-
-    public void setB(Integer b) {
-        this.b = b;
-    }
 
     @TableField(exist=false)
     private Contracts contracts;
@@ -60,10 +51,18 @@ public class Serves implements Serializable {
     @TableField(exist=false)
     private String c_id;
 
+
+
+    public Integer getB() {
+        return b;
+    }
+    public void setB(Integer b) {
+        this.b = b;
+    }
+
     public String getC_id() {
         return c_id;
     }
-
     public void setC_id(String c_id) {
         this.c_id = c_id;
     }
@@ -71,7 +70,6 @@ public class Serves implements Serializable {
     public Contracts getContracts() {
         return contracts;
     }
-
     public void setContracts(Contracts contracts) {
         this.contracts = contracts;
     }
@@ -79,28 +77,27 @@ public class Serves implements Serializable {
     public String getS_id() {
         return s_id;
     }
-
     public void setS_id(String s_id) {
         this.s_id = s_id;
     }
+
     public String getCt_id() {
         return ct_id;
     }
-
     public void setCt_id(String ct_id) {
         this.ct_id = ct_id;
     }
+
     public String getS_type() {
         return s_type;
     }
-
     public void setS_type(String s_type) {
         this.s_type = s_type;
     }
+
     public String getS_way() {
         return s_way;
     }
-
     public void setS_way(String s_way) {
         this.s_way = s_way;
     }
@@ -108,7 +105,6 @@ public class Serves implements Serializable {
     public String getS_sdate() {
         return s_sdate;
     }
-
     public void setS_sdate(String s_sdate) {
         this.s_sdate = s_sdate;
     }
@@ -116,7 +112,6 @@ public class Serves implements Serializable {
     public String getS_odate() {
         return s_odate;
     }
-
     public void setS_odate(String s_odate) {
         this.s_odate = s_odate;
     }
@@ -124,42 +119,41 @@ public class Serves implements Serializable {
     public String getS_text() {
         return s_text;
     }
-
     public void setS_text(String s_text) {
         this.s_text = s_text;
     }
+
     public String getS_feedback() {
         return s_feedback;
     }
-
     public void setS_feedback(String s_feedback) {
         this.s_feedback = s_feedback;
     }
+
     public Integer getS_grade() {
         return s_grade;
     }
-
     public void setS_grade(Integer s_grade) {
         this.s_grade = s_grade;
     }
+
     public String getS_accessory() {
         return s_accessory;
     }
-
     public void setS_accessory(String s_accessory) {
         this.s_accessory = s_accessory;
     }
+
     public String getS_name() {
         return s_name;
     }
-
     public void setS_name(String s_name) {
         this.s_name = s_name;
     }
+
     public Integer getS_statu() {
         return s_statu;
     }
-
     public void setS_statu(Integer s_statu) {
         this.s_statu = s_statu;
     }
@@ -167,7 +161,6 @@ public class Serves implements Serializable {
     public String getS_theme() {
         return s_theme;
     }
-
     public void setS_theme(String s_theme) {
         this.s_theme = s_theme;
     }
@@ -188,7 +181,10 @@ public class Serves implements Serializable {
                 ", s_name='" + s_name + '\'' +
                 ", s_statu=" + s_statu +
                 ", s_theme='" + s_theme + '\'' +
+                ", b=" + b +
                 ", contracts=" + contracts +
+                ", c_id='" + c_id + '\'' +
                 '}';
     }
+
 }

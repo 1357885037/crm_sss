@@ -53,5 +53,4 @@ public class KnowledgeController {
         return ModelAndView;
     }
 
-
 }

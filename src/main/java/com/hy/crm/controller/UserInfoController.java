@@ -64,7 +64,6 @@ public class UserInfoController {
         return accountJson;
     }
 
-
     //    用户月
     @ResponseBody
     @RequestMapping("/usermoth.do")
@@ -304,15 +303,11 @@ public class UserInfoController {
         accountJson.setCode(0);
         accountJson.setCount(5);
         accountJson.setData(list);
-        for(Shangji shangji:list){
-            System.out.println(shangji.toString()+"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-        }
 
         return accountJson;
     }
 
-//季度
-
+    //季度
     @RequestMapping("/sumbusinessJd.do")
     @ResponseBody
     public AccountJson sumbusinessJd(AccountJson accountJson){
@@ -433,14 +428,9 @@ public class UserInfoController {
         accountJson.setCode(0);
         accountJson.setCount(5);
         accountJson.setData(list);
-        for(Shangji shangji:list){
-            System.out.println(shangji.toString()+"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-        }
 
         return accountJson;
     }
-
-
 
     //上季度
     @ResponseBody
@@ -563,15 +553,9 @@ public class UserInfoController {
         accountJson.setCode(0);
         accountJson.setCount(5);
         accountJson.setData(list);
-        for(Shangji shangji:list){
-            System.out.println(shangji.toString()+"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-        }
 
         return accountJson;
     }
-
-
-
 
     //年度
     @ResponseBody
@@ -822,9 +806,6 @@ public class UserInfoController {
         accountJson.setCode(0);
         accountJson.setCount(5);
         accountJson.setData(list);
-        for(Shangji shangji:list){
-            System.out.println(shangji.toString()+"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
-        }
 
         return accountJson;
     }
@@ -877,6 +858,7 @@ public class UserInfoController {
         return accountJson;
 
     }
+
     //    根据商机来源查询
     @ResponseBody
     @RequestMapping("/querylaiyuanindustry.do")
@@ -959,6 +941,7 @@ public class UserInfoController {
 
         return arr;
     }
+
 //    kehulaiyuan商机数柱状图
       @ResponseBody
     @RequestMapping("/kehuzshangjishu.do")
@@ -1028,6 +1011,7 @@ public class UserInfoController {
 
         return arr;
     }
+
 //    kehulaiyuanqianshu商机数柱状图
       @ResponseBody
     @RequestMapping("/kehuzmonkey.do")
@@ -1180,7 +1164,7 @@ public class UserInfoController {
     @RequestMapping("/bkehushangjishu.do")
     public List<Eachtes> bkehushangjishu(){
 
-return businessService.bkehushangjigeshu();
+    return businessService.bkehushangjigeshu();
 
     }
 
@@ -1188,7 +1172,7 @@ return businessService.bkehushangjigeshu();
     @RequestMapping("/bkehumonkey.do")
     public List<Eachtes> bkehumonkey(){
 
-return businessService.bkehumonkey();
+    return businessService.bkehumonkey();
 
     }
 
@@ -1221,7 +1205,7 @@ return businessService.bkehumonkey();
         eachtes.setArrthree(arrthree);
         eachtes.setArrtwo(arrtwo);
 
-return eachtes;
+    return eachtes;
 
     }
 

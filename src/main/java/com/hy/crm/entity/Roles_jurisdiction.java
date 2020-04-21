@@ -21,14 +21,13 @@ public class Roles_jurisdiction implements Serializable {
     public String getR_id() {
         return r_id;
     }
-
     public void setR_id(String r_id) {
         this.r_id = r_id;
     }
+
     public String getJ_id() {
         return j_id;
     }
-
     public void setJ_id(String j_id) {
         this.j_id = j_id;
     }
@@ -36,8 +35,8 @@ public class Roles_jurisdiction implements Serializable {
     @Override
     public String toString() {
         return "Roles_jurisdiction{" +
-        "r_id=" + r_id +
-        ", j_id=" + j_id +
-        "}";
+                "r_id='" + r_id + '\'' +
+                ", j_id='" + j_id + '\'' +
+                '}';
     }
 }

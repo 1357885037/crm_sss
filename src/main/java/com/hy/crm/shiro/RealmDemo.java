@@ -72,8 +72,6 @@ public class RealmDemo extends AuthorizingRealm {
          String realmName = getName();
         // 4)credentialsSalt盐值
          ByteSource credentialsSalt = ByteSource.Util.bytes(principal);//使用账号作为盐值
-
-         System.out.println("===============？？？？/**/"+credentialsSalt);
          SimpleAuthenticationInfo authenticationInfo=new SimpleAuthenticationInfo(principal,credentials,credentialsSalt,realmName);
 
          return authenticationInfo;

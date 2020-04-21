@@ -31,10 +31,11 @@ public class Customer_management {
     //服务评分
     private Double servic_Score;
 
+
+
     public String getC_id() {
         return c_id;
     }
-
     public void setC_id(String c_id) {
         this.c_id = c_id;
     }
@@ -42,7 +43,6 @@ public class Customer_management {
     public String getC_name() {
         return c_name;
     }
-
     public void setC_name(String c_name) {
         this.c_name = c_name;
     }
@@ -50,7 +50,6 @@ public class Customer_management {
     public Integer getBusiness_count() {
         return business_count;
     }
-
     public void setBusiness_count(Integer business_count) {
         this.business_count = business_count;
     }
@@ -58,7 +57,6 @@ public class Customer_management {
     public Double getTurnover() {
         return turnover;
     }
-
     public void setTurnover(Double turnover) {
         this.turnover = turnover;
     }
@@ -66,7 +64,6 @@ public class Customer_management {
     public Integer getContract_count() {
         return contract_count;
     }
-
     public void setContract_count(Integer contract_count) {
         this.contract_count = contract_count;
     }
@@ -74,7 +71,6 @@ public class Customer_management {
     public Double getContract_amount() {
         return contract_amount;
     }
-
     public void setContract_amount(Double contract_amount) {
         this.contract_amount = contract_amount;
     }
@@ -82,7 +78,6 @@ public class Customer_management {
     public Double getTotal_Return_amount() {
         return total_Return_amount;
     }
-
     public void setTotal_Return_amount(Double total_Return_amount) {
         this.total_Return_amount = total_Return_amount;
     }
@@ -90,7 +85,6 @@ public class Customer_management {
     public Integer getService_count() {
         return service_count;
     }
-
     public void setService_count(Integer service_count) {
         this.service_count = service_count;
     }
@@ -98,8 +92,23 @@ public class Customer_management {
     public Double getServic_Score() {
         return servic_Score;
     }
-
     public void setServic_Score(Double servic_Score) {
         this.servic_Score = servic_Score;
     }
+
+    @Override
+    public String toString() {
+        return "Customer_management{" +
+                "c_id='" + c_id + '\'' +
+                ", c_name='" + c_name + '\'' +
+                ", business_count=" + business_count +
+                ", turnover=" + turnover +
+                ", contract_count=" + contract_count +
+                ", contract_amount=" + contract_amount +
+                ", total_Return_amount=" + total_Return_amount +
+                ", service_count=" + service_count +
+                ", servic_Score=" + servic_Score +
+                '}';
+    }
+
 }

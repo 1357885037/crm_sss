@@ -64,17 +64,17 @@ public class Business implements Serializable {
 
     private  String b_stage;
 
-
     @TableField(exist = false)
     private Integer statu;
 
     @TableField(exist = false)
     private  String uu_id;
 
+
+
     public String getUu_id() {
         return uu_id;
     }
-
     public void setUu_id(String uu_id) {
         this.uu_id = uu_id;
     }
@@ -82,7 +82,6 @@ public class Business implements Serializable {
     public Integer getStatu() {
         return statu;
     }
-
     public void setStatu(Integer statu) {
         this.statu = statu;
     }
@@ -90,7 +89,6 @@ public class Business implements Serializable {
     public String getB_stage() {
         return b_stage;
     }
-
     public void setB_stage(String b_stage) {
         this.b_stage = b_stage;
     }
@@ -98,7 +96,6 @@ public class Business implements Serializable {
     public String getB_current_time() {
         return b_current_time;
     }
-
     public void setB_current_time(String b_current_time) {
         this.b_current_time = b_current_time;
     }
@@ -106,28 +103,27 @@ public class Business implements Serializable {
     public String getB_id() {
         return b_id;
     }
-
     public void setB_id(String b_id) {
         this.b_id = b_id;
     }
+
     public String getC_id() {
         return c_id;
     }
-
     public void setC_id(String c_id) {
         this.c_id = c_id;
     }
+
     public String getB_name() {
         return b_name;
     }
-
     public void setB_name(String b_name) {
         this.b_name = b_name;
     }
+
     public BigDecimal getB_monkey() {
         return b_monkey;
     }
-
     public void setB_monkey(BigDecimal b_monkey) {
         this.b_monkey = b_monkey;
     }
@@ -135,7 +131,6 @@ public class Business implements Serializable {
     public String getB_date() {
         return b_date;
     }
-
     public void setB_date(String b_date) {
         this.b_date = b_date;
     }
@@ -143,28 +138,27 @@ public class Business implements Serializable {
     public String getB_source() {
         return b_source;
     }
-
     public void setB_source(String b_source) {
         this.b_source = b_source;
     }
+
     public String getB_dept() {
         return b_dept;
     }
-
     public void setB_dept(String b_dept) {
         this.b_dept = b_dept;
     }
+
     public String getB_duty() {
         return b_duty;
     }
-
     public void setB_duty(String b_duty) {
         this.b_duty = b_duty;
     }
+
     public Integer getB_special() {
         return b_special;
     }
-
     public void setB_special(Integer b_special) {
         this.b_special = b_special;
     }
@@ -172,7 +166,6 @@ public class Business implements Serializable {
     public String getB_linkman() {
         return b_linkman;
     }
-
     public void setB_linkman(String b_linkman) {
         this.b_linkman = b_linkman;
     }
@@ -180,7 +173,6 @@ public class Business implements Serializable {
     public Long getB_phone() {
         return b_phone;
     }
-
     public void setB_phone(Long b_phone) {
         this.b_phone = b_phone;
     }
@@ -188,7 +180,6 @@ public class Business implements Serializable {
     public String getB_qq() {
         return b_qq;
     }
-
     public void setB_qq(String b_qq) {
         this.b_qq = b_qq;
     }
@@ -196,56 +187,55 @@ public class Business implements Serializable {
     public String getB_texts() {
         return b_texts;
     }
-
     public void setB_texts(String b_texts) {
         this.b_texts = b_texts;
     }
+
     public String getB_accessory() {
         return b_accessory;
     }
-
     public void setB_accessory(String b_accessory) {
         this.b_accessory = b_accessory;
     }
+
     public String getU_id() {
         return u_id;
     }
-
     public void setU_id(String u_id) {
         this.u_id = u_id;
     }
+
     public String getU_participation() {
         return u_participation;
     }
-
     public void setU_participation(String u_participation) {
         this.u_participation = u_participation;
     }
+
     public String getUse_attention() {
         return use_attention;
     }
-
     public void setUse_attention(String use_attention) {
         this.use_attention = use_attention;
     }
+
     public Integer getB_code() {
         return b_code;
     }
-
     public void setB_code(Integer b_code) {
         this.b_code = b_code;
     }
+
     public Integer getB_audit() {
         return b_audit;
     }
-
     public void setB_audit(Integer b_audit) {
         this.b_audit = b_audit;
     }
+
     public Integer getB_rank() {
         return b_rank;
     }
-
     public void setB_rank(Integer b_rank) {
         this.b_rank = b_rank;
     }
@@ -253,26 +243,31 @@ public class Business implements Serializable {
     @Override
     public String toString() {
         return "Business{" +
-        "b_id=" + b_id +
-        ", c_id=" + c_id +
-        ", b_name=" + b_name +
-        ", b_monkey=" + b_monkey +
-        ", b_date=" + b_date +
-        ", b_source=" + b_source +
-        ", b_linkman=" + b_linkman +
-        ", b_dept=" + b_dept +
-        ", b_duty=" + b_duty +
-        ", b_special=" + b_special +
-        ", b_phone=" + b_phone +
-        ", b_qq=" + b_qq +
-        ", b_texts=" + b_texts +
-        ", b_accessory=" + b_accessory +
-        ", u_id=" + u_id +
-        ", u_participation=" + u_participation +
-        ", use_attention=" + use_attention +
-        ", b_code=" + b_code +
-        ", b_audit=" + b_audit +
-        ", b_rank=" + b_rank +
-        "}";
+                "b_id='" + b_id + '\'' +
+                ", c_id='" + c_id + '\'' +
+                ", b_name='" + b_name + '\'' +
+                ", b_monkey=" + b_monkey +
+                ", b_date='" + b_date + '\'' +
+                ", b_source='" + b_source + '\'' +
+                ", b_linkman='" + b_linkman + '\'' +
+                ", b_dept='" + b_dept + '\'' +
+                ", b_duty='" + b_duty + '\'' +
+                ", b_special=" + b_special +
+                ", b_phone=" + b_phone +
+                ", b_qq='" + b_qq + '\'' +
+                ", b_texts='" + b_texts + '\'' +
+                ", b_accessory='" + b_accessory + '\'' +
+                ", u_id='" + u_id + '\'' +
+                ", u_participation='" + u_participation + '\'' +
+                ", use_attention='" + use_attention + '\'' +
+                ", b_code=" + b_code +
+                ", b_audit=" + b_audit +
+                ", b_rank=" + b_rank +
+                ", b_current_time='" + b_current_time + '\'' +
+                ", b_stage='" + b_stage + '\'' +
+                ", statu=" + statu +
+                ", uu_id='" + uu_id + '\'' +
+                '}';
     }
+
 }

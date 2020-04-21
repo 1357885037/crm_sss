@@ -16,19 +16,17 @@ public class Customer_contract {
 
     private Integer forum_count;
 
-    public String getB_id() {
-
-        return b_id;
-    }
-
     public String getB_stage() {
         return b_stage;
     }
-
     public void setB_stage(String b_stage) {
         this.b_stage = b_stage;
     }
 
+    public String getB_id() {
+
+        return b_id;
+    }
     public void setB_id(String b_id) {
         this.b_id = b_id;
     }
@@ -36,7 +34,6 @@ public class Customer_contract {
     public String getB_name() {
         return b_name;
     }
-
     public void setB_name(String b_name) {
         this.b_name = b_name;
     }
@@ -44,7 +41,6 @@ public class Customer_contract {
     public Double getB_monkey() {
         return b_monkey;
     }
-
     public void setB_monkey(Double b_monkey) {
         this.b_monkey = b_monkey;
     }
@@ -52,7 +48,6 @@ public class Customer_contract {
     public String getU_realname() {
         return u_realname;
     }
-
     public void setU_realname(String u_realname) {
         this.u_realname = u_realname;
     }
@@ -60,7 +55,6 @@ public class Customer_contract {
     public String getW_date() {
         return w_date;
     }
-
     public void setW_date(String w_date) {
         this.w_date = w_date;
     }
@@ -68,8 +62,21 @@ public class Customer_contract {
     public Integer getForum_count() {
         return forum_count;
     }
-
     public void setForum_count(Integer forum_count) {
         this.forum_count = forum_count;
     }
+
+    @Override
+    public String toString() {
+        return "Customer_contract{" +
+                "b_id='" + b_id + '\'' +
+                ", b_name='" + b_name + '\'' +
+                ", b_stage='" + b_stage + '\'' +
+                ", b_monkey=" + b_monkey +
+                ", u_realname='" + u_realname + '\'' +
+                ", w_date='" + w_date + '\'' +
+                ", forum_count=" + forum_count +
+                '}';
+    }
+
 }

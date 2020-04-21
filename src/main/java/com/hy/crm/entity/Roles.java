@@ -17,10 +17,12 @@ import java.io.Serializable;
 public class Roles implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @TableId(value = "r_id",type = IdType.UUID)
     private String r_id;
 
     private String r_name;
+
     @TableField(exist = false)
     private Integer start;
 

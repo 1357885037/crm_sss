@@ -19,6 +19,4 @@ public interface UsersMapper extends BaseMapper<Users> {
     @Select("select * from users order by convert(u_Realname using gbk) collate gbk_chinese_ci asc;")
     public List<Users> asc_u_Realname();
 
-
-
 }

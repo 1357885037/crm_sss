@@ -65,16 +65,12 @@ public class ClientsController {
     @RequestMapping("/addClients.do")
     @ResponseBody
     public String addClients(Clients clients, Client_finance client_finance){
-        System.out.println("客户信息"+clients.toString());
-        System.out.println("财务信息"+client_finance);
         QueryWrapper<Clients> queryWrapper=new QueryWrapper();
         queryWrapper.eq("c_name",clients.getC_name());
         Clients clients1=clientsService.getOne(queryWrapper);
         if (clients1!=null){
-            System.out.println("========================================2");
             return "2";
         }else{
-            System.out.println("========================================1");
              clientsService.save(clients);
             //add进去重新查询获取uuid 赋值给客户财务信息表
             QueryWrapper<Clients> queryWrapper2=new QueryWrapper();
@@ -85,14 +81,12 @@ public class ClientsController {
             //add财务信息表
             client_financeService.save(client_finance);
 
-
           return "1";
         }
     }
 
     @RequestMapping("/redact.do")
     public String redact(String c_id, Model model){
-        System.out.println("=========="+c_id);
         Clients clients=clientsService.getById(c_id);
         Client_finance client_finance=client_financeService.getbyc_id(c_id);
 
@@ -104,9 +98,6 @@ public class ClientsController {
     @RequestMapping("/update_Clients.do")
     @ResponseBody
     public String update_Clients(Clients clients,Client_finance client_finance){
-        System.out.println("异步提交中");
-        System.out.println(clients.toString());
-        System.out.println(client_finance.toString());
         clientsService.updateById(clients);
         client_financeService.updateByC_id(client_finance);
 
@@ -117,7 +108,6 @@ public class ClientsController {
     @RequestMapping("/delete_Clients.do")
     @ResponseBody
     public String deleteByid(String c_id){
-        System.out.println("====：==="+c_id);
       /*  client_financeService.removeById(c_id);
         clientsService.removeById(c_id);*/
         return "1";
@@ -126,7 +116,6 @@ public class ClientsController {
     @RequestMapping("/customer_contract.do")
     public String customer_contract(String c_id,Model model){
         model.addAttribute("c_id",c_id);
-        System.out.println("进来 走过。。");
         return "customer_management/customer_contract";
     }
 
@@ -135,7 +124,6 @@ public class ClientsController {
     public AccountJson customer_contract2(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,Model model, Business business){
        Page pageHelper= PageHelper.startPage(page,limit,true);
        List<Customer_contract> list=clientsService.customer_contract(business);
-       System.out.println("测。。。。。。"+list.size());
         AccountJson accountJson=new AccountJson();
         accountJson.setCode(0);
         accountJson.setMsg("");
@@ -180,10 +168,9 @@ public class ClientsController {
     }
 
 
-@ResponseBody
+    @ResponseBody
     @RequestMapping("/querygroup.do")
     public List<Eachtes> querygroup(){
-
 
         return clientsService.queryccc();
     }

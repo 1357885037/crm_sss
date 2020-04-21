@@ -52,13 +52,11 @@ public class ForumController {
     @Autowired
     private IUsersService usersService;
 
-
     @ResponseBody
     @RequestMapping("/queryforum.do")
     public AccountJson queryforum( @RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit" ,defaultValue = "3")Integer limit,@RequestParam(value = "tiaojian",required = false)Integer tiaojian,@RequestParam(value = "neirong",required = false)String neirong,@RequestParam(value = "b_id",required = false)String b_id){
         Page pageHelper= PageHelper.startPage(page,limit,true);
         QueryWrapper<Forum> queryWrapper=new QueryWrapper<>();
-
 
         if(!StringUtils.isNullOrEmpty(b_id)&&b_id!=null){
             queryWrapper.eq("b_id",b_id);
@@ -153,10 +151,8 @@ public class ForumController {
             }
 
         forum.setRevert(sum);
-            System.out.println(forum.getRevert()+"9999999999999999999999999999999999999999999999999999999999");
         if(tiaojian!=null&&tiaojian==4){
             if(Integer.valueOf(neirong).equals(forum.getRevert())){
-
                 forumList1.add(forum);
             }
 
@@ -174,7 +170,9 @@ public class ForumController {
         if(tiaojian!=null&&tiaojian==4){
             accountJson.setData(forumList1);
         }else{
-        accountJson.setData(forumList);}
+            accountJson.setData(forumList);
+        }
+
         return accountJson;
     }
 
@@ -194,7 +192,7 @@ public class ForumController {
 
         }
 
-return sum;
+    return sum;
 
     }
 
@@ -204,14 +202,12 @@ return sum;
         Users users=(Users) session.getAttribute("users");
         forum.setU_id(users.getU_Id());
         java.util.Date d = new java.util.Date();
-        System.out.println(d);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         forum.setF_date(Date.valueOf( sdf.format(d)));
         forumService.saveOrUpdate(forum);
         return 0;
 
     }
-
 
     @RequestMapping("/updateForum.do")
     public ModelAndView updateForum(String f_id){
@@ -261,8 +257,6 @@ return sum;
         return modelAndView;
 
     }
-
-
 
     @RequestMapping("/addreplys.do")
     public Integer addreplys(Forum forum,HttpSession session){
@@ -324,10 +318,10 @@ return sum;
 
 
     }
+
     @ResponseBody
     @RequestMapping("/addrepii.do")
     public String addrepii(Replys replys ,HttpSession session){
-        System.out.println(replys.getRp_id()+"*******************************************************************************************");
         Users users=(Users) session.getAttribute("users");
         java.util.Date d = new java.util.Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -355,7 +349,5 @@ return sum;
         }
         return num;
     }
-
-
 
 }

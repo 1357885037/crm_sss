@@ -20,24 +20,25 @@ public class Knowledge implements Serializable {
 
     private String k_text;
 
+
+
     public String getK_id() {
         return k_id;
     }
-
     public void setK_id(String k_id) {
         this.k_id = k_id;
     }
+
     public String getK_name() {
         return k_name;
     }
-
     public void setK_name(String k_name) {
         this.k_name = k_name;
     }
+
     public String getK_text() {
         return k_text;
     }
-
     public void setK_text(String k_text) {
         this.k_text = k_text;
     }
@@ -45,9 +46,10 @@ public class Knowledge implements Serializable {
     @Override
     public String toString() {
         return "Knowledge{" +
-        "k_id=" + k_id +
-        ", k_name=" + k_name +
-        ", k_text=" + k_text +
-        "}";
+                "k_id='" + k_id + '\'' +
+                ", k_name='" + k_name + '\'' +
+                ", k_text='" + k_text + '\'' +
+                '}';
     }
+
 }

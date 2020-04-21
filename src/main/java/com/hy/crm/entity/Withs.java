@@ -42,10 +42,10 @@ public class Withs implements Serializable {
     private  String user;
 
 
+
     public String getUser() {
         return user;
     }
-
     public void setUser(String user) {
         this.user = user;
     }
@@ -53,7 +53,6 @@ public class Withs implements Serializable {
     public Integer getStatu() {
         return statu;
     }
-
     public void setStatu(Integer statu) {
         this.statu = statu;
     }
@@ -61,7 +60,6 @@ public class Withs implements Serializable {
     public String getW_id() {
         return w_id;
     }
-
     public void setW_id(String w_id) {
         this.w_id = w_id;
     }
@@ -96,7 +94,6 @@ public class Withs implements Serializable {
     public String getW_accessory() {
         return w_accessory;
     }
-
     public void setW_accessory(String w_accessory) {
         this.w_accessory = w_accessory;
     }
@@ -104,7 +101,6 @@ public class Withs implements Serializable {
     public String getW_date() {
         return w_date;
     }
-
     public void setW_date(String w_date) {
         this.w_date = w_date;
     }
@@ -112,7 +108,6 @@ public class Withs implements Serializable {
     public String getW_classify() {
         return w_classify;
     }
-
     public void setW_classify(String w_classify) {
         this.w_classify = w_classify;
     }
@@ -120,14 +115,17 @@ public class Withs implements Serializable {
     @Override
     public String toString() {
         return "Withs{" +
-        "w_id=" + w_id +
-        ", b_id=" + b_id +
-        ", u_id=" + u_id +
-        ", w_title=" + w_title +
-        ", w_texts=" + w_texts +
-        ", w_accessory=" + w_accessory +
-        ", w_date=" + w_date +
-        ", w_classify=" + w_classify +
-        "}";
+                "w_id='" + w_id + '\'' +
+                ", b_id='" + b_id + '\'' +
+                ", u_id='" + u_id + '\'' +
+                ", w_title='" + w_title + '\'' +
+                ", w_texts='" + w_texts + '\'' +
+                ", w_accessory='" + w_accessory + '\'' +
+                ", w_date='" + w_date + '\'' +
+                ", w_classify='" + w_classify + '\'' +
+                ", statu=" + statu +
+                ", user='" + user + '\'' +
+                '}';
     }
+
 }

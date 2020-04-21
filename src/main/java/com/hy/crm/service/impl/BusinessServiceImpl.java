@@ -24,10 +24,10 @@ public class BusinessServiceImpl extends ServiceImpl<BusinessMapper, Business> i
 
     @Autowired
     BusinessMapper businessMapper;
+
     public List<Business> asc_b_name(){
         return businessMapper.asc_b_name();
     }
-
 
     @Override
     public String countMeonkey() {

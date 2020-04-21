@@ -23,7 +23,6 @@ public class Users_jurisdictionsController {
     @Autowired
     private IUsers_jurisdictionsService users_jurisdictionsService;
 
-
     @RequestMapping("/userUpjur.do")
     public ModelAndView userUpjur(String[]  j_id, String u_Id, ModelAndView modelAndView){
 
@@ -43,6 +42,5 @@ public class Users_jurisdictionsController {
         modelAndView.setViewName("/page/user/queryUsers.html");
         return modelAndView;
     }
-
 
 }

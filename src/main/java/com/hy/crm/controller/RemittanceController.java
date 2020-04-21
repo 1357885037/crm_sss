@@ -37,7 +37,6 @@ public class RemittanceController {
     @RequestMapping("/add_Remittance.do")
     @ResponseBody
     public String add_Remittance(Checks checks){
-      //  System.out.println("==:"+checks.toString());
         checksService.save(checks);
         return "1";
     }

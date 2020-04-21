@@ -5,6 +5,29 @@ public class Industry_Sources {
     private Integer count;
     private Double sum;
 
+
+
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Double getSum() {
+        return sum;
+    }
+    public void setSum(Double sum) {
+        this.sum = sum;
+    }
+
     @Override
     public String toString() {
         return "Industry_Sources{" +
@@ -14,27 +37,4 @@ public class Industry_Sources {
                 '}';
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public Double getSum() {
-        return sum;
-    }
-
-    public void setSum(Double sum) {
-        this.sum = sum;
-    }
 }

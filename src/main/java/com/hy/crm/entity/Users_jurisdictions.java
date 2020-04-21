@@ -21,14 +21,13 @@ public class Users_jurisdictions implements Serializable {
     public String getU_id() {
         return u_id;
     }
-
     public void setU_id(String u_id) {
         this.u_id = u_id;
     }
+
     public String getJ_id() {
         return j_id;
     }
-
     public void setJ_id(String j_id) {
         this.j_id = j_id;
     }
@@ -36,8 +35,9 @@ public class Users_jurisdictions implements Serializable {
     @Override
     public String toString() {
         return "Users_jurisdictions{" +
-        "u_id=" + u_id +
-        ", j_id=" + j_id +
-        "}";
+                "u_id='" + u_id + '\'' +
+                ", j_id='" + j_id + '\'' +
+                '}';
     }
+
 }

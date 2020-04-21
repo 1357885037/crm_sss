@@ -20,17 +20,8 @@ import java.util.List;
 @Service
 public class ClientsServiceImpl extends ServiceImpl<ClientsMapper, Clients> implements IClientsService {
 
-
-
-
-
-
     @Autowired
     private ClientsMapper clientsMapper;
-
-
-
-
 
     //查询所有的客户 并按名字首字母排序
     public List<Clients> asc_c_name() {
@@ -49,7 +40,5 @@ public class ClientsServiceImpl extends ServiceImpl<ClientsMapper, Clients> impl
     public List<Eachtes> queryccc() {
         return clientsMapper.querygroup();
     }
-
-    ;
 
 }

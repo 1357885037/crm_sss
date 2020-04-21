@@ -8,15 +8,11 @@ import org.apache.ibatis.annotations.Param;
 public class Query_customer {
 
 
-   // @Select("select c.c_id c_id,c.c_name c_name,(select count(*) from business b where b.c_id=c.c_id )  business_count,(select sum(b.b_monkey) from business b where b.c_id=c.c_id )  turnover,(select count(*) from contracts ct  where ct.b_id=(select b.b_id from business b where b.c_id=c.c_id)) contract_count,(select sum(ct_monkey) from contracts ct ,business b where ct.b_id=(select b.b_id from business b where b.c_id=c.c_id)) contract_amount,(select sum(re_monkey) from  remittance re where re.ct_id=(select ct.ct_id from contracts ct ,business b where ct.b_id=(select b.b_id from business b where b.c_id=c.c_id)  )) total_Return_amount ,(select count(*) from serves s where s.ct_id=(select ct.ct_id from contracts ct ,business b where ct.b_id=(select b.b_id from business b where b.c_id=c.c_id)   )) service_count ,(select avg(s_grade) from serves s  where s.ct_id=(select ct.ct_id from contracts ct ,business b where ct.b_id=(select b.b_id from business b where b.c_id=c.c_id) )) servic_Score   from  clients c , business b")
 
     public String query(@Param("clients") Clients clients){
-        System.out.println("进来狗子。.....");
         StringBuffer sql=new StringBuffer(" select  c.c_id c_id,c.c_name c_name,(select count(*) from business b where b.c_id=c.c_id )  business_count ,(select sum(b.b_monkey) from business b where b.c_id=c.c_id )  turnover ,(select count(*) from contracts ct  where ct.c_id =c.c_id) contract_count,(select sum(ct_monkey) from contracts ct   where ct.c_id = c.c_id) contract_amount,(select sum(re_monkey) from  remittance re where re.ct_id in (select ct.ct_id from contracts ct   where ct.c_id = c.c_id  )) total_Return_amount ,(select count(*) from serves s where s.ct_id in (select ct.ct_id from contracts ct   where ct.c_id =c.c_id  )) service_count ,(select avg(s_grade) from serves s  where s.ct_id in (select ct.ct_id from contracts ct   where ct.c_id = c.c_id )) servic_Score   from clients c where 1=1 ");
 
-
         if(clients.getStatu()!=null){
-         System.out.println("二狗子");
             //根据客户名称查询
             if(clients.getStatu()==1){
                 if(!StringUtils.isNullOrEmpty(clients.getC_name())){
@@ -62,41 +58,32 @@ public class Query_customer {
     }
 
     public String query_Contract(@Param("business") Business business){
-        System.out.println("进来狗子。.....");
         StringBuffer sql=new StringBuffer("select b.b_id,b.b_name,b_stage,b_monkey,(select u_realname from users u where u.u_id=b.u_id) u_realname ,(select max(w_date) from withs w where w.b_id=b.b_id)  w_date ,(select count(*) from forum f where f.b_id=b.b_id)  forum_count from business b where 1=1");
 
-        if(!StringUtils.isNullOrEmpty(business.getUu_id())){
-            sql.append(" and b.u_id = '"+business.getUu_id()+"'");
-        }
-
-        if(!StringUtils.isNullOrEmpty(business.getC_id())){
-            sql.append(" and b.c_id = '"+business.getC_id()+"'");
-        }
-
-        if(!StringUtils.isNullOrEmpty(business.getB_name())){
-            sql.append(" and b.b_name like '%"+business.getB_name()+"%'");
-        }
-
-        if(!StringUtils.isNullOrEmpty(business.getB_stage())){
-            sql.append(" and b.b_stage = '"+business.getB_stage()+"'");
-        }
-
-
-        if(!StringUtils.isNullOrEmpty(business.getU_id())){
-            sql.append(" and b.u_id = '"+business.getU_id()+"'  ");
-        }
-
-        if(!StringUtils.isNullOrEmpty(business.getB_date())){
-            sql.append(" and b.b_date = '"+business.getB_date()+"'  ");
-        }
-
-       /* if(!StringUtils.isNullOrEmpty(business.getB_stage())){
-            System.out.println("sssssssssssssss");
-            if(business.getB_stage().equals("0")){
-                System.out.println("bbbbbbbbbbbbbbbb");
-                sql.append(" and b.b_stage not in ('成交','丢单','搁置')  ");
+            if(!StringUtils.isNullOrEmpty(business.getUu_id())){
+                sql.append(" and b.u_id = '"+business.getUu_id()+"'");
             }
-        }*/
+
+            if(!StringUtils.isNullOrEmpty(business.getC_id())){
+                sql.append(" and b.c_id = '"+business.getC_id()+"'");
+            }
+
+            if(!StringUtils.isNullOrEmpty(business.getB_name())){
+                sql.append(" and b.b_name like '%"+business.getB_name()+"%'");
+            }
+
+            if(!StringUtils.isNullOrEmpty(business.getB_stage())){
+                sql.append(" and b.b_stage = '"+business.getB_stage()+"'");
+            }
+
+
+            if(!StringUtils.isNullOrEmpty(business.getU_id())){
+                sql.append(" and b.u_id = '"+business.getU_id()+"'  ");
+            }
+
+            if(!StringUtils.isNullOrEmpty(business.getB_date())){
+                sql.append(" and b.b_date = '"+business.getB_date()+"'  ");
+            }
 
         if(business.getStatu()!=null){
             //进行中的商机

@@ -21,15 +21,12 @@ import java.util.List;
 @Service
 public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts> implements IContractsService {
 
-
     @Autowired
     private  ContractsMapper contractsMapper;
-
 
     public List<Contracts> queryall(Contracts contracts, Clients clients){
         return contractsMapper.queryall(contracts,clients);
     }
-
 
     @Override
     public Double sumMeonkey() {
@@ -72,7 +69,6 @@ public class ContractsServiceImpl extends ServiceImpl<ContractsMapper, Contracts
     }
 
 //    已完成的合同
-
     @Override
     public Double fulfillsumMeonkey() {
         return contractsMapper.fulfillsumMeonkey();

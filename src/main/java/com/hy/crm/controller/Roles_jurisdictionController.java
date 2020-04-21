@@ -90,7 +90,6 @@ public class Roles_jurisdictionController {
         return modelAndView;
     }
 
-
     @RequestMapping("/updaterolejursdiction.do")
     public ModelAndView updaterolejursdiction(String r_id,String[] j_id,ModelAndView modelAndView){
 

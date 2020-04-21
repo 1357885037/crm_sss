@@ -36,4 +36,14 @@ public class AccountJson {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "AccountJson{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", count=" + count +
+                ", data=" + data +
+                '}';
+    }
+
 }

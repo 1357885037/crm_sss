@@ -52,25 +52,21 @@ public class Users implements Serializable {
     @TableField(exist = false)
     private List<Roles> rolesList;
 
-@TableField(exist = false)
+    @TableField(exist = false)
     private String u_roles;
+
+
 
     public String getU_roles() {
         return u_roles;
     }
-
     public void setU_roles(String u_roles) {
         this.u_roles = u_roles;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public String getU_Id() {
         return u_Id;
     }
-
     public void setU_Id(String u_Id) {
         this.u_Id = u_Id;
     }
@@ -78,7 +74,6 @@ public class Users implements Serializable {
     public String getU_Name() {
         return u_Name;
     }
-
     public void setU_Name(String u_Name) {
         this.u_Name = u_Name;
     }
@@ -86,7 +81,6 @@ public class Users implements Serializable {
     public String getU_pass() {
         return u_pass;
     }
-
     public void setU_pass(String u_pass) {
         this.u_pass = u_pass;
     }
@@ -94,7 +88,6 @@ public class Users implements Serializable {
     public String getU_Realname() {
         return u_Realname;
     }
-
     public void setU_Realname(String u_Realname) {
         this.u_Realname = u_Realname;
     }
@@ -102,7 +95,6 @@ public class Users implements Serializable {
     public Integer getU_Sex() {
         return u_Sex;
     }
-
     public void setU_Sex(Integer u_Sex) {
         this.u_Sex = u_Sex;
     }
@@ -110,19 +102,13 @@ public class Users implements Serializable {
     public long getU_Phone() {
         return u_Phone;
     }
-
     public void setU_Phone(long u_Phone) {
-        this.u_Phone = u_Phone;
-    }
-
-    public void setU_Phone(Integer u_Phone) {
         this.u_Phone = u_Phone;
     }
 
     public String getU_Date() {
         return u_Date;
     }
-
     public void setU_Date(String u_Date) {
         this.u_Date = u_Date;
     }
@@ -130,7 +116,6 @@ public class Users implements Serializable {
     public String getProvince() {
         return province;
     }
-
     public void setProvince(String province) {
         this.province = province;
     }
@@ -138,7 +123,6 @@ public class Users implements Serializable {
     public String getCity() {
         return city;
     }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -146,7 +130,6 @@ public class Users implements Serializable {
     public String getArea() {
         return area;
     }
-
     public void setArea(String area) {
         this.area = area;
     }
@@ -154,7 +137,6 @@ public class Users implements Serializable {
     public String getU_Email() {
         return u_Email;
     }
-
     public void setU_Email(String u_Email) {
         this.u_Email = u_Email;
     }
@@ -162,7 +144,6 @@ public class Users implements Serializable {
     public String getU_Signature() {
         return u_Signature;
     }
-
     public void setU_Signature(String u_Signature) {
         this.u_Signature = u_Signature;
     }
@@ -170,7 +151,6 @@ public class Users implements Serializable {
     public String getU_Img() {
         return u_Img;
     }
-
     public void setU_Img(String u_Img) {
         this.u_Img = u_Img;
     }
@@ -178,7 +158,6 @@ public class Users implements Serializable {
     public Integer getU_statu() {
         return u_statu;
     }
-
     public void setU_statu(Integer u_statu) {
         this.u_statu = u_statu;
     }
@@ -186,7 +165,6 @@ public class Users implements Serializable {
     public List<Roles> getRolesList() {
         return rolesList;
     }
-
     public void setRolesList(List<Roles> rolesList) {
         this.rolesList = rolesList;
     }
@@ -208,8 +186,9 @@ public class Users implements Serializable {
                 ", u_Signature='" + u_Signature + '\'' +
                 ", u_Img='" + u_Img + '\'' +
                 ", u_statu=" + u_statu +
-                ", u_roles=" + u_roles +
                 ", rolesList=" + rolesList +
+                ", u_roles='" + u_roles + '\'' +
                 '}';
     }
+
 }

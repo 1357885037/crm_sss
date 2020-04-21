@@ -23,5 +23,4 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, Users> implements
     @Autowired
     private LoginMapper loginMapper;
 
-
 }

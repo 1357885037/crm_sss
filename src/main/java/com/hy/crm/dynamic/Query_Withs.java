@@ -15,11 +15,9 @@ public class Query_Withs {
             withs.setUser("");
         }
 
-
         if(!StringUtils.isNullOrEmpty(withs.getB_id())){
             sql.append(" and w.b_id = '"+withs.getB_id()+"'");
         }
-
 
         if(withs.getStatu()!=null){
             if(withs.getStatu()==1){
@@ -44,10 +42,6 @@ public class Query_Withs {
             }
 
         }
-
-
-
-
 
         return sql.toString();
     }
