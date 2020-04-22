@@ -39,7 +39,6 @@
                 /json/**=anon
                 /layui/**=anon
                 /login.html=anon
-                /page/**=anon
                 /Login/Users/**=anon
                 /page/404.html=anon
                 /page/user/userInfo2.html=anon
