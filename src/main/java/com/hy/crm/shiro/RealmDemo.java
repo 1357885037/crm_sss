@@ -1,8 +1,8 @@
 package com.hy.crm.shiro;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hy.crm.entity.Users;
-import com.hy.crm.service.ILoginService;
+import com.hy.crm.entity.*;
+import com.hy.crm.service.*;
 import com.hy.crm.service.impl.LoginServiceImpl;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -12,6 +12,10 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class RealmDemo extends AuthorizingRealm {
 
     @Autowired
@@ -20,31 +24,64 @@ public class RealmDemo extends AuthorizingRealm {
     @Autowired
     private LoginServiceImpl loginServiceImpl;
 
+    @Autowired
+    private IUsersService iUsersService;
+
+    @Autowired
+    private IUsers_rolesService iUsersRolesService;
+
+    @Autowired
+    private IRolesService iRolesService;
+
+    @Autowired
+    private IUsers_jurisdictionsService iUsersJurisdictionsService;
+
+    @Autowired
+    private IJurisdictionsService iJurisdictionsService;
+
     @Override                   /*授权*/
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-      /*  System.out.println("授权开始=====================》");
         //1.先拿到用户名
         Object object=principalCollection.getPrimaryPrincipal();
-        System.out.println(object);
+        System.out.println(object.toString()+"*******************************************************************");
         //2.根据用户查询数据库得到角色和权限
 
-        Set<String> roles =bookService.roles(object.toString());
-       *//* Set<String> roles=new HashSet<String>();
-        roles.add("admin");*//*
+        QueryWrapper<Users> queryWrapper=new QueryWrapper<>();
+        queryWrapper.eq("u_name",object.toString());
+        Users users=iUsersService.getOne(queryWrapper);
+
+        //角色
+        QueryWrapper<Users_roles> queryWrapper1=new QueryWrapper<>();
+        queryWrapper1.eq("u_id",users.getU_Id());
+        List<Users_roles> usersRolesList=iUsersRolesService.list(queryWrapper1);
+
+        Set<String> rolesset=new HashSet<>();
+        for(Users_roles usersRoles:usersRolesList){
+            QueryWrapper<Roles> queryWrapper2=new QueryWrapper<>();
+            queryWrapper2.eq("r_id",usersRoles.getR_id());
+            Roles roles=iRolesService.getOne(queryWrapper2);
+            rolesset.add(roles.getR_name());
+        }
 
         //权限
-        *//*Set<String> permission=new HashSet<String>();
-        permission.add("update");
-        permission.add("delete");*//*
-        Set<String> permission=bookService.users_jurisdiction(object.toString());
-        Set<String> users_jurisdiction=bookService.users_jurisdiction2(object.toString());
-        permission.addAll(users_jurisdiction);
-        System.out.println("======>><<<><?<<>><<><><><><><<>><<><><><<>><<>><<>>"+permission.size());
-        //3.返回授权的信息类*/
-        SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
-       // authorizationInfo.setRoles(roles);
-        //authorizationInfo.addStringPermissions(permission);
+        Set<String> permission=new HashSet<>();
 
+        QueryWrapper<Users_jurisdictions> queryWrapper3=new QueryWrapper<>();
+        queryWrapper3.eq("u_id",users.getU_Id());
+        List<Users_jurisdictions> usersJurisdictions=iUsersJurisdictionsService.list(queryWrapper3);
+
+        for (Users_jurisdictions usersJurisdictions1:usersJurisdictions){
+            QueryWrapper<Jurisdictions> queryWrapper2=new QueryWrapper<>();
+            queryWrapper2.eq("j_id",usersJurisdictions1.getJ_id());
+            Jurisdictions jurisdictions=iJurisdictionsService.getOne(queryWrapper2);
+            permission.add(jurisdictions.getJ_url());
+        }
+
+
+        //3.返回授权的信息类
+        SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
+        authorizationInfo.setRoles(rolesset);
+        authorizationInfo.addStringPermissions(permission);
 
         return authorizationInfo;
     }

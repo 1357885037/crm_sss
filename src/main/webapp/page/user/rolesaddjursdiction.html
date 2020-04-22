@@ -11,17 +11,17 @@
     <div class="layui-form-item">
         <div class="layui-input-block">
             <input type="hidden" name="r_id" id="ids" th:value="${r_id}"  required  lay-verify="required"  class="layui-input">
+            为角色[[${r_name}]]设置权限
         </div>
     </div>
-为角色[[${r_name}]]设置权限
+
         <span th:each="ement:${jurisdictionsList}">
             <input lay-filter="test" th:id="${ement.j_name}" type="checkbox" th:value="${ement.j_id}" name="j_id" th:title="${ement.j_name}" lay-skin="primary" th:checked="${ement.status} == 1 ? true:false "/>
-                <span th:each="index:${ement.jurisdictionsList}" >
-                    <input   th:id="${ement.j_name}" type="checkbox" th:value="${index.j_id}" name="j_id" th:title="${index.j_name}" lay-skin="primary" th:checked="${index.status} == 1 ? true:false "/>
-                </span>
+            <span th:each="index:${ement.jurisdictionsList}" >
+                    <input lay-filter="test1"  th:id="${ement.j_name}+'_role'" type="checkbox" th:value="${index.j_id}" name="j_id" th:title="${index.j_name}" lay-skin="primary" th:checked="${index.status} == 1 ? true:false "/>
+            </span>
+            <br/>
         </span>
-
-
 
 
 
@@ -39,8 +39,9 @@
    <script src="/js/jquery-3.3.1.min.js" charset="utf-8"></script>
 <script>
     layui.use(['form','jquery'], function(){
-        var form = layui.form;
-        var $ = layui.jquery;
+         form = layui.form,
+         $ = layui.jquery;
+
         form.on('submit(*)', function(data){
             quotation = new Array();
             $("input:checkbox[name='j_id']:checked").each(function(){
@@ -53,25 +54,48 @@
 
         form.on('checkbox(test)', function(data){
             var sr=data.elem.id;//得到checkbox原始DOM对象
-            console.log(data.elem); //得到checkbox原始DOM对象
-            console.log(data.elem.checked); //是否被选中，true或者false
 
             if(data.elem.checked==true){
-                $("#"+sr).each(function(){
+                $("#"+sr+"_role").each(function(){
                     $(this).prop('checked', true);
                     form.render('checkbox');
                 });
             }
 
             if(data.elem.checked==false){
-                $("#"+sr).each(function(){
+                $("#"+sr+"_role").each(function(){
                     $(this).prop('checked', false);
                     form.render('checkbox');
                 });
             }
 
+        });
 
+        form.on('checkbox(test1)', function(data){
+            var sr=data.elem.id;//得到checkbox原始DOM对象
 
+            if(data.elem.checked==true){
+                $("#"+sr.split("_")[0]).prop('checked', true);
+                form.render('checkbox');
+            }
+
+            if(data.elem.checked==false){
+                var num=1;
+                $("#"+sr).each(function(){
+                    console.log(this);
+                    console.log(this.checked);
+                    if(this.checked==true){
+                        num=2;
+                        return false;
+                    }
+
+                });
+                if(num==1){
+                    $("#"+sr.split("_")[0]).prop('checked', false);
+                    form.render('checkbox');
+                }
+
+            }
 
         });
 

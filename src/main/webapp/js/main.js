@@ -256,23 +256,23 @@ layui.use(['form','element','layer'],function(){
 
 
     $("#on1").click(function () {
-        $("#tu2").hide();
-        $("#tu3").hide();
-        $("#container").show();
+        $("#a2").hide();
+        $("#a3").hide();
+        $("#a1").show();
 
     });
 
     $("#on2").click(function () {
-        $("#container").hide();
-        $("#tu3").hide();
-        $("#tu2").show();
+        $("#a1").hide();
+        $("#a3").hide();
+        $("#a2").show();
 
     });
 
     $("#on3").click(function () {
-        $("#container").hide();
-        $("#tu2").hide();
-        $("#tu3").show();
+        $("#a1").hide();
+        $("#a2").hide();
+        $("#a3").show();
     });
 
 

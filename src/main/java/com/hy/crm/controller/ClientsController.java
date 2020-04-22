@@ -9,6 +9,7 @@ import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.Client_financeServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.util.AccountJson;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +43,7 @@ public class ClientsController {
     @Autowired
     ClientsMapper clientsMapper;
 
+    @RequiresPermissions("/crm/clients/queryall.do")
     @RequestMapping("/queryall.do")
     @ResponseBody
     public AccountJson queryall(@RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit,String tiaojian,Clients clients){
@@ -85,6 +87,7 @@ public class ClientsController {
         }
     }
 
+    @RequiresPermissions("/crm/clients/redact.do")
     @RequestMapping("/redact.do")
     public String redact(String c_id, Model model){
         Clients clients=clientsService.getById(c_id);
@@ -113,6 +116,7 @@ public class ClientsController {
         return "1";
     }
 
+    @RequiresPermissions("/crm/clients/customer_contract.do")
     @RequestMapping("/customer_contract.do")
     public String customer_contract(String c_id,Model model){
         model.addAttribute("c_id",c_id);
@@ -132,6 +136,7 @@ public class ClientsController {
         return accountJson;
     }
 
+    @RequiresPermissions("/crm/clients/customer_contractsss.do")
     @RequestMapping("/customer_contractsss.do")
     public String customer_contractsss(String c_id,Model model){
         model.addAttribute("c_id",c_id);
@@ -161,6 +166,7 @@ public class ClientsController {
         return i;
     }
 
+    @RequiresPermissions("/crm/clients/customer_serves.do")
     @RequestMapping("/customer_serves.do")
     public String customer_serves(String c_id, Model model){
         model.addAttribute("c_id",c_id);
