@@ -124,7 +124,11 @@
                 ,{field:'b_name', title: '所属商机', sort:true,templet:'<div>{{d.b_name}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-mingchengleiruqiyekehumingchengxiangmumingcheng"></use></svg></div>'}
                 ,{field:'f_number',  title: '点击量',templet:'<div>{{d.f_number}}<svg class="icon3" aria-hidden="true"><use xlink:href=" #icon-wodeshangji1"></use></svg></div>'}
                 ,{field:'revert',  title: '回复量',templet:'<div>{{d.revert}}<svg class="icon3" aria-hidden="true"><use xlink:href="#icon-taolun"></use></svg></div>'}
-                ,{ field:'r_date',  title: '最后回复时间',templet:'#titleTp2'}
+                ,{ field:'r_date',  title: '最后回复时间',templet:function(d){
+            return layui.util.toDateString(d.r_date, 'yyyy-MM-dd')+ '<svg className="icon3" aria-hidden="true">'+
+                '<use xlink:href="#icon-shijian"></use>'+
+            '</svg>'
+        }}
                 ,{ title: '操作',templet:'#barDemo'}
 
             ]
