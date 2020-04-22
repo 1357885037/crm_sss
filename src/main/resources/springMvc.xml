@@ -49,9 +49,6 @@
         <property name="securityManager" ref="securityManager" />
     </bean>
 
-
-
-
     <!-- 配置SpringMVC的异常解析器 -->
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">

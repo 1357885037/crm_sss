@@ -9,6 +9,7 @@ import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.Client_financeServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.util.AccountJson;
+import com.hy.crm.util.Md5;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -181,4 +183,11 @@ public class ClientsController {
         return clientsService.queryccc();
     }
 
+
+    @ResponseBody
+    @RequestMapping("/getpass.do")
+    public String getpass(HttpSession session,String test,String u_name){
+        String pass=Md5.md4Test(u_name,test);
+        return pass;
+    }
 }

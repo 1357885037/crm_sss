@@ -59,18 +59,20 @@ layui.use(['form','jquery',"layer"],function() {
     })
 
     //锁屏
+
     function lockPage(){
+
         layer.open({
             title : false,
             type : 1,
             content : '<div class="admin-header-lock" id="lock-box">'+
-                            '<div class="admin-header-lock-img"><img src="images/face.jpg" class="userAvatar"/></div>'+
-                            '<div class="admin-header-lock-name" id="lockUserName">驊驊龔頾</div>'+
+                            '<div class="admin-header-lock-img"><img src="/images/'+$("#img").val()+'" class="userAvatar"/></div>'+
+                            '<div class="admin-header-lock-name" id="lockUserName">'+$("#realname").val()+'</div>'+
                             '<div class="input_btn">'+
                                 '<input type="password" class="admin-header-lock-input layui-input" autocomplete="off" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />'+
                                 '<button class="layui-btn" id="unlock">解锁</button>'+
                             '</div>'+
-                            '<p>请输入“123456”，否则不会解锁成功哦！！！</p>'+
+
                         '</div>',
             closeBtn : 0,
             shade : 0.9,
@@ -97,14 +99,18 @@ layui.use(['form','jquery',"layer"],function() {
             layer.msg("请输入解锁密码！");
             $(this).siblings(".admin-header-lock-input").focus();
         }else{
-            if($(this).siblings(".admin-header-lock-input").val() == "123456"){
-                window.sessionStorage.setItem("lockcms",false);
-                $(this).siblings(".admin-header-lock-input").val('');
-                layer.closeAll("page");
-            }else{
-                layer.msg("密码错误，请重新输入！");
-                $(this).siblings(".admin-header-lock-input").val('').focus();
-            }
+            var test=$(this).siblings(".admin-header-lock-input").val();
+            $.get("http://localhost:8080/crm/clients/getpass.do?test="+test+"&u_name="+$("#u_name").val()+"",function(data){
+                if(data== $("#u_pass").val()){
+                    window.sessionStorage.setItem("lockcms",false);
+                    $(this).siblings(".admin-header-lock-input").val('');
+                    layer.closeAll("page");
+                }else{
+                    layer.msg("密码错误，请重新输入！");
+                    $(this).siblings(".admin-header-lock-input").val('').focus();
+                }
+            });
+
         }
     });
     $(document).on('keydown', function(event) {

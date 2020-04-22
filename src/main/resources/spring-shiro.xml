@@ -44,6 +44,7 @@
                 /page/404.html=anon
                 /
                 /page/user/userInfo2.html=anon
+                /index.html=anon
                 /**=authc
             </value>
         </property>
