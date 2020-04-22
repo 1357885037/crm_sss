@@ -99,6 +99,7 @@ public class WithsController {
         return "business_management/redact_withs";
     }
 
+    @RequiresPermissions("withs:add")
     @RequestMapping("/add.do")
     public String ccc(HttpSession session,Model model){
         Users user= (Users) session.getAttribute("users");
