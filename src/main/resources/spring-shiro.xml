@@ -28,6 +28,7 @@
         <property name="securityManager" ref="securityManager"/>
         <!-- 如果没有认证访问其他需要认证的连接则跳转到的页面  一般就登录界面-->
         <property name="loginUrl" value="/index.html"/>
+        <property name="unauthorizedUrl" value="/page/404.html"></property>
         <property name="filterChainDefinitions">
             <value>
                 /css/**=anon
@@ -41,6 +42,7 @@
                 /page/**=anon
                 /Login/Users/**=anon
                 /page/user/userInfo2.html=anon
+                /index.html=anon
                 /**=authc
             </value>
         </property>

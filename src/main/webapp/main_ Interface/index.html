@@ -25,6 +25,10 @@
 	</style>
 </head>
 <body class="main_body">
+	<input type="hidden" th:value="${user.getU_Name()}" id="u_name">
+	<input type="hidden" th:value="${user.getU_pass()}" id="u_pass">
+	<input type="hidden" th:value="${user.getU_Realname()}" id="realname">
+	<input type="hidden" th:value="${user.getU_Img()}" id="img">
 	<div class="layui-layout layui-layout-admin">
 		<!-- 顶部 -->
 		<div class="layui-header header">
