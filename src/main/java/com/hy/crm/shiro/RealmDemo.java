@@ -39,6 +39,8 @@ public class RealmDemo extends AuthorizingRealm {
 
     @Autowired
     private IJurisdictionsService iJurisdictionsService;
+    @Autowired
+    private IRoles_jurisdictionService iRolesJurisdictionService;
 
     @Override                   /*授权*/
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -56,16 +58,28 @@ public class RealmDemo extends AuthorizingRealm {
         queryWrapper1.eq("u_id",users.getU_Id());
         List<Users_roles> usersRolesList=iUsersRolesService.list(queryWrapper1);
 
-        Set<String> rolesset=new HashSet<>();
+        Set<String> permission=new HashSet<>();
         for(Users_roles usersRoles:usersRolesList){
             QueryWrapper<Roles> queryWrapper2=new QueryWrapper<>();
             queryWrapper2.eq("r_id",usersRoles.getR_id());
             Roles roles=iRolesService.getOne(queryWrapper2);
-            rolesset.add(roles.getR_name());
+            QueryWrapper<Roles_jurisdiction> queryWrapper3=new QueryWrapper<>();
+            queryWrapper3.eq("r_id",roles.getR_id());
+            List<Roles_jurisdiction> rolesJurisdictions=iRolesJurisdictionService.list(queryWrapper3);
+            for(Roles_jurisdiction rolesJurisdiction:rolesJurisdictions) {
+                QueryWrapper<Jurisdictions> queryWrapper4=new QueryWrapper<>();
+                queryWrapper4.eq("j_id",rolesJurisdiction.getJ_id());
+                Jurisdictions jurisdictions=iJurisdictionsService.getOne(queryWrapper4);
+                if(jurisdictions.getJ_url()!=""&& !StringUtils.isNullOrEmpty(jurisdictions.getJ_url())){
+                    permission.add(jurisdictions.getJ_url());
+                }
+
+            }
+
         }
 
         //权限
-        Set<String> permission=new HashSet<>();
+
 
         QueryWrapper<Users_jurisdictions> queryWrapper3=new QueryWrapper<>();
         queryWrapper3.eq("u_id",users.getU_Id());
@@ -84,9 +98,10 @@ public class RealmDemo extends AuthorizingRealm {
             System.out.println("权限：+++"+s);
         }
 
+
         //3.返回授权的信息类
         SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(rolesset);
+//        authorizationInfo.setRoles(rolesset);
         authorizationInfo.addStringPermissions(permission);
 
         return authorizationInfo;

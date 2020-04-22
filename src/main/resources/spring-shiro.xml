@@ -39,10 +39,25 @@
                 /json/**=anon
                 /layui/**=anon
                 /login.html=anon
-                /page/**=anon
                 /Login/Users/**=anon
                 /page/404.html=anon
                 /page/user/userInfo2.html=anon
+                /index.html=anon
+
+
+                /page/serve/serves.html=perms[server:select]
+                /page/serve/serveid.html=perms[server:details]
+                /page/serve/addserves.html=perms[server:insert]
+                /page/doc/statistics.html=perms[statistics:select]
+                /crm/forum/delforum.do=perms[forum:delete]
+                /page/user/queryUsers.html=perms[user:select]
+                /sanqi/users/delusers.do=perms[user:delete]
+                /page/user/roles.html=perms[user:roles]
+                /page/user/user_Right.html=perms[user:perms]
+                /page/user/gRoles.html=perms[roles:select]
+                /page/user/addroles.html=perms[roles:insert]
+                /page/user/rolesaddjursdiction.html=perms[roles:update]
+
                 /customer_management/customer_management.html=perms[clients:select]
                 /customer_management/add_Clients.html=perms[clients:add]
                 /business_management/business_management.html=perms[business:select]
@@ -51,36 +66,8 @@
                 /withs_management/add_withs.html=perms[withs:add]
                 /contracts_management/contracts_management.html=perms[contracts:select]
                 /contracts_management/add_contracts.html=perms[contracts:add]
-
-
-                /index.html=anon
-
-<!--                售后查询-->
-                /page/serve/serves.html=perms[server:select]
-<!--                售后详情-->
-                /page/serve/serveid.html=perms[server:details]
-<!--                售后添加-->
-                /page/serve/addserves.html=perms[server:insert]
-<!--                统计查询-->
-                /page/doc/statistics.html=perms[statistics:select]
-<!--帖子删除-->
-                /crm/forum/delforum.do=perms[forum:delete]
-<!--                  查询用户-->
-                /page/user/queryUsers.html=perms[user:select]
-<!--                删除用户-->
-                /sanqi/users/delusers.do=perms[user:delete]
-<!--                用户设置角色-->
-                /page/user/roles.html=perms[user:roles]
-<!--                用户设置权限-->
-                /page/user/user_Right.html=perms[user:perms]
-<!--                角色查询-->
-                /page/user/gRoles.html=perms[roles:select]
-<!--                添加角色-->
-                /page/user/addroles.html=perms[roles:insert]
-<!--                为角色赋权限-->
-                /page/user/rolesaddjursdiction.html=perms[roles:update]
-
                 /**=authc
+
             </value>
         </property>
 
