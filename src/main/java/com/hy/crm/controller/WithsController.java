@@ -10,6 +10,7 @@ import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.service.impl.WithsServiceImpl;
 import com.hy.crm.util.AccountJson;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,6 +71,7 @@ public class WithsController {
         return "1";
     }
 
+    @RequiresPermissions("withs:update")
     @RequestMapping("/update_withs.do")
     public String redact(String w_id,Model model){
         Withs withs=withsService.getById(w_id);
@@ -104,6 +106,7 @@ public class WithsController {
         return "withs_management/add_withs";
     }
 
+    @RequiresPermissions("Mywiths:select")
     @RequestMapping("/myWihs.do")
     public String myWiths(HttpSession session,Model model){
         Users user= (Users) session.getAttribute("users");

@@ -42,9 +42,17 @@
                 /page/**=anon
                 /Login/Users/**=anon
                 /page/404.html=anon
-                /
                 /page/user/userInfo2.html=anon
-                /index.html=anon
+                /customer_management/customer_management.html=perms[clients:select]
+                /customer_management/add_Clients.html=perms[clients:add]
+                /business_management/business_management.html=perms[business:select]
+                /business_management/add_Business.html=perms[business:add]
+                /withs_management/withs_management.html=perms[withs:select]
+                /withs_management/add_withs.html=perms[withs:add]
+                /contracts_management/contracts_management.html=perms[contracts:select]
+                /contracts_management/add_contracts.html=perms[contracts:add]
+
+
                 /**=authc
             </value>
         </property>

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hy.crm.entity.*;
 import com.hy.crm.service.*;
 import com.hy.crm.service.impl.LoginServiceImpl;
+import com.mysql.jdbc.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -74,9 +75,14 @@ public class RealmDemo extends AuthorizingRealm {
             QueryWrapper<Jurisdictions> queryWrapper2=new QueryWrapper<>();
             queryWrapper2.eq("j_id",usersJurisdictions1.getJ_id());
             Jurisdictions jurisdictions=iJurisdictionsService.getOne(queryWrapper2);
-            permission.add(jurisdictions.getJ_url());
+            if(jurisdictions.getJ_url()!=""&& !StringUtils.isNullOrEmpty(jurisdictions.getJ_url())){
+                permission.add(jurisdictions.getJ_url());
+            }
         }
 
+        for (String s : permission) {
+            System.out.println("权限：+++"+s);
+        }
 
         //3.返回授权的信息类
         SimpleAuthorizationInfo authorizationInfo=new SimpleAuthorizationInfo();

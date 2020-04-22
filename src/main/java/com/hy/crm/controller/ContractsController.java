@@ -9,6 +9,7 @@ import com.hy.crm.entity.Users;
 import com.hy.crm.service.IContractsService;
 import com.hy.crm.service.impl.ContractsServiceImpl;
 import com.hy.crm.util.AccountJson;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,6 +54,8 @@ public class ContractsController {
         return accountJson;
     }
 
+
+    @RequiresPermissions("Mycontracts:select")
     @RequestMapping("/my_contracts.do")
     public String  my_contracts(Model model, HttpSession session){
         Users users= (Users) session.getAttribute("users");
@@ -60,6 +63,8 @@ public class ContractsController {
         return "contracts_management/contracts_management";
     }
 
+
+    @RequiresPermissions("contracts:update")
     @RequestMapping("/redact.do")
     public  String redact(String ct_id, Model model){
         Contracts contracts=contractsService.getById(ct_id);

@@ -8,6 +8,7 @@ import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.service.impl.UsersServiceImpl;
 import com.hy.crm.util.AccountJson;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +53,7 @@ public class BusinessController {
         return accountJson;
     }
 
+    @RequiresPermissions("Mybusiness:select")
     @RequestMapping("/myBusiness.do")
     public String myBusiness(HttpSession session, Model model){
         Users user= (Users) session.getAttribute("users");

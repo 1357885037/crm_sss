@@ -3,6 +3,7 @@ package com.hy.crm.controller;
 import com.hy.crm.entity.Checks;
 import com.hy.crm.entity.Users;
 import com.hy.crm.service.impl.ChecksServiceImpl;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,8 @@ public class RemittanceController {
     @Autowired
     ChecksServiceImpl checksService;
 
+
+    @RequiresPermissions("register_Remittance")
     @RequestMapping("/register_Remittance.do")
     public String register_Remittance(String ct_id, Model model, HttpSession session){
         model.addAttribute("ct_id",ct_id);
