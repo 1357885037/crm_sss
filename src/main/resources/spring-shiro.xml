@@ -28,7 +28,7 @@
         <property name="securityManager" ref="securityManager"/>
         <!-- 如果没有认证访问其他需要认证的连接则跳转到的页面  一般就登录界面-->
         <property name="loginUrl" value="/index.html"/>
-        <property name="unauthorizedUrl" value="/404.html"></property>
+        <property name="unauthorizedUrl" value="/page/404.html"></property>
         <property name="filterChainDefinitions">
             <value>
                 /css/**=anon
@@ -52,6 +52,33 @@
                 /contracts_management/contracts_management.html=perms[contracts:select]
                 /contracts_management/add_contracts.html=perms[contracts:add]
 
+
+                /index.html=anon
+
+<!--                售后查询-->
+                /page/serve/serves.html=perms[server:select]
+<!--                售后详情-->
+                /page/serve/serveid.html=perms[server:details]
+<!--                售后添加-->
+                /page/serve/addserves.html=perms[server:insert]
+<!--                统计查询-->
+                /page/doc/statistics.html=perms[statistics:select]
+<!--帖子删除-->
+                /crm/forum/delforum.do=perms[forum:delete]
+<!--                  查询用户-->
+                /page/user/queryUsers.html=perms[user:select]
+<!--                删除用户-->
+                /sanqi/users/delusers.do=perms[user:delete]
+<!--                用户设置角色-->
+                /page/user/roles.html=perms[user:roles]
+<!--                用户设置权限-->
+                /page/user/user_Right.html=perms[user:perms]
+<!--                角色查询-->
+                /page/user/gRoles.html=perms[roles:select]
+<!--                添加角色-->
+                /page/user/addroles.html=perms[roles:insert]
+<!--                为角色赋权限-->
+                /page/user/rolesaddjursdiction.html=perms[roles:update]
 
                 /**=authc
             </value>
