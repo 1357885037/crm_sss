@@ -44,7 +44,7 @@
                 /page/user/userInfo2.html=anon
                 /page/user/userInfo2.js=anon
                 /index.html=anon
-
+                /**=authc
 
                 /page/serve/serves.html=perms[server:select]
                 /page/serve/serveid.html=perms[server:details]

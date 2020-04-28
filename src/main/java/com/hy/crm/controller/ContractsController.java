@@ -5,8 +5,10 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hy.crm.entity.Clients;
 import com.hy.crm.entity.Contracts;
+import com.hy.crm.entity.FlowableBena;
 import com.hy.crm.entity.Users;
 import com.hy.crm.service.IContractsService;
+import com.hy.crm.service.IUsersService;
 import com.hy.crm.service.impl.ContractsServiceImpl;
 import com.hy.crm.util.AccountJson;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -34,6 +36,9 @@ public class ContractsController {
 
     @Autowired
     private IContractsService contractsService;
+
+    @Autowired
+    private IUsersService usersService;
 
     @Autowired
     private ContractsServiceImpl contractsServiceImpl;
@@ -81,8 +86,9 @@ public class ContractsController {
 
     @RequestMapping("/add_contracts.do")
     @ResponseBody
-    public  String add_contracts(Contracts contracts){
+    public  String add_contracts(Contracts contracts, FlowableBena flowableBena,HttpSession session){
         contractsService.save(contracts);
+
         return "1";
     }
 

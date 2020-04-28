@@ -202,6 +202,14 @@
         </div>
         </div>
 
+        <label class="layui-form-label">合同审批人</label>
+        <div class="layui-input-inline">
+            <select  name="u_ids" lay-filter="in_charge_of" id="u_in_charge_ofs" lay-search="" style="width: 200px;" >
+                <option value="0">请选择</option>
+            </select>
+        </div>
+    </div>
+
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button class="layui-btn" type="submit" lay-filter="demo1" lay-submit="">立即提交</button>
@@ -247,6 +255,7 @@
                 str+=" <option value='"+data[i].u_Id+"'>"+data[i].u_Name+"-"+data[i].u_Realname+"</option>";
             }
             $("#u_in_charge_of").append(str);
+            $("#u_in_charge_ofs").append(str);
             form.render("select");
         });
 

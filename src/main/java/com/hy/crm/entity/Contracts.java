@@ -61,8 +61,17 @@ public class Contracts implements Serializable {
     //开票金额
     @TableField(exist = false)
     private Double ch_monkey;
+    //开票金额
+    @TableField(exist = false)
+    private String u_ids;
 
+    public String getU_ids() {
+        return u_ids;
+    }
 
+    public void setU_ids(String u_ids) {
+        this.u_ids = u_ids;
+    }
 
     public Double getRe_monkey() {
         return re_monkey;
@@ -219,7 +228,7 @@ public class Contracts implements Serializable {
                 ", ct_status=" + ct_status +
                 ", re_monkey=" + re_monkey +
                 ", ch_monkey=" + ch_monkey +
+                ", u_ids='" + u_ids + '\'' +
                 '}';
     }
-
 }
