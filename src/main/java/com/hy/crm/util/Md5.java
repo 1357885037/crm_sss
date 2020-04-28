@@ -16,5 +16,15 @@ public class Md5 {
 
     }
 
+//    public static void main(String[] args) {
+//        String hashAlgorithmName="MD5"; //加密方式
+//        Object credentials="190729";   //要加密的密码
+//        Object salt= ByteSource.Util.bytes("tanghao");//加的盐
+//        int hashIterations=1024;//加密次数
+//
+//        Object result=new SimpleHash(hashAlgorithmName,credentials,salt,hashIterations);
+//        System.out.println(result.toString());
+//    	}
+
 
 }

@@ -23,11 +23,55 @@ function getLangDate(){
     setTimeout("getLangDate()",1000);
 }
 
-layui.use(['form','element','layer'],function(){
+layui.use(['form','element','layer','table'],function(){
     var form = layui.form,
         layer = parent.layer === undefined ? layui.layer : top.layer,
         element = layui.element;
         $ = layui.jquery;
+     var table = layui.table;
+
+    //
+    // //获取表数据
+    // table.render({
+    //     elem: '#test'
+    //     ,url:'/FlowAbleController/querylist.do'
+    //     ,text:{
+    //         none: '暂无相关数据' ,//默认：无数据。注：该属性为 layui 2.2.5 开始新增
+    //         icon:'layui-icon-face-surprised'
+    //     }
+    //     ,cols: [[
+    //         {field:'nrOfHolidays', width:250, title: '申请人'}
+    //         ,{field:'descriptions', width:250, title: '申请内容'}
+    //
+    //     ]],
+    //     page:false
+    // });
+    //
+    //
+    // //监听行单击事件并弹出层显示这一行信息
+    // table.on('row(test)', function (obj) {
+    //     var data = obj.data;
+    //     console.log(data);
+    //     layer.open({
+    //         title: "审批",
+    //         type: 2,
+    //         content: "/shenpi.html",
+    //         area: ['50%', '70%'],
+    //         skin: "layui-layer-molv",
+    //         // btn: ['确定', '关闭'],
+    //         success: function (layero, index) {    //成功获得加载changefile.html时，预先加载，将值从父窗口传到 子窗口
+    //             let body = layer.getChildFrame('body', index);
+    //             body.find("#nrOfHolidays").val(data.nrOfHolidays);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
+    //             body.find("#descriptions").val(data.descriptions);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
+    //             body.find("#id").val(data.id);//意思是将rowselect[0].path这个值传递到子窗口的class="filepath"这个的文本框中，（预先加载）
+    //             layui.form.render();
+    //         }
+    //     });
+    //     //标注选中样式
+    //     obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+    // });
+
+
 
     $.ajax({
         type: "post",
