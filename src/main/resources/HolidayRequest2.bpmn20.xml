@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:flowable="http://flowable.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.flowable.org/processdef">
+
+  <process id="holidayRequest" name="Holiday Request" isExecutable="true">
+
+    <startEvent id="startEvent"/>
+    <sequenceFlow sourceRef="startEvent" targetRef="approveTask"/>
+
+    <userTask id="approveTask" name="Approve or reject request" flowable:assignee="${manager}" />
+    <sequenceFlow sourceRef="approveTask" targetRef="decision"/>
+
+    <exclusiveGateway id="decision"/>
+    <sequenceFlow sourceRef="decision" targetRef="externalSystemCall">
+      <conditionExpression xsi:type="tFormalExpression">
+        <![CDATA[
+          ${approved}
+        ]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow  sourceRef="decision" targetRef="sendRejectionMail">
+      <conditionExpression xsi:type="tFormalExpression">
+        <![CDATA[
+          ${!approved}
+        ]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <serviceTask id="externalSystemCall" name="Enter holidays in external system"
+                 flowable:class="com.hy.crm.util.CallExternalSystemDelegate"/>
+    <sequenceFlow sourceRef="externalSystemCall" targetRef="holidayApprovedTask"/>
+
+
+    <serviceTask id="sendRejectionMail" name="Send out rejection email"
+                 flowable:class="com.hy.crm.util.CallExternalSystemDelegate2"/>
+    <sequenceFlow sourceRef="sendRejectionMail" targetRef="rejectEnd"/>
+
+
+
+
+    <userTask id="holidayApprovedTask" name="Approve or reject request" flowable:assignee="${manager2}" />
+    <sequenceFlow sourceRef="holidayApprovedTask" targetRef="decision2"/>
+
+
+    <exclusiveGateway id="decision2"/>
+    <sequenceFlow sourceRef="decision2" targetRef="externalSystemCall2">
+      <conditionExpression xsi:type="tFormalExpression">
+        <![CDATA[
+          ${approved}
+        ]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow  sourceRef="decision2" targetRef="sendRejectionMail2">
+      <conditionExpression xsi:type="tFormalExpression">
+        <![CDATA[
+          ${!approved}
+        ]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+
+    <serviceTask id="externalSystemCall2" name="Enter holidays in external system"
+                 flowable:class="com.hy.crm.util.CallExternalSystemDelegate"/>
+    <sequenceFlow sourceRef="externalSystemCall2" targetRef="holidayApprovedTask2"/>
+
+
+    <serviceTask id="sendRejectionMail2" name="Send out rejection email"
+                 flowable:class="com.hy.crm.util.CallExternalSystemDelegate"/>
+    <sequenceFlow sourceRef="sendRejectionMail2" targetRef="rejectEnd"/>
+
+
+    <userTask id="holidayApprovedTask2" name="Approve or reject request" flowable:assignee="${manager3}" />
+    <sequenceFlow sourceRef="holidayApprovedTask2" targetRef="decision3"/>
+
+
+
+
+    <exclusiveGateway id="decision3"/>
+    <sequenceFlow sourceRef="decision3" targetRef="externalSystemCall3">
+      <conditionExpression xsi:type="tFormalExpression">
+        <![CDATA[
+          ${approved}
+        ]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow  sourceRef="decision3" targetRef="sendRejectionMail3">
+      <conditionExpression xsi:type="tFormalExpression">
+        <![CDATA[
+          ${!approved}
+        ]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+
+    <serviceTask id="externalSystemCall3" name="Enter holidays in external system"
+                 flowable:class="com.hy.crm.util.CallExternalSystemDelegate"/>
+    <sequenceFlow sourceRef="externalSystemCall3" targetRef="holidayApprovedTask3"/>
+
+
+    <serviceTask id="sendRejectionMail3" name="Send out rejection email"
+                 flowable:class="com.hy.crm.util.CallExternalSystemDelegate"/>
+    <sequenceFlow sourceRef="sendRejectionMail3" targetRef="rejectEnd"/>
+
+
+
+
+    <endEvent id="rejectEnd"/>
+    <endEvent id="holidayApprovedTask3"/>
+
+  </process>
+
+</definitions>

@@ -1,18 +1,20 @@
 package com.hy.crm.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hy.crm.entity.Business;
-import com.hy.crm.entity.Clients;
-import com.hy.crm.entity.Users;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.hy.crm.entity.*;
 import com.hy.crm.service.impl.BusinessServiceImpl;
 import com.hy.crm.service.impl.ClientsServiceImpl;
 import com.hy.crm.service.impl.UsersServiceImpl;
 import com.hy.crm.util.AccountJson;
+import com.hy.crm.util.HolidayRequest;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -86,7 +88,15 @@ public class BusinessController {
 
     @RequestMapping("/add_Business")
     @ResponseBody
-    public String add_Business(Business business){
+    public String add_Business(Business business,String u_idsp,HttpSession session){
+
+        QueryWrapper<Business> queryWrapper=new QueryWrapper();
+        queryWrapper.eq("b_name",business.getB_name());
+        Business ces=(Business)businessService.getObj(queryWrapper);
+        if(ces!=null){
+            return "2";
+        }else{
+
         System.out.println(business.toString());
         //我要获取当前的日期
         Date date = new Date();
@@ -97,7 +107,18 @@ public class BusinessController {
         business.setB_current_time(createdate);
         businessService.save(business);
 
+            QueryWrapper<Business> queryWrapper2=new QueryWrapper();
+            queryWrapper2.eq("b_name",business.getB_name());
+            Business ces2=(Business)businessService.getObj(queryWrapper);
+
+        //获取申请人
+        Users user=(Users)session.getAttribute("users");
+        FlowableBena2 flowableBena2=new FlowableBena2(user.getU_Id(),business.getB_name(),"0",ces2.getB_id(),u_idsp,-1);
+        HolidayRequest.start(flowableBena2);
+
+
         return "1";
+        }
     }
     @ResponseBody
     @RequestMapping("/update_Business.do")
@@ -295,6 +316,42 @@ public class BusinessController {
         }else {
             return "0";
         }
+    }
+
+
+
+    @ResponseBody
+    @RequestMapping("/sp_business.do")
+    public AccountJson sp_business(HttpSession session, @RequestParam(value = "page",defaultValue = "1") Integer page, @RequestParam(value = "limit",defaultValue = "3")Integer limit){
+
+        Users user=(Users)session.getAttribute("users");
+
+        Page pageHelper= PageHelper.startPage(page,limit,true);
+        List<FlowableBena2> list=HolidayRequest.select(user.getU_Id());
+        AccountJson accountJson=new AccountJson();
+        accountJson.setCode(0);
+        accountJson.setMsg("");
+        accountJson.setCount((int) pageHelper.getTotal());
+        accountJson.setData(list);
+        return accountJson;
+    }
+
+    @RequestMapping("/sp.do")
+    @ResponseBody
+    public String sp(String str,HttpSession session){
+        System.out.println("task_id"+str);
+        Users users=(Users)session.getAttribute("users");
+        HolidayRequest.sp(users.getU_Id(),Integer.parseInt(str));
+        return "1";
+    }
+
+    @RequestMapping("/no_sp")
+    @ResponseBody
+    public String no_sp(String str,HttpSession session){
+        System.out.println("task_id"+str);
+        Users users=(Users)session.getAttribute("users");
+        HolidayRequest.no_sp(users.getU_Id(),Integer.parseInt(str));
+        return "1";
     }
 
 }

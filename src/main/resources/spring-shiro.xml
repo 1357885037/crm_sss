@@ -42,6 +42,7 @@
                 /Login/Users/**=anon
                 /page/404.html=anon
                 /page/user/userInfo2.html=anon
+                /page/user/userInfo2.js=anon
                 /index.html=anon
 
 

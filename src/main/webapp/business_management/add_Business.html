@@ -219,6 +219,14 @@
                 <option value="0">请选择</option>
             </select>
         </div>
+
+        <label class="layui-form-label">商机审批人</label>
+        <div class="layui-input-inline">
+            <select name="u_idsp"  lay-filter="in_charge_of" id="u_in_charge_of2" lay-search="" style="width: 200px;" >
+                <option value="0">请选择</option>
+            </select>
+        </div>
+
     </div>
 
 
@@ -280,6 +288,7 @@
                 str+=" <option value='"+data[i].u_Id+"'>账号:"+data[i].u_Name+"--姓名:"+data[i].u_Realname+"</option>";
             }
             $("#u_in_charge_of").append(str);
+            $("#u_in_charge_of2").append(str);
             form.render("select");
         });
 
@@ -393,10 +402,10 @@
                             icon: 1,
                             time: 2000 //2秒关闭（如果不配置，默认是3秒）
                         }, function(){
-                            window.location.href ="/customer_management/customer_management.html";
+                           // window.location.href ="/customer_management/customer_management.html";
                         });
                     }else{
-                        layer.msg('添加失败,该用户已存在！', {
+                        layer.msg('添加失败,该商机已存在！', {
                             icon: 1,
                             time: 2000 //2秒关闭（如果不配置，默认是3秒）
                         }, function(){

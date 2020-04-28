@@ -93,7 +93,7 @@
 
                 <div class="layui-card-body layui-text">
                     <div class="layuimini-notice">
-                        <div class="layuimini-notice-title"><a href="javascript:;"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>所有分类</a> </div>
+                        <div class="layuimini-notice-title"><a href="javascript:;" id="fla"><svg class="icon2" aria-hidden="true"><use xlink:href="#icon-leibie1"></use></svg>所有分类</a> </div>
                     </div>
 
                     <div class="layuimini-notice">
@@ -660,6 +660,20 @@
             });
 
         })
+
+
+        $("#fla").click(function () {
+          /*  window.location.href ="/crm/contracts/queryall.do?c_id="+$("#c_id").val()+"&u_id="+$("#u_id").val()
+*/
+            table.reload('test', {
+                url:"/crm/contracts/queryall.do?c_id="+$("#c_id").val()+"&u_id="+$("#u_id").val()
+                ,where: {} //设定异步数据接口的额外参数
+                //,height: 300
+            });
+
+        })
+
+
 
     });
 </script>

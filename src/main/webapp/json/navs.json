@@ -109,6 +109,12 @@
 			"icon": "icon-mokuai",
 			"href": "/page/user/gRoles.html",
 			"spread": false
+		},
+		{
+			"title": "审批商机",
+			"icon": "icon-mokuai",
+			"href": "business_management/sp_business.html",
+			"spread": false
 		}
 ],
 	"heto": [

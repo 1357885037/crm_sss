@@ -100,8 +100,10 @@ public class LoginController {
            String str=user.getU_Date();
            str=str.replaceAll("年","-").replaceAll("月","-").substring(0,str.length()-1);
            user.setU_Date(str);
+           //默认状态
+           user.setU_statu(0);
            //默认头像
-           user.setU_Img("123");
+           user.setU_Img("face.jpg");
            //用户名作为盐值 MD5加密 1024次
            user.setU_pass(Md5.md4Test(user.getU_Name(),user.getU_pass()));
            //添加到数据库
